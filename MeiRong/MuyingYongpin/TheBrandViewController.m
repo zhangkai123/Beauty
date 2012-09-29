@@ -22,6 +22,7 @@
 @synthesize catName;
 -(void)dealloc
 {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
     [theTalbleView release];
     [productsArray release];
     [super dealloc];
@@ -41,12 +42,11 @@
 -(void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+            
     NSString *notificationName = [self getNotificationName];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(recieveCatProducts) name:notificationName object:nil];
     
@@ -57,32 +57,37 @@
     theTalbleView.delegate = self;
     [self.view addSubview:theTalbleView];
     
+    productsArray = [[NSMutableArray alloc]init];
+    
+    __block UITableView *weaktheTalbleView = theTalbleView;
+    __block NSMutableArray *weakproductsArray = productsArray;
+    __block NSString *weakcatName = self.catName;
+    __block NSInteger weakCurrentPage = currentPage;
     //add the pull fresh and add more data
     // setup the pull-to-refresh view
     [theTalbleView addPullToRefreshWithActionHandler:^{
         NSLog(@"refresh dataSource");
-        if (theTalbleView.pullToRefreshView.state == SVPullToRefreshStateLoading)
+        if (weaktheTalbleView.pullToRefreshView.state == SVPullToRefreshStateLoading)
             NSLog(@"Pull to refresh is loading");
-        [theTalbleView.pullToRefreshView performSelector:@selector(stopAnimating) withObject:nil afterDelay:2];
+        [weaktheTalbleView.pullToRefreshView performSelector:@selector(stopAnimating) withObject:nil afterDelay:2];
     }];
     [theTalbleView addInfiniteScrollingWithActionHandler:^{
         NSLog(@"load more data");
-        int productN = [productsArray count];
+        int productN = [weakproductsArray count];
         int pageN;
         if (productN % 20 == 0) {
             pageN = productN / 20;
-            if (pageN <= currentPage) {
+            if (pageN <= weakCurrentPage) {
                 pageN = -1;
             }
         }else{
             pageN = -1;
         }
         DataController *dataController = [DataController sharedDataController];
-        [dataController fetachCateProducts:self.catName notiName:notificationName pageNumber:pageN + 1];
-        currentPage = pageN;
+        [dataController fetachCateProducts:weakcatName notiName:notificationName pageNumber:pageN + 1];
+        weakCurrentPage = pageN;
     }];
     
-    productsArray = [[NSMutableArray alloc]init];
     DataController *dataController = [DataController sharedDataController];
     [dataController fetachCateProducts:self.catName notiName:notificationName pageNumber:1];
 }

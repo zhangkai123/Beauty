@@ -7,12 +7,12 @@
          shouldBeEnabled = "Yes"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "MuyingYongpin/HotProductViewController.m"
-         timestampString = "370001185.863089"
+         filePath = "BrandViewController.m"
+         timestampString = "369158107.085273"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "22"
-         endingLineNumber = "22"
+         startingLineNumber = "16"
+         endingLineNumber = "16"
          landmarkName = "-didReceiveMemoryWarning"
          landmarkType = "5">
       </FileBreakpoint>
@@ -20,12 +20,12 @@
          shouldBeEnabled = "Yes"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "BrandViewController.m"
-         timestampString = "369158107.085273"
+         filePath = "MuyingYongpin/HotProductViewController.m"
+         timestampString = "370632004.637089"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "16"
-         endingLineNumber = "16"
+         startingLineNumber = "22"
+         endingLineNumber = "22"
          landmarkName = "-didReceiveMemoryWarning"
          landmarkType = "5">
       </FileBreakpoint>

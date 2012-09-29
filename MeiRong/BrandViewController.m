@@ -66,8 +66,6 @@
     if (!cell) {
         cell = [[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"]autorelease];
     }
-//    Product *product = [dataController.productsArray objectAtIndex:indexPath.section];
-//    [cell.imageView setImageWithURL:[NSURL URLWithString:product.pic_url] placeholderImage:[UIImage imageNamed:@"placefold.jpeg"]];
     cell.textLabel.text = [dataArray objectAtIndex:indexPath.row];
     return cell;
 }
