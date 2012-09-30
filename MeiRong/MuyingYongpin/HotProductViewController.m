@@ -10,7 +10,6 @@
 #import "HotProductViewController.h"
 #import "UIImageView+WebCache.h"
 #import "Product.h"
-#import "HotCell.h"
 #import "DataController.h"
 #import "WebViewController.h"
 #import "SVPullToRefresh.h"
@@ -93,36 +92,12 @@
     [productsArray addObjectsFromArray:dataController.productsArray];
     [productTableView reloadData];
 }
-//-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-//{
-//    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.bounds.size.width, 30)];  
-//    headerView.backgroundColor = [UIColor blackColor];
-//    [headerView setAlpha:0.8];
-//    
-//    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, tableView.bounds.size.width, 30)];
-//    label.text = [tableView.dataSource tableView:tableView titleForHeaderInSection:section];
-//    label.backgroundColor = [UIColor clearColor];
-//    label.font = [UIFont boldSystemFontOfSize:10];
-//    label.textColor = [UIColor whiteColor];
-//    
-//    [headerView addSubview:label];
-//    return headerView;
-//}
-//
-//- (CGFloat) tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-//{
-//    return 44.0;
-//}
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 1;
 }
-//- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
-//{
-//    Product *product = [dataController.productsArray objectAtIndex:section];
-//    return product.title;
-//}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return [productsArray count];
@@ -133,52 +108,22 @@
     if (!cell) {
         cell = [[[HotCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"]autorelease];
     }
-
+    cell.delegate = self;
+    cell.rowNum = indexPath.row;
     Product *product = [productsArray objectAtIndex:indexPath.row];
     [cell.theImageView setImageWithURL:[NSURL URLWithString:product.pic_url] placeholderImage:[UIImage imageNamed:@"placefold.jpeg"]];
     cell.desLable.text = product.title;
     return cell;
 }
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+#pragma HotCellSelectionDelegate
+-(void)selectTableViewCell:(HotCell *)cell
 {
-    Product *product = [productsArray objectAtIndex:indexPath.row];
+    Product *product = [productsArray objectAtIndex:cell.rowNum];
     WebViewController *webViewController = [[WebViewController alloc]init];
     webViewController.productUrlS = product.click_url;
     [self presentModalViewController:webViewController animated:YES];
     [webViewController release];
 }
-/*
--(float)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-//    Product *product = [dataController.productsArray objectAtIndex:indexPath.row];
-//    
-//    NSURL *imageURL = [NSURL URLWithString:product.pic_url];
-//    
-//    CGImageSourceRef imageSourceRef = CGImageSourceCreateWithURL((__bridge CFURLRef)imageURL, NULL);
-//    if(imageSourceRef == NULL){
-//     
-//        return 0;
-//    }
-//    
-//    CFDictionaryRef props = CGImageSourceCopyPropertiesAtIndex(imageSourceRef, 0, NULL);    
-//    CFRelease(imageSourceRef);
-//    
-//    NSLog(@"%@", (__bridge NSDictionary *)props);
-//    NSNumber *width;
-//    NSNumber *height;
-//    if (props) {
-//        width = (__bridge NSNumber *)CFDictionaryGetValue(props, kCGImagePropertyPixelWidth);
-//        height = (__bridge NSNumber *)CFDictionaryGetValue(props, kCGImagePropertyPixelHeight);
-//        NSLog(@"Image dimensions: %@ x %@ px", width, height);
-//    }
-//    
-//    CFRelease(props);
-//    
-//    float cellHeight = [height intValue] * 320 / [width intValue];
-    float cellHeight = 320;
-    return cellHeight;
-}
-*/
 - (void)viewDidUnload
 {
     [super viewDidUnload];

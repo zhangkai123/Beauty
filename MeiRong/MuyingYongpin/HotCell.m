@@ -11,6 +11,7 @@
 @implementation HotCell
 @synthesize theImageView ,desLable;
 @synthesize collectButton ,sharedButton;
+@synthesize delegate ,rowNum;
 -(void)dealloc
 {
     [theImageView release];
@@ -23,7 +24,9 @@
     if (self) {
         // Initialization code
         self.backgroundColor = [UIColor blackColor];
-        UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(10, 10, 300, 300)];
+        TouchableImageView *imageView = [[TouchableImageView alloc]initWithFrame:CGRectMake(10, 10, 300, 300)];
+        imageView.delegate = self;
+        imageView.userInteractionEnabled = YES;
         self.theImageView = imageView;
         [imageView release];
         
@@ -51,6 +54,10 @@
         [self addSubview:self.sharedButton];
     }
     return self;
+}
+- (void)touchableImageViewViewWasSelected:(TouchableImageView *)thumbnailImageView
+{
+    [delegate selectTableViewCell:self];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated

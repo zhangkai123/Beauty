@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "HotCell.h"
 
-@interface HotProductViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
+@interface HotProductViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,HotCellSelectionDelegate>
 {
     UITableView *productTableView;
     NSMutableArray *productsArray;
