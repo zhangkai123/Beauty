@@ -124,6 +124,15 @@
     [self presentModalViewController:webViewController animated:YES];
     [webViewController release];
 }
+-(void)collectProduct:(HotCell *)cell
+{
+    
+}
+-(void)shareProduct:(HotCell *)cell
+{
+    
+}
+
 - (void)viewDidUnload
 {
     [super viewDidUnload];

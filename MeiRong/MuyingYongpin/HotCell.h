@@ -14,6 +14,8 @@
 @protocol HotCellSelectionDelegate <NSObject>
 
 -(void)selectTableViewCell:(HotCell *)cell;
+-(void)collectProduct:(HotCell *)cell;
+-(void)shareProduct:(HotCell *)cell;
 
 @end
 

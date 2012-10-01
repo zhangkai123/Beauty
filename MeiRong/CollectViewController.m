@@ -55,6 +55,8 @@
     myTableView.dataSource = self;
     myTableView.delegate = self;
     [self.view addSubview:myTableView];
+    
+    dataArray = [[NSMutableArray alloc]init];
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -62,7 +64,7 @@
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 3;
+    return [dataArray count];
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -70,6 +72,7 @@
     if (!cell) {
         cell = [[[StyleOneCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"]autorelease];
     }
+    cell.delegate = self;
     cell.textLabel.text = @"let's go";
     return cell;
 }

@@ -29,6 +29,7 @@
 		4B8BA35415F635B700332F08 /* iconListTab@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B8BA35315F635B700332F08 /* iconListTab@2x.png */; };
 		4B8BA35615F635C200332F08 /* iconListTabFocus@2xUncrushedPng.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B8BA35515F635C200332F08 /* iconListTabFocus@2xUncrushedPng.png */; };
 		4B8BA35815F635CC00332F08 /* iconListTabShape@2xUncrushedPng.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B8BA35715F635CC00332F08 /* iconListTabShape@2xUncrushedPng.png */; };
+		4B8E9AEC1619E3E000A37B6E /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B8E9AEB1619E3E000A37B6E /* CoreData.framework */; };
 		4B92E1D115CD0C1700249F26 /* Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B92E1D015CD0C1700249F26 /* Utility.m */; };
 		4B92E1EF15CD1AE800249F26 /* NSObject+SBJson.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B92E1D715CD1AE800249F26 /* NSObject+SBJson.m */; };
 		4B92E1F015CD1AE800249F26 /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B92E1DA15CD1AE800249F26 /* SBJsonParser.m */; };
@@ -119,6 +120,7 @@
 		4B8BA35315F635B700332F08 /* iconListTab@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iconListTab@2x.png"; sourceTree = "<group>"; };
 		4B8BA35515F635C200332F08 /* iconListTabFocus@2xUncrushedPng.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iconListTabFocus@2xUncrushedPng.png"; sourceTree = "<group>"; };
 		4B8BA35715F635CC00332F08 /* iconListTabShape@2xUncrushedPng.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iconListTabShape@2xUncrushedPng.png"; sourceTree = "<group>"; };
+		4B8E9AEB1619E3E000A37B6E /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		4B92E1CF15CD0C1700249F26 /* Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utility.h; sourceTree = "<group>"; };
 		4B92E1D015CD0C1700249F26 /* Utility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utility.m; sourceTree = "<group>"; };
 		4B92E1D215CD0C5000249F26 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
@@ -245,6 +247,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4B8E9AEC1619E3E000A37B6E /* CoreData.framework in Frameworks */,
 				4BACE0951615F050006B3E00 /* libz.dylib in Frameworks */,
 				4B39A09E160DC4F200C922B2 /* QuartzCore.framework in Frameworks */,
 				4BCB571C16022EF80082D965 /* libxml2.dylib in Frameworks */,
@@ -449,6 +452,7 @@
 				4BACE0911615F016006B3E00 /* libMobClickLibrary.a */,
 				4BACE0941615F050006B3E00 /* libz.dylib */,
 				4BCB571B16022EF80082D965 /* libxml2.dylib */,
+				4B8E9AEB1619E3E000A37B6E /* CoreData.framework */,
 				4B39A09D160DC4F200C922B2 /* QuartzCore.framework */,
 				4BEEF2C915D7AC9C00C424DA /* SystemConfiguration.framework */,
 				4B92E26415CE3CBC00249F26 /* MapKit.framework */,

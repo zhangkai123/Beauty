@@ -41,11 +41,13 @@
         UIButton *cButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
         cButton.frame = CGRectMake(180, 360, 60, 30);
         [cButton setTitle:@"收藏" forState:UIControlStateNormal];
+        [cButton addTarget:self action:@selector(collectProduct) forControlEvents:UIControlEventTouchDown];
         self.collectButton = cButton;
 
         UIButton *sButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
         sButton.frame = CGRectMake(250, 360, 60, 30);
         [sButton setTitle:@"分享" forState:UIControlStateNormal];
+        [sButton addTarget:self action:@selector(shareProduct) forControlEvents:UIControlEventTouchDown];
         self.sharedButton = sButton;
         
         [self addSubview:self.theImageView];
@@ -54,6 +56,14 @@
         [self addSubview:self.sharedButton];
     }
     return self;
+}
+-(void)collectProduct
+{
+    [delegate collectProduct:self];
+}
+-(void)shareProduct
+{
+    [delegate shareProduct:self];
 }
 - (void)touchableImageViewViewWasSelected:(TouchableImageView *)thumbnailImageView
 {
