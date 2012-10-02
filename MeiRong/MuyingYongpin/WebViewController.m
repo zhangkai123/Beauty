@@ -87,18 +87,7 @@
      
      "document.getElementsByTagName('head')[0].appendChild(script);"];
     
-    [webView stringByEvaluatingJavaScriptFromString:@"hideID('header');"];
-    
-    NSString *str = @"function f(){"
-    "var p_list = document.getElementsByTagName('section');" 
-    "for(var i=p_list.length-1; i>=0; i--){"
-    "var p = p_list[i];"
-    "if(p.className === 'footer-t'){"
-    "p.parentNode.removeChild(p);"
-    "}"
-    "}"
-    "}f();";
-    [webView stringByEvaluatingJavaScriptFromString:str];
+    [webView stringByEvaluatingJavaScriptFromString:@"hideID('header');"];    
 }
 
 -(void)goBack

@@ -56,6 +56,7 @@
 		4B92E26315CE3C7800249F26 /* UIImageView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B92E25B15CE3C7800249F26 /* UIImageView+WebCache.m */; };
 		4B92E26515CE3CBC00249F26 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B92E26415CE3CBC00249F26 /* MapKit.framework */; };
 		4B92E26D15CE895E00249F26 /* placefold.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 4B92E26C15CE895E00249F26 /* placefold.jpeg */; };
+		4BA52746161B384F00AA0D6A /* CoreDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BA52745161B384F00AA0D6A /* CoreDataController.m */; };
 		4BACE06E1615E4AB006B3E00 /* UIWebView+Clean.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BACE06D1615E4AB006B3E00 /* UIWebView+Clean.m */; };
 		4BACE0931615F016006B3E00 /* libMobClickLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BACE0911615F016006B3E00 /* libMobClickLibrary.a */; };
 		4BACE0951615F050006B3E00 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BACE0941615F050006B3E00 /* libz.dylib */; };
@@ -176,6 +177,8 @@
 		4B92E25B15CE3C7800249F26 /* UIImageView+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+WebCache.m"; sourceTree = "<group>"; };
 		4B92E26415CE3CBC00249F26 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		4B92E26C15CE895E00249F26 /* placefold.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = placefold.jpeg; sourceTree = "<group>"; };
+		4BA52744161B384F00AA0D6A /* CoreDataController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataController.h; sourceTree = "<group>"; };
+		4BA52745161B384F00AA0D6A /* CoreDataController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataController.m; sourceTree = "<group>"; };
 		4BACE06C1615E4AB006B3E00 /* UIWebView+Clean.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWebView+Clean.h"; sourceTree = "<group>"; };
 		4BACE06D1615E4AB006B3E00 /* UIWebView+Clean.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWebView+Clean.m"; sourceTree = "<group>"; };
 		4BACE0911615F016006B3E00 /* libMobClickLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libMobClickLibrary.a; sourceTree = "<group>"; };
@@ -497,6 +500,8 @@
 				4BE1B82516135BA0006AE5D9 /* NewsWebViewController.m */,
 				4BDB317115BAA36C007B1C6F /* DataController.h */,
 				4BDB317215BAA36C007B1C6F /* DataController.m */,
+				4BA52744161B384F00AA0D6A /* CoreDataController.h */,
+				4BA52745161B384F00AA0D6A /* CoreDataController.m */,
 				4BDB315B15BA56DE007B1C6F /* Supporting Files */,
 			);
 			path = MuyingYongpin;
@@ -690,6 +695,7 @@
 				4BE1B82616135BA0006AE5D9 /* NewsWebViewController.m in Sources */,
 				4BACE06E1615E4AB006B3E00 /* UIWebView+Clean.m in Sources */,
 				4B8E9B041619F42D00A37B6E /* ProductModel.xcdatamodeld in Sources */,
+				4BA52746161B384F00AA0D6A /* CoreDataController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

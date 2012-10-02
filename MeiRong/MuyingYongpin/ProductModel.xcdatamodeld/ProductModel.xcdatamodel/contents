@@ -1,4 +1,22 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model name="ProductModel" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1810" systemVersion="12B19" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
-    <elements/>
+<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1810" systemVersion="12B19" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="Product" syncable="YES">
+        <attribute name="click_url" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="commission" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="commission_num" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="commission_rate" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="commission_volume" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="item_location" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="nick" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="num_iid" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="pic_url" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="price" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="seller_credit_score" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="shop_click_url" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="volume" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Product" positionX="160" positionY="192" width="128" height="255"/>
+    </elements>
 </model>
