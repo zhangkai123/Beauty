@@ -32,6 +32,8 @@
     });
     
     return sharedInstance;
+    
+    NSLog(@"");
 }
 
 #pragma mark - Core Data stack
