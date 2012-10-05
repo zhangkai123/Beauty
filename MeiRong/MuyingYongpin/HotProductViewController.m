@@ -134,6 +134,7 @@
     CollectProduct *collectProduct = [NSEntityDescription
                                             insertNewObjectForEntityForName:@"CollectProduct"
                                             inManagedObjectContext:context];
+    collectProduct.pic_url = product.pic_url;
     collectProduct.num_iid = product.num_iid;
     collectProduct.title = product.title;
     collectProduct.nick = product.nick;

@@ -7,6 +7,9 @@
 //
 
 #import "CollectViewController.h"
+#import "CoreDataController.h"
+#import "Product.h"
+#import "UIImageView+WebCache.h"
 
 @implementation CollectViewController
 -(void)dealloc
@@ -57,6 +60,16 @@
     [self.view addSubview:myTableView];
     
     dataArray = [[NSMutableArray alloc]init];
+    
+    NSManagedObjectContext *managedContext = [[CoreDataController sharedInstance]managedObjectContext];
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"CollectProduct"
+                                              inManagedObjectContext:managedContext];
+    [fetchRequest setEntity:entity];
+    NSError *error;
+    NSArray *fetchedObjects = [managedContext executeFetchRequest:fetchRequest error:&error];
+    [dataArray addObjectsFromArray:fetchedObjects];
+    [fetchRequest release];
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -73,15 +86,20 @@
         cell = [[[StyleOneCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"]autorelease];
     }
     cell.delegate = self;
-    cell.textLabel.text = @"let's go";
+    cell.rowNum = indexPath.row;
+    
+    Product *leftProduct = [dataArray objectAtIndex:indexPath.row*2];
+    NSString *lProduct = [NSString stringWithFormat:@"%@_160x160.jpg",leftProduct.pic_url];
+    [cell.leftImageView setImageWithURL:[NSURL URLWithString:lProduct] placeholderImage:[UIImage imageNamed:@"placefold.jpeg"]];
+    
+    if ([dataArray count] > indexPath.row*2 + 1) {
+        Product *rightProduct = [dataArray objectAtIndex:indexPath.row*2 + 1];
+        NSString *rProduct = [NSString stringWithFormat:@"%@_160x160.jpg",rightProduct.pic_url];
+        [cell.rightImageView setImageWithURL:[NSURL URLWithString:rProduct] placeholderImage:[UIImage imageNamed:@"placefold.jpeg"]];
+    }
     return cell;
 }
-//-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-////    TheBrandViewController *theBrandViewController = [[TheBrandViewController alloc]init];
-////    [self.navigationController pushViewController:theBrandViewController animated:YES];
-////    [theBrandViewController release];
-//}
+
 #pragma StyleOneCellSelectionDelegate
 -(void)selectTableViewCell:(StyleOneCell *)cell selectedItemAtIndex:(NSInteger)index
 {
