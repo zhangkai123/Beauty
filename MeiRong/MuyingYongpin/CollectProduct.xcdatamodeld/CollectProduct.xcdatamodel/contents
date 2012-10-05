@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1810" systemVersion="12B19" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
-    <entity name="Product" syncable="YES">
+    <entity name="CollectProduct" syncable="YES">
         <attribute name="click_url" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="commission" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="commission_num" optional="YES" attributeType="String" syncable="YES"/>
@@ -17,6 +17,6 @@
         <attribute name="volume" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Product" positionX="160" positionY="192" width="128" height="255"/>
+        <element name="CollectProduct" positionX="160" positionY="192" width="128" height="255"/>
     </elements>
 </model>

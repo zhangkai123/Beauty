@@ -1,14 +1,14 @@
 //
-//  Product.h
+//  CollectProduct.h
 //  MuyingYongpin
 //
-//  Created by kai zhang on 8/4/12.
-//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//  Created by zhang kai on 10/5/12.
+//
 //
 
-#import <Foundation/Foundation.h>
+#import <CoreData/CoreData.h>
 
-@interface Product : NSObject
+@interface CollectProduct : NSManagedObject
 
 @property(nonatomic,copy) NSString *num_iid;
 @property(nonatomic,copy) NSString * title;
@@ -24,4 +24,5 @@
 @property(nonatomic,copy) NSString *seller_credit_score;
 @property(nonatomic,copy) NSString *item_location;
 @property(nonatomic,copy) NSString *volume;
+
 @end

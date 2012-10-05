@@ -12,14 +12,8 @@
 
 + (id)sharedInstance;
 
-- (NSURL *)applicationDocumentsDirectory;
-
-- (NSManagedObjectContext *)masterManagedObjectContext;
-- (NSManagedObjectContext *)backgroundManagedObjectContext;
-- (NSManagedObjectContext *)newManagedObjectContext;
-- (void)saveMasterContext;
-- (void)saveBackgroundContext;
+- (NSManagedObjectContext *)managedObjectContext;
 - (NSManagedObjectModel *)managedObjectModel;
 - (NSPersistentStoreCoordinator *)persistentStoreCoordinator;
-
+- (NSURL *)applicationDocumentsDirectory;
 @end

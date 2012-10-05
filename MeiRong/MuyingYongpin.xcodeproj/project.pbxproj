@@ -11,6 +11,7 @@
 		4B39A09C160DC39C00C922B2 /* SVPullToRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B39A09B160DC39C00C922B2 /* SVPullToRefresh.m */; };
 		4B39A09E160DC4F200C922B2 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B39A09D160DC4F200C922B2 /* QuartzCore.framework */; };
 		4B421C0A15ECFEC2001094FE /* CollectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B421C0915ECFEC2001094FE /* CollectViewController.m */; };
+		4B74C896161EA28200ADD8CB /* CollectProduct.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B74C895161EA28200ADD8CB /* CollectProduct.m */; };
 		4B7620671608A479004DAF89 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B7620661608A479004DAF89 /* WebViewController.m */; };
 		4B800C2A15FF6A27007EA85C /* TouchableImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B800C2915FF6A27007EA85C /* TouchableImageView.m */; };
 		4B820E5615ECFF1E00C85EB8 /* NewsFeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B820E5515ECFF1E00C85EB8 /* NewsFeedViewController.m */; };
@@ -30,7 +31,7 @@
 		4B8BA35615F635C200332F08 /* iconListTabFocus@2xUncrushedPng.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B8BA35515F635C200332F08 /* iconListTabFocus@2xUncrushedPng.png */; };
 		4B8BA35815F635CC00332F08 /* iconListTabShape@2xUncrushedPng.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B8BA35715F635CC00332F08 /* iconListTabShape@2xUncrushedPng.png */; };
 		4B8E9AEC1619E3E000A37B6E /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B8E9AEB1619E3E000A37B6E /* CoreData.framework */; };
-		4B8E9B041619F42D00A37B6E /* ProductModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4B8E9B021619F42D00A37B6E /* ProductModel.xcdatamodeld */; };
+		4B8E9B041619F42D00A37B6E /* CollectProduct.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4B8E9B021619F42D00A37B6E /* CollectProduct.xcdatamodeld */; };
 		4B92E1D115CD0C1700249F26 /* Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B92E1D015CD0C1700249F26 /* Utility.m */; };
 		4B92E1EF15CD1AE800249F26 /* NSObject+SBJson.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B92E1D715CD1AE800249F26 /* NSObject+SBJson.m */; };
 		4B92E1F015CD1AE800249F26 /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B92E1DA15CD1AE800249F26 /* SBJsonParser.m */; };
@@ -101,6 +102,8 @@
 		4B39A09D160DC4F200C922B2 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		4B421C0815ECFEC2001094FE /* CollectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CollectViewController.h; path = ../CollectViewController.h; sourceTree = "<group>"; };
 		4B421C0915ECFEC2001094FE /* CollectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CollectViewController.m; path = ../CollectViewController.m; sourceTree = "<group>"; };
+		4B74C894161EA28200ADD8CB /* CollectProduct.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectProduct.h; sourceTree = "<group>"; };
+		4B74C895161EA28200ADD8CB /* CollectProduct.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectProduct.m; sourceTree = "<group>"; };
 		4B7620651608A479004DAF89 /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
 		4B7620661608A479004DAF89 /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
 		4B800C2815FF6A27007EA85C /* TouchableImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TouchableImageView.h; sourceTree = "<group>"; };
@@ -123,7 +126,7 @@
 		4B8BA35515F635C200332F08 /* iconListTabFocus@2xUncrushedPng.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iconListTabFocus@2xUncrushedPng.png"; sourceTree = "<group>"; };
 		4B8BA35715F635CC00332F08 /* iconListTabShape@2xUncrushedPng.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iconListTabShape@2xUncrushedPng.png"; sourceTree = "<group>"; };
 		4B8E9AEB1619E3E000A37B6E /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		4B8E9B031619F42D00A37B6E /* ProductModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ProductModel.xcdatamodel; sourceTree = "<group>"; };
+		4B8E9B031619F42D00A37B6E /* CollectProduct.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CollectProduct.xcdatamodel; sourceTree = "<group>"; };
 		4B92E1CF15CD0C1700249F26 /* Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utility.h; sourceTree = "<group>"; };
 		4B92E1D015CD0C1700249F26 /* Utility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utility.m; sourceTree = "<group>"; };
 		4B92E1D215CD0C5000249F26 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
@@ -346,7 +349,9 @@
 		4B92E1FB15CD2E5000249F26 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				4B8E9B021619F42D00A37B6E /* ProductModel.xcdatamodeld */,
+				4B8E9B021619F42D00A37B6E /* CollectProduct.xcdatamodeld */,
+				4B74C894161EA28200ADD8CB /* CollectProduct.h */,
+				4B74C895161EA28200ADD8CB /* CollectProduct.m */,
 				4B92E1FC15CD2E7200249F26 /* Product.h */,
 				4B92E1FD15CD2E7200249F26 /* Product.m */,
 				4B07D2E71610A64900753B9A /* FashionNews.h */,
@@ -694,8 +699,9 @@
 				4B07D2E91610A64900753B9A /* FashionNews.m in Sources */,
 				4BE1B82616135BA0006AE5D9 /* NewsWebViewController.m in Sources */,
 				4BACE06E1615E4AB006B3E00 /* UIWebView+Clean.m in Sources */,
-				4B8E9B041619F42D00A37B6E /* ProductModel.xcdatamodeld in Sources */,
+				4B8E9B041619F42D00A37B6E /* CollectProduct.xcdatamodeld in Sources */,
 				4BA52746161B384F00AA0D6A /* CoreDataController.m in Sources */,
+				4B74C896161EA28200ADD8CB /* CollectProduct.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -836,13 +842,13 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		4B8E9B021619F42D00A37B6E /* ProductModel.xcdatamodeld */ = {
+		4B8E9B021619F42D00A37B6E /* CollectProduct.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				4B8E9B031619F42D00A37B6E /* ProductModel.xcdatamodel */,
+				4B8E9B031619F42D00A37B6E /* CollectProduct.xcdatamodel */,
 			);
-			currentVersion = 4B8E9B031619F42D00A37B6E /* ProductModel.xcdatamodel */;
-			path = ProductModel.xcdatamodeld;
+			currentVersion = 4B8E9B031619F42D00A37B6E /* CollectProduct.xcdatamodel */;
+			path = CollectProduct.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

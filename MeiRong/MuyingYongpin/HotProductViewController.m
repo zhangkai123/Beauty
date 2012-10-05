@@ -13,6 +13,8 @@
 #import "DataController.h"
 #import "WebViewController.h"
 #import "SVPullToRefresh.h"
+#import "CoreDataController.h"
+#import "CollectProduct.h"
 
 @implementation HotProductViewController
 
@@ -126,7 +128,30 @@
 }
 -(void)collectProduct:(HotCell *)cell
 {
+    Product *product = [productsArray objectAtIndex:cell.rowNum];
     
+    NSManagedObjectContext *context = [[CoreDataController sharedInstance]managedObjectContext];
+    CollectProduct *collectProduct = [NSEntityDescription
+                                            insertNewObjectForEntityForName:@"CollectProduct"
+                                            inManagedObjectContext:context];
+    collectProduct.num_iid = product.num_iid;
+    collectProduct.title = product.title;
+    collectProduct.nick = product.nick;
+    collectProduct.price = product.price;
+    collectProduct.click_url = product.click_url;
+    collectProduct.commission = product.commission;
+    collectProduct.commission_rate = product.commission_rate;
+    collectProduct.commission_num = product.commission_num;
+    collectProduct.commission_volume = product.commission_volume;
+    collectProduct.shop_click_url = product.shop_click_url;
+    collectProduct.seller_credit_score = product.seller_credit_score;
+    collectProduct.item_location = product.item_location;
+    collectProduct.volume = product.volume;
+
+    NSError *error;
+    if (![context save:&error]) {
+        NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
+    }
 }
 -(void)shareProduct:(HotCell *)cell
 {

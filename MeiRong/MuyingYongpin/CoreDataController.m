@@ -10,19 +10,17 @@
 
 @interface CoreDataController ()
 
-@property (strong, nonatomic) NSManagedObjectContext *masterManagedObjectContext;
-@property (strong, nonatomic) NSManagedObjectContext *backgroundManagedObjectContext;
-@property (strong, nonatomic) NSManagedObjectModel *managedObjectModel;
-@property (strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
+@property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;
+@property (readonly, strong, nonatomic) NSManagedObjectModel *managedObjectModel;
+@property (readonly, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 
 @end
 
 @implementation CoreDataController
 
-@synthesize masterManagedObjectContext = _masterManagedObjectContext;
-@synthesize backgroundManagedObjectContext = _backgroundManagedObjectContext;
-@synthesize managedObjectModel = _managedObjectModel;
-@synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
+@synthesize managedObjectContext = __managedObjectContext;
+@synthesize managedObjectModel = __managedObjectModel;
+@synthesize persistentStoreCoordinator = __persistentStoreCoordinator;
 
 + (id)sharedInstance {
     static dispatch_once_t once;
@@ -36,101 +34,47 @@
 
 #pragma mark - Core Data stack
 
-// Used to propegate saves to the persistent store (disk) without blocking the UI
-- (NSManagedObjectContext *)masterManagedObjectContext {
-    if (_masterManagedObjectContext != nil) {
-        return _masterManagedObjectContext;
+// Returns the managed object context for the application.
+// If the context doesn't already exist, it is created and bound to the persistent store coordinator for the application.
+- (NSManagedObjectContext *)managedObjectContext
+{
+    if (__managedObjectContext != nil) {
+        return __managedObjectContext;
     }
     
     NSPersistentStoreCoordinator *coordinator = [self persistentStoreCoordinator];
     if (coordinator != nil) {
-        _masterManagedObjectContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
-        [_masterManagedObjectContext performBlockAndWait:^{
-            [_masterManagedObjectContext setPersistentStoreCoordinator:coordinator];
-        }];
-        
+        __managedObjectContext = [[NSManagedObjectContext alloc] init];
+        [__managedObjectContext setPersistentStoreCoordinator:coordinator];
     }
-    return _masterManagedObjectContext;
-}
-
-// Return the NSManagedObjectContext to be used in the background during sync
-- (NSManagedObjectContext *)backgroundManagedObjectContext {
-    if (_backgroundManagedObjectContext != nil) {
-        return _backgroundManagedObjectContext;
-    }
-    
-    NSManagedObjectContext *masterContext = [self masterManagedObjectContext];
-    if (masterContext != nil) {
-        _backgroundManagedObjectContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
-        [_backgroundManagedObjectContext performBlockAndWait:^{
-            [_backgroundManagedObjectContext setParentContext:masterContext];
-        }];
-    }
-    
-    return _backgroundManagedObjectContext;
-}
-
-// Return the NSManagedObjectContext to be used in the background during sync
-- (NSManagedObjectContext *)newManagedObjectContext {
-    NSManagedObjectContext *newContext = nil;
-    NSManagedObjectContext *masterContext = [self masterManagedObjectContext];
-    if (masterContext != nil) {
-        newContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
-        [newContext performBlockAndWait:^{
-            [newContext setParentContext:masterContext];
-        }];
-    }
-    
-    return newContext;
-}
-
-- (void)saveMasterContext {
-    [self.masterManagedObjectContext performBlockAndWait:^{
-        NSError *error = nil;
-        BOOL saved = [self.masterManagedObjectContext save:&error];
-        if (!saved) {
-            // do some real error handling
-            NSLog(@"Could not save master context due to %@", error);
-        }
-    }];
-}
-
-- (void)saveBackgroundContext {
-    [self.backgroundManagedObjectContext performBlockAndWait:^{
-        NSError *error = nil;
-        BOOL saved = [self.backgroundManagedObjectContext save:&error];
-        if (!saved) {
-            // do some real error handling
-            NSLog(@"Could not save background context due to %@", error);
-        }
-    }];
+    return __managedObjectContext;
 }
 
 // Returns the managed object model for the application.
 // If the model doesn't already exist, it is created from the application's model.
 - (NSManagedObjectModel *)managedObjectModel
 {
-    if (_managedObjectModel != nil) {
-        return _managedObjectModel;
+    if (__managedObjectModel != nil) {
+        return __managedObjectModel;
     }
-    NSURL *modelURL = [[NSBundle mainBundle] URLForResource:@"ProductModel" withExtension:@"momd"];
-    _managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
-    return _managedObjectModel;
+    NSURL *modelURL = [[NSBundle mainBundle] URLForResource:@"CollectProduct" withExtension:@"momd"];
+    __managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
+    return __managedObjectModel;
 }
 
 // Returns the persistent store coordinator for the application.
 // If the coordinator doesn't already exist, it is created and the application's store added to it.
 - (NSPersistentStoreCoordinator *)persistentStoreCoordinator
 {
-    if (_persistentStoreCoordinator != nil) {
-        return _persistentStoreCoordinator;
+    if (__persistentStoreCoordinator != nil) {
+        return __persistentStoreCoordinator;
     }
     
-    NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"ProductModel.sqlite"];
+    NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"CollectProduct.sqlite"];
     
     NSError *error = nil;
-    _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
-    if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error]) {
+    __persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
+    if (![__persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error]) {
         /*
          Replace this implementation with code to handle the error appropriately.
          
@@ -158,7 +102,7 @@
         abort();
     }
     
-    return _persistentStoreCoordinator;
+    return __persistentStoreCoordinator;
 }
 
 #pragma mark - Application's Documents directory
