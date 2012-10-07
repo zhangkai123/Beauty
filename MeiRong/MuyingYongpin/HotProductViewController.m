@@ -91,6 +91,23 @@
 -(void)recieveHotProducts
 {
     DataController *dataController = [DataController sharedDataController];
+    for (int i = 0; i < [dataController.productsArray count]; i++) {
+        Product *product = [dataController.productsArray objectAtIndex:i];
+        
+        NSManagedObjectContext *context = [[CoreDataController sharedInstance]managedObjectContext];
+
+        NSFetchRequest *request= [[NSFetchRequest alloc] init];
+        NSEntityDescription *entity = [NSEntityDescription entityForName:@"CollectProduct" inManagedObjectContext:context];
+        NSPredicate *predicate =[NSPredicate predicateWithFormat:@"pic_url==%@",product.pic_url];
+        [request setEntity:entity];
+        [request setPredicate:predicate];
+        
+        NSError *error = nil;
+        NSArray *array = [context executeFetchRequest:request error:&error];
+        if ([array count] > 0) {
+            product.collect = YES;
+        }
+    }
     [productsArray addObjectsFromArray:dataController.productsArray];
     [productTableView reloadData];
 }
@@ -115,6 +132,13 @@
     Product *product = [productsArray objectAtIndex:indexPath.row];
     [cell.theImageView setImageWithURL:[NSURL URLWithString:product.pic_url] placeholderImage:[UIImage imageNamed:@"placefold.jpeg"]];
     cell.desLable.text = product.title;
+    if (product.collect) {
+        [cell.collectButton setTitle:@"已收藏" forState:UIControlStateNormal];
+        cell.collectButton.enabled = NO;
+    }else{
+        [cell.collectButton setTitle:@"收藏" forState:UIControlStateNormal];
+        cell.collectButton.enabled = YES;
+    }
     return cell;
 }
 #pragma HotCellSelectionDelegate
@@ -152,6 +176,11 @@
     NSError *error;
     if (![context save:&error]) {
         NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
+    }else{
+        product.collect = YES;
+        [cell.collectButton setTitle:@"已收藏" forState:UIControlStateNormal];
+        cell.collectButton.enabled = NO;
+        [[NSNotificationCenter defaultCenter]postNotificationName:@"COLLECT_SUCCESS" object:nil userInfo:nil];
     }
 }
 -(void)shareProduct:(HotCell *)cell

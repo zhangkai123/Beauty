@@ -24,4 +24,5 @@
 @property(nonatomic,copy) NSString *seller_credit_score;
 @property(nonatomic,copy) NSString *item_location;
 @property(nonatomic,copy) NSString *volume;
+@property(nonatomic,assign) BOOL collect;
 @end

@@ -48,6 +48,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(collectSuccess) name:@"COLLECT_SUCCESS" object:nil];
+    
     self.view.backgroundColor = [UIColor grayColor];
     if ([self.navigationController.navigationBar respondsToSelector:@selector( setBackgroundImage:forBarMetrics:)]){
         [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"navBg"] forBarMetrics:UIBarMetricsDefault];
@@ -71,13 +74,36 @@
     [dataArray addObjectsFromArray:fetchedObjects];
     [fetchRequest release];
 }
+-(void)collectSuccess
+{
+    NSManagedObjectContext *managedContext = [[CoreDataController sharedInstance]managedObjectContext];
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"CollectProduct"
+                                              inManagedObjectContext:managedContext];
+    [fetchRequest setEntity:entity];
+    NSError *error;
+    NSArray *fetchedObjects = [managedContext executeFetchRequest:fetchRequest error:&error];
+    if (dataArray != nil) {
+        [dataArray removeAllObjects];
+    }
+    [dataArray addObjectsFromArray:fetchedObjects];
+    [fetchRequest release];
+    [myTableView reloadData];
+}
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 1;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [dataArray count];
+    int rowCount;
+    int totalProducts = [dataArray count];
+    if (totalProducts%2 == 1) {
+        rowCount = (totalProducts +1)/2;
+    }else{
+        rowCount = totalProducts/2;
+    }
+    return rowCount;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
