@@ -57,21 +57,26 @@
     productTableView.rowHeight = 400;
     [self.view addSubview:productTableView];
     
+     productsArray = [[NSMutableArray alloc]init];
+    
+    __block UITableView *weaktheTalbleView = productTableView;
+    __block NSMutableArray *weakproductsArray = productsArray;
+    __block NSInteger weakCurrentPage = currentPage;
     //add the pull fresh and add more data
     // setup the pull-to-refresh view
     [productTableView addPullToRefreshWithActionHandler:^{
         NSLog(@"refresh dataSource");
-        if (productTableView.pullToRefreshView.state == SVPullToRefreshStateLoading)
+        if (weaktheTalbleView.pullToRefreshView.state == SVPullToRefreshStateLoading)
             NSLog(@"Pull to refresh is loading");
-        [productTableView.pullToRefreshView performSelector:@selector(stopAnimating) withObject:nil afterDelay:2];
+        [weaktheTalbleView.pullToRefreshView performSelector:@selector(stopAnimating) withObject:nil afterDelay:2];
     }];
     [productTableView addInfiniteScrollingWithActionHandler:^{
         NSLog(@"load more data");
-        int productN = [productsArray count];
+        int productN = [weakproductsArray count];
         int pageN;
         if (productN % 20 == 0) {
             pageN = productN / 20;
-            if (pageN <= currentPage) {
+            if (pageN <= weakCurrentPage) {
                 pageN = -1;
             }
         }else{
@@ -79,12 +84,11 @@
         }
         DataController *dataController = [DataController sharedDataController];
         [dataController fetachHotProducts:pageN + 1];
-        currentPage = pageN;
+        weakCurrentPage = pageN;
     }];
     
     self.view.backgroundColor = [UIColor lightGrayColor];
     
-    productsArray = [[NSMutableArray alloc]init];
     DataController *dataController = [DataController sharedDataController];
     [dataController fetachHotProducts:1];
 }
@@ -104,6 +108,7 @@
         
         NSError *error = nil;
         NSArray *array = [context executeFetchRequest:request error:&error];
+        [request release];
         if ([array count] > 0) {
             product.collect = YES;
         }
