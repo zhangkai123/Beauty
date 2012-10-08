@@ -72,7 +72,7 @@
 {
     DataController *dataController = [DataController sharedDataController];
     [dataArray addObjectsFromArray:dataController.productsArray];
-    [theTableView reloadData];
+    [theTableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
