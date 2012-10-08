@@ -39,6 +39,9 @@
     if (pageN == 0) {
         return;
     }
+    if (productsArray != nil) {
+        [productsArray removeAllObjects];
+    }
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
         
@@ -66,6 +69,9 @@
 {
     if (pageN == 0) {
         return;
+    }
+    if (productsArray != nil) {
+        [productsArray removeAllObjects];
     }
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
@@ -98,11 +104,7 @@
     NSDictionary *taobaoke_items = [taobaoke_items_get_response objectForKey:@"taobaoke_items"];
     
     NSArray *taobaoke_item = [taobaoke_items objectForKey:@"taobaoke_item"];
-    
-    if (productsArray != nil) {
-        [productsArray removeAllObjects];
-    }
-    
+        
     for (int i = 0; i < [taobaoke_item count]; i++) {
         
         NSDictionary *item = [taobaoke_item objectAtIndex:i];
@@ -116,6 +118,9 @@
 }
 -(void)featchRssData
 {
+    if (productsArray != nil) {
+        [productsArray removeAllObjects];
+    }
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         
         NSString *postURL = @"http://rss.sina.com.cn/eladies/gnspxw.xml";
@@ -135,9 +140,6 @@
     DDXMLDocument *ddDoc = [[DDXMLDocument alloc] initWithData:data options:0 error:&error];
     NSArray *xmlItems = [ddDoc nodesForXPath:@"//item" error:&error];
 //    NSMutableArray *returnArray = [[NSMutableArray alloc] initWithCapacity:[xmlItems count]];
-    if (productsArray != nil) {
-        [productsArray removeAllObjects];
-    }
     
     for(DDXMLElement* itemElement in xmlItems)
     {

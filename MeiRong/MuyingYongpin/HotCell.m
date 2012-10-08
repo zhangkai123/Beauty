@@ -23,6 +23,7 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         // Initialization code
+        self.selectionStyle = UITableViewCellSelectionStyleNone;
         self.backgroundColor = [UIColor blackColor];
         TouchableImageView *imageView = [[TouchableImageView alloc]initWithFrame:CGRectMake(10, 10, 300, 300)];
         imageView.delegate = self;

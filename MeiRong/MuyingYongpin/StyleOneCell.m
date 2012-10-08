@@ -21,6 +21,7 @@
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
+        self.selectionStyle = UITableViewCellSelectionStyleNone;
         // Initialization code
         TouchableImageView *lImageView = [[TouchableImageView alloc]initWithFrame:CGRectMake(0, 0, 160, 160)];
         lImageView.backgroundColor = [UIColor blueColor];

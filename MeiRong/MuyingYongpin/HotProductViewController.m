@@ -114,7 +114,8 @@
         }
     }
     [productsArray addObjectsFromArray:dataController.productsArray];
-    [productTableView reloadData];
+    //nofification is recieved in another thread
+    [productTableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView

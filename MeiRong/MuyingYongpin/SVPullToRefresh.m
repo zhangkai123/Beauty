@@ -58,6 +58,7 @@ static CGFloat const SVPullToRefreshViewHeight = 60;
 
 - (void)dealloc {
     [self stopObservingScrollView];
+    [super dealloc];
 }
 
 - (id)initWithScrollView:(UIScrollView *)scrollView {
@@ -369,7 +370,6 @@ static CGFloat const SVPullToRefreshViewHeight = 60;
         }
     }
 }
-
 - (void)rotateArrow:(float)degrees hide:(BOOL)hide {
     [UIView animateWithDuration:0.2 delay:0 options:UIViewAnimationOptionAllowUserInteraction animations:^{
         self.arrow.layer.transform = CATransform3DMakeRotation(degrees, 0, 0, 1);
