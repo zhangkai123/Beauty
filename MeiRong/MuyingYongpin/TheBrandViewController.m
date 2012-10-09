@@ -10,8 +10,8 @@
 #import "Product.h"
 #import "UIImageView+WebCache.h"
 #import "DataController.h"
-#import "WebViewController.h"
 #import "SVPullToRefresh.h"
+#import "TheBrandDetailViewController.h"
 
 @interface TheBrandViewController ()
 
@@ -192,10 +192,11 @@
         productIndex = cell.rowNum * 2 + 1;
     }
     Product *product = [productsArray objectAtIndex:productIndex];
-    WebViewController *webViewController = [[WebViewController alloc]init];
-    webViewController.productUrlS = product.click_url;
-    [self presentModalViewController:webViewController animated:YES];
-    [webViewController release];
+    
+    TheBrandDetailViewController *theBrandDetailViewController = [[TheBrandDetailViewController alloc]init];
+    theBrandDetailViewController.product = product;
+    [self.navigationController pushViewController:theBrandDetailViewController animated:YES];
+    [theBrandDetailViewController release];
 }
 
 - (void)viewDidUnload
