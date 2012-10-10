@@ -8,8 +8,10 @@
 
 #import "CollectViewController.h"
 #import "CoreDataController.h"
+#import "CollectProduct.h"
 #import "Product.h"
 #import "UIImageView+WebCache.h"
+#import "TheBrandDetailViewController.h"
 
 @implementation CollectViewController
 -(void)dealloc
@@ -114,12 +116,12 @@
     cell.delegate = self;
     cell.rowNum = indexPath.row;
     
-    Product *leftProduct = [dataArray objectAtIndex:indexPath.row*2];
+    CollectProduct *leftProduct = [dataArray objectAtIndex:indexPath.row*2];
     NSString *lProduct = [NSString stringWithFormat:@"%@_160x160.jpg",leftProduct.pic_url];
     [cell.leftImageView setImageWithURL:[NSURL URLWithString:lProduct] placeholderImage:[UIImage imageNamed:@"placefold.jpeg"]];
     
     if ([dataArray count] > indexPath.row*2 + 1) {
-        Product *rightProduct = [dataArray objectAtIndex:indexPath.row*2 + 1];
+        CollectProduct *rightProduct = [dataArray objectAtIndex:indexPath.row*2 + 1];
         NSString *rProduct = [NSString stringWithFormat:@"%@_160x160.jpg",rightProduct.pic_url];
         [cell.rightImageView setImageWithURL:[NSURL URLWithString:rProduct] placeholderImage:[UIImage imageNamed:@"placefold.jpeg"]];
     }else{
@@ -131,7 +133,35 @@
 #pragma StyleOneCellSelectionDelegate
 -(void)selectTableViewCell:(StyleOneCell *)cell selectedItemAtIndex:(NSInteger)index
 {
+    int productIndex;
+    if (index == 0) {
+        productIndex = cell.rowNum * 2;
+    }else{
+        productIndex = cell.rowNum * 2 + 1;
+    }
+    CollectProduct *product = [dataArray objectAtIndex:productIndex];
+    Product *myProduct = [[Product alloc]init];
     
+    myProduct.pic_url = product.pic_url;
+    myProduct.num_iid = product.num_iid;
+    myProduct.title = product.title;
+    myProduct.nick = product.nick;
+    myProduct.price = product.price;
+    myProduct.click_url = product.click_url;
+    myProduct.commission = product.commission;
+    myProduct.commission_rate = product.commission_rate;
+    myProduct.commission_num = product.commission_num;
+    myProduct.commission_volume = product.commission_volume;
+    myProduct.shop_click_url = product.shop_click_url;
+    myProduct.seller_credit_score = product.seller_credit_score;
+    myProduct.item_location = product.item_location;
+    myProduct.volume = product.volume;
+    
+    TheBrandDetailViewController *theBrandDetailViewController = [[TheBrandDetailViewController alloc]init];
+    theBrandDetailViewController.product = myProduct;
+    [self.navigationController pushViewController:theBrandDetailViewController animated:YES];
+    [theBrandDetailViewController release];
+    [myProduct release];
 }
 
 - (void)viewDidUnload
