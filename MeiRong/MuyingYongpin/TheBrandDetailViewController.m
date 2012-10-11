@@ -9,6 +9,8 @@
 #import "TheBrandDetailViewController.h"
 #import "UIImageView+WebCache.h"
 #import "WebViewController.h"
+#import "CoreDataController.h"
+#import "CollectProduct.h"
 
 @interface TheBrandDetailViewController ()
 
@@ -16,6 +18,7 @@
 
 @implementation TheBrandDetailViewController
 @synthesize product;
+@synthesize collection;
 
 -(void)dealloc
 {
@@ -71,6 +74,9 @@
         [cell.collectButton setTitle:@"收藏" forState:UIControlStateNormal];
         cell.collectButton.enabled = YES;
     }
+    if (collection) {
+        [cell.collectButton setTitle:@"删除" forState:UIControlStateNormal];
+    }
     return cell;
 }
 #pragma HotCellSelectionDelegate
@@ -83,36 +89,59 @@
 }
 -(void)collectProduct:(HotCell *)cell
 {
-//    Product *product = [productsArray objectAtIndex:cell.rowNum];
-//    
-//    NSManagedObjectContext *context = [[CoreDataController sharedInstance]managedObjectContext];
-//    CollectProduct *collectProduct = [NSEntityDescription
-//                                      insertNewObjectForEntityForName:@"CollectProduct"
-//                                      inManagedObjectContext:context];
-//    collectProduct.pic_url = product.pic_url;
-//    collectProduct.num_iid = product.num_iid;
-//    collectProduct.title = product.title;
-//    collectProduct.nick = product.nick;
-//    collectProduct.price = product.price;
-//    collectProduct.click_url = product.click_url;
-//    collectProduct.commission = product.commission;
-//    collectProduct.commission_rate = product.commission_rate;
-//    collectProduct.commission_num = product.commission_num;
-//    collectProduct.commission_volume = product.commission_volume;
-//    collectProduct.shop_click_url = product.shop_click_url;
-//    collectProduct.seller_credit_score = product.seller_credit_score;
-//    collectProduct.item_location = product.item_location;
-//    collectProduct.volume = product.volume;
-//    
-//    NSError *error;
-//    if (![context save:&error]) {
-//        NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
-//    }else{
-//        product.collect = YES;
-//        [cell.collectButton setTitle:@"已收藏" forState:UIControlStateNormal];
-//        cell.collectButton.enabled = NO;
-//        [[NSNotificationCenter defaultCenter]postNotificationName:@"COLLECT_SUCCESS" object:nil userInfo:nil];
-//    }
+    NSManagedObjectContext *context = [[CoreDataController sharedInstance]managedObjectContext];
+    
+    if (!collection) {
+        
+        CollectProduct *collectProduct = [NSEntityDescription
+                                          insertNewObjectForEntityForName:@"CollectProduct"
+                                          inManagedObjectContext:context];
+        collectProduct.pic_url = product.pic_url;
+        collectProduct.num_iid = product.num_iid;
+        collectProduct.title = product.title;
+        collectProduct.nick = product.nick;
+        collectProduct.price = product.price;
+        collectProduct.click_url = product.click_url;
+        collectProduct.commission = product.commission;
+        collectProduct.commission_rate = product.commission_rate;
+        collectProduct.commission_num = product.commission_num;
+        collectProduct.commission_volume = product.commission_volume;
+        collectProduct.shop_click_url = product.shop_click_url;
+        collectProduct.seller_credit_score = product.seller_credit_score;
+        collectProduct.item_location = product.item_location;
+        collectProduct.volume = product.volume;
+        
+        NSError *error;
+        if (![context save:&error]) {
+            NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
+        }else{
+            product.collect = YES;
+            [cell.collectButton setTitle:@"已收藏" forState:UIControlStateNormal];
+            cell.collectButton.enabled = NO;
+            [[NSNotificationCenter defaultCenter]postNotificationName:@"COLLECT_SUCCESS" object:nil userInfo:nil];
+        }
+    }else{
+        
+        NSFetchRequest *request= [[NSFetchRequest alloc] init];
+        NSEntityDescription *entity = [NSEntityDescription entityForName:@"CollectProduct" inManagedObjectContext:context];
+        NSPredicate *predicate =[NSPredicate predicateWithFormat:@"pic_url==%@",product.pic_url];
+        [request setEntity:entity];
+        [request setPredicate:predicate];
+        
+        NSError *error = nil;
+        NSArray *array = [context executeFetchRequest:request error:&error];
+        
+        if ([array count] != 0) {
+            
+            [context deleteObject:[array objectAtIndex:0]];
+        }
+        if (![context save:&error]) {
+            NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
+        }else{
+            cell.collectButton.enabled = NO;
+            [[NSNotificationCenter defaultCenter]postNotificationName:@"COLLECT_SUCCESS" object:nil userInfo:nil];
+        }
+    }
 }
 -(void)shareProduct:(HotCell *)cell
 {

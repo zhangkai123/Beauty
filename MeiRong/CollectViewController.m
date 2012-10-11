@@ -159,6 +159,7 @@
     
     TheBrandDetailViewController *theBrandDetailViewController = [[TheBrandDetailViewController alloc]init];
     theBrandDetailViewController.product = myProduct;
+    theBrandDetailViewController.collection = YES;
     [self.navigationController pushViewController:theBrandDetailViewController animated:YES];
     [theBrandDetailViewController release];
     [myProduct release];

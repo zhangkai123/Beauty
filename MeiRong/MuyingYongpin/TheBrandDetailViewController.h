@@ -14,6 +14,8 @@
 {
     UITableView *theTableView;
     Product *product;
+    BOOL collection;
 }
 @property(nonatomic,retain) Product *product;
+@property(nonatomic,assign) BOOL collection;
 @end
