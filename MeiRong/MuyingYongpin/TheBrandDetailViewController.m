@@ -13,7 +13,6 @@
 #import "CollectProduct.h"
 
 @interface TheBrandDetailViewController ()
-
 @end
 
 @implementation TheBrandDetailViewController
@@ -89,10 +88,8 @@
 }
 -(void)collectProduct:(HotCell *)cell
 {
-    NSManagedObjectContext *context = [[CoreDataController sharedInstance]managedObjectContext];
-    
     if (!collection) {
-        
+        NSManagedObjectContext *context = [[CoreDataController sharedInstance]managedObjectContext];
         CollectProduct *collectProduct = [NSEntityDescription
                                           insertNewObjectForEntityForName:@"CollectProduct"
                                           inManagedObjectContext:context];
@@ -122,6 +119,24 @@
         }
     }else{
         
+        UIAlertView *alert = [[UIAlertView alloc]
+                              initWithTitle: nil
+                              message: @"确定要删除吗？"
+                              delegate: self
+                              cancelButtonTitle:@"不"
+                              otherButtonTitles:@"是的",nil];
+        [alert show];
+        [alert release];
+    }
+}
+-(void)shareProduct:(HotCell *)cell
+{
+    
+}
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+	if (buttonIndex == 1) {
+		
+        NSManagedObjectContext *context = [[CoreDataController sharedInstance]managedObjectContext];
         NSFetchRequest *request= [[NSFetchRequest alloc] init];
         NSEntityDescription *entity = [NSEntityDescription entityForName:@"CollectProduct" inManagedObjectContext:context];
         NSPredicate *predicate =[NSPredicate predicateWithFormat:@"pic_url==%@",product.pic_url];
@@ -138,16 +153,11 @@
         if (![context save:&error]) {
             NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
         }else{
-            cell.collectButton.enabled = NO;
             [[NSNotificationCenter defaultCenter]postNotificationName:@"COLLECT_SUCCESS" object:nil userInfo:nil];
+            [self.navigationController popViewControllerAnimated:YES];
         }
-    }
+	}
 }
--(void)shareProduct:(HotCell *)cell
-{
-    
-}
-
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
