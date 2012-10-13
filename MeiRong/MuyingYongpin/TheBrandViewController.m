@@ -50,6 +50,7 @@
             
     NSString *notificationName = [self getNotificationName];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(recieveCatProducts) name:notificationName object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(refreshCollected:) name:@"REFRESH_COLLECTED" object:nil];
     
 	// Do any additional setup after loading the view.
     theTalbleView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, 320, 460-44-50) style:UITableViewStylePlain];
@@ -92,6 +93,45 @@
     DataController *dataController = [DataController sharedDataController];
     [dataController fetachCateProducts:self.catName notiName:notificationName pageNumber:1];
 }
+
+-(void)recieveCatProducts
+{
+    DataController *dataController = [DataController sharedDataController];
+    for (int i = 0; i < [dataController.productsArray count]; i++) {
+        Product *product = [dataController.productsArray objectAtIndex:i];
+        
+        NSManagedObjectContext *context = [[CoreDataController sharedInstance]managedObjectContext];
+        
+        NSFetchRequest *request= [[NSFetchRequest alloc] init];
+        NSEntityDescription *entity = [NSEntityDescription entityForName:@"CollectProduct" inManagedObjectContext:context];
+        NSPredicate *predicate =[NSPredicate predicateWithFormat:@"pic_url==%@",product.pic_url];
+        [request setEntity:entity];
+        [request setPredicate:predicate];
+        
+        NSError *error = nil;
+        NSArray *array = [context executeFetchRequest:request error:&error];
+        [request release];
+        if ([array count] > 0) {
+            product.collect = YES;
+        }
+    }
+    [productsArray addObjectsFromArray:dataController.productsArray];
+    [theTalbleView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
+}
+-(void)refreshCollected:(NSNotification *)notification
+{
+    Product *delProduct = [[notification userInfo]valueForKey:@"deletedProduct"];
+    
+    for (int i = 0; i < [productsArray count]; i++) {
+        Product *product = [productsArray objectAtIndex:i];
+        
+        if ([product.pic_url isEqualToString:delProduct.pic_url]) {
+            product.collect = NO;
+        }
+    }
+    [theTalbleView reloadData];
+}
+
 -(NSString *)getNotificationName
 {
     NSString *notificationName;
@@ -139,30 +179,6 @@
         notificationName = @"NOTIFICATION_14";
     }
     return notificationName;
-}
--(void)recieveCatProducts
-{
-    DataController *dataController = [DataController sharedDataController];
-    for (int i = 0; i < [dataController.productsArray count]; i++) {
-        Product *product = [dataController.productsArray objectAtIndex:i];
-        
-        NSManagedObjectContext *context = [[CoreDataController sharedInstance]managedObjectContext];
-        
-        NSFetchRequest *request= [[NSFetchRequest alloc] init];
-        NSEntityDescription *entity = [NSEntityDescription entityForName:@"CollectProduct" inManagedObjectContext:context];
-        NSPredicate *predicate =[NSPredicate predicateWithFormat:@"pic_url==%@",product.pic_url];
-        [request setEntity:entity];
-        [request setPredicate:predicate];
-        
-        NSError *error = nil;
-        NSArray *array = [context executeFetchRequest:request error:&error];
-        [request release];
-        if ([array count] > 0) {
-            product.collect = YES;
-        }
-    }
-    [productsArray addObjectsFromArray:dataController.productsArray];
-    [theTalbleView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView

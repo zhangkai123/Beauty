@@ -43,6 +43,7 @@
 {
     [super viewDidLoad];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(recieveHotProducts) name:@"HOT_PRODUCTS_REARDY" object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(refreshCollected:) name:@"REFRESH_COLLECTED" object:nil];
     
     if ([self.navigationController.navigationBar respondsToSelector:@selector( setBackgroundImage:forBarMetrics:)]){
         [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"navBg"] forBarMetrics:UIBarMetricsDefault];
@@ -117,7 +118,19 @@
     //nofification is recieved in another thread
     [productTableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
 }
-
+-(void)refreshCollected:(NSNotification *)notification
+{
+    Product *delProduct = [[notification userInfo]valueForKey:@"deletedProduct"];
+    
+    for (int i = 0; i < [productsArray count]; i++) {
+        Product *product = [productsArray objectAtIndex:i];
+        
+        if ([product.pic_url isEqualToString:delProduct.pic_url]) {
+            product.collect = NO;
+        }
+    }
+    [productTableView reloadData];
+}
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 1;
