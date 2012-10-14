@@ -11,6 +11,7 @@
 #import "WebViewController.h"
 #import "CoreDataController.h"
 #import "CollectProduct.h"
+#import "ShareSns.h"
 
 @interface TheBrandDetailViewController ()
 @end
@@ -131,7 +132,8 @@
 }
 -(void)shareProduct:(HotCell *)cell
 {
-    
+    ShareSns *shareSns = [[ShareSns alloc]init];
+    [shareSns showSnsShareSheet:self.tabBarController.view viewController:self shareImage:cell.theImageView.image];
 }
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
 	if (buttonIndex == 1) {

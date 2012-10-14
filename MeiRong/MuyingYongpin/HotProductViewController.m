@@ -15,6 +15,7 @@
 #import "SVPullToRefresh.h"
 #import "CoreDataController.h"
 #import "CollectProduct.h"
+#import "ShareSns.h"
 
 @implementation HotProductViewController
 
@@ -204,7 +205,8 @@
 }
 -(void)shareProduct:(HotCell *)cell
 {
-    
+    ShareSns *shareSns = [[ShareSns alloc]init];
+    [shareSns showSnsShareSheet:self.tabBarController.view viewController:self shareImage:cell.theImageView.image];
 }
 
 - (void)viewDidUnload
