@@ -80,9 +80,11 @@
             pageN = productN / 20;
             if (pageN <= weakCurrentPage) {
                 pageN = -1;
+                [weaktheTalbleView.infiniteScrollingView performSelector:@selector(stopAnimating) withObject:nil afterDelay:0];
             }
         }else{
             pageN = -1;
+            [weaktheTalbleView.infiniteScrollingView performSelector:@selector(stopAnimating) withObject:nil afterDelay:0];
         }
         DataController *dataController = [DataController sharedDataController];
         [dataController fetachHotProducts:pageN + 1];
@@ -96,6 +98,7 @@
 }
 -(void)recieveHotProducts
 {
+    [productTableView.infiniteScrollingView performSelectorOnMainThread:@selector(stopAnimating) withObject:nil waitUntilDone:NO];
     DataController *dataController = [DataController sharedDataController];
     for (int i = 0; i < [dataController.productsArray count]; i++) {
         Product *product = [dataController.productsArray objectAtIndex:i];
