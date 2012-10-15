@@ -110,6 +110,7 @@
         NSDictionary *item = [taobaoke_item objectAtIndex:i];
         Product *product = [[Product alloc]init];
         product.title = [item objectForKey:@"title"];
+        product.title = [self stringCleaner:product.title];
         product.pic_url = [item objectForKey:@"pic_url"];
         product.click_url = [item objectForKey:@"click_url"];
         [productsArray addObject:product];
@@ -162,5 +163,27 @@
         }
         [fashionNews release];
     }
+}
+- (NSString *)stringCleaner:(NSString *)yourString {
+    
+    NSScanner *theScanner;
+    NSString *text = nil;
+    
+    theScanner = [NSScanner scannerWithString:yourString];
+    
+    while ([theScanner isAtEnd] == NO) {
+        
+        [theScanner scanUpToString:@"<" intoString:NULL] ;
+        
+        [theScanner scanUpToString:@">" intoString:&text] ;
+        
+        yourString = [yourString stringByReplacingOccurrencesOfString:
+                      [NSString stringWithFormat:@"%@>", text]
+                                                           withString:@""];
+        
+    }
+    
+    return yourString;
+    
 }
 @end

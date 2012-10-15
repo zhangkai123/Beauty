@@ -44,7 +44,7 @@
     //    [productTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     theTableView.delegate = self;
     theTableView.dataSource = self;
-    theTableView.rowHeight = 400;
+    theTableView.rowHeight = 430;
     [self.view addSubview:theTableView];
 
     self.view.backgroundColor = [UIColor lightGrayColor];
