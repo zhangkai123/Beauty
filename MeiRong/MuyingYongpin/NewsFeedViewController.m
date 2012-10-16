@@ -60,6 +60,7 @@
     }
     theTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, 320, 460-44-50) style:UITableViewStylePlain];
     theTableView.rowHeight = 180;
+    [theTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     theTableView.dataSource = self;
     theTableView.delegate = self;
     [self.view addSubview:theTableView];
@@ -89,6 +90,7 @@
     if (!cell) {
         cell = [[[NewsCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"]autorelease];
     }
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     FashionNews *fashionNews = [dataArray objectAtIndex:indexPath.row];
     cell.titleLable.text = fashionNews.title;

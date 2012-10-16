@@ -61,34 +61,34 @@
     [temButton addTarget:self action:@selector(goBack) forControlEvents:UIControlEventTouchDown];
     [self.view addSubview:temButton];
 }
-- (void)webViewDidFinishLoad:(UIWebView *)theWebView
-{
-    [self hideUnwantedHTML];
-    [self.view addSubview:webView];
-    [self.view bringSubviewToFront:temButton];
-}
--(void)webViewDidStartLoad:(UIWebView *)theWebView
-{
-    [webView removeFromSuperview];
-}
-- (void)hideUnwantedHTML{
-    
-    [webView stringByEvaluatingJavaScriptFromString:@"var script = document.createElement('script');"
-     
-     "script.type = 'text/javascript';"
-     
-     "script.text = \"function hideID(idName) { "
-     
-     "var id = document.getElementById(idName);"
-     
-     "id.style.display = 'none';"
-     
-     "}\";"
-     
-     "document.getElementsByTagName('head')[0].appendChild(script);"];
-    
-    [webView stringByEvaluatingJavaScriptFromString:@"hideID('header');"];    
-}
+//- (void)webViewDidFinishLoad:(UIWebView *)theWebView
+//{
+//    [self hideUnwantedHTML];
+//    [self.view addSubview:webView];
+//    [self.view bringSubviewToFront:temButton];
+//}
+//-(void)webViewDidStartLoad:(UIWebView *)theWebView
+//{
+//    [webView removeFromSuperview];
+//}
+//- (void)hideUnwantedHTML{
+//    
+//    [webView stringByEvaluatingJavaScriptFromString:@"var script = document.createElement('script');"
+//     
+//     "script.type = 'text/javascript';"
+//     
+//     "script.text = \"function hideID(idName) { "
+//     
+//     "var id = document.getElementById(idName);"
+//     
+//     "id.style.display = 'none';"
+//     
+//     "}\";"
+//     
+//     "document.getElementsByTagName('head')[0].appendChild(script);"];
+//    
+//    [webView stringByEvaluatingJavaScriptFromString:@"hideID('header');"];    
+//}
 
 -(void)goBack
 {

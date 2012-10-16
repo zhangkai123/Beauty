@@ -53,13 +53,15 @@
     
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(collectSuccess) name:@"COLLECT_SUCCESS" object:nil];
     
-    self.view.backgroundColor = [UIColor grayColor];
+    self.view.backgroundColor = [UIColor lightGrayColor];
     if ([self.navigationController.navigationBar respondsToSelector:@selector( setBackgroundImage:forBarMetrics:)]){
         [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"navBg"] forBarMetrics:UIBarMetricsDefault];
         [self.navigationController.navigationBar setOpaque:1.0];
     }
     myTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, 320, 460-44-50) style:UITableViewStylePlain];
-    myTableView.rowHeight = 160;
+    [myTableView setBackgroundColor:[UIColor clearColor]];
+    [myTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+    myTableView.rowHeight = 159;
     myTableView.dataSource = self;
     myTableView.delegate = self;
     [self.view addSubview:myTableView];

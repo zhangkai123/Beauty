@@ -47,6 +47,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.view.backgroundColor = [UIColor lightGrayColor];
             
     NSString *notificationName = [self getNotificationName];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(recieveCatProducts) name:notificationName object:nil];
@@ -54,7 +56,9 @@
     
 	// Do any additional setup after loading the view.
     theTalbleView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, 320, 460-44-50) style:UITableViewStylePlain];
-    theTalbleView.rowHeight = 160;
+    [theTalbleView setBackgroundColor:[UIColor clearColor]];
+    [theTalbleView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+    theTalbleView.rowHeight = 159;
     theTalbleView.dataSource = self;
     theTalbleView.delegate = self;
     [self.view addSubview:theTalbleView];

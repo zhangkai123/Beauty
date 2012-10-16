@@ -23,14 +23,14 @@
     if (self) {
         self.selectionStyle = UITableViewCellSelectionStyleNone;
         // Initialization code
-        TouchableImageView *lImageView = [[TouchableImageView alloc]initWithFrame:CGRectMake(0, 0, 160, 160)];
+        TouchableImageView *lImageView = [[TouchableImageView alloc]initWithFrame:CGRectMake(2, 2, 157, 157)];
         lImageView.backgroundColor = [UIColor blueColor];
         lImageView.userInteractionEnabled = YES;
         lImageView.delegate = self;
         self.leftImageView = lImageView;
         [lImageView release];
         
-        TouchableImageView *rImageView = [[TouchableImageView alloc]initWithFrame:CGRectMake(160, 0, 160, 160)];
+        TouchableImageView *rImageView = [[TouchableImageView alloc]initWithFrame:CGRectMake(161, 2, 157, 157)];
         rImageView.backgroundColor = [UIColor yellowColor];
         rImageView.userInteractionEnabled = YES;
         rImageView.delegate = self;
