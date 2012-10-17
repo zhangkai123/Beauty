@@ -11,7 +11,7 @@
 #import "UIImageView+WebCache.h"
 #import "Product.h"
 #import "DataController.h"
-#import "WebViewController.h"
+#import "WebViewController.h"  
 #import "SVPullToRefresh.h"
 #import "CoreDataController.h"
 #import "CollectProduct.h"
@@ -91,7 +91,7 @@
         weakCurrentPage = pageN;
     }];
     
-    self.view.backgroundColor = [UIColor lightGrayColor];
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"BackgroundPattern"]];
     
     DataController *dataController = [DataController sharedDataController];
     [dataController fetachHotProducts:1];
@@ -153,7 +153,7 @@
     cell.delegate = self;
     cell.rowNum = indexPath.row;
     Product *product = [productsArray objectAtIndex:indexPath.row];
-    [cell.theImageView setImageWithURL:[NSURL URLWithString:product.pic_url] placeholderImage:[UIImage imageNamed:@"placefold.jpeg"]];
+    [cell.theImageView setImageWithURL:[NSURL URLWithString:product.pic_url] placeholderImage:[UIImage imageNamed:@"BackgroundPattern"]];
     cell.desLable.text = product.title;
     if (product.collect) {
         [cell.collectButton setTitle:@"已收藏" forState:UIControlStateNormal];

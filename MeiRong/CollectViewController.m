@@ -53,7 +53,7 @@
     
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(collectSuccess) name:@"COLLECT_SUCCESS" object:nil];
     
-    self.view.backgroundColor = [UIColor lightGrayColor];
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"BackgroundPattern"]];
     if ([self.navigationController.navigationBar respondsToSelector:@selector( setBackgroundImage:forBarMetrics:)]){
         [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"navBg"] forBarMetrics:UIBarMetricsDefault];
         [self.navigationController.navigationBar setOpaque:1.0];
@@ -120,12 +120,12 @@
     
     CollectProduct *leftProduct = [dataArray objectAtIndex:indexPath.row*2];
     NSString *lProduct = [NSString stringWithFormat:@"%@_160x160.jpg",leftProduct.pic_url];
-    [cell.leftImageView setImageWithURL:[NSURL URLWithString:lProduct] placeholderImage:[UIImage imageNamed:@"placefold.jpeg"]];
+    [cell.leftImageView setImageWithURL:[NSURL URLWithString:lProduct] placeholderImage:[UIImage imageNamed:@"BackgroundPattern"]];
     
     if ([dataArray count] > indexPath.row*2 + 1) {
         CollectProduct *rightProduct = [dataArray objectAtIndex:indexPath.row*2 + 1];
         NSString *rProduct = [NSString stringWithFormat:@"%@_160x160.jpg",rightProduct.pic_url];
-        [cell.rightImageView setImageWithURL:[NSURL URLWithString:rProduct] placeholderImage:[UIImage imageNamed:@"placefold.jpeg"]];
+        [cell.rightImageView setImageWithURL:[NSURL URLWithString:rProduct] placeholderImage:[UIImage imageNamed:@"BackgroundPattern"]];
     }else{
         [cell.rightImageView setImageWithURL:[NSURL URLWithString:nil] placeholderImage:[UIImage imageNamed:nil]];
     }

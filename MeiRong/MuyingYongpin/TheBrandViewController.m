@@ -48,7 +48,7 @@
 {
     [super viewDidLoad];
     
-    self.view.backgroundColor = [UIColor lightGrayColor];
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"BackgroundPattern"]];
             
     NSString *notificationName = [self getNotificationName];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(recieveCatProducts) name:notificationName object:nil];
@@ -213,12 +213,12 @@
     cell.delegate = self;
     Product *leftProduct = [productsArray objectAtIndex:indexPath.row*2];
     NSString *lProduct = [NSString stringWithFormat:@"%@_160x160.jpg",leftProduct.pic_url];
-    [cell.leftImageView setImageWithURL:[NSURL URLWithString:lProduct] placeholderImage:[UIImage imageNamed:@"placefold.jpeg"]];
+    [cell.leftImageView setImageWithURL:[NSURL URLWithString:lProduct] placeholderImage:[UIImage imageNamed:@"BackgroundPattern"]];
     
     if ([productsArray count] > indexPath.row*2 + 1) {
         Product *rightProduct = [productsArray objectAtIndex:indexPath.row*2 + 1];
         NSString *rProduct = [NSString stringWithFormat:@"%@_160x160.jpg",rightProduct.pic_url];
-        [cell.rightImageView setImageWithURL:[NSURL URLWithString:rProduct] placeholderImage:[UIImage imageNamed:@"placefold.jpeg"]];
+        [cell.rightImageView setImageWithURL:[NSURL URLWithString:rProduct] placeholderImage:[UIImage imageNamed:@"BackgroundPattern"]];
     }else{
         [cell.rightImageView setImageWithURL:[NSURL URLWithString:nil] placeholderImage:[UIImage imageNamed:nil]];
     }

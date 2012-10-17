@@ -47,7 +47,7 @@
     theTableView.rowHeight = 430;
     [self.view addSubview:theTableView];
 
-    self.view.backgroundColor = [UIColor lightGrayColor];
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"BackgroundPattern"]];
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -65,7 +65,7 @@
     }
     cell.delegate = self;
     cell.rowNum = indexPath.row;
-    [cell.theImageView setImageWithURL:[NSURL URLWithString:product.pic_url] placeholderImage:[UIImage imageNamed:@"placefold.jpeg"]];
+    [cell.theImageView setImageWithURL:[NSURL URLWithString:product.pic_url] placeholderImage:[UIImage imageNamed:@"BackgroundPattern"]];
     cell.desLable.text = product.title;
     if (product.collect) {
         [cell.collectButton setTitle:@"已收藏" forState:UIControlStateNormal];

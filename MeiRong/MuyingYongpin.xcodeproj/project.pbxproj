@@ -80,6 +80,8 @@
 		4BDB317315BAA36C007B1C6F /* DataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BDB317215BAA36C007B1C6F /* DataController.m */; };
 		4BE1B82616135BA0006AE5D9 /* NewsWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BE1B82516135BA0006AE5D9 /* NewsWebViewController.m */; };
 		4BEEF2CA15D7AC9C00C424DA /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BEEF2C915D7AC9C00C424DA /* SystemConfiguration.framework */; };
+		4BF0191B162F04730032F98C /* BackgroundPattern@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BF01919162F04730032F98C /* BackgroundPattern@2x.png */; };
+		4BF0191C162F04730032F98C /* BackgroundPattern.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BF0191A162F04730032F98C /* BackgroundPattern.png */; };
 		4BF3F48E162A8BAE0070BDE5 /* UMSNSLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BF3F48C162A8BAE0070BDE5 /* UMSNSLibrary.a */; };
 		4BF3F4CB162A8BC60070BDE5 /* umeng_share_at.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BF3F490162A8BC50070BDE5 /* umeng_share_at.png */; };
 		4BF3F4CC162A8BC60070BDE5 /* umeng_share_atSel.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BF3F491162A8BC50070BDE5 /* umeng_share_atSel.png */; };
@@ -285,6 +287,8 @@
 		4BE1B82416135BA0006AE5D9 /* NewsWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsWebViewController.h; sourceTree = "<group>"; };
 		4BE1B82516135BA0006AE5D9 /* NewsWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsWebViewController.m; sourceTree = "<group>"; };
 		4BEEF2C915D7AC9C00C424DA /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		4BF01919162F04730032F98C /* BackgroundPattern@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BackgroundPattern@2x.png"; sourceTree = "<group>"; };
+		4BF0191A162F04730032F98C /* BackgroundPattern.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BackgroundPattern.png; sourceTree = "<group>"; };
 		4BF3F48C162A8BAE0070BDE5 /* UMSNSLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = UMSNSLibrary.a; sourceTree = "<group>"; };
 		4BF3F48D162A8BAE0070BDE5 /* UMSNSService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMSNSService.h; sourceTree = "<group>"; };
 		4BF3F490162A8BC50070BDE5 /* umeng_share_at.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = umeng_share_at.png; sourceTree = "<group>"; };
@@ -646,6 +650,7 @@
 		4BDB315B15BA56DE007B1C6F /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				4BF01917162F04630032F98C /* Background */,
 				4BF3F48F162A8BC50070BDE5 /* UMSNSImages */,
 				4B820EB315EEE41E00C85EB8 /* bar */,
 				4B92E26C15CE895E00249F26 /* placefold.jpeg */,
@@ -655,6 +660,15 @@
 				4BDB316215BA56DE007B1C6F /* MuyingYongpin-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		4BF01917162F04630032F98C /* Background */ = {
+			isa = PBXGroup;
+			children = (
+				4BF01919162F04730032F98C /* BackgroundPattern@2x.png */,
+				4BF0191A162F04730032F98C /* BackgroundPattern.png */,
+			);
+			name = Background;
 			sourceTree = "<group>";
 		};
 		4BF3F489162A8AF40070BDE5 /* youmeng */ = {
@@ -919,6 +933,8 @@
 				4BF3F503162A8BC60070BDE5 /* umeng_share_toolbarBg.png in Resources */,
 				4BF3F504162A8BC60070BDE5 /* umeng_share_topic.png in Resources */,
 				4BF3F505162A8BC60070BDE5 /* umeng_share_topicSel.png in Resources */,
+				4BF0191B162F04730032F98C /* BackgroundPattern@2x.png in Resources */,
+				4BF0191C162F04730032F98C /* BackgroundPattern.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
