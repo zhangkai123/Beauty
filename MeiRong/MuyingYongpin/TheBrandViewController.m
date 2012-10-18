@@ -48,7 +48,7 @@
 {
     [super viewDidLoad];
     
-    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"BackgroundPattern"]];
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"SheetBackground"]];
             
     NSString *notificationName = [self getNotificationName];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(recieveCatProducts) name:notificationName object:nil];

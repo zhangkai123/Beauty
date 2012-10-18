@@ -47,7 +47,7 @@
     theTableView.rowHeight = 430;
     [self.view addSubview:theTableView];
 
-    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"BackgroundPattern"]];
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"SheetBackground"]];
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {

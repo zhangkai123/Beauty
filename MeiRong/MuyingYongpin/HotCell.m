@@ -32,7 +32,7 @@
         [imageView release];
         
         UILabel *dLable = [[UILabel alloc]initWithFrame:CGRectMake(10, 310, 300, 45)];
-        dLable.backgroundColor = [UIColor lightGrayColor];
+        dLable.backgroundColor = [UIColor whiteColor];
         dLable.lineBreakMode = UILineBreakModeWordWrap;
         dLable.numberOfLines = 0;
         [dLable setFont:[UIFont systemFontOfSize:15]];

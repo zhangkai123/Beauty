@@ -91,7 +91,7 @@
         weakCurrentPage = pageN;
     }];
     
-    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"BackgroundPattern"]];
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"SheetBackground"]];
     
     DataController *dataController = [DataController sharedDataController];
     [dataController fetachHotProducts:1];
