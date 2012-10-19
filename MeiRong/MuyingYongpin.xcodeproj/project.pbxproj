@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4B07D2E91610A64900753B9A /* FashionNews.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B07D2E81610A64900753B9A /* FashionNews.m */; };
+		4B21FE251631A29A00AD5C13 /* HotCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B21FE241631A29A00AD5C13 /* HotCellView.m */; };
 		4B39A09C160DC39C00C922B2 /* SVPullToRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B39A09B160DC39C00C922B2 /* SVPullToRefresh.m */; };
 		4B39A09E160DC4F200C922B2 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B39A09D160DC4F200C922B2 /* QuartzCore.framework */; };
 		4B421C0A15ECFEC2001094FE /* CollectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B421C0915ECFEC2001094FE /* CollectViewController.m */; };
@@ -205,6 +206,8 @@
 /* Begin PBXFileReference section */
 		4B07D2E71610A64900753B9A /* FashionNews.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FashionNews.h; sourceTree = "<group>"; };
 		4B07D2E81610A64900753B9A /* FashionNews.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FashionNews.m; sourceTree = "<group>"; };
+		4B21FE231631A29A00AD5C13 /* HotCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HotCellView.h; sourceTree = "<group>"; };
+		4B21FE241631A29A00AD5C13 /* HotCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HotCellView.m; sourceTree = "<group>"; };
 		4B39A09A160DC39C00C922B2 /* SVPullToRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVPullToRefresh.h; sourceTree = "<group>"; };
 		4B39A09B160DC39C00C922B2 /* SVPullToRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVPullToRefresh.m; sourceTree = "<group>"; };
 		4B39A09D160DC4F200C922B2 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -955,6 +958,8 @@
 				4B800C2915FF6A27007EA85C /* TouchableImageView.m */,
 				4BF917CA160425A000FFA523 /* NewsCell.h */,
 				4BF917CB160425A000FFA523 /* NewsCell.m */,
+				4B21FE231631A29A00AD5C13 /* HotCellView.h */,
+				4B21FE241631A29A00AD5C13 /* HotCellView.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -1228,6 +1233,7 @@
 				4B74C896161EA28200ADD8CB /* CollectProduct.m in Sources */,
 				4B9AE528162465DB004AC204 /* TheBrandDetailViewController.m in Sources */,
 				4BF3F508162A9E940070BDE5 /* ShareSns.m in Sources */,
+				4B21FE251631A29A00AD5C13 /* HotCellView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

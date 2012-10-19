@@ -6,7 +6,9 @@
 //
 //
 
+#import <QuartzCore/QuartzCore.h>
 #import "HotCell.h"
+#import "HotCellView.h"
 
 @implementation HotCell
 @synthesize theImageView ,desLable;
@@ -24,7 +26,8 @@
     if (self) {
         // Initialization code
         self.selectionStyle = UITableViewCellSelectionStyleNone;
-        self.backgroundColor = [UIColor blackColor];
+        self.backgroundColor = [UIColor whiteColor];
+        
         TouchableImageView *imageView = [[TouchableImageView alloc]initWithFrame:CGRectMake(10, 10, 300, 300)];
         imageView.delegate = self;
         imageView.userInteractionEnabled = YES;
@@ -51,10 +54,14 @@
         [sButton addTarget:self action:@selector(shareProduct) forControlEvents:UIControlEventTouchDown];
         self.sharedButton = sButton;
         
-        [self addSubview:self.theImageView];
-        [self addSubview:self.desLable];
-        [self addSubview:self.collectButton];
-        [self addSubview:self.sharedButton];
+        HotCellView *coverView = [[HotCellView alloc]initWithFrame:CGRectMake(0, 0, 320, 400)];
+        [coverView addSubview:self.theImageView];
+        [coverView addSubview:self.desLable];
+        [coverView addSubview:self.collectButton];
+        [coverView addSubview:self.sharedButton];
+        
+        [self addSubview:coverView];
+        [coverView release];                
     }
     return self;
 }

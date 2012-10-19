@@ -41,7 +41,8 @@
 	// Do any additional setup after loading the view.
     theTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 460-44-49) style:UITableViewStylePlain];
     theTableView.backgroundColor = [UIColor clearColor];
-    //    [productTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+    [theTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+    theTableView.showsVerticalScrollIndicator = NO;
     theTableView.delegate = self;
     theTableView.dataSource = self;
     theTableView.rowHeight = 430;
