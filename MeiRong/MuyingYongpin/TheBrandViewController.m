@@ -48,6 +48,7 @@
 {
     [super viewDidLoad];
     
+    [self createNavBackButton];
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"SheetBackground"]];
             
     NSString *notificationName = [self getNotificationName];
@@ -99,7 +100,29 @@
     DataController *dataController = [DataController sharedDataController];
     [dataController fetachCateProducts:self.catName notiName:notificationName pageNumber:1];
 }
-
+-(void)createNavBackButton
+{
+    UIImage *buttonImageNormal = [UIImage imageNamed:@"button_back"];
+    UIImage *stretchableButtonImageNormal = [buttonImageNormal stretchableImageWithLeftCapWidth:15 topCapHeight:0];
+    
+    UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    backButton.frame = CGRectMake(0, 0, 45, 31);
+    [backButton setBackgroundImage:stretchableButtonImageNormal forState:UIControlStateNormal];
+    [backButton addTarget:self action:@selector(goBack) forControlEvents:UIControlEventTouchDown];
+    
+    UIImageView *arrowImageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"button_back_arrow"]];
+    arrowImageView.center = backButton.center;
+    [backButton addSubview:arrowImageView];
+    [arrowImageView release];
+    
+    UIBarButtonItem *backButtonItem = [[UIBarButtonItem alloc]initWithCustomView:backButton];
+    self.navigationItem.leftBarButtonItem = backButtonItem;
+    [backButtonItem release];
+}
+-(void)goBack
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
 -(void)recieveCatProducts
 {
     [theTalbleView.infiniteScrollingView performSelectorOnMainThread:@selector(stopAnimating) withObject:nil waitUntilDone:NO];

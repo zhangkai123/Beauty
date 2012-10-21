@@ -25,6 +25,7 @@
     TouchableImageView *theImageView;
     UILabel *desLable;
     UIButton *collectButton;
+    UILabel *collectLabel;
     UIButton *sharedButton;
     id<HotCellSelectionDelegate> delegate;
     int rowNum;
@@ -32,6 +33,7 @@
 @property(nonatomic,retain) TouchableImageView *theImageView;
 @property(nonatomic,retain) UILabel *desLable;
 @property(nonatomic,retain) UIButton *collectButton;
+@property(nonatomic,retain) UILabel *collectLabel;
 @property(nonatomic,retain) UIButton *sharedButton;
 @property(nonatomic,assign) id<HotCellSelectionDelegate> delegate;
 @property(nonatomic,assign) int rowNum;

@@ -12,7 +12,7 @@
 
 @implementation HotCell
 @synthesize theImageView ,desLable;
-@synthesize collectButton ,sharedButton;
+@synthesize collectButton ,collectLabel ,sharedButton;
 @synthesize delegate ,rowNum;
 -(void)dealloc
 {
@@ -42,15 +42,31 @@
         self.desLable = dLable;
         [dLable release];
         
+        UIImage *cImage = [UIImage imageNamed:@"likeButton"];
+        UIImage *stretchableButtonImageNormal = [cImage stretchableImageWithLeftCapWidth:23 topCapHeight:0];
         UIButton *cButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-        cButton.frame = CGRectMake(180, 360, 60, 30);
-        [cButton setTitle:@"收藏" forState:UIControlStateNormal];
+        cButton.frame = CGRectMake(185, 360, cImage.size.width*2 + 4, cImage.size.height);
+        [cButton setBackgroundImage:stretchableButtonImageNormal forState:UIControlStateNormal];
         [cButton addTarget:self action:@selector(collectProduct) forControlEvents:UIControlEventTouchDown];
         self.collectButton = cButton;
+        
+        UILabel *cLabel = [[UILabel alloc]initWithFrame:CGRectMake(21, 1, 32, 20)];
+        cLabel.numberOfLines = 1;
+        [cLabel setTextAlignment:UITextAlignmentCenter];
+        [cLabel setTextColor:[UIColor darkGrayColor]];
+        cLabel.shadowColor   = [[UIColor whiteColor]colorWithAlphaComponent: 0.5f];
+        cLabel.shadowOffset  = CGSizeMake(1.0,1.0);
+        cLabel.backgroundColor = [UIColor clearColor];
+        [cLabel setFont:[UIFont systemFontOfSize:10]];
+        self.collectLabel = cLabel;
+        [cLabel release];
+        [self.collectButton addSubview:self.collectLabel];
+        collectLabel.text = @"收藏";
 
+        UIImage *moreButtonImage = [UIImage imageNamed:@"moreButton"];
         UIButton *sButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-        sButton.frame = CGRectMake(250, 360, 60, 30);
-        [sButton setTitle:@"分享" forState:UIControlStateNormal];
+        sButton.frame = CGRectMake(255, 360, moreButtonImage.size.width, moreButtonImage.size.height);
+        [sButton setBackgroundImage:moreButtonImage forState:UIControlStateNormal];
         [sButton addTarget:self action:@selector(shareProduct) forControlEvents:UIControlEventTouchDown];
         self.sharedButton = sButton;
         

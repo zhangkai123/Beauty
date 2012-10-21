@@ -33,9 +33,19 @@
         
         //use whatever image you want and add it to your project
         self.tabBarItem.image = [UIImage imageNamed:@"iconListTab"];
-        
+//        self.tabBarItem.finishedSelectedImage = [UIImage imageNamed:@"iconListTabShape"];
+//        [self.tabBarItem setFinishedSelectedImage:[UIImage imageNamed:@"iconListTabFocus"] withFinishedUnselectedImage:[UIImage imageNamed:@"iconListTab"]];
         // set the long name shown in the navigation bar at the top
-        self.navigationItem.title=@"热销单品";        
+        UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 320, 30)];
+        titleLabel.textColor = [[UIColor redColor] colorWithAlphaComponent: 0.5f];
+        [titleLabel setTextAlignment:UITextAlignmentCenter];
+        titleLabel.font = [UIFont fontWithName:@"Georgia-Bold" size:22.0];
+        titleLabel.shadowColor   = [[UIColor whiteColor]colorWithAlphaComponent: 1.0f];
+        titleLabel.shadowOffset  = CGSizeMake(1.0,1.0);
+        titleLabel.backgroundColor = [UIColor clearColor];
+        titleLabel.text = @"热销单品";
+        [self.navigationItem setTitleView:titleLabel];
+        [titleLabel release];
     }
     return self;
     
@@ -47,7 +57,7 @@
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(refreshCollected:) name:@"REFRESH_COLLECTED" object:nil];
     
     if ([self.navigationController.navigationBar respondsToSelector:@selector( setBackgroundImage:forBarMetrics:)]){
-        [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"navBg"] forBarMetrics:UIBarMetricsDefault];
+        [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"navbar_background"] forBarMetrics:UIBarMetricsDefault];
         [self.navigationController.navigationBar setOpaque:1.0];
     }
     
@@ -157,10 +167,10 @@
     [cell.theImageView setImageWithURL:[NSURL URLWithString:product.pic_url] placeholderImage:[UIImage imageNamed:@"BackgroundPattern"]];
     cell.desLable.text = product.title;
     if (product.collect) {
-        [cell.collectButton setTitle:@"已收藏" forState:UIControlStateNormal];
+        [cell.collectLabel setText:@"已收藏"];
         cell.collectButton.enabled = NO;
     }else{
-        [cell.collectButton setTitle:@"收藏" forState:UIControlStateNormal];
+        [cell.collectLabel setText:@"收藏"];
         cell.collectButton.enabled = YES;
     }
     return cell;
@@ -202,7 +212,7 @@
         NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
     }else{
         product.collect = YES;
-        [cell.collectButton setTitle:@"已收藏" forState:UIControlStateNormal];
+        [cell.collectLabel setText:@"已收藏"];
         cell.collectButton.enabled = NO;
         [[NSNotificationCenter defaultCenter]postNotificationName:@"COLLECT_SUCCESS" object:nil userInfo:nil];
     }

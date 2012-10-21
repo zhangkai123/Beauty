@@ -27,7 +27,16 @@
         self.tabBarItem.image = [UIImage imageNamed:@"iconCatalogTab"];
         
         // set the long name shown in the navigation bar at the top
-        self.navigationItem.title=@"品牌";
+        UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 320, 30)];
+        titleLabel.textColor = [[UIColor redColor] colorWithAlphaComponent: 0.5f];
+        [titleLabel setTextAlignment:UITextAlignmentCenter];
+        titleLabel.font = [UIFont fontWithName:@"Georgia-Bold" size:22.0];
+        titleLabel.shadowColor   = [[UIColor whiteColor]colorWithAlphaComponent: 1.0f];
+        titleLabel.shadowOffset  = CGSizeMake(1.0,1.0);
+        titleLabel.backgroundColor = [UIColor clearColor];
+        titleLabel.text = @"品牌";
+        [self.navigationItem setTitleView:titleLabel];
+        [titleLabel release];
     }
     return self;
     
@@ -39,7 +48,7 @@
     
     self.view.backgroundColor = [UIColor blueColor];
     if ([self.navigationController.navigationBar respondsToSelector:@selector( setBackgroundImage:forBarMetrics:)]){
-        [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"navBg"] forBarMetrics:UIBarMetricsDefault];
+        [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"navbar_background"] forBarMetrics:UIBarMetricsDefault];
         [self.navigationController.navigationBar setOpaque:1.0];
     }
     dataArray = [[NSMutableArray alloc]initWithObjects:@"碧欧泉",@"香奈儿",@"倩碧",@"雅诗兰黛",@"兰蔻",@"玫琳凯",@"迪奥",@"欧莱雅",@"相宜本草",@"玉兰油",@"the face shop",@"美宝莲",@"skin79",@"卡姿兰", nil];

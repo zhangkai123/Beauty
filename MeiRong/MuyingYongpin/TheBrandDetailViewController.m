@@ -38,6 +38,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self createNavBackButton];
 	// Do any additional setup after loading the view.
     theTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 460-44-49) style:UITableViewStylePlain];
     theTableView.backgroundColor = [UIColor clearColor];
@@ -49,6 +50,29 @@
     [self.view addSubview:theTableView];
 
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"SheetBackground"]];
+}
+-(void)createNavBackButton
+{
+    UIImage *buttonImageNormal = [UIImage imageNamed:@"button_back"];
+    UIImage *stretchableButtonImageNormal = [buttonImageNormal stretchableImageWithLeftCapWidth:15 topCapHeight:0];
+    
+    UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    backButton.frame = CGRectMake(0, 0, 45, 31);
+    [backButton setBackgroundImage:stretchableButtonImageNormal forState:UIControlStateNormal];
+    [backButton addTarget:self action:@selector(goBack) forControlEvents:UIControlEventTouchDown];
+    
+    UIImageView *arrowImageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"button_back_arrow"]];
+    arrowImageView.center = backButton.center;
+    [backButton addSubview:arrowImageView];
+    [arrowImageView release];
+    
+    UIBarButtonItem *backButtonItem = [[UIBarButtonItem alloc]initWithCustomView:backButton];
+    self.navigationItem.leftBarButtonItem = backButtonItem;
+    [backButtonItem release];
+}
+-(void)goBack
+{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -69,14 +93,14 @@
     [cell.theImageView setImageWithURL:[NSURL URLWithString:product.pic_url] placeholderImage:[UIImage imageNamed:@"BackgroundPattern"]];
     cell.desLable.text = product.title;
     if (product.collect) {
-        [cell.collectButton setTitle:@"已收藏" forState:UIControlStateNormal];
+        [cell.collectLabel setText:@"已收藏"];
         cell.collectButton.enabled = NO;
     }else{
-        [cell.collectButton setTitle:@"收藏" forState:UIControlStateNormal];
+        [cell.collectLabel setText:@"收藏"];
         cell.collectButton.enabled = YES;
     }
     if (collection) {
-        [cell.collectButton setTitle:@"删除" forState:UIControlStateNormal];
+        [cell.collectLabel setText:@"删除"];
     }
     return cell;
 }
@@ -115,7 +139,7 @@
             NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
         }else{
             product.collect = YES;
-            [cell.collectButton setTitle:@"已收藏" forState:UIControlStateNormal];
+            [cell.collectLabel setText:@"已收藏"];
             cell.collectButton.enabled = NO;
             [[NSNotificationCenter defaultCenter]postNotificationName:@"COLLECT_SUCCESS" object:nil userInfo:nil];
         }

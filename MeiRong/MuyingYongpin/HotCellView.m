@@ -10,6 +10,11 @@
 
 @implementation HotCellView
 
+-(void)dealloc
+{
+    [super dealloc];
+}
+
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];

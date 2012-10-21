@@ -28,6 +28,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [application setStatusBarStyle:UIStatusBarStyleBlackOpaque];
+    
     [MobClick startWithAppkey:@"5065b5735270151341000065" reportPolicy:REALTIME channelId:nil];
     self.tabBarController = [[[UITabBarController alloc]init]autorelease];
     
@@ -61,7 +63,16 @@
     self.tabBarController.viewControllers = controllersArray;
     [controllersArray release];
     
-    self.tabBarController.tabBar.backgroundImage = [UIImage imageNamed:@"tabBarBg"];
+    self.tabBarController.tabBar.backgroundImage = [UIImage imageNamed:@"tabbar_background"];
+    
+    [[UITabBarItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
+                                                       [UIFont fontWithName:@"Georgia-Bold" size:10.0f], UITextAttributeFont,
+                                                       [[UIColor blackColor] colorWithAlphaComponent: 0.5f], UITextAttributeTextColor,
+                                                       [[UIColor whiteColor]colorWithAlphaComponent: 1.0f], UITextAttributeTextShadowColor,
+                                                       [NSValue valueWithUIOffset:UIOffsetMake(0.0f, 1.0f)], UITextAttributeTextShadowOffset,
+                                                       nil] forState:UIControlStateNormal];
+    
+    self.tabBarController.tabBar.selectedImageTintColor = [[UIColor redColor] colorWithAlphaComponent: 0.5f];
     
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
     // Override point for customization after application launch.

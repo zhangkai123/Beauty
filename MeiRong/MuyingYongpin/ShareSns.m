@@ -33,7 +33,7 @@
 -(id)init
 {
     if (self = [super init]) {
-        snsActionSheet = [[UIActionSheet alloc] initWithTitle:@"SNS分享" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"新浪微博",@"腾讯微薄",@"人人网",nil];
+        snsActionSheet = [[UIActionSheet alloc] initWithTitle:@"分享" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"新浪微博",@"腾讯微薄",@"人人网",nil];
     }
     return self;
 }
