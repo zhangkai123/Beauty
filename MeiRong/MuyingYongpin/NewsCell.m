@@ -24,29 +24,29 @@
     if (self) {
         // Initialization code
         UILabel *tLable = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 320, 40)];
-        tLable.font         = [UIFont boldSystemFontOfSize:tLable.font.pointSize];
+        tLable.font         = [UIFont fontWithName:@"Heiti TC" size:tLable.font.pointSize];
         tLable.textColor    = [UIColor darkTextColor];
-        tLable.shadowColor  = [UIColor lightGrayColor];
-        tLable.shadowOffset = CGSizeMake(0.0, 1.0);
+        tLable.shadowColor  = [[UIColor whiteColor]colorWithAlphaComponent: 0.5f];
+        tLable.shadowOffset = CGSizeMake(0.5, 0.5);
         
         self.titleLable = tLable;
         [tLable release];
         UILabel *mLable = [[UILabel alloc]initWithFrame:CGRectMake(0, 40, 320, 20)];
-//        mLable.font = [UIFont boldSystemFontOfSize:15];
+        mLable.font = [UIFont fontWithName:@"Heiti TC" size:15];
         self.timeLable = mLable;
         [mLable release];
         UILabel *cLable = [[UILabel alloc]initWithFrame:CGRectMake(0, 60, 320, 120)];
-//        cLable.font = [UIFont boldSystemFontOfSize:15];
         cLable.numberOfLines = 0;
+        cLable.font=[UIFont fontWithName:@"Heiti TC" size:15];
         self.contentLable = cLable;
         [cLable release];
         
         [self addSubview:self.titleLable];
         [self addSubview:self.timeLable];
         [self addSubview:self.contentLable];
-//        self.titleLable.backgroundColor = [UIColor blueColor];
-//        self.timeLable.backgroundColor = [UIColor yellowColor];
-//        self.contentLable.backgroundColor = [UIColor blueColor];
+        self.titleLable.backgroundColor = [UIColor clearColor];
+        self.timeLable.backgroundColor = [UIColor clearColor];
+        self.contentLable.backgroundColor = [UIColor clearColor];
     }
     return self;
 }

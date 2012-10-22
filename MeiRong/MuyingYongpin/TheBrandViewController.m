@@ -59,7 +59,7 @@
     theTalbleView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, 320, 460-44-50) style:UITableViewStylePlain];
     [theTalbleView setBackgroundColor:[UIColor clearColor]];
     [theTalbleView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-    theTalbleView.rowHeight = 159;
+    theTalbleView.rowHeight = 155;
     theTalbleView.dataSource = self;
     theTalbleView.delegate = self;
     [self.view addSubview:theTalbleView];

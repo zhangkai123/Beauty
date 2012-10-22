@@ -45,19 +45,19 @@
         UIImage *cImage = [UIImage imageNamed:@"likeButton"];
         UIImage *stretchableButtonImageNormal = [cImage stretchableImageWithLeftCapWidth:23 topCapHeight:0];
         UIButton *cButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-        cButton.frame = CGRectMake(185, 360, cImage.size.width*2 + 4, cImage.size.height);
+        cButton.frame = CGRectMake(183, 360, cImage.size.width*2 + 8, cImage.size.height);
         [cButton setBackgroundImage:stretchableButtonImageNormal forState:UIControlStateNormal];
         [cButton addTarget:self action:@selector(collectProduct) forControlEvents:UIControlEventTouchDown];
         self.collectButton = cButton;
         
-        UILabel *cLabel = [[UILabel alloc]initWithFrame:CGRectMake(21, 1, 32, 20)];
+        UILabel *cLabel = [[UILabel alloc]initWithFrame:CGRectMake(22, 1, 36, 20)];
         cLabel.numberOfLines = 1;
         [cLabel setTextAlignment:UITextAlignmentCenter];
         [cLabel setTextColor:[UIColor darkGrayColor]];
         cLabel.shadowColor   = [[UIColor whiteColor]colorWithAlphaComponent: 0.5f];
         cLabel.shadowOffset  = CGSizeMake(1.0,1.0);
         cLabel.backgroundColor = [UIColor clearColor];
-        [cLabel setFont:[UIFont systemFontOfSize:10]];
+        [cLabel setFont:[UIFont systemFontOfSize:12]];
         self.collectLabel = cLabel;
         [cLabel release];
         [self.collectButton addSubview:self.collectLabel];

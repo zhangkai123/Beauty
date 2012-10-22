@@ -53,7 +53,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor redColor];
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"SheetBackground"]];
     
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(recieveNews) name:@"NEWS_READY" object:nil];
     
@@ -63,7 +63,8 @@
     }
     theTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, 320, 460-44-49) style:UITableViewStylePlain];
     theTableView.rowHeight = 180;
-    [theTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+    [theTableView setSeparatorStyle:UITableViewCellSeparatorStyleSingleLine];
+    theTableView.backgroundColor = [UIColor clearColor];
     theTableView.dataSource = self;
     theTableView.delegate = self;
     [self.view addSubview:theTableView];
