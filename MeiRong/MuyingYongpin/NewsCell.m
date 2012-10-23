@@ -24,13 +24,13 @@
     if (self) {
         // Initialization code
         UILabel *tLable = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 320, 40)];
-        tLable.font         = [UIFont fontWithName:@"Heiti TC" size:tLable.font.pointSize];
+        tLable.font         = [UIFont fontWithName:@"Georgia-Bold" size:18];
         tLable.textColor    = [UIColor darkTextColor];
         tLable.shadowColor  = [[UIColor whiteColor]colorWithAlphaComponent: 0.5f];
         tLable.shadowOffset = CGSizeMake(0.5, 0.5);
-        
         self.titleLable = tLable;
         [tLable release];
+        
         UILabel *mLable = [[UILabel alloc]initWithFrame:CGRectMake(0, 40, 320, 20)];
         mLable.font = [UIFont fontWithName:@"Heiti TC" size:15];
         self.timeLable = mLable;

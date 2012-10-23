@@ -38,7 +38,7 @@
         dLable.backgroundColor = [UIColor whiteColor];
         dLable.lineBreakMode = UILineBreakModeWordWrap;
         dLable.numberOfLines = 0;
-        [dLable setFont:[UIFont systemFontOfSize:15]];
+        [dLable setFont:[UIFont fontWithName:@"Heiti TC" size:15]];
         self.desLable = dLable;
         [dLable release];
         
@@ -57,7 +57,7 @@
         cLabel.shadowColor   = [[UIColor whiteColor]colorWithAlphaComponent: 0.5f];
         cLabel.shadowOffset  = CGSizeMake(1.0,1.0);
         cLabel.backgroundColor = [UIColor clearColor];
-        [cLabel setFont:[UIFont systemFontOfSize:12]];
+        [cLabel setFont:[UIFont fontWithName:@"Heiti TC" size:12]];
         self.collectLabel = cLabel;
         [cLabel release];
         [self.collectButton addSubview:self.collectLabel];

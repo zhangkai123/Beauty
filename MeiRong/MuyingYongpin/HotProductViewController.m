@@ -33,13 +33,12 @@
         
         //use whatever image you want and add it to your project
         self.tabBarItem.image = [UIImage imageNamed:@"iconListTab"];
-//        self.tabBarItem.finishedSelectedImage = [UIImage imageNamed:@"iconListTabShape"];
-//        [self.tabBarItem setFinishedSelectedImage:[UIImage imageNamed:@"iconListTabFocus"] withFinishedUnselectedImage:[UIImage imageNamed:@"iconListTab"]];
+
         // set the long name shown in the navigation bar at the top
         UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 320, 30)];
-        titleLabel.textColor = [[UIColor redColor] colorWithAlphaComponent: 0.5f];
+        titleLabel.textColor = [UIColor colorWithRed:1 green: 0.6 blue:0.8 alpha:1];
         [titleLabel setTextAlignment:UITextAlignmentCenter];
-        titleLabel.font = [UIFont fontWithName:@"Georgia-Bold" size:22.0];
+        titleLabel.font = [UIFont fontWithName:@"Georgia-Bold" size:22];
         titleLabel.shadowColor   = [[UIColor whiteColor]colorWithAlphaComponent: 1.0f];
         titleLabel.shadowOffset  = CGSizeMake(1.0,1.0);
         titleLabel.backgroundColor = [UIColor clearColor];

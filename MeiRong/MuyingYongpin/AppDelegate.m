@@ -66,13 +66,13 @@
     self.tabBarController.tabBar.backgroundImage = [UIImage imageNamed:@"tabbar_background"];
     
     [[UITabBarItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
-                                                       [UIFont fontWithName:@"Georgia-Bold" size:10.0f], UITextAttributeFont,
+                                                       [UIFont fontWithName:@"Heiti TC" size:10], UITextAttributeFont,
                                                        [[UIColor blackColor] colorWithAlphaComponent: 0.5f], UITextAttributeTextColor,
                                                        [[UIColor whiteColor]colorWithAlphaComponent: 1.0f], UITextAttributeTextShadowColor,
                                                        [NSValue valueWithUIOffset:UIOffsetMake(0.0f, 1.0f)], UITextAttributeTextShadowOffset,
                                                        nil] forState:UIControlStateNormal];
     
-    self.tabBarController.tabBar.selectedImageTintColor = [[UIColor redColor] colorWithAlphaComponent: 0.5f];
+    self.tabBarController.tabBar.selectedImageTintColor = [UIColor colorWithRed:1 green: 0.6 blue:0.8 alpha:1];
     
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
     // Override point for customization after application launch.
