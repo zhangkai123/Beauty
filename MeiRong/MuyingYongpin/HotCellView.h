@@ -7,7 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SDWebImageCompat.h"
+#import "SDWebImageManagerDelegate.h"
+#import "SDWebImageManager.h"
 
-@interface HotCellView : UIView
-
+@interface HotCellView : UIView <SDWebImageManagerDelegate>
+{
+    UIImage *myImage;
+    UIImage *myHolderImage;
+    BOOL notFirstDraw;
+}
+@property(nonatomic,retain) UIImage *myImage;
+- (void)setImageWithURL:(NSURL *)url placeholderImage:(UIImage *)placeholder;
 @end

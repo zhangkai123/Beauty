@@ -163,7 +163,8 @@
     cell.delegate = self;
     cell.rowNum = indexPath.row;
     Product *product = [productsArray objectAtIndex:indexPath.row];
-    [cell.theImageView setImageWithURL:[NSURL URLWithString:product.pic_url] placeholderImage:[UIImage imageNamed:@"BackgroundPattern"]];
+//    [cell.theImageView setImageWithURL:[NSURL URLWithString:product.pic_url] placeholderImage:[UIImage imageNamed:@"BackgroundPattern"]];
+    [cell.coverView setImageWithURL:[NSURL URLWithString:product.pic_url] placeholderImage:[UIImage imageNamed:@"BackgroundPattern"]];
     cell.desLable.text = product.title;
     if (product.collect) {
         [cell.collectLabel setText:@"已收藏"];

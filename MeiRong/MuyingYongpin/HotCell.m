@@ -8,15 +8,16 @@
 
 #import <QuartzCore/QuartzCore.h>
 #import "HotCell.h"
-#import "HotCellView.h"
 
 @implementation HotCell
 @synthesize theImageView ,desLable;
 @synthesize collectButton ,collectLabel ,sharedButton;
 @synthesize delegate ,rowNum;
+@synthesize coverView;
 -(void)dealloc
 {
     [theImageView release];
+    [coverView release];
     [desLable release];
     [super dealloc];
 }
@@ -70,14 +71,16 @@
         [sButton addTarget:self action:@selector(shareProduct) forControlEvents:UIControlEventTouchDown];
         self.sharedButton = sButton;
         
-        HotCellView *coverView = [[HotCellView alloc]initWithFrame:CGRectMake(0, 0, 320, 400)];
-        [coverView addSubview:self.theImageView];
-        [coverView addSubview:self.desLable];
-        [coverView addSubview:self.collectButton];
-        [coverView addSubview:self.sharedButton];
+        HotCellView *cView = [[HotCellView alloc]initWithFrame:CGRectMake(0, 0, 320, 400)];
+        self.coverView = cView;
+        [cView release];
+//        [coverView addSubview:self.theImageView];
         
-        [self addSubview:coverView];
-        [coverView release];                
+        [self.coverView addSubview:self.desLable];
+        [self.coverView addSubview:self.collectButton];
+        [self.coverView addSubview:self.sharedButton];
+        
+        [self.contentView addSubview:self.coverView];
     }
     return self;
 }
