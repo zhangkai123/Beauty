@@ -11,26 +11,6 @@
 @implementation HotCellView
 @synthesize myImage;
 
-static void addRoundedRectToPath(CGContextRef context, CGRect rect, float ovalWidth, float ovalHeight)
-{
-    float fw, fh;
-    if (ovalWidth == 0 || ovalHeight == 0) {
-        CGContextAddRect(context, rect);
-        return;
-    }
-    CGContextSaveGState(context);
-    CGContextTranslateCTM (context, CGRectGetMinX(rect), CGRectGetMinY(rect));
-    CGContextScaleCTM (context, ovalWidth, ovalHeight);
-    fw = CGRectGetWidth (rect) / ovalWidth;
-    fh = CGRectGetHeight (rect) / ovalHeight;
-    CGContextMoveToPoint(context, fw, fh/2);
-    CGContextAddArcToPoint(context, fw, fh, fw/2, fh, 1);
-    CGContextAddArcToPoint(context, 0, fh, 0, fh/2, 1);
-    CGContextAddArcToPoint(context, 0, 0, fw/2, 0, 1);
-    CGContextAddArcToPoint(context, fw, 0, fw, fh/2, 1);
-    CGContextClosePath(context);
-    CGContextRestoreGState(context);
-}
 -(UIImage*) MTDContextCreateRoundedMask:(CGRect)rect tl:(CGFloat)radius_tl tr:(CGFloat)radius_tr bl:(CGFloat)radius_bl br:(CGFloat)radius_br theImage:(UIImage *)tImage {
     
     CGContextRef context;
@@ -40,37 +20,20 @@ static void addRoundedRectToPath(CGContextRef context, CGRect rect, float ovalWi
     
     // create a bitmap graphics context the size of the image
     context = CGBitmapContextCreate( NULL, rect.size.width, rect.size.height, 8, 0, colorSpace, kCGImageAlphaPremultipliedLast );
-    
     // free the rgb colorspace
     CGColorSpaceRelease(colorSpace);
     
     if ( context == NULL ) {
         return NULL;
     }
-        
-    CGMutablePathRef outlinePath = CGPathCreateMutable();
-    float offset = 7.0;
+    
     float w  = [self bounds].size.width;
-    float h  = [self bounds].size.height;
-    CGPathMoveToPoint(outlinePath, nil, offset*2.0, offset);
-    CGPathAddArcToPoint(outlinePath, nil, offset, offset, offset, offset*2, offset);
-    CGPathAddLineToPoint(outlinePath, nil, offset, h - offset*2.0);
-    CGPathAddArcToPoint(outlinePath, nil, offset, h - offset, offset *2.0, h-offset, offset);
-    CGPathAddLineToPoint(outlinePath, nil, w - offset *2.0, h - offset);
-    CGPathAddArcToPoint(outlinePath, nil, w - offset, h - offset, w - offset, h - offset * 2.0, offset);
-    CGPathAddLineToPoint(outlinePath, nil, w - offset, offset*2.0);
-    CGPathAddArcToPoint(outlinePath, nil, w - offset , offset, w - offset*2.0, offset, offset);
-    CGPathCloseSubpath(outlinePath);
     
-    CGContextSetShadow(context, CGSizeMake(4,4), 3);
-    CGContextAddPath(context, outlinePath);
-    CGContextFillPath(context);
-    
+    CGContextDrawImage(context, self.frame, coverImage.CGImage);
     CGContextAddPath(context, outlinePath);
     CGContextClip(context);
-
     
-    CGContextDrawImage(context, CGRectMake(0, 100, w, 300), tImage.CGImage);
+    CGContextDrawImage(context, CGRectMake(0, 80, w, 300), tImage.CGImage);
     
     CGImageRef imageMasked = CGBitmapContextCreateImage(context);
     CGContextRelease(context);
@@ -108,8 +71,7 @@ static void addRoundedRectToPath(CGContextRef context, CGRect rect, float ovalWi
     // Remove in progress downloader from queue
     [manager cancelForDelegate:self];
     
-    self.myImage = placeholder;
-
+    self.myImage = coverImage;
     if (url)
     {
         [manager downloadWithURL:url delegate:self options:options];
@@ -122,15 +84,29 @@ static void addRoundedRectToPath(CGContextRef context, CGRect rect, float ovalWi
     [[SDWebImageManager sharedManager] cancelForDelegate:self];
 }
 
-- (void)webImageManager:(SDWebImageManager *)imageManager didProgressWithPartialImage:(UIImage *)image forURL:(NSURL *)url
-{
-    self.myImage = image;
-    [self setNeedsLayout];
-}
+//- (void)webImageManager:(SDWebImageManager *)imageManager didProgressWithPartialImage:(UIImage *)image forURL:(NSURL *)url
+//{
+////    self.myImage = image;
+//    [self setNeedsLayout];
+//}
 
 - (void)webImageManager:(SDWebImageManager *)imageManager didFinishWithImage:(UIImage *)image
 {
-    [self performSelectorInBackground:@selector(drawImage:) withObject:image];
+//    [self performSelectorInBackground:@selector(drawImage:) withObject:image];
+    __block UIImage *weakimage = image;
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+        
+        [self drawImage:weakimage];
+    });
+}
+
+-(void)setMyImage:(UIImage *)myImg
+{
+    if (myImage != myImg) {
+        [myImage release];
+        myImage = [myImg retain];
+        [self performSelectorOnMainThread:@selector(setNeedsDisplay) withObject:nil waitUntilDone:NO];
+    }
 }
 
 #pragma drawRect
@@ -143,7 +119,7 @@ static void addRoundedRectToPath(CGContextRef context, CGRect rect, float ovalWi
         
         CGContextRef ctx = UIGraphicsGetCurrentContext();
         
-        CGMutablePathRef outlinePath = CGPathCreateMutable();
+        outlinePath = CGPathCreateMutable();
         float offset = 7.0;
         float w  = [self bounds].size.width;
         float h  = [self bounds].size.height;
@@ -163,13 +139,20 @@ static void addRoundedRectToPath(CGContextRef context, CGRect rect, float ovalWi
         
         CGContextAddPath(ctx, outlinePath);
         CGContextClip(ctx);
+        
         CGPoint start = CGPointMake(rect.origin.x, rect.origin.y);
         CGPoint end = CGPointMake(rect.origin.x, rect.size.height);
         CGContextDrawLinearGradient(ctx, gradient, start, end, 0);
         
-        CGPathRelease(outlinePath);
+        
+        CGImageRef imageMasked = CGBitmapContextCreateImage(ctx);
+        UIImage *cImage = [[UIImage alloc]initWithCGImage:imageMasked];
+        coverImage = [cImage copy];
+        [cImage release];
+        CGImageRelease(imageMasked);
         
         notFirstDraw = YES;
+        
     }else{
         [self.myImage drawInRect:self.frame];
     }
@@ -177,7 +160,6 @@ static void addRoundedRectToPath(CGContextRef context, CGRect rect, float ovalWi
 -(void)drawImage:(UIImage *)img
 {
     self.myImage = [self MTDContextCreateRoundedMask:self.bounds tl:7.0 tr:7.0 bl:0.0 br:0.0 theImage:img];
-    [self setNeedsDisplay];
 }
 - (CGGradientRef)normalGradient
 {

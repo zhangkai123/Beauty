@@ -16,6 +16,9 @@
     UIImage *myImage;
     UIImage *myHolderImage;
     BOOL notFirstDraw;
+    
+    CGMutablePathRef outlinePath;
+    UIImage *coverImage;
 }
 @property(nonatomic,retain) UIImage *myImage;
 - (void)setImageWithURL:(NSURL *)url placeholderImage:(UIImage *)placeholder;

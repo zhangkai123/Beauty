@@ -84,6 +84,11 @@
     }
     return self;
 }
+//- (void)layoutSubviews
+//{
+//    [self.coverView setNeedsDisplay];
+//    [super layoutSubviews];
+//}
 -(void)collectProduct
 {
     [delegate collectProduct:self];
