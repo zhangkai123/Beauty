@@ -71,7 +71,7 @@
     // Remove in progress downloader from queue
     [manager cancelForDelegate:self];
     
-    self.myImage = coverImage;
+//    self.myImage = coverImage;
     if (url)
     {
         [manager downloadWithURL:url delegate:self options:options];
@@ -93,11 +93,14 @@
 - (void)webImageManager:(SDWebImageManager *)imageManager didFinishWithImage:(UIImage *)image
 {
 //    [self performSelectorInBackground:@selector(drawImage:) withObject:image];
-    __block UIImage *weakimage = image;
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
-        
-        [self drawImage:weakimage];
-    });
+    
+//    __block UIImage *weakimage = image;
+//    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+//        
+//        [self drawImage:weakimage];
+//    });
+    self.myImage = image;
+//    [self setNeedsDisplay];
 }
 
 -(void)setMyImage:(UIImage *)myImg
@@ -154,7 +157,7 @@
         notFirstDraw = YES;
         
     }else{
-        [self.myImage drawInRect:self.frame];
+        [self.myImage drawInRect:CGRectMake(10, 10, 300, 300)];
     }
 }
 -(void)drawImage:(UIImage *)img

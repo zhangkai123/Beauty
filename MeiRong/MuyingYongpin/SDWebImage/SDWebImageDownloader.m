@@ -8,9 +8,10 @@
 
 #import "SDWebImageDownloader.h"
 #import "SDWebImageDecoder.h"
+#import "ImageProcesser.h"
 #import <ImageIO/ImageIO.h>
 
-@interface SDWebImageDownloader (ImageDecoder) <SDWebImageDecoderDelegate>
+@interface SDWebImageDownloader (ImageDecoder) <SDWebImageDecoderDelegate,ImageProcesserDelegate>
 @end
 
 NSString *const SDWebImageDownloadStartNotification = @"SDWebImageDownloadStartNotification";
@@ -259,8 +260,15 @@ NSString *const SDWebImageDownloadStopNotification = @"SDWebImageDownloadStopNot
     }
     else
     {
-        [delegate performSelector:@selector(imageDownloader:didFinishWithImage:) withObject:self withObject:image];
+//        [delegate performSelector:@selector(imageDownloader:didFinishWithImage:) withObject:self withObject:image];
+        [[ImageProcesser sharedImageProcesser]processImage:image withDelegate:self];
     }
+}
+
+#pragma mark ImageProcesserDelegate
+-(void)imageProcess:(ImageProcesser *)processer didFinishProcessImage:(UIImage *)image
+{
+    [delegate performSelector:@selector(imageDownloader:didFinishWithImage:) withObject:self withObject:image];
 }
 
 #pragma mark NSObject
