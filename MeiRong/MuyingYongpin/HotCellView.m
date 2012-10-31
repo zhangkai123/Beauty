@@ -9,7 +9,7 @@
 #import "HotCellView.h"
 
 @implementation HotCellView
-@synthesize myImage;
+@synthesize myImage ,notFirstDraw;
 
 -(UIImage*) MTDContextCreateRoundedMask:(CGRect)rect tl:(CGFloat)radius_tl tr:(CGFloat)radius_tr bl:(CGFloat)radius_bl br:(CGFloat)radius_br theImage:(UIImage *)tImage {
     

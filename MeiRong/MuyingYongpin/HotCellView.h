@@ -21,5 +21,6 @@
     UIImage *coverImage;
 }
 @property(nonatomic,retain) UIImage *myImage;
+@property(nonatomic,assign) BOOL notFirstDraw;
 - (void)setImageWithURL:(NSURL *)url placeholderImage:(UIImage *)placeholder;
 @end

@@ -84,6 +84,13 @@
     }
     return self;
 }
+//-(void)prepareForReuse
+//{
+//    self.coverView.notFirstDraw = NO;
+//    [self.coverView setNeedsDisplay];
+//    [super prepareForReuse];
+//}
+
 //- (void)layoutSubviews
 //{
 //    [self.coverView setNeedsDisplay];
