@@ -117,48 +117,48 @@
 {
     [super drawRect:rect];
     
-    if (!notFirstDraw) {
-        CGGradientRef gradient = [self normalGradient];
-        
-        CGContextRef ctx = UIGraphicsGetCurrentContext();
-        
-        outlinePath = CGPathCreateMutable();
-        float offset = 7.0;
-        float w  = [self bounds].size.width;
-        float h  = [self bounds].size.height;
-        CGPathMoveToPoint(outlinePath, nil, offset*2.0, offset);
-        CGPathAddArcToPoint(outlinePath, nil, offset, offset, offset, offset*2, offset);
-        CGPathAddLineToPoint(outlinePath, nil, offset, h - offset*2.0);
-        CGPathAddArcToPoint(outlinePath, nil, offset, h - offset, offset *2.0, h-offset, offset);
-        CGPathAddLineToPoint(outlinePath, nil, w - offset *2.0, h - offset);
-        CGPathAddArcToPoint(outlinePath, nil, w - offset, h - offset, w - offset, h - offset * 2.0, offset);
-        CGPathAddLineToPoint(outlinePath, nil, w - offset, offset*2.0);
-        CGPathAddArcToPoint(outlinePath, nil, w - offset , offset, w - offset*2.0, offset, offset);
-        CGPathCloseSubpath(outlinePath);
-        
-        CGContextSetShadow(ctx, CGSizeMake(4,4), 3);
-        CGContextAddPath(ctx, outlinePath);
-        CGContextFillPath(ctx);
-        
-        CGContextAddPath(ctx, outlinePath);
-        CGContextClip(ctx);
-        
-        CGPoint start = CGPointMake(rect.origin.x, rect.origin.y);
-        CGPoint end = CGPointMake(rect.origin.x, rect.size.height);
-        CGContextDrawLinearGradient(ctx, gradient, start, end, 0);
-        
-        
-        CGImageRef imageMasked = CGBitmapContextCreateImage(ctx);
-        UIImage *cImage = [[UIImage alloc]initWithCGImage:imageMasked];
-        coverImage = [cImage copy];
-        [cImage release];
-        CGImageRelease(imageMasked);
-        
-        notFirstDraw = YES;
-        
-    }else{
+//    if (!notFirstDraw) {
+//        CGGradientRef gradient = [self normalGradient];
+//        
+//        CGContextRef ctx = UIGraphicsGetCurrentContext();
+//        
+//        outlinePath = CGPathCreateMutable();
+//        float offset = 7.0;
+//        float w  = [self bounds].size.width;
+//        float h  = [self bounds].size.height;
+//        CGPathMoveToPoint(outlinePath, nil, offset*2.0, offset);
+//        CGPathAddArcToPoint(outlinePath, nil, offset, offset, offset, offset*2, offset);
+//        CGPathAddLineToPoint(outlinePath, nil, offset, h - offset*2.0);
+//        CGPathAddArcToPoint(outlinePath, nil, offset, h - offset, offset *2.0, h-offset, offset);
+//        CGPathAddLineToPoint(outlinePath, nil, w - offset *2.0, h - offset);
+//        CGPathAddArcToPoint(outlinePath, nil, w - offset, h - offset, w - offset, h - offset * 2.0, offset);
+//        CGPathAddLineToPoint(outlinePath, nil, w - offset, offset*2.0);
+//        CGPathAddArcToPoint(outlinePath, nil, w - offset , offset, w - offset*2.0, offset, offset);
+//        CGPathCloseSubpath(outlinePath);
+//        
+//        CGContextSetShadow(ctx, CGSizeMake(4,4), 3);
+//        CGContextAddPath(ctx, outlinePath);
+//        CGContextFillPath(ctx);
+//        
+//        CGContextAddPath(ctx, outlinePath);
+//        CGContextClip(ctx);
+//        
+//        CGPoint start = CGPointMake(rect.origin.x, rect.origin.y);
+//        CGPoint end = CGPointMake(rect.origin.x, rect.size.height);
+//        CGContextDrawLinearGradient(ctx, gradient, start, end, 0);
+//        
+//        
+//        CGImageRef imageMasked = CGBitmapContextCreateImage(ctx);
+//        UIImage *cImage = [[UIImage alloc]initWithCGImage:imageMasked];
+//        coverImage = [cImage copy];
+//        [cImage release];
+//        CGImageRelease(imageMasked);
+//        
+//        notFirstDraw = YES;
+//        
+//    }else{
         [self.myImage drawInRect:CGRectMake(10, 10, 300, 300)];
-    }
+//    }
 }
 -(void)drawImage:(UIImage *)img
 {

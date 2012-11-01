@@ -56,7 +56,7 @@ static ImageProcesser *sharedInstance;
 {
     UIImage *image = [processInfo objectForKey:IMAGE_KEY];
     
-    UIImage *processedImage = [image imageWithRoundedCorners:30 alphaBackground:[UIColor clearColor]];
+    UIImage *processedImage = [image imageWithRoundedCorners:30 alphaBackground:[UIColor blueColor]];
     
     NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:
                           processedImage, PROCESSED_IMAGE_KEY,
@@ -88,14 +88,15 @@ static ImageProcesser *sharedInstance;
  */
 -(UIImage*) imageWithRoundedCorners:(CGFloat) radius alphaBackground:(UIColor*) aColor
 {
-    return [self imageWithSize:[self size]
+    return [self imageWithSize:CGSizeMake(300, 300)//[self size]
 						 block:^(CGContextRef context) {
                              
 							 CGImageRef	mask,imageMask,maskedImage;
 							 CGPathRef	path;
 							 CGRect		rect	= CGRectZero;
                              
-							 rect.size = [self size];
+//							 rect.size = [self size];
+                             rect.size = CGSizeMake(300, 300);
                              
 							 //Create a path
 							 path = [self newPathForRoundedRect:rect
@@ -202,6 +203,7 @@ static ImageProcesser *sharedInstance;
     
 	//Create the color space
 	colorSpace = CGColorSpaceCreateDeviceRGB();
+//    colorSpace = CGColorSpaceCreateDeviceGray();
     
 	bitmapData = malloc( bitmapByteCount );
     
