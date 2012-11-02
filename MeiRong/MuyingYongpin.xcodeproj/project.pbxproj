@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		4B07D2E91610A64900753B9A /* FashionNews.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B07D2E81610A64900753B9A /* FashionNews.m */; };
+		4B1E2BA416440803001F7B93 /* UIImage+roundCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B1E2BA316440803001F7B93 /* UIImage+roundCorner.m */; };
+		4B1E2BAB164438AA001F7B93 /* placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B1E2BAA164438A9001F7B93 /* placeholder.png */; };
+		4B1E2BAE16443D83001F7B93 /* BackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B1E2BAD16443D83001F7B93 /* BackgroundView.m */; };
 		4B21FE251631A29A00AD5C13 /* HotCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B21FE241631A29A00AD5C13 /* HotCellView.m */; };
 		4B348A161635A15500A6DA91 /* StyleOneCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B348A151635A15500A6DA91 /* StyleOneCellView.m */; };
 		4B39A09C160DC39C00C922B2 /* SVPullToRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B39A09B160DC39C00C922B2 /* SVPullToRefresh.m */; };
@@ -201,6 +204,11 @@
 /* Begin PBXFileReference section */
 		4B07D2E71610A64900753B9A /* FashionNews.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FashionNews.h; sourceTree = "<group>"; };
 		4B07D2E81610A64900753B9A /* FashionNews.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FashionNews.m; sourceTree = "<group>"; };
+		4B1E2BA216440803001F7B93 /* UIImage+roundCorner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+roundCorner.h"; sourceTree = "<group>"; };
+		4B1E2BA316440803001F7B93 /* UIImage+roundCorner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+roundCorner.m"; sourceTree = "<group>"; };
+		4B1E2BAA164438A9001F7B93 /* placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = placeholder.png; sourceTree = "<group>"; };
+		4B1E2BAC16443D83001F7B93 /* BackgroundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackgroundView.h; sourceTree = "<group>"; };
+		4B1E2BAD16443D83001F7B93 /* BackgroundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BackgroundView.m; sourceTree = "<group>"; };
 		4B21FE231631A29A00AD5C13 /* HotCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HotCellView.h; sourceTree = "<group>"; };
 		4B21FE241631A29A00AD5C13 /* HotCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HotCellView.m; sourceTree = "<group>"; };
 		4B348A131635849700A6DA91 /* xht.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = xht.ttf; sourceTree = "<group>"; };
@@ -666,6 +674,8 @@
 				4B92E25B15CE3C7800249F26 /* UIImageView+WebCache.m */,
 				4BACD360164005E400C8FB89 /* ImageProcesser.h */,
 				4BACD361164005E400C8FB89 /* ImageProcesser.m */,
+				4B1E2BA216440803001F7B93 /* UIImage+roundCorner.h */,
+				4B1E2BA316440803001F7B93 /* UIImage+roundCorner.m */,
 			);
 			path = SDWebImage;
 			sourceTree = "<group>";
@@ -801,6 +811,7 @@
 		4BDB315B15BA56DE007B1C6F /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				4B1E2BAA164438A9001F7B93 /* placeholder.png */,
 				4B348A111635847F00A6DA91 /* Font */,
 				4B56217016305B2100C0D9F7 /* Btn_Pressed@2xUncrushedPng.png */,
 				4B56217116305B2300C0D9F7 /* Btn_PressedUncrushedPng.png */,
@@ -959,6 +970,8 @@
 				4B21FE241631A29A00AD5C13 /* HotCellView.m */,
 				4B348A141635A15500A6DA91 /* StyleOneCellView.h */,
 				4B348A151635A15500A6DA91 /* StyleOneCellView.m */,
+				4B1E2BAC16443D83001F7B93 /* BackgroundView.h */,
+				4B1E2BAD16443D83001F7B93 /* BackgroundView.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -1156,6 +1169,7 @@
 				4B6E09FB1633D8E400F8FF4B /* moreButtonActive@2x.png in Resources */,
 				4B6E09FC1633D8E400F8FF4B /* moreButtonActive.png in Resources */,
 				4B6E09FD1633D8E400F8FF4B /* moreButton.png in Resources */,
+				4B1E2BAB164438AA001F7B93 /* placeholder.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1228,6 +1242,8 @@
 				4B21FE251631A29A00AD5C13 /* HotCellView.m in Sources */,
 				4B348A161635A15500A6DA91 /* StyleOneCellView.m in Sources */,
 				4BACD362164005E400C8FB89 /* ImageProcesser.m in Sources */,
+				4B1E2BA416440803001F7B93 /* UIImage+roundCorner.m in Sources */,
+				4B1E2BAE16443D83001F7B93 /* BackgroundView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

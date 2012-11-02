@@ -19,6 +19,8 @@
     
     CGMutablePathRef outlinePath;
     UIImage *coverImage;
+    
+    UIImageView *myImageView;
 }
 @property(nonatomic,retain) UIImage *myImage;
 @property(nonatomic,assign) BOOL notFirstDraw;

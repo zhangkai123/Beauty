@@ -32,6 +32,7 @@
         TouchableImageView *imageView = [[TouchableImageView alloc]initWithFrame:CGRectMake(10, 10, 300, 300)];
         imageView.delegate = self;
         imageView.userInteractionEnabled = YES;
+        imageView.backgroundColor = [UIColor clearColor];
         self.theImageView = imageView;
         [imageView release];
         
@@ -80,16 +81,16 @@
         [self.coverView addSubview:self.collectButton];
         [self.coverView addSubview:self.sharedButton];
         
-        [self.contentView addSubview:self.coverView];
+        [self.contentView addSubview:self.coverView];        
     }
     return self;
 }
-//-(void)prepareForReuse
-//{
-//    self.coverView.notFirstDraw = NO;
-//    [self.coverView setNeedsDisplay];
-//    [super prepareForReuse];
-//}
+-(void)prepareForReuse
+{
+    self.coverView.notFirstDraw = NO;
+    [self.coverView setNeedsDisplay];
+    [super prepareForReuse];
+}
 
 //- (void)layoutSubviews
 //{

@@ -27,9 +27,3 @@
 -(void)imageProcess:(ImageProcesser *)processer didFinishProcessImage:(UIImage *)image;
 
 @end
-
-@interface UIImage (RoundedCorners)
-
--(UIImage*) imageWithRoundedCorners:(CGFloat) radius alphaBackground:(UIColor*) aColor;
-
-@end

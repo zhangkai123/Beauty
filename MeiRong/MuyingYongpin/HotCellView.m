@@ -11,38 +11,6 @@
 @implementation HotCellView
 @synthesize myImage ,notFirstDraw;
 
--(UIImage*) MTDContextCreateRoundedMask:(CGRect)rect tl:(CGFloat)radius_tl tr:(CGFloat)radius_tr bl:(CGFloat)radius_bl br:(CGFloat)radius_br theImage:(UIImage *)tImage {
-    
-    CGContextRef context;
-    CGColorSpaceRef colorSpace;
-    
-    colorSpace = CGColorSpaceCreateDeviceRGB();
-    
-    // create a bitmap graphics context the size of the image
-    context = CGBitmapContextCreate( NULL, rect.size.width, rect.size.height, 8, 0, colorSpace, kCGImageAlphaPremultipliedLast );
-    // free the rgb colorspace
-    CGColorSpaceRelease(colorSpace);
-    
-    if ( context == NULL ) {
-        return NULL;
-    }
-    
-    float w  = [self bounds].size.width;
-    
-    CGContextDrawImage(context, self.frame, coverImage.CGImage);
-    CGContextAddPath(context, outlinePath);
-    CGContextClip(context);
-    
-    CGContextDrawImage(context, CGRectMake(0, 80, w, 300), tImage.CGImage);
-    
-    CGImageRef imageMasked = CGBitmapContextCreateImage(context);
-    CGContextRelease(context);
-    
-    UIImage *newImage = [UIImage imageWithCGImage:imageMasked];
-    CGImageRelease(imageMasked);
-    
-    return newImage;
-}
 -(void)dealloc
 {
     [super dealloc];
@@ -55,6 +23,8 @@
         // Initialization code
         self.backgroundColor = [UIColor clearColor];
         notFirstDraw = NO;
+        myImageView = [[UIImageView alloc]initWithFrame:CGRectZero];
+        [self addSubview:myImageView];
     }
     return self;
 }
@@ -71,7 +41,7 @@
     // Remove in progress downloader from queue
     [manager cancelForDelegate:self];
     
-//    self.myImage = coverImage;
+    myImageView.image = nil;
     if (url)
     {
         [manager downloadWithURL:url delegate:self options:options];
@@ -99,8 +69,11 @@
 //        
 //        [self drawImage:weakimage];
 //    });
+
     self.myImage = image;
 //    [self setNeedsDisplay];
+    myImageView.image = myImage;
+    myImageView.frame = CGRectMake(10, 10, 300, 300);
 }
 
 -(void)setMyImage:(UIImage *)myImg
@@ -117,7 +90,7 @@
 {
     [super drawRect:rect];
     
-//    if (!notFirstDraw) {
+    if (!notFirstDraw) {
 //        CGGradientRef gradient = [self normalGradient];
 //        
 //        CGContextRef ctx = UIGraphicsGetCurrentContext();
@@ -154,15 +127,11 @@
 //        [cImage release];
 //        CGImageRelease(imageMasked);
 //        
-//        notFirstDraw = YES;
-//        
-//    }else{
-        [self.myImage drawInRect:CGRectMake(10, 10, 300, 300)];
-//    }
-}
--(void)drawImage:(UIImage *)img
-{
-    self.myImage = [self MTDContextCreateRoundedMask:self.bounds tl:7.0 tr:7.0 bl:0.0 br:0.0 theImage:img];
+        notFirstDraw = YES;
+        
+    }else{
+//        [self.myImage drawInRect:CGRectMake(10, 10, 300, 300)];
+    }
 }
 - (CGGradientRef)normalGradient
 {

@@ -34,11 +34,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "MuyingYongpin/HotCellView.m"
-         timestampString = "373219742.027163"
+         timestampString = "373558628.502563"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "48"
-         endingLineNumber = "48"
+         startingLineNumber = "16"
+         endingLineNumber = "16"
          landmarkName = "-dealloc"
          landmarkType = "5">
       </FileBreakpoint>
