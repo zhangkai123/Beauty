@@ -37,10 +37,7 @@
         rImageView.delegate = self;
         self.rightImageView = rImageView;
         [rImageView release];
-        
-//        [self addSubview:self.leftImageView];
-//        [self addSubview:self.rightImageView];
-        
+                
         StyleOneCellView *coverView1 = [[StyleOneCellView alloc]initWithFrame:CGRectMake(0, 0, 160, 155)];
         [coverView1 addSubview:self.leftImageView];
         

@@ -220,7 +220,7 @@
 -(void)shareProduct:(HotCell *)cell
 {
     ShareSns *shareSns = [[ShareSns alloc]init];
-    [shareSns showSnsShareSheet:self.tabBarController.view viewController:self shareImage:cell.theImageView.image];
+    [shareSns showSnsShareSheet:self.tabBarController.view viewController:self shareImage:cell.coverView.myImageView.image];
 }
 
 - (void)viewDidUnload

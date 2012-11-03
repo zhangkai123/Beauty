@@ -90,7 +90,7 @@
     }
     cell.delegate = self;
     cell.rowNum = indexPath.row;
-    [cell.theImageView setImageWithURL:[NSURL URLWithString:product.pic_url] placeholderImage:[UIImage imageNamed:@"BackgroundPattern"]];
+    [cell.coverView setImageWithURL:[NSURL URLWithString:product.pic_url] placeholderImage:[UIImage imageNamed:@"BackgroundPattern"]];
     cell.desLable.text = product.title;
     if (product.collect) {
         [cell.collectLabel setText:@"已收藏"];
@@ -158,7 +158,7 @@
 -(void)shareProduct:(HotCell *)cell
 {
     ShareSns *shareSns = [[ShareSns alloc]init];
-    [shareSns showSnsShareSheet:self.tabBarController.view viewController:self shareImage:cell.theImageView.image];
+    [shareSns showSnsShareSheet:self.tabBarController.view viewController:self shareImage:cell.coverView.myImageView.image];
 }
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
 	if (buttonIndex == 1) {

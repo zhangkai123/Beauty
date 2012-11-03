@@ -9,9 +9,12 @@
 #import "HotCellView.h"
 
 @implementation HotCellView
+@synthesize myImageView;
+@synthesize delegate;
 
 -(void)dealloc
 {
+    [myImageView release];
     [super dealloc];
 }
 
@@ -21,10 +24,16 @@
     if (self) {
         // Initialization code
         self.backgroundColor = [UIColor clearColor];
-        myImageView = [[UIImageView alloc]initWithFrame:CGRectZero];
+        myImageView = [[TouchableImageView alloc]initWithFrame:CGRectZero];
+        myImageView.delegate = self;
         [self addSubview:myImageView];
     }
     return self;
+}
+#pragma imageview delegate
+- (void)touchableImageViewViewWasSelected:(TouchableImageView *)thumbnailImageView
+{
+    [delegate hotCellViewWasSelected:self];
 }
 
 - (void)setImageWithURL:(NSURL *)url placeholderImage:(UIImage *)placeholder

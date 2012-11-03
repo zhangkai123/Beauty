@@ -10,13 +10,12 @@
 #import "HotCell.h"
 
 @implementation HotCell
-@synthesize theImageView ,desLable;
+@synthesize desLable;
 @synthesize collectButton ,collectLabel ,sharedButton;
 @synthesize delegate ,rowNum;
 @synthesize coverView;
 -(void)dealloc
 {
-    [theImageView release];
     [coverView release];
     [desLable release];
     [super dealloc];
@@ -28,13 +27,6 @@
         // Initialization code
         self.selectionStyle = UITableViewCellSelectionStyleNone;
         self.backgroundColor = [UIColor whiteColor];
-        
-        TouchableImageView *imageView = [[TouchableImageView alloc]initWithFrame:CGRectMake(10, 10, 300, 300)];
-        imageView.delegate = self;
-        imageView.userInteractionEnabled = YES;
-        imageView.backgroundColor = [UIColor clearColor];
-        self.theImageView = imageView;
-        [imageView release];
         
         UILabel *dLable = [[UILabel alloc]initWithFrame:CGRectMake(10, 310, 300, 45)];
         dLable.backgroundColor = [UIColor whiteColor];
@@ -73,9 +65,9 @@
         self.sharedButton = sButton;
         
         HotCellView *cView = [[HotCellView alloc]initWithFrame:CGRectMake(0, 0, 320, 400)];
+        cView.delegate = self;
         self.coverView = cView;
         [cView release];
-//        [coverView addSubview:self.theImageView];
         
         [self.coverView addSubview:self.desLable];
         [self.coverView addSubview:self.collectButton];
@@ -87,16 +79,9 @@
 }
 -(void)prepareForReuse
 {
-//    self.coverView.notFirstDraw = NO;
-//    [self.coverView setNeedsDisplay];
     [super prepareForReuse];
 }
 
-//- (void)layoutSubviews
-//{
-//    [self.coverView setNeedsDisplay];
-//    [super layoutSubviews];
-//}
 -(void)collectProduct
 {
     [delegate collectProduct:self];
@@ -105,14 +90,17 @@
 {
     [delegate shareProduct:self];
 }
-- (void)touchableImageViewViewWasSelected:(TouchableImageView *)thumbnailImageView
-{
-    [delegate selectTableViewCell:self];
-}
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
     [super setSelected:selected animated:animated];
     // Configure the view for the selected state
 }
+#pragma HotCellViewDelegate
+
+- (void)hotCellViewWasSelected:(HotCellView *)hotCellView
+{
+    [delegate selectTableViewCell:self];
+}
+
 @end
