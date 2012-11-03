@@ -13,16 +13,8 @@
 
 @interface HotCellView : UIView <SDWebImageManagerDelegate>
 {
-    UIImage *myImage;
-    UIImage *myHolderImage;
-    BOOL notFirstDraw;
-    
-    CGMutablePathRef outlinePath;
-    UIImage *coverImage;
-    
     UIImageView *myImageView;
 }
-@property(nonatomic,retain) UIImage *myImage;
-@property(nonatomic,assign) BOOL notFirstDraw;
+
 - (void)setImageWithURL:(NSURL *)url placeholderImage:(UIImage *)placeholder;
 @end

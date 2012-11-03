@@ -9,7 +9,6 @@
 #import "HotCellView.h"
 
 @implementation HotCellView
-@synthesize myImage ,notFirstDraw;
 
 -(void)dealloc
 {
@@ -22,7 +21,6 @@
     if (self) {
         // Initialization code
         self.backgroundColor = [UIColor clearColor];
-        notFirstDraw = NO;
         myImageView = [[UIImageView alloc]initWithFrame:CGRectZero];
         [self addSubview:myImageView];
     }
@@ -54,84 +52,32 @@
     [[SDWebImageManager sharedManager] cancelForDelegate:self];
 }
 
-//- (void)webImageManager:(SDWebImageManager *)imageManager didProgressWithPartialImage:(UIImage *)image forURL:(NSURL *)url
-//{
-////    self.myImage = image;
-//    [self setNeedsLayout];
-//}
-
 - (void)webImageManager:(SDWebImageManager *)imageManager didFinishWithImage:(UIImage *)image
 {
-//    [self performSelectorInBackground:@selector(drawImage:) withObject:image];
-    
-//    __block UIImage *weakimage = image;
-//    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
-//        
-//        [self drawImage:weakimage];
-//    });
-
-    self.myImage = image;
-//    [self setNeedsDisplay];
-    myImageView.image = myImage;
+    myImageView.image = image;
     myImageView.frame = CGRectMake(10, 10, 300, 300);
-}
-
--(void)setMyImage:(UIImage *)myImg
-{
-    if (myImage != myImg) {
-        [myImage release];
-        myImage = [myImg retain];
-        [self performSelectorOnMainThread:@selector(setNeedsDisplay) withObject:nil waitUntilDone:NO];
-    }
 }
 
 #pragma drawRect
 - (void)drawRect:(CGRect)rect
 {
     [super drawRect:rect];
+    CGGradientRef gradient = [self normalGradient];
     
-    if (!notFirstDraw) {
-//        CGGradientRef gradient = [self normalGradient];
-//        
-//        CGContextRef ctx = UIGraphicsGetCurrentContext();
-//        
-//        outlinePath = CGPathCreateMutable();
-//        float offset = 7.0;
-//        float w  = [self bounds].size.width;
-//        float h  = [self bounds].size.height;
-//        CGPathMoveToPoint(outlinePath, nil, offset*2.0, offset);
-//        CGPathAddArcToPoint(outlinePath, nil, offset, offset, offset, offset*2, offset);
-//        CGPathAddLineToPoint(outlinePath, nil, offset, h - offset*2.0);
-//        CGPathAddArcToPoint(outlinePath, nil, offset, h - offset, offset *2.0, h-offset, offset);
-//        CGPathAddLineToPoint(outlinePath, nil, w - offset *2.0, h - offset);
-//        CGPathAddArcToPoint(outlinePath, nil, w - offset, h - offset, w - offset, h - offset * 2.0, offset);
-//        CGPathAddLineToPoint(outlinePath, nil, w - offset, offset*2.0);
-//        CGPathAddArcToPoint(outlinePath, nil, w - offset , offset, w - offset*2.0, offset, offset);
-//        CGPathCloseSubpath(outlinePath);
-//        
-//        CGContextSetShadow(ctx, CGSizeMake(4,4), 3);
-//        CGContextAddPath(ctx, outlinePath);
-//        CGContextFillPath(ctx);
-//        
-//        CGContextAddPath(ctx, outlinePath);
-//        CGContextClip(ctx);
-//        
-//        CGPoint start = CGPointMake(rect.origin.x, rect.origin.y);
-//        CGPoint end = CGPointMake(rect.origin.x, rect.size.height);
-//        CGContextDrawLinearGradient(ctx, gradient, start, end, 0);
-//        
-//        
-//        CGImageRef imageMasked = CGBitmapContextCreateImage(ctx);
-//        UIImage *cImage = [[UIImage alloc]initWithCGImage:imageMasked];
-//        coverImage = [cImage copy];
-//        [cImage release];
-//        CGImageRelease(imageMasked);
-//        
-        notFirstDraw = YES;
-        
-    }else{
-//        [self.myImage drawInRect:CGRectMake(10, 10, 300, 300)];
-    }
+    CGContextRef ctx = UIGraphicsGetCurrentContext();
+
+    CGPathRef outlinePath = [self newPathForRoundedRect:CGRectMake(9, 9, 302, 390) radius:5];
+    
+    CGContextSetShadow(ctx, CGSizeMake(1,1), 3);
+    CGContextAddPath(ctx, outlinePath);
+    CGContextFillPath(ctx);
+    
+    CGContextAddPath(ctx, outlinePath);
+    CGContextClip(ctx);
+    
+    CGPoint start = CGPointMake(rect.origin.x, rect.origin.y);
+    CGPoint end = CGPointMake(rect.origin.x, rect.size.height);
+    CGContextDrawLinearGradient(ctx, gradient, start, end, 0);
 }
 - (CGGradientRef)normalGradient
 {
@@ -163,5 +109,37 @@
     CGColorSpaceRelease(space);
     
     return normalGradient;
+}
+//Create a pill with the given rect
+- (CGPathRef) newPathForRoundedRect:(CGRect)rect radius:(CGFloat)radius
+{
+	CGMutablePathRef retPath = CGPathCreateMutable();
+    
+	CGRect innerRect = CGRectInset(rect, radius, radius);
+    
+	CGFloat inside_right = innerRect.origin.x + innerRect.size.width;
+	CGFloat outside_right = rect.origin.x + rect.size.width;
+	CGFloat inside_bottom = innerRect.origin.y + innerRect.size.height;
+	CGFloat outside_bottom = rect.origin.y + rect.size.height;
+    
+	CGFloat inside_top = innerRect.origin.y;
+	CGFloat outside_top = rect.origin.y;
+	CGFloat outside_left = rect.origin.x;
+    
+	CGPathMoveToPoint(retPath, NULL, innerRect.origin.x, outside_top);
+    
+	CGPathAddLineToPoint(retPath, NULL, inside_right, outside_top);
+	CGPathAddArcToPoint(retPath, NULL, outside_right, outside_top, outside_right, inside_top, radius);
+	CGPathAddLineToPoint(retPath, NULL, outside_right, inside_bottom);
+	CGPathAddArcToPoint(retPath, NULL,  outside_right, outside_bottom, inside_right, outside_bottom, radius);
+    
+	CGPathAddLineToPoint(retPath, NULL, innerRect.origin.x, outside_bottom);
+	CGPathAddArcToPoint(retPath, NULL,  outside_left, outside_bottom, outside_left, inside_bottom, radius);
+	CGPathAddLineToPoint(retPath, NULL, outside_left, inside_top);
+	CGPathAddArcToPoint(retPath, NULL,  outside_left, outside_top, innerRect.origin.x, outside_top, radius);
+    
+	CGPathCloseSubpath(retPath);
+    
+	return retPath;
 }
 @end

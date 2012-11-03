@@ -87,8 +87,8 @@
 }
 -(void)prepareForReuse
 {
-    self.coverView.notFirstDraw = NO;
-    [self.coverView setNeedsDisplay];
+//    self.coverView.notFirstDraw = NO;
+//    [self.coverView setNeedsDisplay];
     [super prepareForReuse];
 }
 
