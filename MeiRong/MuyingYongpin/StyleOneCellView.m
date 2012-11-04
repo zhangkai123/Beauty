@@ -32,19 +32,8 @@
     CGGradientRef gradient = [self normalGradient];
     
     CGContextRef ctx = UIGraphicsGetCurrentContext();
-    CGMutablePathRef outlinePath = CGPathCreateMutable();
-    float offset = 7.0;
-    float w  = [self bounds].size.width;
-    float h  = [self bounds].size.height;
-    CGPathMoveToPoint(outlinePath, nil, offset*2.0, offset);
-    CGPathAddArcToPoint(outlinePath, nil, offset, offset, offset, offset*2, offset);
-    CGPathAddLineToPoint(outlinePath, nil, offset, h - offset*2.0);
-    CGPathAddArcToPoint(outlinePath, nil, offset, h - offset, offset *2.0, h-offset, offset);
-    CGPathAddLineToPoint(outlinePath, nil, w - offset *2.0, h - offset);
-    CGPathAddArcToPoint(outlinePath, nil, w - offset, h - offset, w - offset, h - offset * 2.0, offset);
-    CGPathAddLineToPoint(outlinePath, nil, w - offset, offset*2.0);
-    CGPathAddArcToPoint(outlinePath, nil, w - offset , offset, w - offset*2.0, offset, offset);
-    CGPathCloseSubpath(outlinePath);
+    
+    CGPathRef outlinePath = [self newPathForRoundedRect:CGRectMake(10, 10, 137, 137) radius:2];
     
     CGContextSetShadow(ctx, CGSizeMake(1,1), 3);
     CGContextAddPath(ctx, outlinePath);
