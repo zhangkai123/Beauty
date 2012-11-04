@@ -11,7 +11,6 @@
 
 @interface WebViewController ()
 {
-    UIButton *temButton;
     UIWebView *webView;
 }
 - (void)hideUnwantedHTML;
@@ -43,9 +42,28 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    UIImageView *topBar = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 320, 44)];
+    topBar.image = [UIImage imageNamed:@"navbar_background"];
+    topBar.userInteractionEnabled = YES;
+    
+    UIImage *buttonImageNormal = [UIImage imageNamed:@"Btn_Normal"];
+    UIImage *stretchableButtonImageNormal = [buttonImageNormal stretchableImageWithLeftCapWidth:6 topCapHeight:0];
+    UIButton *topBarBackButton = [[UIButton alloc]initWithFrame:CGRectMake(5, 7, 50, 30)];
+    [topBarBackButton setTitle:@"关闭" forState:UIControlStateNormal];
+    [topBarBackButton setShowsTouchWhenHighlighted:YES];
+    topBarBackButton.titleLabel.font  = [UIFont fontWithName:@"Georgia-Bold" size:12];
+    [topBarBackButton setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
+    [topBarBackButton setBackgroundImage:stretchableButtonImageNormal forState:UIControlStateNormal];
+    [topBarBackButton addTarget:self action:@selector(goBack) forControlEvents:UIControlEventTouchDown];
+    [topBar addSubview:topBarBackButton];
+    [self.view addSubview:topBar];
+    [topBarBackButton release];
+    [topBar release];
+    
 	// Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor whiteColor];
-    webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, 320, 480)];
+    webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 44, 320, 460-44)];
     [webView setDelegate:self];
     
     NSLog(@"%@",productUrlS);
@@ -54,41 +72,40 @@
     [webView loadRequest:requestObj];
     
     [self.view addSubview:webView];
-    
-    temButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    temButton.frame = CGRectMake(10, 10, 60, 30);
-    [temButton setTitle:@"Back" forState:UIControlStateNormal];
-    [temButton addTarget:self action:@selector(goBack) forControlEvents:UIControlEventTouchDown];
-    [self.view addSubview:temButton];
 }
-//- (void)webViewDidFinishLoad:(UIWebView *)theWebView
-//{
-//    [self hideUnwantedHTML];
+- (void)webViewDidFinishLoad:(UIWebView *)theWebView
+{
+    [self hideUnwantedHTML];
 //    [self.view addSubview:webView];
-//    [self.view bringSubviewToFront:temButton];
-//}
-//-(void)webViewDidStartLoad:(UIWebView *)theWebView
-//{
-//    [webView removeFromSuperview];
-//}
-//- (void)hideUnwantedHTML{
-//    
-//    [webView stringByEvaluatingJavaScriptFromString:@"var script = document.createElement('script');"
-//     
-//     "script.type = 'text/javascript';"
-//     
-//     "script.text = \"function hideID(idName) { "
-//     
-//     "var id = document.getElementById(idName);"
-//     
-//     "id.style.display = 'none';"
-//     
-//     "}\";"
-//     
-//     "document.getElementsByTagName('head')[0].appendChild(script);"];
-//    
-//    [webView stringByEvaluatingJavaScriptFromString:@"hideID('header');"];    
-//}
+    [self performSelector:@selector(addWebView) withObject:nil afterDelay:0.2];
+}
+-(void)addWebView
+{
+    [self.view addSubview:webView];
+}
+-(void)webViewDidStartLoad:(UIWebView *)theWebView
+{
+    [webView removeFromSuperview];
+//    [self hideUnwantedHTML];
+}
+- (void)hideUnwantedHTML{
+    
+    [webView stringByEvaluatingJavaScriptFromString:@"var script = document.createElement('script');"
+     
+     "script.type = 'text/javascript';"
+     
+     "script.text = \"function hideID(idName) { "
+     
+     "var id = document.getElementById(idName);"
+     
+     "id.style.display = 'none';"
+     
+     "}\";"
+     
+     "document.getElementsByTagName('head')[0].appendChild(script);"];
+    
+    [webView stringByEvaluatingJavaScriptFromString:@"hideID('header');"];
+}
 
 -(void)goBack
 {
