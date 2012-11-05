@@ -13,6 +13,10 @@
 
 - (void)didReceiveMemoryWarning
 {
+    [[NSURLCache sharedURLCache] removeAllCachedResponses];
+    [[NSURLCache sharedURLCache] setDiskCapacity:0];
+    [[NSURLCache sharedURLCache] setMemoryCapacity:0];
+
     [super didReceiveMemoryWarning];
     // Release any cached data, images, etc that aren't in use.
 }

@@ -21,6 +21,10 @@
 
 - (void)didReceiveMemoryWarning
 {
+    [[NSURLCache sharedURLCache] removeAllCachedResponses];
+    [[NSURLCache sharedURLCache] setDiskCapacity:0];
+    [[NSURLCache sharedURLCache] setMemoryCapacity:0];
+
     [super didReceiveMemoryWarning];
     // Release any cached data, images, etc that aren't in use.
 }
@@ -220,7 +224,7 @@
 -(void)shareProduct:(HotCell *)cell
 {
     ShareSns *shareSns = [[ShareSns alloc]init];
-    [shareSns showSnsShareSheet:self.tabBarController.view viewController:self shareImage:cell.coverView.myImageView.image];
+    [shareSns showSnsShareSheet:self.tabBarController.view viewController:self shareImage:cell.coverView.myImageView.image shareText:cell.desLable.text];
 }
 
 - (void)viewDidUnload

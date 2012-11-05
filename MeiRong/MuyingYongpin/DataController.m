@@ -40,7 +40,9 @@
         return;
     }
     if (productsArray != nil) {
-        [productsArray removeAllObjects];
+//        [productsArray removeAllObjects];
+        [productsArray release];
+        productsArray = [[NSMutableArray alloc]init];
     }
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
@@ -71,7 +73,9 @@
         return;
     }
     if (productsArray != nil) {
-        [productsArray removeAllObjects];
+//        [productsArray removeAllObjects];
+        [productsArray release];
+        productsArray = [[NSMutableArray alloc]init];
     }
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
@@ -120,7 +124,9 @@
 -(void)featchRssData
 {
     if (productsArray != nil) {
-        [productsArray removeAllObjects];
+        //[productsArray removeAllObjects];
+        [productsArray release];
+        productsArray = [[NSMutableArray alloc]init];
     }
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         

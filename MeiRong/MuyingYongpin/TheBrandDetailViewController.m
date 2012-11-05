@@ -158,7 +158,7 @@
 -(void)shareProduct:(HotCell *)cell
 {
     ShareSns *shareSns = [[ShareSns alloc]init];
-    [shareSns showSnsShareSheet:self.tabBarController.view viewController:self shareImage:cell.coverView.myImageView.image];
+    [shareSns showSnsShareSheet:self.tabBarController.view viewController:self shareImage:cell.coverView.myImageView.image shareText:cell.desLable.text];
 }
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
 	if (buttonIndex == 1) {

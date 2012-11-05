@@ -23,10 +23,16 @@
 @synthesize catName;
 -(void)dealloc
 {
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
+//    [[NSNotificationCenter defaultCenter] removeObserver:self];
     [theTalbleView release];
     [productsArray release];
     [super dealloc];
+}
+- (void)didReceiveMemoryWarning
+{
+    
+    [super didReceiveMemoryWarning];
+    // Release any cached data, images, etc that aren't in use.
 }
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -121,30 +127,33 @@
 }
 -(void)goBack
 {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
     [self.navigationController popViewControllerAnimated:YES];
 }
 -(void)recieveCatProducts
 {
     [theTalbleView.infiniteScrollingView performSelectorOnMainThread:@selector(stopAnimating) withObject:nil waitUntilDone:NO];
     DataController *dataController = [DataController sharedDataController];
-    for (int i = 0; i < [dataController.productsArray count]; i++) {
-        Product *product = [dataController.productsArray objectAtIndex:i];
-        
-        NSManagedObjectContext *context = [[CoreDataController sharedInstance]managedObjectContext];
-        
-        NSFetchRequest *request= [[NSFetchRequest alloc] init];
-        NSEntityDescription *entity = [NSEntityDescription entityForName:@"CollectProduct" inManagedObjectContext:context];
-        NSPredicate *predicate =[NSPredicate predicateWithFormat:@"pic_url==%@",product.pic_url];
-        [request setEntity:entity];
-        [request setPredicate:predicate];
-        
-        NSError *error = nil;
-        NSArray *array = [context executeFetchRequest:request error:&error];
-        [request release];
-        if ([array count] > 0) {
-            product.collect = YES;
-        }
-    }
+//    for (int i = 0; i < [dataController.productsArray count]; i++) {
+//        Product *product = [dataController.productsArray objectAtIndex:i];
+//        
+//        NSManagedObjectContext *context = [[CoreDataController sharedInstance]managedObjectContext];
+//        
+//        NSFetchRequest *request= [[NSFetchRequest alloc] init];
+//        NSEntityDescription *entity = [NSEntityDescription entityForName:@"CollectProduct" inManagedObjectContext:context];
+//        NSPredicate *predicate =[NSPredicate predicateWithFormat:@"pic_url==%@",product.pic_url];
+//        [request setEntity:entity];
+//        [request setPredicate:predicate];
+//        
+//        NSError *error = nil;
+//        //"context" block in executeFetchRequest function
+//        NSArray *array = [context executeFetchRequest:request error:&error];
+//        [request release];
+//        if ([array count] > 0) {
+//            product.collect = YES;
+//        }
+//    }
     [productsArray addObjectsFromArray:dataController.productsArray];
     [theTalbleView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
 }

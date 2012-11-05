@@ -14,6 +14,7 @@
 {
     UIViewController *viewController;
     UIImage *myImage;
+    NSString *myText;
 }
 @end
 
@@ -33,15 +34,17 @@
 -(id)init
 {
     if (self = [super init]) {
-        snsActionSheet = [[UIActionSheet alloc] initWithTitle:@"分享" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"新浪微博",@"腾讯微薄",@"人人网",nil];
+        snsActionSheet = [[UIActionSheet alloc] initWithTitle:@"" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"新浪微博",@"腾讯微薄",@"人人网",nil];
+        snsActionSheet.actionSheetStyle=UIActionSheetStyleBlackTranslucent;
     }
     return self;
 }
--(void)showSnsShareSheet:(UIView *)myView viewController:(UIViewController *)myViewController shareImage:(UIImage *)sImage
+-(void)showSnsShareSheet:(UIView *)myView viewController:(UIViewController *)myViewController shareImage:(UIImage *)sImage shareText:(NSString *)sText
 {
     [snsActionSheet showInView:myView];
     viewController = myViewController;
     myImage = sImage;
+    myText = sText;
 }
 
 #pragma mark - UIActionSheetDelegate method
@@ -56,7 +59,7 @@
     [UMSNSService setDataSendDelegate:self];
     [UMSNSService presentSNSInController:viewController
                                       appkey:useAppkey
-                                      status:@"haha"
+                                      status:myText
                                        image:myImage
                                     platform:umShareToType];
 }

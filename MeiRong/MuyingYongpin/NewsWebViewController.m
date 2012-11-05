@@ -20,6 +20,10 @@
 
 -(void)dealloc
 {
+    [[NSURLCache sharedURLCache] removeAllCachedResponses];
+    [[NSURLCache sharedURLCache] setDiskCapacity:0];
+    [[NSURLCache sharedURLCache] setMemoryCapacity:0];
+
     [newsUrls release];
     [super dealloc];
 }
@@ -75,7 +79,7 @@
 }
 - (void)webViewDidFinishLoad:(UIWebView *)theWebView
 {
-    
+    [[NSUserDefaults standardUserDefaults] setInteger:0 forKey:@"WebKitCacheModelPreferenceKey"];
 }
 -(void)goBack
 {

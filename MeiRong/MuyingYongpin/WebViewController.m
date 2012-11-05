@@ -21,6 +21,10 @@
 
 -(void)dealloc
 {
+    [[NSURLCache sharedURLCache] removeAllCachedResponses];
+    [[NSURLCache sharedURLCache] setDiskCapacity:0];
+    [[NSURLCache sharedURLCache] setMemoryCapacity:0];
+
     [productUrlS release];
     [super dealloc];
 }
@@ -75,6 +79,7 @@
 }
 - (void)webViewDidFinishLoad:(UIWebView *)theWebView
 {
+    [[NSUserDefaults standardUserDefaults] setInteger:0 forKey:@"WebKitCacheModelPreferenceKey"];
     [self hideUnwantedHTML];
 //    [self.view addSubview:webView];
     [self performSelector:@selector(addWebView) withObject:nil afterDelay:0.2];

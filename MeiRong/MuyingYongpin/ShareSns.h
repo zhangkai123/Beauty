@@ -13,5 +13,5 @@
 {
     UIActionSheet *snsActionSheet;
 }
--(void)showSnsShareSheet:(UIView *)myView viewController:(UIViewController *)myViewController shareImage:(UIImage *)sImage;
+-(void)showSnsShareSheet:(UIView *)myView viewController:(UIViewController *)myViewController shareImage:(UIImage *)sImage shareText:(NSString *)sText;
 @end
