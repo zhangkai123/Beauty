@@ -115,7 +115,7 @@
 -(void)collectProduct:(HotCell *)cell
 {
     if (!collection) {
-        NSManagedObjectContext *context = [[CoreDataController sharedInstance]managedObjectContext];
+        NSManagedObjectContext *context = [[CoreDataController sharedInstance]masterManagedObjectContext];
         CollectProduct *collectProduct = [NSEntityDescription
                                           insertNewObjectForEntityForName:@"CollectProduct"
                                           inManagedObjectContext:context];
@@ -163,7 +163,7 @@
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
 	if (buttonIndex == 1) {
 		
-        NSManagedObjectContext *context = [[CoreDataController sharedInstance]managedObjectContext];
+        NSManagedObjectContext *context = [[CoreDataController sharedInstance]masterManagedObjectContext];
         NSFetchRequest *request= [[NSFetchRequest alloc] init];
         NSEntityDescription *entity = [NSEntityDescription entityForName:@"CollectProduct" inManagedObjectContext:context];
         NSPredicate *predicate =[NSPredicate predicateWithFormat:@"pic_url==%@",product.pic_url];

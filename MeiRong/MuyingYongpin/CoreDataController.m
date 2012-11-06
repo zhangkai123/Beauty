@@ -10,6 +10,9 @@
 
 @interface CoreDataController ()
 
+@property (strong, nonatomic) NSManagedObjectContext *masterManagedObjectContext;
+@property (strong, nonatomic) NSManagedObjectContext *backgroundManagedObjectContext;
+
 @property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (readonly, strong, nonatomic) NSManagedObjectModel *managedObjectModel;
 @property (readonly, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
@@ -17,6 +20,9 @@
 @end
 
 @implementation CoreDataController
+
+@synthesize masterManagedObjectContext = _masterManagedObjectContext;
+@synthesize backgroundManagedObjectContext = _backgroundManagedObjectContext;
 
 @synthesize managedObjectContext = __managedObjectContext;
 @synthesize managedObjectModel = __managedObjectModel;
@@ -33,6 +39,54 @@
 }
 
 #pragma mark - Core Data stack
+
+// Used to propegate saves to the persistent store (disk) without blocking the UI
+- (NSManagedObjectContext *)masterManagedObjectContext {
+    if (_masterManagedObjectContext != nil) {
+        return _masterManagedObjectContext;
+    }
+    
+    NSPersistentStoreCoordinator *coordinator = [self persistentStoreCoordinator];
+    if (coordinator != nil) {
+        _masterManagedObjectContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
+        [_masterManagedObjectContext performBlockAndWait:^{
+            [_masterManagedObjectContext setPersistentStoreCoordinator:coordinator];
+        }];
+        
+    }
+    return _masterManagedObjectContext;
+}
+
+// Return the NSManagedObjectContext to be used in the background during sync
+- (NSManagedObjectContext *)backgroundManagedObjectContext {
+    if (_backgroundManagedObjectContext != nil) {
+        return _backgroundManagedObjectContext;
+    }
+    
+    NSManagedObjectContext *masterContext = [self masterManagedObjectContext];
+    if (masterContext != nil) {
+        _backgroundManagedObjectContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
+        [_backgroundManagedObjectContext performBlockAndWait:^{
+            [_backgroundManagedObjectContext setParentContext:masterContext];
+        }];
+    }
+    
+    return _backgroundManagedObjectContext;
+}
+
+// Return the NSManagedObjectContext to be used in the background during sync
+- (NSManagedObjectContext *)newManagedObjectContext {
+    NSManagedObjectContext *newContext = nil;
+    NSManagedObjectContext *masterContext = [self masterManagedObjectContext];
+    if (masterContext != nil) {
+        newContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
+        [newContext performBlockAndWait:^{
+            [newContext setParentContext:masterContext];
+        }];
+    }
+    
+    return newContext;
+}
 
 // Returns the managed object context for the application.
 // If the context doesn't already exist, it is created and bound to the persistent store coordinator for the application.

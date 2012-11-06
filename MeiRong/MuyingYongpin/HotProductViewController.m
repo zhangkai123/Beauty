@@ -117,7 +117,7 @@
     for (int i = 0; i < [dataController.productsArray count]; i++) {
         Product *product = [dataController.productsArray objectAtIndex:i];
         
-        NSManagedObjectContext *context = [[CoreDataController sharedInstance]managedObjectContext];
+        NSManagedObjectContext *context = [[CoreDataController sharedInstance]backgroundManagedObjectContext];
 
         NSFetchRequest *request= [[NSFetchRequest alloc] init];
         NSEntityDescription *entity = [NSEntityDescription entityForName:@"CollectProduct" inManagedObjectContext:context];
@@ -192,7 +192,7 @@
 {
     Product *product = [productsArray objectAtIndex:cell.rowNum];
     
-    NSManagedObjectContext *context = [[CoreDataController sharedInstance]managedObjectContext];
+    NSManagedObjectContext *context = [[CoreDataController sharedInstance]masterManagedObjectContext];
     CollectProduct *collectProduct = [NSEntityDescription
                                             insertNewObjectForEntityForName:@"CollectProduct"
                                             inManagedObjectContext:context];

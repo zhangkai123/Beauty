@@ -13,9 +13,17 @@
 #import "UIImageView+WebCache.h"
 #import "TheBrandDetailViewController.h"
 
+@interface CollectViewController()
+{
+    NSManagedObjectContext *managedContext;
+}
+@end
+
+
 @implementation CollectViewController
 -(void)dealloc
 {
+    [managedContext release];
     [myTableView release];
     [super dealloc];
 }
@@ -71,7 +79,7 @@
     
     dataArray = [[NSMutableArray alloc]init];
     
-    NSManagedObjectContext *managedContext = [[CoreDataController sharedInstance]managedObjectContext];
+    managedContext = [[CoreDataController sharedInstance]newManagedObjectContext];
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"CollectProduct"
                                               inManagedObjectContext:managedContext];
@@ -83,7 +91,6 @@
 }
 -(void)collectSuccess
 {
-    NSManagedObjectContext *managedContext = [[CoreDataController sharedInstance]managedObjectContext];
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"CollectProduct"
                                               inManagedObjectContext:managedContext];

@@ -12,6 +12,10 @@
 
 + (id)sharedInstance;
 
+- (NSManagedObjectContext *)masterManagedObjectContext;
+- (NSManagedObjectContext *)backgroundManagedObjectContext;
+- (NSManagedObjectContext *)newManagedObjectContext;
+
 - (NSManagedObjectContext *)managedObjectContext;
 - (NSManagedObjectModel *)managedObjectModel;
 - (NSPersistentStoreCoordinator *)persistentStoreCoordinator;
