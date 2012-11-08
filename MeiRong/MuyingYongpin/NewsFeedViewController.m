@@ -11,6 +11,7 @@
 #import "NewsCell.h"
 #import "DataController.h"
 #import "FashionNews.h"
+#import "MBProgressHUD.h"
 
 @implementation NewsFeedViewController
 -(void)dealloc
@@ -72,12 +73,20 @@
     dataArray = [[NSMutableArray alloc]init];
     DataController *dataController = [DataController sharedDataController];
     [dataController featchRssData];
+    
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
 }
 -(void)recieveNews
 {
     DataController *dataController = [DataController sharedDataController];
     [dataArray addObjectsFromArray:dataController.productsArray];
-    [theTableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
+
+    //nofification is recieved in another thread
+    dispatch_async(dispatch_get_main_queue(), ^{
+        
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        [theTableView reloadData];
+    });
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView

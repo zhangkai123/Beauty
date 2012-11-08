@@ -13,6 +13,7 @@
 #import "SVPullToRefresh.h"
 #import "TheBrandDetailViewController.h"
 #import "CoreDataController.h"
+#import "MBProgressHUD.h"
 
 @interface TheBrandViewController ()
 {
@@ -107,6 +108,8 @@
     
     DataController *dataController = [DataController sharedDataController];
     [dataController fetachCateProducts:self.catName notiName:notificationName pageNumber:1];
+    
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
 }
 -(void)createNavBackButton
 {
@@ -156,7 +159,12 @@
         }
     }
     [productsArray addObjectsFromArray:dataController.productsArray];
-    [theTalbleView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        [theTalbleView reloadData];
+    });
 }
 -(void)refreshCollected:(NSNotification *)notification
 {

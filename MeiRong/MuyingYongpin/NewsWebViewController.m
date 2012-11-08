@@ -8,6 +8,7 @@
 
 #import "NewsWebViewController.h"
 #import "UIWebView+Clean.h"
+#import "MBProgressHUD.h"
 
 @interface NewsWebViewController ()
 {
@@ -75,10 +76,13 @@
     NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
     [webView loadRequest:requestObj];
     
-    [self.view addSubview:webView];    
+    [self.view addSubview:webView];
+    
+    [MBProgressHUD showHUDAddedTo:webView animated:YES];
 }
 - (void)webViewDidFinishLoad:(UIWebView *)theWebView
 {
+    [MBProgressHUD hideHUDForView:webView animated:YES];
     [[NSUserDefaults standardUserDefaults] setInteger:0 forKey:@"WebKitCacheModelPreferenceKey"];
 }
 -(void)goBack

@@ -16,6 +16,7 @@
 #import "CoreDataController.h"
 #import "CollectProduct.h"
 #import "ShareSns.h"
+#import "MBProgressHUD.h"
 
 @implementation HotProductViewController
 
@@ -109,6 +110,8 @@
     
     DataController *dataController = [DataController sharedDataController];
     [dataController fetachHotProducts:1];
+    
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
 }
 -(void)recieveHotProducts
 {
@@ -134,7 +137,11 @@
     }
     [productsArray addObjectsFromArray:dataController.productsArray];
     //nofification is recieved in another thread
-    [productTableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        [productTableView reloadData];
+    });
 }
 -(void)refreshCollected:(NSNotification *)notification
 {

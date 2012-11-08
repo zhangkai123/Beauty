@@ -8,6 +8,7 @@
 
 #import "WebViewController.h"
 #import "UIWebView+Clean.h"
+#import "MBProgressHUD.h"
 
 @interface WebViewController ()
 {
@@ -76,22 +77,22 @@
     [webView loadRequest:requestObj];
     
     [self.view addSubview:webView];
+    
+    [MBProgressHUD showHUDAddedTo:webView animated:YES];
 }
 - (void)webViewDidFinishLoad:(UIWebView *)theWebView
 {
     [[NSUserDefaults standardUserDefaults] setInteger:0 forKey:@"WebKitCacheModelPreferenceKey"];
-    [self hideUnwantedHTML];
+//    [self hideUnwantedHTML];
 //    [self.view addSubview:webView];
-    [self performSelector:@selector(addWebView) withObject:nil afterDelay:0.2];
-}
--(void)addWebView
-{
+    [MBProgressHUD hideHUDForView:webView animated:NO];
     [self.view addSubview:webView];
 }
 -(void)webViewDidStartLoad:(UIWebView *)theWebView
 {
-    [webView removeFromSuperview];
+//    [webView removeFromSuperview];
 //    [self hideUnwantedHTML];
+    [self hideUnwantedHTML];
 }
 - (void)hideUnwantedHTML{
     
