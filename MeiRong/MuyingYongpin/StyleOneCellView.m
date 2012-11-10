@@ -47,6 +47,7 @@
     CGContextDrawLinearGradient(ctx, gradient, start, end, 0);
     
     CGPathRelease(outlinePath);
+    CGGradientRelease(gradient);
 }
 
 - (CGGradientRef)normalGradient

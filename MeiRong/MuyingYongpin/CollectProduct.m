@@ -10,19 +10,19 @@
 
 @implementation CollectProduct
 
-@dynamic num_iid;
+//@dynamic num_iid;
 @dynamic title;
-@dynamic nick;
+//@dynamic nick;
 @dynamic pic_url;
-@dynamic price;
+//@dynamic price;
 @dynamic click_url;
-@dynamic commission;
-@dynamic commission_rate;
-@dynamic commission_num;
-@dynamic commission_volume;
-@dynamic shop_click_url;
-@dynamic seller_credit_score;
-@dynamic item_location;
-@dynamic volume;
+//@dynamic commission;
+//@dynamic commission_rate;
+//@dynamic commission_num;
+//@dynamic commission_volume;
+//@dynamic shop_click_url;
+//@dynamic seller_credit_score;
+//@dynamic item_location;
+//@dynamic volume;
 
 @end

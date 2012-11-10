@@ -87,6 +87,9 @@
     CGPoint start = CGPointMake(rect.origin.x, rect.origin.y);
     CGPoint end = CGPointMake(rect.origin.x, rect.size.height);
     CGContextDrawLinearGradient(ctx, gradient, start, end, 0);
+    
+    CGPathRelease(outlinePath);
+    CGGradientRelease(gradient);
 }
 - (CGGradientRef)normalGradient
 {
@@ -116,7 +119,6 @@
     
     CGGradientRef normalGradient = CGGradientCreateWithColors(space, (CFArrayRef)normalGradientColors, locations);
     CGColorSpaceRelease(space);
-    
     return normalGradient;
 }
 //Create a pill with the given rect

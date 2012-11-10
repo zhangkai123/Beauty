@@ -155,19 +155,8 @@
     Product *myProduct = [[Product alloc]init];
     
     myProduct.pic_url = product.pic_url;
-    myProduct.num_iid = product.num_iid;
     myProduct.title = product.title;
-    myProduct.nick = product.nick;
-    myProduct.price = product.price;
     myProduct.click_url = product.click_url;
-    myProduct.commission = product.commission;
-    myProduct.commission_rate = product.commission_rate;
-    myProduct.commission_num = product.commission_num;
-    myProduct.commission_volume = product.commission_volume;
-    myProduct.shop_click_url = product.shop_click_url;
-    myProduct.seller_credit_score = product.seller_credit_score;
-    myProduct.item_location = product.item_location;
-    myProduct.volume = product.volume;
     
     TheBrandDetailViewController *theBrandDetailViewController = [[TheBrandDetailViewController alloc]init];
     theBrandDetailViewController.product = myProduct;

@@ -59,6 +59,7 @@
                                                       false
                                                       );
                              
+                             
 							 if( !mask ){
                                  //Log failure
                                  //                                 DDLogWarn(@"Mask failed");
@@ -80,6 +81,8 @@
                              
 							 //Clean up
 							 CGImageRelease(maskedImage);
+                             CGImageRelease(mask);
+                             CGImageRelease(imageMask);
 							 CGPathRelease(path);
                              
 						 }];

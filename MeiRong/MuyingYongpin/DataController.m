@@ -40,7 +40,7 @@
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
         
-        [params setObject:@"num_iid,title,nick,pic_url,price,click_url,commission,commission_rate,commission_num,commission_volume,shop_click_url,seller_credit_score,item_location,volume" forKey:@"fields"];
+        [params setObject:@"title,pic_url,click_url" forKey:@"fields"];
         [params setObject:@"50010788" forKey:@"cid"];
         [params setObject:@"taobao.taobaoke.items.get" forKey:@"method"];
         [params setObject:@"32217399" forKey:@"pid"];
@@ -69,7 +69,7 @@
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
         
-        [params setObject:@"num_iid,title,nick,pic_url,price,click_url,commission,commission_rate,commission_num,commission_volume,shop_click_url,seller_credit_score,item_location,volume" forKey:@"fields"];
+        [params setObject:@"title,pic_url,click_url" forKey:@"fields"];
         [params setObject:@"50010788" forKey:@"cid"];
         [params setObject:@"taobao.taobaoke.items.get" forKey:@"method"];
         [params setObject:@"32217399" forKey:@"pid"];
@@ -91,7 +91,7 @@
 {
     NSString *productsString = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
     NSDictionary *productsDic = [productsString JSONValue];
-    NSLog(@"---%@---\n",productsString);
+//    NSLog(@"---%@---\n",productsString);
     [productsString release];
     NSDictionary *taobaoke_items_get_response = [productsDic objectForKey:@"taobaoke_items_get_response"];
     NSDictionary *taobaoke_items = [taobaoke_items_get_response objectForKey:@"taobaoke_items"];
