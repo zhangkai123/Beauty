@@ -83,16 +83,11 @@
 - (void)webViewDidFinishLoad:(UIWebView *)theWebView
 {
     [[NSUserDefaults standardUserDefaults] setInteger:0 forKey:@"WebKitCacheModelPreferenceKey"];
-//    [self hideUnwantedHTML];
-//    [self.view addSubview:webView];
     [MBProgressHUD hideHUDForView:webView animated:NO];
-    [self.view addSubview:webView];
+    [self hideUnwantedHTML];
 }
 -(void)webViewDidStartLoad:(UIWebView *)theWebView
 {
-//    [webView removeFromSuperview];
-//    [self hideUnwantedHTML];
-    [self hideUnwantedHTML];
 }
 - (void)hideUnwantedHTML{
     

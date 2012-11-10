@@ -57,7 +57,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(recieveHotProducts) name:@"HOT_PRODUCTS_REARDY" object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(recieveHotProducts:) name:@"HOT_PRODUCTS_REARDY" object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(refreshCollected:) name:@"REFRESH_COLLECTED" object:nil];
     
     if ([self.navigationController.navigationBar respondsToSelector:@selector( setBackgroundImage:forBarMetrics:)]){
@@ -113,12 +113,13 @@
     
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
 }
--(void)recieveHotProducts
+-(void)recieveHotProducts:(NSNotification *)notification
 {
-    [productTableView.infiniteScrollingView performSelectorOnMainThread:@selector(stopAnimating) withObject:nil waitUntilDone:NO];
-    DataController *dataController = [DataController sharedDataController];
-    for (int i = 0; i < [dataController.productsArray count]; i++) {
-        Product *product = [dataController.productsArray objectAtIndex:i];
+    NSMutableArray *myArray = [notification object];
+    [myArray retain];
+    
+    for (int i = 0; i < [myArray count]; i++) {
+        Product *product = [myArray objectAtIndex:i];
         
         NSManagedObjectContext *context = [[CoreDataController sharedInstance]backgroundManagedObjectContext];
 
@@ -135,10 +136,11 @@
             product.collect = YES;
         }
     }
-    [productsArray addObjectsFromArray:dataController.productsArray];
+    [productsArray addObjectsFromArray:myArray];
+    [myArray release];
     //nofification is recieved in another thread
     dispatch_async(dispatch_get_main_queue(), ^{
-        
+        [productTableView.infiniteScrollingView stopAnimating];
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         [productTableView reloadData];
     });

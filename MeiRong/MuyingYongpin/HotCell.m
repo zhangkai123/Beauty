@@ -28,13 +28,19 @@
         self.selectionStyle = UITableViewCellSelectionStyleNone;
         self.backgroundColor = [UIColor whiteColor];
         
-        UILabel *dLable = [[UILabel alloc]initWithFrame:CGRectMake(10, 310, 300, 45)];
-        dLable.backgroundColor = [UIColor whiteColor];
+        UILabel *dLable = [[UILabel alloc]initWithFrame:CGRectMake(15, 310, 290, 45)];
+        dLable.backgroundColor = [UIColor clearColor];
         dLable.lineBreakMode = UILineBreakModeWordWrap;
         dLable.numberOfLines = 0;
         [dLable setFont:[UIFont fontWithName:@"Heiti TC" size:15]];
         self.desLable = dLable;
         [dLable release];
+        
+        UIView *separateLineView = [[UIView alloc]initWithFrame:CGRectMake(10, 310 - 1, 300, 1)];
+        separateLineView.backgroundColor = [UIColor lightGrayColor];
+        [separateLineView setAlpha:0.3];
+        [self addSubview:separateLineView];
+        [separateLineView release];
         
         UIImage *cImage = [UIImage imageNamed:@"likeButton"];
         UIImage *stretchableButtonImageNormal = [cImage stretchableImageWithLeftCapWidth:23 topCapHeight:0];

@@ -56,7 +56,7 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"SheetBackground"]];
     
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(recieveNews) name:@"NEWS_READY" object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(recieveNews:) name:@"NEWS_READY" object:nil];
     
     if ([self.navigationController.navigationBar respondsToSelector:@selector( setBackgroundImage:forBarMetrics:)]){
         [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"navbar_background"] forBarMetrics:UIBarMetricsDefault];
@@ -76,11 +76,10 @@
     
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
 }
--(void)recieveNews
+-(void)recieveNews:(NSNotification *)notification
 {
-    DataController *dataController = [DataController sharedDataController];
-    [dataArray addObjectsFromArray:dataController.productsArray];
-
+    [dataArray addObjectsFromArray:[notification object]];
+    
     //nofification is recieved in another thread
     dispatch_async(dispatch_get_main_queue(), ^{
         

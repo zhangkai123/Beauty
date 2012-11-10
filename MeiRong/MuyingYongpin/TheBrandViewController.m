@@ -48,6 +48,17 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    // set the long name shown in the navigation bar at the top
+    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 320 - 60*2, 30)];
+    titleLabel.textColor = [UIColor colorWithRed:1 green: 0.6 blue:0.8 alpha:1];
+    [titleLabel setTextAlignment:UITextAlignmentCenter];
+    titleLabel.font = [UIFont fontWithName:@"Georgia-Bold" size:22];
+    titleLabel.shadowColor   = [[UIColor whiteColor]colorWithAlphaComponent: 1.0f];
+    titleLabel.shadowOffset  = CGSizeMake(1.0,1.0);
+    titleLabel.backgroundColor = [UIColor clearColor];
+    titleLabel.text = self.catName;
+    [self.navigationItem setTitleView:titleLabel];
+    [titleLabel release];
 }
 -(void)viewWillDisappear:(BOOL)animated
 {
@@ -61,7 +72,7 @@
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"SheetBackground"]];
             
     NSString *notificationName = [self getNotificationName];
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(recieveCatProducts) name:notificationName object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(recieveCatProducts:) name:notificationName object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(refreshCollected:) name:@"REFRESH_COLLECTED" object:nil];
     
 	// Do any additional setup after loading the view.
@@ -135,12 +146,13 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     [self.navigationController popViewControllerAnimated:YES];
 }
--(void)recieveCatProducts
+-(void)recieveCatProducts:(NSNotification *)notification
 {
-    [theTalbleView.infiniteScrollingView performSelectorOnMainThread:@selector(stopAnimating) withObject:nil waitUntilDone:NO];
-    DataController *dataController = [DataController sharedDataController];
-    for (int i = 0; i < [dataController.productsArray count]; i++) {
-        Product *product = [dataController.productsArray objectAtIndex:i];
+    NSMutableArray *pArray = [notification object];
+    [pArray retain];
+
+    for (int i = 0; i < [pArray count]; i++) {
+        Product *product = [pArray objectAtIndex:i];
         
         context = [[CoreDataController sharedInstance]newManagedObjectContext];
         
@@ -158,10 +170,12 @@
             product.collect = YES;
         }
     }
-    [productsArray addObjectsFromArray:dataController.productsArray];
+    [productsArray addObjectsFromArray:pArray];
+    [pArray release];
     
     dispatch_async(dispatch_get_main_queue(), ^{
         
+        [theTalbleView.infiniteScrollingView stopAnimating];
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         [theTalbleView reloadData];
     });

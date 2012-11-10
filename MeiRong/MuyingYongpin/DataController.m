@@ -14,7 +14,6 @@
 #import "FashionNews.h"
 
 @implementation DataController
-@synthesize productsArray;
 
 +(id)sharedDataController
 {
@@ -29,7 +28,6 @@
 -(id)init
 {
     if (self = [super init]) {
-        productsArray = [[NSMutableArray alloc]init];
     }
     return self;
 }
@@ -38,11 +36,6 @@
 {
     if (pageN == 0) {
         return;
-    }
-    if (productsArray != nil) {
-//        [productsArray removeAllObjects];
-        [productsArray release];
-        productsArray = [[NSMutableArray alloc]init];
     }
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
@@ -63,19 +56,15 @@
         
         NSData *resultData=[Utility getResultData:params];
         [params release];
-        [self parseProductsData:resultData];
-        [[NSNotificationCenter defaultCenter]postNotificationName:@"HOT_PRODUCTS_REARDY" object:nil userInfo:nil];
+        NSMutableArray *pArray = [self parseProductsData:resultData];
+
+        [[NSNotificationCenter defaultCenter]postNotificationName:@"HOT_PRODUCTS_REARDY" object:pArray userInfo:nil];
     });
 }
 -(void)fetachCateProducts:(NSString *)cateName notiName:(NSString *)nName pageNumber:(int)pageN
 {
     if (pageN == 0) {
         return;
-    }
-    if (productsArray != nil) {
-//        [productsArray removeAllObjects];
-        [productsArray release];
-        productsArray = [[NSMutableArray alloc]init];
     }
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
@@ -94,11 +83,11 @@
         
         NSData *resultData=[Utility getResultData:params];
         [params release];
-        [self parseProductsData:resultData];
-        [[NSNotificationCenter defaultCenter]postNotificationName:nName object:nil userInfo:nil];
+        NSMutableArray *pArray = [self parseProductsData:resultData];
+        [[NSNotificationCenter defaultCenter]postNotificationName:nName object:pArray userInfo:nil];
     });
 }
--(void)parseProductsData:(NSData *)data
+-(NSMutableArray *)parseProductsData:(NSData *)data
 {
     NSString *productsString = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
     NSDictionary *productsDic = [productsString JSONValue];
@@ -108,7 +97,8 @@
     NSDictionary *taobaoke_items = [taobaoke_items_get_response objectForKey:@"taobaoke_items"];
     
     NSArray *taobaoke_item = [taobaoke_items objectForKey:@"taobaoke_item"];
-        
+    
+    NSMutableArray *pArray = [[NSMutableArray alloc]init];
     for (int i = 0; i < [taobaoke_item count]; i++) {
         
         NSDictionary *item = [taobaoke_item objectAtIndex:i];
@@ -117,17 +107,17 @@
         product.title = [self stringCleaner:product.title];
         product.pic_url = [item objectForKey:@"pic_url"];
         product.click_url = [item objectForKey:@"click_url"];
-        [productsArray addObject:product];
+        //thread not save
+        [pArray addObject:product];
         [product release];
     }
+    return [pArray autorelease];
 }
+
+
+//send the rss request
 -(void)featchRssData
 {
-    if (productsArray != nil) {
-        //[productsArray removeAllObjects];
-        [productsArray release];
-        productsArray = [[NSMutableArray alloc]init];
-    }
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         
         NSString *postURL = @"http://rss.sina.com.cn/eladies/gnspxw.xml";
@@ -137,17 +127,18 @@
         NSData *xmlData = [NSURLConnection sendSynchronousRequest:theRequest returningResponse:&theResponse error:&error];
 //        NSString *xmlString = [[NSString alloc]initWithData:xmlData encoding:NSUTF8StringEncoding];
 //        NSLog(@"%@",xmlString);
-        [self parseRssData:xmlData];
-        [[NSNotificationCenter defaultCenter]postNotificationName:@"NEWS_READY" object:nil userInfo:nil];
+        NSMutableArray *newsArray = [self parseRssData:xmlData];
+        [[NSNotificationCenter defaultCenter]postNotificationName:@"NEWS_READY" object:newsArray userInfo:nil];
     });
 }
--(void)parseRssData:(NSData *)data
+-(NSMutableArray *)parseRssData:(NSData *)data
 {
     NSError *error;
     DDXMLDocument *ddDoc = [[DDXMLDocument alloc] initWithData:data options:0 error:&error];
     NSArray *xmlItems = [ddDoc nodesForXPath:@"//item" error:&error];
 //    NSMutableArray *returnArray = [[NSMutableArray alloc] initWithCapacity:[xmlItems count]];
     
+    NSMutableArray *newsArray = [[NSMutableArray alloc]init];
     for(DDXMLElement* itemElement in xmlItems)
     {
         FashionNews *fashionNews = [[FashionNews alloc] init];
@@ -165,10 +156,12 @@
         fashionNews.description = description;
         
         if (![description isEqualToString:@""]) {
-            [productsArray addObject:fashionNews];
+            
+            [newsArray addObject:fashionNews];
         }
         [fashionNews release];
     }
+    return [newsArray autorelease];
 }
 - (NSString *)stringCleaner:(NSString *)yourString {
     

@@ -9,6 +9,7 @@
 #import "StyleOneCellView.h"
 
 @implementation StyleOneCellView
+@synthesize frameRect;
 
 -(void)dealloc
 {
@@ -33,7 +34,7 @@
     
     CGContextRef ctx = UIGraphicsGetCurrentContext();
     
-    CGPathRef outlinePath = [self newPathForRoundedRect:CGRectMake(10, 10, 137, 137) radius:2];
+    CGPathRef outlinePath = [self newPathForRoundedRect:frameRect radius:2];
     
     CGContextSetShadow(ctx, CGSizeMake(1,1), 3);
     CGContextAddPath(ctx, outlinePath);
