@@ -38,24 +38,35 @@
         return;
     }
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
+//        NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
+//        
+//        [params setObject:@"title,pic_url,click_url" forKey:@"fields"];
+//        [params setObject:@"50010788" forKey:@"cid"];
+//        [params setObject:@"taobao.taobaoke.items.get" forKey:@"method"];
+//        [params setObject:@"32217399" forKey:@"pid"];
+//        [params setObject:[NSString stringWithFormat:@"%d",pageN] forKey:@"page_no"];
+//        [params setObject:@"20" forKey:@"page_size"];
+//        [params setObject:@"5goldencrown" forKey:@"start_credit"];
+//        [params setObject:@"100" forKey:@"start_price"];
+//        [params setObject:@"2000" forKey:@"end_price"];
+//        [params setObject:@"commissionNum_desc" forKey:@"sort"];
+//        [params setObject:@"true" forKey:@"overseas_item"];
+//        [params setObject:@"true" forKey:@"mall_item"];
+//        [params setObject:@"true" forKey:@"is_mobile"];
+//        
+//        NSData *resultData=[Utility getResultData:params];
+//        [params release];
+//        NSMutableArray *pArray = [self parseProductsData:resultData];
         
-        [params setObject:@"title,pic_url,click_url" forKey:@"fields"];
-        [params setObject:@"50010788" forKey:@"cid"];
-        [params setObject:@"taobao.taobaoke.items.get" forKey:@"method"];
-        [params setObject:@"32217399" forKey:@"pid"];
-        [params setObject:[NSString stringWithFormat:@"%d",pageN] forKey:@"page_no"];
-        [params setObject:@"20" forKey:@"page_size"];
-        [params setObject:@"5goldencrown" forKey:@"start_credit"];
-        [params setObject:@"100" forKey:@"start_price"];
-        [params setObject:@"2000" forKey:@"end_price"];
-        [params setObject:@"commissionNum_desc" forKey:@"sort"];
-        [params setObject:@"true" forKey:@"overseas_item"];
-        [params setObject:@"true" forKey:@"mall_item"];
-        [params setObject:@"true" forKey:@"is_mobile"];
+        NSError *error;
+        NSURLResponse *theResponse;
+        NSMutableURLRequest *theRequest=[NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://192.168.1.105/~zhangkai/PinPHP_V2.21/fetchProducts.php"]];
+        [theRequest setHTTPMethod:@"POST"];
+        NSString *postString = @"&catId=432";
+        [theRequest setHTTPBody:[postString dataUsingEncoding:NSUTF8StringEncoding]];
         
-        NSData *resultData=[Utility getResultData:params];
-        [params release];
+        [theRequest addValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+        NSData *resultData = [NSURLConnection sendSynchronousRequest:theRequest returningResponse:&theResponse error:&error];
         NSMutableArray *pArray = [self parseProductsData:resultData];
 
         [[NSNotificationCenter defaultCenter]postNotificationName:@"HOT_PRODUCTS_REARDY" object:pArray userInfo:nil];
