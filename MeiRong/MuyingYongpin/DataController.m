@@ -62,7 +62,7 @@
         NSURLResponse *theResponse;
         NSMutableURLRequest *theRequest=[NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://192.168.1.105/~zhangkai/PinPHP_V2.21/fetchProducts.php"]];
         [theRequest setHTTPMethod:@"POST"];
-        NSString *postString = @"&catId=432";
+        NSString *postString = @"&catId=434";
         [theRequest setHTTPBody:[postString dataUsingEncoding:NSUTF8StringEncoding]];
         
         [theRequest addValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
@@ -101,27 +101,25 @@
 -(NSMutableArray *)parseProductsData:(NSData *)data
 {
     NSString *productsString = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
-    NSDictionary *productsDic = [productsString JSONValue];
-//    NSLog(@"---%@---\n",productsString);
-    [productsString release];
-    NSDictionary *taobaoke_items_get_response = [productsDic objectForKey:@"taobaoke_items_get_response"];
-    NSDictionary *taobaoke_items = [taobaoke_items_get_response objectForKey:@"taobaoke_items"];
+//    NSDictionary *productsDic = [productsString JSONValue];
+
+    NSArray *productArray = [productsString JSONValue];
     
-    NSArray *taobaoke_item = [taobaoke_items objectForKey:@"taobaoke_item"];
+    NSLog(@"---%@---\n",productsString);
+    [productsString release];
     
     NSMutableArray *pArray = [[NSMutableArray alloc]init];
-    for (int i = 0; i < [taobaoke_item count]; i++) {
+    for (int i = 0; i < [productArray count]; i++) {
+        NSDictionary *item = [productArray objectAtIndex:i];
         
-        NSDictionary *item = [taobaoke_item objectAtIndex:i];
         Product *product = [[Product alloc]init];
         product.title = [item objectForKey:@"title"];
-        product.title = [self stringCleaner:product.title];
-        product.pic_url = [item objectForKey:@"pic_url"];
-        product.click_url = [item objectForKey:@"click_url"];
-        //thread not save
+        product.pic_url = [item objectForKey:@"bimg"];
+        product.click_url = [item objectForKey:@"url"];
+        NSLog(@"%@",product.click_url);
         [pArray addObject:product];
         [product release];
-    }
+    }    
     return [pArray autorelease];
 }
 

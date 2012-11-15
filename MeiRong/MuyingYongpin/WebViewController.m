@@ -69,6 +69,7 @@
 	// Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor whiteColor];
     webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 44, 320, 460-44)];
+    webView.scalesPageToFit = YES;
     [webView setDelegate:self];
     
     NSLog(@"%@",productUrlS);
