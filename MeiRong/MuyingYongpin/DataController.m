@@ -59,23 +59,20 @@
         return;
     }
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
+                
+        int catId = [self getNotificationId:cateName];
         
-        [params setObject:@"title,pic_url,click_url" forKey:@"fields"];
-        [params setObject:@"50010788" forKey:@"cid"];
-        [params setObject:@"taobao.taobaoke.items.get" forKey:@"method"];
-        [params setObject:@"32217399" forKey:@"pid"];
-        [params setObject:[NSString stringWithFormat:@"%d",pageN] forKey:@"page_no"];
-        [params setObject:@"20" forKey:@"page_size"];
-        [params setObject:@"commissionNum_desc" forKey:@"sort"];
-        //    [params setObject:@"true" forKey:@"overseas_item"];
-        [params setObject:cateName forKey:@"keyword"];
-        [params setObject:@"true" forKey:@"mall_item"];
-        [params setObject:@"true" forKey:@"is_mobile"];
+        NSError *error;
+        NSURLResponse *theResponse;
+        NSMutableURLRequest *theRequest=[NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://192.168.1.107/~zhangkai/PinPHP_V2.21/fetchProducts.php"]];
+        [theRequest setHTTPMethod:@"POST"];
+        NSString *postString = [NSString stringWithFormat:@"catId=%d&pageNumber=%d",catId,pageN];
+        [theRequest setHTTPBody:[postString dataUsingEncoding:NSUTF8StringEncoding]];
         
-        NSData *resultData=[Utility getResultData:params];
-        [params release];
+        [theRequest addValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+        NSData *resultData = [NSURLConnection sendSynchronousRequest:theRequest returningResponse:&theResponse error:&error];
         NSMutableArray *pArray = [self parseProductsData:resultData];
+        
         [[NSNotificationCenter defaultCenter]postNotificationName:nName object:pArray userInfo:nil];
     });
 }
@@ -175,4 +172,55 @@
     return yourString;
     
 }
+
+//get categoryId
+-(int)getNotificationId:(NSString *)catName
+{
+    int notificationId;
+    if ([catName isEqualToString:@"碧欧泉"]) {
+        
+        notificationId = 418;
+    }else if([catName isEqualToString:@"香奈儿"]){
+        
+        notificationId = 419;
+    }else if([catName isEqualToString:@"倩碧"]){
+        
+        notificationId = 420;
+    }else if([catName isEqualToString:@"雅诗兰黛"]){
+        
+        notificationId = 421;
+    }else if([catName isEqualToString:@"兰蔻"]){
+        
+        notificationId = 422;
+    }else if([catName isEqualToString:@"玫琳凯"]){
+        
+        notificationId = 423;
+    }else if([catName isEqualToString:@"迪奥"]){
+        
+        notificationId = 424;
+    }else if([catName isEqualToString:@"欧莱雅"]){
+        
+        notificationId = 425;
+    }else if([catName isEqualToString:@"相宜本草"]){
+        
+        notificationId = 426;
+    }else if([catName isEqualToString:@"玉兰油"]){
+        
+        notificationId = 427;
+    }else if([catName isEqualToString:@"the face shop"]){
+        
+        notificationId = 428;
+    }else if([catName isEqualToString:@"美宝莲"]){
+        
+        notificationId = 430;
+    }else if([catName isEqualToString:@"skin79"]){
+        
+        notificationId = 431;
+    }else if([catName isEqualToString:@"卡姿兰"]){
+        
+        notificationId = 432;
+    }
+    return notificationId;
+}
+
 @end
