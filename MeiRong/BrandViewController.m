@@ -34,7 +34,7 @@
         UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 320, 30)];
         titleLabel.textColor = [UIColor colorWithRed:1 green: 0.6 blue:0.8 alpha:1];
         [titleLabel setTextAlignment:UITextAlignmentCenter];
-        titleLabel.font = [UIFont fontWithName:@"Georgia-Bold" size:22];
+        titleLabel.font = [UIFont fontWithName:@"迷你简黛玉" size:25];
         titleLabel.shadowColor   = [[UIColor whiteColor]colorWithAlphaComponent: 1.0f];
         titleLabel.shadowOffset  = CGSizeMake(1.0,1.0);
         titleLabel.backgroundColor = [UIColor clearColor];

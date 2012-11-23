@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4B072CC6165FA98C00B0556B /* xht.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4B072CC5165FA98C00B0556B /* xht.ttf */; };
 		4B07D2E91610A64900753B9A /* FashionNews.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B07D2E81610A64900753B9A /* FashionNews.m */; };
 		4B1E2BA416440803001F7B93 /* UIImage+roundCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B1E2BA316440803001F7B93 /* UIImage+roundCorner.m */; };
 		4B1E2BAB164438AA001F7B93 /* placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B1E2BAA164438A9001F7B93 /* placeholder.png */; };
@@ -192,6 +193,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4B072CC5165FA98C00B0556B /* xht.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = xht.ttf; sourceTree = "<group>"; };
 		4B07D2E71610A64900753B9A /* FashionNews.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FashionNews.h; sourceTree = "<group>"; };
 		4B07D2E81610A64900753B9A /* FashionNews.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FashionNews.m; sourceTree = "<group>"; };
 		4B1E2BA216440803001F7B93 /* UIImage+roundCorner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+roundCorner.h"; sourceTree = "<group>"; };
@@ -199,7 +201,7 @@
 		4B1E2BAA164438A9001F7B93 /* placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = placeholder.png; sourceTree = "<group>"; };
 		4B21FE231631A29A00AD5C13 /* HotCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HotCellView.h; sourceTree = "<group>"; };
 		4B21FE241631A29A00AD5C13 /* HotCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HotCellView.m; sourceTree = "<group>"; };
-		4B348A131635849700A6DA91 /* xht.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = xht.ttf; sourceTree = "<group>"; };
+		4B348A131635849700A6DA91 /* xht_bak.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = xht_bak.ttf; sourceTree = "<group>"; };
 		4B348A141635A15500A6DA91 /* StyleOneCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StyleOneCellView.h; sourceTree = "<group>"; };
 		4B348A151635A15500A6DA91 /* StyleOneCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StyleOneCellView.m; sourceTree = "<group>"; };
 		4B39A09A160DC39C00C922B2 /* SVPullToRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVPullToRefresh.h; sourceTree = "<group>"; };
@@ -468,7 +470,8 @@
 		4B348A111635847F00A6DA91 /* Font */ = {
 			isa = PBXGroup;
 			children = (
-				4B348A131635849700A6DA91 /* xht.ttf */,
+				4B072CC5165FA98C00B0556B /* xht.ttf */,
+				4B348A131635849700A6DA91 /* xht_bak.ttf */,
 			);
 			name = Font;
 			sourceTree = "<group>";
@@ -1118,6 +1121,7 @@
 				4B6E09FC1633D8E400F8FF4B /* moreButtonActive.png in Resources */,
 				4B6E09FD1633D8E400F8FF4B /* moreButton.png in Resources */,
 				4B1E2BAB164438AA001F7B93 /* placeholder.png in Resources */,
+				4B072CC6165FA98C00B0556B /* xht.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

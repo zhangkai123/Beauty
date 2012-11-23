@@ -76,15 +76,16 @@
     NSURL *url = [NSURL URLWithString:productUrlS];
     NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
     [webView loadRequest:requestObj];
+    webView.hidden = YES;
     
     [self.view addSubview:webView];
     
-    [MBProgressHUD showHUDAddedTo:webView animated:YES];
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
 }
 - (void)webViewDidFinishLoad:(UIWebView *)theWebView
 {
     [[NSUserDefaults standardUserDefaults] setInteger:0 forKey:@"WebKitCacheModelPreferenceKey"];
-    [MBProgressHUD hideHUDForView:webView animated:NO];
+    [MBProgressHUD hideHUDForView:self.view animated:NO];
     [self hideUnwantedHTML];
 }
 -(void)webViewDidStartLoad:(UIWebView *)theWebView
@@ -103,12 +104,30 @@
      "id.style.display = 'none';"
      
      "}\";"
-     
      "document.getElementsByTagName('head')[0].appendChild(script);"];
     
-    [webView stringByEvaluatingJavaScriptFromString:@"hideID('header');"];
+    [webView stringByEvaluatingJavaScriptFromString:@"hideID('header');"
+     "window.location = 'fake://myApp/something_happened:param1:param2:param3';"];
 }
-
+- (BOOL)webView:(UIWebView *)webView2 shouldStartLoadWithRequest:(NSURLRequest *)request
+ navigationType:(UIWebViewNavigationType)navigationType {
+    
+	NSString *requestString = [[request URL] absoluteString];
+	NSArray *components = [requestString componentsSeparatedByString:@":"];
+    
+	if ([components count] > 1 &&
+		[(NSString *)[components objectAtIndex:0] isEqualToString:@"fake"]) {
+        
+        [self performSelector:@selector(hideWebview) withObject:nil afterDelay:0.3];
+		return NO;
+	}
+    
+	return YES; // Return YES to make sure regular navigation works as expected.
+}
+-(void)hideWebview
+{
+    webView.hidden = NO;
+}
 -(void)goBack
 {
     [self dismissModalViewControllerAnimated:YES];
