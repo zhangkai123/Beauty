@@ -52,14 +52,11 @@
     topBar.image = [UIImage imageNamed:@"navbar_background"];
     topBar.userInteractionEnabled = YES;
     
-    UIImage *buttonImageNormal = [UIImage imageNamed:@"Btn_Normal"];
-    UIImage *stretchableButtonImageNormal = [buttonImageNormal stretchableImageWithLeftCapWidth:6 topCapHeight:0];
-    UIButton *topBarBackButton = [[UIButton alloc]initWithFrame:CGRectMake(5, 7, 50, 30)];
-    [topBarBackButton setTitle:@"关闭" forState:UIControlStateNormal];
-    [topBarBackButton setShowsTouchWhenHighlighted:YES];
-    topBarBackButton.titleLabel.font  = [UIFont fontWithName:@"Georgia-Bold" size:12];
-    [topBarBackButton setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
-    [topBarBackButton setBackgroundImage:stretchableButtonImageNormal forState:UIControlStateNormal];
+    UIImage *buttonImageNormal = [UIImage imageNamed:@"backbutton"];
+    UIImage *buttonImageCliced = [UIImage imageNamed:@"backbuttonclicked"];
+    UIButton *topBarBackButton = [[UIButton alloc]initWithFrame:CGRectMake(7, 0, 50, 44)];
+    [topBarBackButton setImage:buttonImageNormal forState:UIControlStateNormal];
+    [topBarBackButton setImage:buttonImageCliced forState:UIControlEventTouchDown];
     [topBarBackButton addTarget:self action:@selector(goBack) forControlEvents:UIControlEventTouchDown];
     [topBar addSubview:topBarBackButton];
     [self.view addSubview:topBar];
