@@ -79,6 +79,7 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
     if (!cell) {
         cell = [[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"]autorelease];
+//        [cell.textLabel setTextColor:[UIColor colorWithRed:1 green:0.6 blue:0.8 alpha:1.0]];
     }
     cell.textLabel.text = [dataArray objectAtIndex:indexPath.row];
     return cell;

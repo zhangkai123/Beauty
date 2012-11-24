@@ -12,6 +12,7 @@
 
 @interface WebViewController ()
 {
+    UIView *backView;
     UIWebView *webView;
 }
 - (void)hideUnwantedHTML;
@@ -27,6 +28,7 @@
     [[NSURLCache sharedURLCache] setMemoryCapacity:0];
 
     [productUrlS release];
+    [backView release];
     [super dealloc];
 }
 
@@ -63,6 +65,9 @@
     [topBarBackButton release];
     [topBar release];
     
+    backView = [[UIView alloc] initWithFrame:CGRectMake(0, 44, 320, 460-44)];
+    [self.view addSubview:backView];
+    
 	// Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor whiteColor];
     webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 44, 320, 460-44)];
@@ -77,12 +82,11 @@
     
     [self.view addSubview:webView];
     
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [MBProgressHUD showHUDAddedTo:backView animated:YES];
 }
 - (void)webViewDidFinishLoad:(UIWebView *)theWebView
 {
     [[NSUserDefaults standardUserDefaults] setInteger:0 forKey:@"WebKitCacheModelPreferenceKey"];
-    [MBProgressHUD hideHUDForView:self.view animated:NO];
     [self hideUnwantedHTML];
 }
 -(void)webViewDidStartLoad:(UIWebView *)theWebView
@@ -123,10 +127,12 @@
 }
 -(void)hideWebview
 {
+    [MBProgressHUD hideHUDForView:backView animated:NO];
     webView.hidden = NO;
 }
 -(void)goBack
 {
+    [NSObject cancelPreviousPerformRequestsWithTarget:self];
     [self dismissModalViewControllerAnimated:YES];
 }
 - (void)viewDidUnload
