@@ -104,12 +104,15 @@
         NSLog(@"load more data");
         int productN = [weakproductsArray count];
         int pageN;
-        pageN = productN / 20;
-        if (pageN == weakCurrentPage) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [weaktheTalbleView.infiniteScrollingView stopAnimating];
-            });
-            return;
+        if (productN % 20 == 0) {
+            pageN = productN / 20;
+            if (pageN <= weakCurrentPage) {
+                pageN = -1;
+                [weaktheTalbleView.infiniteScrollingView performSelector:@selector(stopAnimating) withObject:nil afterDelay:0];
+            }
+        }else{
+            pageN = -1;
+            [weaktheTalbleView.infiniteScrollingView performSelector:@selector(stopAnimating) withObject:nil afterDelay:0];
         }
         DataController *dataController = [DataController sharedDataController];
         [dataController fetachCateProducts:weakcatName notiName:notificationName pageNumber:pageN + 1];
