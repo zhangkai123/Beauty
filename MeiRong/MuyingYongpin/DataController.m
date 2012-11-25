@@ -34,9 +34,9 @@
 
 -(void)fetachHotProducts:(int)pageN
 {
-//    if (pageN == 0) {
-//        return;
-//    }
+    if (pageN == 0) {
+        return;
+    }
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         
         NSError *error;
@@ -55,9 +55,9 @@
 }
 -(void)fetachCateProducts:(NSString *)cateName notiName:(NSString *)nName pageNumber:(int)pageN
 {
-//    if (pageN == 0) {
-//        return;
-//    }
+    if (pageN == 0) {
+        return;
+    }
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
                 
         int catId = [self getNotificationId:cateName];
