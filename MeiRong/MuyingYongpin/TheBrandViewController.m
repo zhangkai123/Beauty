@@ -106,6 +106,9 @@
         int pageN;
         pageN = productN / 20;
         if (pageN == weakCurrentPage) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [weaktheTalbleView.infiniteScrollingView stopAnimating];
+            });
             return;
         }
         DataController *dataController = [DataController sharedDataController];
