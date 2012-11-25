@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "TouchableImageView.h"
+#import "StyleOneCellView.h"
 
 @class StyleOneCell;
 
@@ -21,11 +22,15 @@
 {
     TouchableImageView *leftImageView;
     TouchableImageView *rightImageView;
+    StyleOneCellView *coverView2;
     int rowNum;
     id<StyleOneCellSelectionDelegate> delegate;
 }
 @property(nonatomic,retain) TouchableImageView *leftImageView;
 @property(nonatomic,retain) TouchableImageView *rightImageView;
+@property(nonatomic,retain) StyleOneCellView *coverView2;
 @property(nonatomic,assign) int rowNum;
 @property(nonatomic,assign) id<StyleOneCellSelectionDelegate> delegate;
+
+-(void)diselectCell;
 @end

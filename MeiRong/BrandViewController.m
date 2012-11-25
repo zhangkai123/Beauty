@@ -9,6 +9,12 @@
 #import "BrandViewController.h"
 #import "TheBrandViewController.h"
 
+@interface BrandViewController()
+{
+    UIView *bgColorView;
+}
+@end
+
 @implementation BrandViewController
 
 - (void)didReceiveMemoryWarning
@@ -51,6 +57,10 @@
 {
     [super viewDidLoad];
     
+    //for tableview selected color
+    bgColorView = [[UIView alloc] init];
+    [bgColorView setBackgroundColor:[UIColor colorWithRed:1 green:0.6 blue:0.8 alpha:1.0]];
+
     self.view.backgroundColor = [UIColor blueColor];
     if ([self.navigationController.navigationBar respondsToSelector:@selector( setBackgroundImage:forBarMetrics:)]){
         [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"navbar_background"] forBarMetrics:UIBarMetricsDefault];
@@ -79,7 +89,7 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
     if (!cell) {
         cell = [[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"]autorelease];
-//        [cell.textLabel setTextColor:[UIColor colorWithRed:1 green:0.6 blue:0.8 alpha:1.0]];
+        [cell setSelectedBackgroundView:bgColorView];
     }
     cell.textLabel.text = [dataArray objectAtIndex:indexPath.row];
     return cell;

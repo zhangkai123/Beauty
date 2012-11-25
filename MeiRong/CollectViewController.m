@@ -16,6 +16,7 @@
 @interface CollectViewController()
 {
     NSManagedObjectContext *managedContext;
+    UITableViewCell *selectedCell;
 }
 @end
 
@@ -133,12 +134,14 @@
     NSString *lProduct = [NSString stringWithFormat:@"%@_160x160.jpg",leftProduct.pic_url];
     [cell.leftImageView setImageWithURL:[NSURL URLWithString:lProduct] placeholderImage:[UIImage imageNamed:@"BackgroundPattern"]];
     
+    cell.coverView2.hidden = NO;
     if ([dataArray count] > indexPath.row*2 + 1) {
         CollectProduct *rightProduct = [dataArray objectAtIndex:indexPath.row*2 + 1];
         NSString *rProduct = [NSString stringWithFormat:@"%@_160x160.jpg",rightProduct.pic_url];
         [cell.rightImageView setImageWithURL:[NSURL URLWithString:rProduct] placeholderImage:[UIImage imageNamed:@"BackgroundPattern"]];
     }else{
-        [cell.rightImageView setImageWithURL:[NSURL URLWithString:nil] placeholderImage:[UIImage imageNamed:nil]];
+        cell.coverView2.hidden = YES;
+//        [cell.rightImageView setImageWithURL:[NSURL URLWithString:nil] placeholderImage:[UIImage imageNamed:nil]];
     }
     return cell;
 }
@@ -146,6 +149,7 @@
 #pragma StyleOneCellSelectionDelegate
 -(void)selectTableViewCell:(StyleOneCell *)cell selectedItemAtIndex:(NSInteger)index
 {
+    selectedCell = cell;
     int productIndex;
     if (index == 0) {
         productIndex = cell.rowNum * 2;
@@ -166,7 +170,13 @@
     [theBrandDetailViewController release];
     [myProduct release];
 }
-
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    if (selectedCell != nil) {
+        [(StyleOneCell *)selectedCell diselectCell];
+    }
+}
 - (void)viewDidUnload
 {
     [super viewDidUnload];
@@ -177,11 +187,6 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-}
-
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
 }
 
 - (void)viewWillDisappear:(BOOL)animated

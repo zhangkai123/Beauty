@@ -9,6 +9,11 @@
 #import <QuartzCore/QuartzCore.h>
 #import "HotCell.h"
 
+@interface HotCell()
+{
+}
+@end
+
 @implementation HotCell
 @synthesize desLable;
 @synthesize collectButton ,collectLabel ,sharedButton;
@@ -106,7 +111,18 @@
 
 - (void)hotCellViewWasSelected:(HotCellView *)hotCellView
 {
+    UIView *selectedView = [[UIView alloc]initWithFrame:CGRectMake(10, 10, 300, 300)];
+    selectedView.backgroundColor = [UIColor colorWithRed:1 green:0.6 blue:0.8 alpha:1.0];
+    selectedView.tag = 1000;
+    [selectedView setAlpha:0.2];
+    [self addSubview:selectedView];
+    [selectedView release];
     [delegate selectTableViewCell:self];
 }
 
+-(void)diselectCell
+{
+    UIView *selectedView = [self viewWithTag:1000];
+    [selectedView removeFromSuperview];
+}
 @end

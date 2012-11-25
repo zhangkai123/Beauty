@@ -13,7 +13,10 @@
 #import "CollectProduct.h"
 #import "ShareSns.h"
 
-@interface TheBrandDetailViewController ()
+@interface TheBrandDetailViewController()
+{
+    UITableViewCell *selectedCell;
+}
 @end
 
 @implementation TheBrandDetailViewController
@@ -54,19 +57,11 @@
 -(void)createNavBackButton
 {
     UIImage *buttonImageNormal = [UIImage imageNamed:@"button_back"];
-//    UIImage *stretchableButtonImageNormal = [buttonImageNormal stretchableImageWithLeftCapWidth:15 topCapHeight:0];
-    
     UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
     backButton.frame = CGRectMake(0, 0, 49, 44);
-//    [backButton setBackgroundImage:stretchableButtonImageNormal forState:UIControlStateNormal];
     [backButton setImage:buttonImageNormal forState:UIControlStateNormal];
     [backButton addTarget:self action:@selector(goBack) forControlEvents:UIControlEventTouchDown];
-    
-//    UIImageView *arrowImageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"button_back_arrow"]];
-//    arrowImageView.center = backButton.center;
-//    [backButton addSubview:arrowImageView];
-//    [arrowImageView release];
-    
+        
     UIBarButtonItem *backButtonItem = [[UIBarButtonItem alloc]initWithCustomView:backButton];
     self.navigationItem.leftBarButtonItem = backButtonItem;
     [backButtonItem release];
@@ -108,10 +103,19 @@
 #pragma HotCellSelectionDelegate
 -(void)selectTableViewCell:(HotCell *)cell
 {
+    selectedCell = cell;
     WebViewController *webViewController = [[WebViewController alloc]init];
     webViewController.productUrlS = product.click_url;
     [self presentModalViewController:webViewController animated:YES];
     [webViewController release];
+}
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [theTableView deselectRowAtIndexPath:[theTableView indexPathForSelectedRow] animated:YES];
+    if (selectedCell != nil) {
+        [(HotCell *)selectedCell diselectCell];
+    }
 }
 -(void)collectProduct:(HotCell *)cell
 {

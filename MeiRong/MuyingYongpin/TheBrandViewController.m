@@ -18,6 +18,7 @@
 @interface TheBrandViewController ()
 {
     NSManagedObjectContext *context;
+    UITableViewCell *selectedCell;
 }
 -(NSString *)getNotificationName;
 @end
@@ -103,16 +104,7 @@
         NSLog(@"load more data");
         int productN = [weakproductsArray count];
         int pageN;
-        if (productN % 20 == 0) {
-            pageN = productN / 20;
-            if (pageN <= weakCurrentPage) {
-                pageN = -1;
-                [weaktheTalbleView.infiniteScrollingView performSelector:@selector(stopAnimating) withObject:nil afterDelay:0];
-            }
-        }else{
-            pageN = -1;
-            [weaktheTalbleView.infiniteScrollingView performSelector:@selector(stopAnimating) withObject:nil afterDelay:0];
-        }
+        pageN = productN / 20;
         DataController *dataController = [DataController sharedDataController];
         [dataController fetachCateProducts:weakcatName notiName:notificationName pageNumber:pageN + 1];
         weakCurrentPage = pageN;
@@ -126,19 +118,11 @@
 -(void)createNavBackButton
 {
     UIImage *buttonImageNormal = [UIImage imageNamed:@"button_back"];
-    //    UIImage *stretchableButtonImageNormal = [buttonImageNormal stretchableImageWithLeftCapWidth:15 topCapHeight:0];
-    
     UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
     backButton.frame = CGRectMake(0, 0, 49, 44);
-    //    [backButton setBackgroundImage:stretchableButtonImageNormal forState:UIControlStateNormal];
     [backButton setImage:buttonImageNormal forState:UIControlStateNormal];
     [backButton addTarget:self action:@selector(goBack) forControlEvents:UIControlEventTouchDown];
-    
-    //    UIImageView *arrowImageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"button_back_arrow"]];
-    //    arrowImageView.center = backButton.center;
-    //    [backButton addSubview:arrowImageView];
-    //    [arrowImageView release];
-    
+        
     UIBarButtonItem *backButtonItem = [[UIBarButtonItem alloc]initWithCustomView:backButton];
     self.navigationItem.leftBarButtonItem = backButtonItem;
     [backButtonItem release];
@@ -152,6 +136,14 @@
 {
     NSMutableArray *pArray = [notification object];
     [pArray retain];
+
+    if ([pArray count] == 0) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [theTalbleView.infiniteScrollingView stopAnimating];
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+        });
+        return;
+    }
 
     for (int i = 0; i < [pArray count]; i++) {
         Product *product = [pArray objectAtIndex:i];
@@ -271,19 +263,22 @@
     Product *leftProduct = [productsArray objectAtIndex:indexPath.row*2];
     NSString *lProduct = [NSString stringWithFormat:@"%@_160x160.jpg",leftProduct.pic_url];
     [cell.leftImageView setImageWithURL:[NSURL URLWithString:lProduct] placeholderImage:[UIImage imageNamed:@"BackgroundPattern"]];
-    
+
+    cell.coverView2.hidden = NO;
     if ([productsArray count] > indexPath.row*2 + 1) {
         Product *rightProduct = [productsArray objectAtIndex:indexPath.row*2 + 1];
         NSString *rProduct = [NSString stringWithFormat:@"%@_160x160.jpg",rightProduct.pic_url];
         [cell.rightImageView setImageWithURL:[NSURL URLWithString:rProduct] placeholderImage:[UIImage imageNamed:@"BackgroundPattern"]];
     }else{
-        [cell.rightImageView setImageWithURL:[NSURL URLWithString:nil] placeholderImage:[UIImage imageNamed:@"BackgroundPattern"]];
+//        [cell.rightImageView setImageWithURL:[NSURL URLWithString:nil] placeholderImage:[UIImage imageNamed:@"BackgroundPattern"]];
+        cell.coverView2.hidden = YES;
     }
     return cell;
 }
 #pragma StyleOneCellSelectionDelegate
 -(void)selectTableViewCell:(StyleOneCell *)cell selectedItemAtIndex:(NSInteger)index
 {
+    selectedCell = cell;
     int productIndex;
     if (index == 0) {
         productIndex = cell.rowNum * 2;
@@ -296,6 +291,13 @@
     theBrandDetailViewController.product = product;
     [self.navigationController pushViewController:theBrandDetailViewController animated:YES];
     [theBrandDetailViewController release];
+}
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    if (selectedCell != nil) {
+        [(StyleOneCell *)selectedCell diselectCell];
+    }
 }
 
 - (void)viewDidUnload

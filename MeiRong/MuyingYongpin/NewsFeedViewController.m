@@ -13,6 +13,12 @@
 #import "FashionNews.h"
 #import "MBProgressHUD.h"
 
+@interface NewsFeedViewController()
+{
+    UIView *bgColorView;
+}
+@end
+
 @implementation NewsFeedViewController
 -(void)dealloc
 {
@@ -56,6 +62,10 @@
 {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"SheetBackground"]];
+    
+    //for tableview selected color
+    bgColorView = [[UIView alloc] init];
+    [bgColorView setBackgroundColor:[UIColor colorWithRed:1 green:0.6 blue:0.8 alpha:1.0]];
     
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(recieveNews:) name:@"NEWS_READY" object:nil];
     
@@ -102,8 +112,9 @@
     NewsCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
     if (!cell) {
         cell = [[[NewsCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"]autorelease];
+        [cell setSelectedBackgroundView:bgColorView];
     }
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+//    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     FashionNews *fashionNews = [dataArray objectAtIndex:indexPath.row];
     cell.titleLable.text = fashionNews.title;

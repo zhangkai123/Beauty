@@ -18,6 +18,12 @@
 #import "ShareSns.h"
 #import "MBProgressHUD.h"
 
+@interface HotProductViewController()
+{
+    UITableViewCell *selectedCell;
+}
+@end
+
 @implementation HotProductViewController
 
 - (void)didReceiveMemoryWarning
@@ -92,16 +98,7 @@
         NSLog(@"load more data");
         int productN = [weakproductsArray count];
         int pageN;
-        if (productN % 20 == 0) {
-            pageN = productN / 20;
-            if (pageN <= weakCurrentPage) {
-                pageN = -1;
-                [weaktheTalbleView.infiniteScrollingView performSelector:@selector(stopAnimating) withObject:nil afterDelay:0];
-            }
-        }else{
-            pageN = -1;
-            [weaktheTalbleView.infiniteScrollingView performSelector:@selector(stopAnimating) withObject:nil afterDelay:0];
-        }
+        pageN = productN / 20;
         DataController *dataController = [DataController sharedDataController];
         [dataController fetachHotProducts:pageN + 1];
         weakCurrentPage = pageN;
@@ -118,6 +115,14 @@
 {
     NSMutableArray *myArray = [notification object];
     [myArray retain];
+    
+    if ([myArray count] == 0) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [productTableView.infiniteScrollingView stopAnimating];
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+        });
+        return;
+    }
     
     for (int i = 0; i < [myArray count]; i++) {
         Product *product = [myArray objectAtIndex:i];
@@ -177,7 +182,6 @@
     cell.delegate = self;
     cell.rowNum = indexPath.row;
     Product *product = [productsArray objectAtIndex:indexPath.row];
-//    [cell.theImageView setImageWithURL:[NSURL URLWithString:product.pic_url] placeholderImage:[UIImage imageNamed:@"BackgroundPattern"]];
     [cell.coverView setImageWithURL:[NSURL URLWithString:product.pic_url] placeholderImage:[UIImage imageNamed:@"placeholder"]];
     cell.desLable.text = product.title;
     if (product.collect) {
@@ -192,6 +196,7 @@
 #pragma HotCellSelectionDelegate
 -(void)selectTableViewCell:(HotCell *)cell
 {
+    selectedCell = cell;
     Product *product = [productsArray objectAtIndex:cell.rowNum];
     WebViewController *webViewController = [[WebViewController alloc]init];
     webViewController.productUrlS = product.click_url;
@@ -242,6 +247,9 @@
 {
     [super viewDidAppear:animated];
     [productTableView deselectRowAtIndexPath:[productTableView indexPathForSelectedRow] animated:YES];
+    if (selectedCell != nil) {
+        [(HotCell *)selectedCell diselectCell];
+    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated

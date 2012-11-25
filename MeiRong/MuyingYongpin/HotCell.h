@@ -40,4 +40,6 @@
 @property(nonatomic,assign) int rowNum;
 
 @property(nonatomic,retain) HotCellView *coverView;
+
+-(void)diselectCell;
 @end

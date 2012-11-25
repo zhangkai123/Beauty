@@ -34,14 +34,14 @@
 
 -(void)fetachHotProducts:(int)pageN
 {
-    if (pageN == 0) {
-        return;
-    }
+//    if (pageN == 0) {
+//        return;
+//    }
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         
         NSError *error;
         NSURLResponse *theResponse;
-        NSMutableURLRequest *theRequest=[NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://192.168.1.103/~zhangkai/PinPHP_V2.21/fetchProducts.php"]];
+        NSMutableURLRequest *theRequest=[NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://192.168.1.101/~zhangkai/PinPHP_V2.21/fetchProducts.php"]];
         [theRequest setHTTPMethod:@"POST"];
         NSString *postString = [NSString stringWithFormat:@"catId=434&pageNumber=%d",pageN];  
         [theRequest setHTTPBody:[postString dataUsingEncoding:NSUTF8StringEncoding]];
@@ -55,16 +55,16 @@
 }
 -(void)fetachCateProducts:(NSString *)cateName notiName:(NSString *)nName pageNumber:(int)pageN
 {
-    if (pageN == 0) {
-        return;
-    }
+//    if (pageN == 0) {
+//        return;
+//    }
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
                 
         int catId = [self getNotificationId:cateName];
         
         NSError *error;
         NSURLResponse *theResponse;
-        NSMutableURLRequest *theRequest=[NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://192.168.1.103/~zhangkai/PinPHP_V2.21/fetchProducts.php"]];
+        NSMutableURLRequest *theRequest=[NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://192.168.1.101/~zhangkai/PinPHP_V2.21/fetchProducts.php"]];
         [theRequest setHTTPMethod:@"POST"];
         NSString *postString = [NSString stringWithFormat:@"catId=%d&pageNumber=%d",catId,pageN];
         [theRequest setHTTPBody:[postString dataUsingEncoding:NSUTF8StringEncoding]];
