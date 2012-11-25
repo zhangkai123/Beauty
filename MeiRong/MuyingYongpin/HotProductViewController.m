@@ -99,6 +99,9 @@
         int productN = [weakproductsArray count];
         int pageN;
         pageN = productN / 20;
+        if (pageN == weakCurrentPage) {
+            return;
+        }
         DataController *dataController = [DataController sharedDataController];
         [dataController fetachHotProducts:pageN + 1];
         weakCurrentPage = pageN;
