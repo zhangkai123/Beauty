@@ -19,6 +19,7 @@
 {
     NSManagedObjectContext *context;
     UITableViewCell *selectedCell;
+    BOOL finishLoad;
 }
 -(NSString *)getNotificationName;
 @end
@@ -102,17 +103,18 @@
     }];
     [theTalbleView addInfiniteScrollingWithActionHandler:^{
         NSLog(@"load more data");
+        if (!finishLoad) {
+            return;
+        }
+        finishLoad = NO;
         int productN = [weakproductsArray count];
         int pageN;
         if (productN % 20 == 0) {
             pageN = productN / 20;
-            if (pageN <= weakCurrentPage) {
-                pageN = -1;
-                [weaktheTalbleView.infiniteScrollingView performSelector:@selector(stopAnimating) withObject:nil afterDelay:0];
-            }
-        }else{
-            pageN = -1;
+        }
+        else{
             [weaktheTalbleView.infiniteScrollingView performSelector:@selector(stopAnimating) withObject:nil afterDelay:0];
+            return;
         }
         DataController *dataController = [DataController sharedDataController];
         [dataController fetachCateProducts:weakcatName notiName:notificationName pageNumber:pageN + 1];
@@ -136,21 +138,18 @@
     self.navigationItem.leftBarButtonItem = backButtonItem;
     [backButtonItem release];
 }
--(void)goBack
-{
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-    [self.navigationController popViewControllerAnimated:YES];
-}
 -(void)recieveCatProducts:(NSNotification *)notification
 {
+    finishLoad = YES;
     NSMutableArray *pArray = [notification object];
     [pArray retain];
 
     if ([pArray count] == 0) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            [theTalbleView.infiniteScrollingView stopAnimating];
+           [theTalbleView.infiniteScrollingView performSelector:@selector(stopAnimating) withObject:nil afterDelay:0];
             [MBProgressHUD hideHUDForView:self.view animated:YES];
         });
+        [pArray release];
         return;
     }
 
@@ -178,10 +177,15 @@
     
     dispatch_async(dispatch_get_main_queue(), ^{
         
-        [theTalbleView.infiniteScrollingView stopAnimating];
+        [theTalbleView.infiniteScrollingView performSelector:@selector(stopAnimating) withObject:nil afterDelay:0];
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         [theTalbleView reloadData];
     });
+}
+-(void)goBack
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 -(void)refreshCollected:(NSNotification *)notification
 {

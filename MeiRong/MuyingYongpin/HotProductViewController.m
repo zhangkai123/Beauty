@@ -21,6 +21,7 @@
 @interface HotProductViewController()
 {
     UITableViewCell *selectedCell;
+    BOOL finishLoad;
 }
 @end
 
@@ -96,17 +97,18 @@
     }];
     [productTableView addInfiniteScrollingWithActionHandler:^{
         NSLog(@"load more data");
+        if (!finishLoad) {
+            return;
+        }
+        finishLoad = NO;
         int productN = [weakproductsArray count];
         int pageN;
         if (productN % 20 == 0) {
             pageN = productN / 20;
-            if (pageN <= weakCurrentPage) {
-                pageN = -1;
-                [weaktheTalbleView.infiniteScrollingView performSelector:@selector(stopAnimating) withObject:nil afterDelay:0];
-            }
-        }else{
-            pageN = -1;
+        }
+        else{
             [weaktheTalbleView.infiniteScrollingView performSelector:@selector(stopAnimating) withObject:nil afterDelay:0];
+            return;
         }
         DataController *dataController = [DataController sharedDataController];
         [dataController fetachHotProducts:pageN + 1];
@@ -122,14 +124,16 @@
 }
 -(void)recieveHotProducts:(NSNotification *)notification
 {
+    finishLoad = YES;
     NSMutableArray *myArray = [notification object];
     [myArray retain];
     
     if ([myArray count] == 0) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            [productTableView.infiniteScrollingView stopAnimating];
+            [productTableView.infiniteScrollingView performSelector:@selector(stopAnimating) withObject:nil afterDelay:0];
             [MBProgressHUD hideHUDForView:self.view animated:YES];
         });
+        [myArray release];
         return;
     }
     
@@ -155,7 +159,7 @@
     [myArray release];
     //nofification is recieved in another thread
     dispatch_async(dispatch_get_main_queue(), ^{
-        [productTableView.infiniteScrollingView stopAnimating];
+        [productTableView.infiniteScrollingView performSelector:@selector(stopAnimating) withObject:nil afterDelay:0];
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         [productTableView reloadData];
     });
