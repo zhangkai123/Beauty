@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "NewsCell.h"
 
-@interface NewsFeedViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
+@interface NewsFeedViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,NewsCellDelegate>
 {
     UITableView *theTableView;
     NSMutableArray *dataArray;

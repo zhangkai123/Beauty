@@ -38,7 +38,7 @@
         
         NSError *error;
         NSURLResponse *theResponse;
-        NSMutableURLRequest *theRequest=[NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://192.168.1.106/~zhangkai/PinPHP_V2.21/fetchProducts.php"]];
+        NSMutableURLRequest *theRequest=[NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://192.168.1.102/~zhangkai/PinPHP_V2.21/fetchProducts.php"]];
         [theRequest setHTTPMethod:@"POST"];
         NSString *postString = [NSString stringWithFormat:@"catId=434&pageNumber=%d",pageN];  
         [theRequest setHTTPBody:[postString dataUsingEncoding:NSUTF8StringEncoding]];
@@ -58,7 +58,7 @@
         
         NSError *error;
         NSURLResponse *theResponse;
-        NSMutableURLRequest *theRequest=[NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://192.168.1.106/~zhangkai/PinPHP_V2.21/fetchProducts.php"]];
+        NSMutableURLRequest *theRequest=[NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://192.168.1.102/~zhangkai/PinPHP_V2.21/fetchProducts.php"]];
         [theRequest setHTTPMethod:@"POST"];
         NSString *postString = [NSString stringWithFormat:@"catId=%d&pageNumber=%d",catId,pageN];
         [theRequest setHTTPBody:[postString dataUsingEncoding:NSUTF8StringEncoding]];

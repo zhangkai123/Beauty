@@ -8,7 +8,6 @@
 
 #import "NewsFeedViewController.h"
 #import "NewsWebViewController.h"
-#import "NewsCell.h"
 #import "DataController.h"
 #import "FashionNews.h"
 #import "MBProgressHUD.h"
@@ -75,7 +74,7 @@
     }
     theTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, 320, 460-44-49) style:UITableViewStylePlain];
     theTableView.rowHeight = 180;
-    [theTableView setSeparatorStyle:UITableViewCellSeparatorStyleSingleLine];
+    [theTableView setSeparatorStyle:UITableViewCellSelectionStyleNone];
     theTableView.backgroundColor = [UIColor clearColor];
     theTableView.dataSource = self;
     theTableView.delegate = self;
@@ -112,20 +111,31 @@
     NewsCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
     if (!cell) {
         cell = [[[NewsCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"]autorelease];
+        cell.delegate = self;
         [cell setSelectedBackgroundView:bgColorView];
     }
-//    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     FashionNews *fashionNews = [dataArray objectAtIndex:indexPath.row];
     cell.titleLable.text = fashionNews.title;
     cell.timeLable.text = fashionNews.pubDate;
     cell.contentLable.text = fashionNews.description;
+    cell.rowNum = indexPath.row;
     
     return cell;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     FashionNews *fashionNews = [dataArray objectAtIndex:indexPath.row];
+    NewsWebViewController *newsWebViewController = [[NewsWebViewController alloc]init];
+    newsWebViewController.newsUrls = fashionNews.link;
+    [self presentModalViewController:newsWebViewController animated:YES];
+    [newsWebViewController release];
+}
+#pragma NewsCellDelegate
+-(void)selectTableViewCell:(NewsCell *)cell
+{
+    FashionNews *fashionNews = [dataArray objectAtIndex:cell.rowNum];
     NewsWebViewController *newsWebViewController = [[NewsWebViewController alloc]init];
     newsWebViewController.newsUrls = fashionNews.link;
     [self presentModalViewController:newsWebViewController animated:YES];
