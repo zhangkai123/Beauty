@@ -6,7 +6,14 @@
 //
 //
 
+#import <QuartzCore/QuartzCore.h>
 #import "NewsCell.h"
+
+@interface NewsCell()
+{
+    
+}
+@end
 
 @implementation NewsCell
 @synthesize titleLable ,timeLable ,contentLable;
@@ -62,7 +69,20 @@
 }
 -(void)goToNews
 {
+    UIView *selectedView = [[UIView alloc]initWithFrame:CGRectMake(15, 16, 290, 168)];
+    selectedView.backgroundColor = [UIColor colorWithRed:1 green:0.6 blue:0.8 alpha:1.0];
+    selectedView.layer.cornerRadius = 10.0;
+    selectedView.tag = 1000;
+    [selectedView setAlpha:0.2];
+    [self addSubview:selectedView];
+    [selectedView release];
+
     [delegate selectTableViewCell:self];
+}
+-(void)diselectCell
+{
+    UIView *selectedView = [self viewWithTag:1000];
+    [selectedView removeFromSuperview];
 }
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {

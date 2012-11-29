@@ -31,4 +31,6 @@
 
 @property(nonatomic,assign) id<NewsCellDelegate> delegate;
 @property(nonatomic,assign) int rowNum;
+
+-(void)diselectCell;
 @end

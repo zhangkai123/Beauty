@@ -15,6 +15,7 @@
 @interface NewsFeedViewController()
 {
     UIView *bgColorView;
+    UITableViewCell *selectedCell;
 }
 @end
 
@@ -135,6 +136,7 @@
 #pragma NewsCellDelegate
 -(void)selectTableViewCell:(NewsCell *)cell
 {
+    selectedCell = cell;
     FashionNews *fashionNews = [dataArray objectAtIndex:cell.rowNum];
     NewsWebViewController *newsWebViewController = [[NewsWebViewController alloc]init];
     newsWebViewController.newsUrls = fashionNews.link;
@@ -152,6 +154,9 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    if (selectedCell != nil) {
+        [(NewsCell *)selectedCell diselectCell];
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated
