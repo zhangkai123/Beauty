@@ -36,6 +36,7 @@
         UIImage *stretchableButtonImageNormal = [bImage stretchableImageWithLeftCapWidth:14 topCapHeight:16];
         UIButton *bButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
         bButton.frame = CGRectMake(10, 10, 300, 180);
+        bButton.adjustsImageWhenHighlighted = NO;
         [bButton setBackgroundImage:stretchableButtonImageNormal forState:UIControlStateNormal];
         [bButton addTarget:self action:@selector(goToNews) forControlEvents:UIControlEventTouchDown];
         [self addSubview:bButton];

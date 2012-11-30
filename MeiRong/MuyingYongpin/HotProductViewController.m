@@ -93,7 +93,10 @@
         NSLog(@"refresh dataSource");
         if (weaktheTalbleView.pullToRefreshView.state == SVPullToRefreshStateLoading)
             NSLog(@"Pull to refresh is loading");
-        [weaktheTalbleView.pullToRefreshView performSelector:@selector(stopAnimating) withObject:nil afterDelay:2];
+        [weakproductsArray removeAllObjects];
+        weakCurrentPage = 0;
+        DataController *dataController = [DataController sharedDataController];
+        [dataController fetachHotProducts:1];
     }];
     [productTableView addInfiniteScrollingWithActionHandler:^{
         NSLog(@"load more data");
@@ -159,6 +162,7 @@
     [myArray release];
     //nofification is recieved in another thread
     dispatch_async(dispatch_get_main_queue(), ^{
+        [productTableView.pullToRefreshView performSelector:@selector(stopAnimating) withObject:nil afterDelay:0];
         [productTableView.infiniteScrollingView performSelector:@selector(stopAnimating) withObject:nil afterDelay:0];
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         [productTableView reloadData];

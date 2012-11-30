@@ -154,15 +154,15 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    if (selectedCell != nil) {
-        [(NewsCell *)selectedCell diselectCell];
-    }
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
     [theTableView deselectRowAtIndexPath:[theTableView indexPathForSelectedRow] animated:YES];
+    if (selectedCell != nil) {
+        [(NewsCell *)selectedCell diselectCell];
+    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated

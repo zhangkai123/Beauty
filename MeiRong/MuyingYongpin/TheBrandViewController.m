@@ -99,7 +99,10 @@
         NSLog(@"refresh dataSource");
         if (weaktheTalbleView.pullToRefreshView.state == SVPullToRefreshStateLoading)
             NSLog(@"Pull to refresh is loading");
-        [weaktheTalbleView.pullToRefreshView performSelector:@selector(stopAnimating) withObject:nil afterDelay:2];
+        [weakproductsArray removeAllObjects];
+        weakCurrentPage = 0;
+        DataController *dataController = [DataController sharedDataController];
+        [dataController fetachCateProducts:weakcatName notiName:notificationName pageNumber:1];
     }];
     [theTalbleView addInfiniteScrollingWithActionHandler:^{
         NSLog(@"load more data");
@@ -125,18 +128,6 @@
     [dataController fetachCateProducts:self.catName notiName:notificationName pageNumber:1];
     
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-}
--(void)createNavBackButton
-{
-    UIImage *buttonImageNormal = [UIImage imageNamed:@"button_back"];
-    UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    backButton.frame = CGRectMake(0, 0, 49, 44);
-    [backButton setImage:buttonImageNormal forState:UIControlStateNormal];
-    [backButton addTarget:self action:@selector(goBack) forControlEvents:UIControlEventTouchDown];
-        
-    UIBarButtonItem *backButtonItem = [[UIBarButtonItem alloc]initWithCustomView:backButton];
-    self.navigationItem.leftBarButtonItem = backButtonItem;
-    [backButtonItem release];
 }
 -(void)recieveCatProducts:(NSNotification *)notification
 {
@@ -176,11 +167,23 @@
     [pArray release];
     
     dispatch_async(dispatch_get_main_queue(), ^{
-        
+        [theTalbleView.pullToRefreshView performSelector:@selector(stopAnimating) withObject:nil afterDelay:0];
         [theTalbleView.infiniteScrollingView performSelector:@selector(stopAnimating) withObject:nil afterDelay:0];
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         [theTalbleView reloadData];
     });
+}
+-(void)createNavBackButton
+{
+    UIImage *buttonImageNormal = [UIImage imageNamed:@"button_back"];
+    UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    backButton.frame = CGRectMake(0, 0, 49, 44);
+    [backButton setImage:buttonImageNormal forState:UIControlStateNormal];
+    [backButton addTarget:self action:@selector(goBack) forControlEvents:UIControlEventTouchDown];
+    
+    UIBarButtonItem *backButtonItem = [[UIBarButtonItem alloc]initWithCustomView:backButton];
+    self.navigationItem.leftBarButtonItem = backButtonItem;
+    [backButtonItem release];
 }
 -(void)goBack
 {
