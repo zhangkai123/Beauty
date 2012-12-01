@@ -13,6 +13,8 @@
 #import "DDXML.h"
 #import "FashionNews.h"
 
+#define hostIp @"http://10.21.125.90"
+
 @implementation DataController
 
 +(id)sharedDataController
@@ -39,7 +41,8 @@
         
         NSError *error;
         NSURLResponse *theResponse;
-        NSMutableURLRequest *theRequest=[NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://172.20.183.36/~zhangkai/PinPHP_V2.21/fetchProducts.php"]];
+        NSString *urlString = [NSString stringWithFormat:@"%@/~zhangkai/PinPHP_V2.21/fetchProducts.php",hostIp];
+        NSMutableURLRequest *theRequest=[NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlString]];
         [theRequest setHTTPMethod:@"POST"];
         NSString *postString = [NSString stringWithFormat:@"catId=434&pageNumber=%d",pageN];  
         [theRequest setHTTPBody:[postString dataUsingEncoding:NSUTF8StringEncoding]];
@@ -61,7 +64,8 @@
         
         NSError *error;
         NSURLResponse *theResponse;
-        NSMutableURLRequest *theRequest=[NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://172.20.183.36/~zhangkai/PinPHP_V2.21/fetchProducts.php"]];
+        NSString *urlString = [NSString stringWithFormat:@"%@/~zhangkai/PinPHP_V2.21/fetchProducts.php",hostIp];
+        NSMutableURLRequest *theRequest=[NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlString]];
         [theRequest setHTTPMethod:@"POST"];
         NSString *postString = [NSString stringWithFormat:@"catId=%d&pageNumber=%d",catId,pageN];
         [theRequest setHTTPBody:[postString dataUsingEncoding:NSUTF8StringEncoding]];

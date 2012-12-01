@@ -7,8 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ATMHudDelegate.h"
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
+@class ATMHud;
+@interface AppDelegate : UIResponder <UIApplicationDelegate ,ATMHudDelegate>
+{
+     ATMHud *hud;   
+}
 
 @property (strong, nonatomic) UIWindow *window;
 @property (nonatomic,retain) UITabBarController *tabBarController;

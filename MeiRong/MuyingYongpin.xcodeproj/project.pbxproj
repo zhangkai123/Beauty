@@ -28,6 +28,15 @@
 		4B39A09E160DC4F200C922B2 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B39A09D160DC4F200C922B2 /* QuartzCore.framework */; };
 		4B421C0A15ECFEC2001094FE /* CollectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B421C0915ECFEC2001094FE /* CollectViewController.m */; };
 		4B423EB5164BE3B800251ECE /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B423EB4164BE3B800251ECE /* MBProgressHUD.m */; };
+		4B4EAF73166A06B500E29D6B /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B4EAF72166A06B500E29D6B /* Reachability.m */; };
+		4B4EAF7A166A0C4A00E29D6B /* ReachableManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B4EAF79166A0C4A00E29D6B /* ReachableManager.m */; };
+		4B4EAF8D166A321200E29D6B /* ATMHud.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B4EAF81166A321200E29D6B /* ATMHud.m */; };
+		4B4EAF8E166A321200E29D6B /* ATMHudQueueItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B4EAF84166A321200E29D6B /* ATMHudQueueItem.m */; };
+		4B4EAF8F166A321200E29D6B /* ATMHudView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B4EAF86166A321200E29D6B /* ATMHudView.m */; };
+		4B4EAF90166A321200E29D6B /* ATMProgressLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B4EAF88166A321200E29D6B /* ATMProgressLayer.m */; };
+		4B4EAF91166A321200E29D6B /* ATMSoundFX.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B4EAF8A166A321200E29D6B /* ATMSoundFX.m */; };
+		4B4EAF92166A321200E29D6B /* ATMTextLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B4EAF8C166A321200E29D6B /* ATMTextLayer.m */; };
+		4B4EAF94166A327200E29D6B /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B4EAF93166A327100E29D6B /* AudioToolbox.framework */; };
 		4B534E491666403700EF5004 /* NewsNode.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B534E471666403700EF5004 /* NewsNode.png */; };
 		4B534E4A1666403700EF5004 /* NewsNode@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B534E481666403700EF5004 /* NewsNode@2x.png */; };
 		4B5621351630513400C0D9F7 /* Follow_Selected@2xUncrushedPng.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B5621331630513400C0D9F7 /* Follow_Selected@2xUncrushedPng.png */; };
@@ -223,6 +232,24 @@
 		4B421C0915ECFEC2001094FE /* CollectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CollectViewController.m; path = ../CollectViewController.m; sourceTree = "<group>"; };
 		4B423EB3164BE3B800251ECE /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		4B423EB4164BE3B800251ECE /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		4B4EAF71166A06B500E29D6B /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		4B4EAF72166A06B500E29D6B /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
+		4B4EAF78166A0C4A00E29D6B /* ReachableManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReachableManager.h; sourceTree = "<group>"; };
+		4B4EAF79166A0C4A00E29D6B /* ReachableManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReachableManager.m; sourceTree = "<group>"; };
+		4B4EAF80166A321200E29D6B /* ATMHud.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATMHud.h; sourceTree = "<group>"; };
+		4B4EAF81166A321200E29D6B /* ATMHud.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATMHud.m; sourceTree = "<group>"; };
+		4B4EAF82166A321200E29D6B /* ATMHudDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATMHudDelegate.h; sourceTree = "<group>"; };
+		4B4EAF83166A321200E29D6B /* ATMHudQueueItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATMHudQueueItem.h; sourceTree = "<group>"; };
+		4B4EAF84166A321200E29D6B /* ATMHudQueueItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATMHudQueueItem.m; sourceTree = "<group>"; };
+		4B4EAF85166A321200E29D6B /* ATMHudView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATMHudView.h; sourceTree = "<group>"; };
+		4B4EAF86166A321200E29D6B /* ATMHudView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATMHudView.m; sourceTree = "<group>"; };
+		4B4EAF87166A321200E29D6B /* ATMProgressLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATMProgressLayer.h; sourceTree = "<group>"; };
+		4B4EAF88166A321200E29D6B /* ATMProgressLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATMProgressLayer.m; sourceTree = "<group>"; };
+		4B4EAF89166A321200E29D6B /* ATMSoundFX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATMSoundFX.h; sourceTree = "<group>"; };
+		4B4EAF8A166A321200E29D6B /* ATMSoundFX.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATMSoundFX.m; sourceTree = "<group>"; };
+		4B4EAF8B166A321200E29D6B /* ATMTextLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATMTextLayer.h; sourceTree = "<group>"; };
+		4B4EAF8C166A321200E29D6B /* ATMTextLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATMTextLayer.m; sourceTree = "<group>"; };
+		4B4EAF93166A327100E29D6B /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		4B534E471666403700EF5004 /* NewsNode.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NewsNode.png; sourceTree = "<group>"; };
 		4B534E481666403700EF5004 /* NewsNode@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "NewsNode@2x.png"; sourceTree = "<group>"; };
 		4B5621331630513400C0D9F7 /* Follow_Selected@2xUncrushedPng.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Follow_Selected@2xUncrushedPng.png"; sourceTree = "<group>"; };
@@ -451,6 +478,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4B4EAF94166A327200E29D6B /* AudioToolbox.framework in Frameworks */,
 				4B8E9AEC1619E3E000A37B6E /* CoreData.framework in Frameworks */,
 				4BACE0951615F050006B3E00 /* libz.dylib in Frameworks */,
 				4B39A09E160DC4F200C922B2 /* QuartzCore.framework in Frameworks */,
@@ -494,6 +522,35 @@
 				4B423EB4164BE3B800251ECE /* MBProgressHUD.m */,
 			);
 			name = MBProgressHUD;
+			sourceTree = "<group>";
+		};
+		4B4EAF641669FDE700E29D6B /* Reachability */ = {
+			isa = PBXGroup;
+			children = (
+				4B4EAF71166A06B500E29D6B /* Reachability.h */,
+				4B4EAF72166A06B500E29D6B /* Reachability.m */,
+			);
+			name = Reachability;
+			sourceTree = "<group>";
+		};
+		4B4EAF7F166A320000E29D6B /* ATMHud */ = {
+			isa = PBXGroup;
+			children = (
+				4B4EAF80166A321200E29D6B /* ATMHud.h */,
+				4B4EAF81166A321200E29D6B /* ATMHud.m */,
+				4B4EAF82166A321200E29D6B /* ATMHudDelegate.h */,
+				4B4EAF83166A321200E29D6B /* ATMHudQueueItem.h */,
+				4B4EAF84166A321200E29D6B /* ATMHudQueueItem.m */,
+				4B4EAF85166A321200E29D6B /* ATMHudView.h */,
+				4B4EAF86166A321200E29D6B /* ATMHudView.m */,
+				4B4EAF87166A321200E29D6B /* ATMProgressLayer.h */,
+				4B4EAF88166A321200E29D6B /* ATMProgressLayer.m */,
+				4B4EAF89166A321200E29D6B /* ATMSoundFX.h */,
+				4B4EAF8A166A321200E29D6B /* ATMSoundFX.m */,
+				4B4EAF8B166A321200E29D6B /* ATMTextLayer.h */,
+				4B4EAF8C166A321200E29D6B /* ATMTextLayer.m */,
+			);
+			name = ATMHud;
 			sourceTree = "<group>";
 		};
 		4B534E451666400E00EF5004 /* fasionNews */ = {
@@ -751,6 +808,7 @@
 				4BF3F489162A8AF40070BDE5 /* youmeng */,
 				4BACE0941615F050006B3E00 /* libz.dylib */,
 				4BCB571B16022EF80082D965 /* libxml2.dylib */,
+				4B4EAF93166A327100E29D6B /* AudioToolbox.framework */,
 				4B8E9AEB1619E3E000A37B6E /* CoreData.framework */,
 				4B39A09D160DC4F200C922B2 /* QuartzCore.framework */,
 				4BEEF2C915D7AC9C00C424DA /* SystemConfiguration.framework */,
@@ -766,6 +824,8 @@
 		4BDB315A15BA56DE007B1C6F /* MuyingYongpin */ = {
 			isa = PBXGroup;
 			children = (
+				4B4EAF7F166A320000E29D6B /* ATMHud */,
+				4B4EAF641669FDE700E29D6B /* Reachability */,
 				4B423EB1164BE3A500251ECE /* MBProgressHUD */,
 				4BACE06B1615E4AA006B3E00 /* UIWebView+Clean */,
 				4B39A098160DC38A00C922B2 /* SVPullToRefresh */,
@@ -778,6 +838,8 @@
 				4BF3F509162A9EA00070BDE5 /* ShareSns */,
 				4BDB316315BA56DE007B1C6F /* AppDelegate.h */,
 				4BDB316415BA56DE007B1C6F /* AppDelegate.m */,
+				4B4EAF78166A0C4A00E29D6B /* ReachableManager.h */,
+				4B4EAF79166A0C4A00E29D6B /* ReachableManager.m */,
 				4BDB316615BA56DE007B1C6F /* HotProductViewController.h */,
 				4BDB316715BA56DE007B1C6F /* HotProductViewController.m */,
 				4BAF7BAB15ECFE3200D64CCD /* BrandViewController.h */,
@@ -1198,6 +1260,14 @@
 				4BACD362164005E400C8FB89 /* ImageProcesser.m in Sources */,
 				4B1E2BA416440803001F7B93 /* UIImage+roundCorner.m in Sources */,
 				4B423EB5164BE3B800251ECE /* MBProgressHUD.m in Sources */,
+				4B4EAF73166A06B500E29D6B /* Reachability.m in Sources */,
+				4B4EAF7A166A0C4A00E29D6B /* ReachableManager.m in Sources */,
+				4B4EAF8D166A321200E29D6B /* ATMHud.m in Sources */,
+				4B4EAF8E166A321200E29D6B /* ATMHudQueueItem.m in Sources */,
+				4B4EAF8F166A321200E29D6B /* ATMHudView.m in Sources */,
+				4B4EAF90166A321200E29D6B /* ATMProgressLayer.m in Sources */,
+				4B4EAF91166A321200E29D6B /* ATMSoundFX.m in Sources */,
+				4B4EAF92166A321200E29D6B /* ATMTextLayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

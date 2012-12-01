@@ -14,6 +14,9 @@
 #import "NewsFeedViewController.h"
 #import "MobClick.h"
 
+#import "ReachableManager.h"
+#import "ATMHud.h"
+
 @implementation AppDelegate
 
 @synthesize window = _window;
@@ -23,6 +26,7 @@
 {
     [self.tabBarController release];
     [self.window release];
+    [hud release];
     [super dealloc];
 }
 
@@ -30,9 +34,13 @@
 {
     [application setStatusBarStyle:UIStatusBarStyleBlackOpaque];
     
-    [MobClick startWithAppkey:@"5065b5735270151341000065" reportPolicy:REALTIME channelId:nil];
-    self.tabBarController = [[[UITabBarController alloc]init]autorelease];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(showHud) name:kNotReachabilityNotification object:nil];
     
+    [MobClick startWithAppkey:@"5065b5735270151341000065" reportPolicy:REALTIME channelId:nil];
+    
+    [[[ReachableManager alloc]init]startNotify];
+    
+    self.tabBarController = [[[UITabBarController alloc]init]autorelease];
     UINavigationController *navigationController;
     
     NSMutableArray *controllersArray = [[NSMutableArray alloc]initWithCapacity:4];
@@ -77,9 +85,18 @@
     // Override point for customization after application launch.
     self.window.rootViewController = self.tabBarController;
     [self.window makeKeyAndVisible];
+    
+    hud = [[ATMHud alloc] initWithDelegate:self];
+	[self.window addSubview:hud.view];
+        
     return YES;
 }
-
+-(void)showHud
+{
+    [hud setCaption:@"无网络连接"];
+    [hud show];
+    [hud hideAfter:5.0];
+}
 - (void)applicationWillResignActive:(UIApplication *)application
 {
     /*
