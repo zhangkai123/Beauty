@@ -17,7 +17,12 @@ extern NSString *const kNotReachabilityNotification;
     Reachability* hostReach;
     Reachability* internetReach;
     Reachability* wifiReach;
+    
+    BOOL reachable;
 }
 
+@property(nonatomic,assign) BOOL reachable;
+
++(id)sharedReachableManager;
 -(void)startNotify;
 @end

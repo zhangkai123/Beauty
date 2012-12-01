@@ -38,7 +38,7 @@
     
     [MobClick startWithAppkey:@"5065b5735270151341000065" reportPolicy:REALTIME channelId:nil];
     
-    [[[ReachableManager alloc]init]startNotify];
+    [[ReachableManager sharedReachableManager] startNotify];
     
     self.tabBarController = [[[UITabBarController alloc]init]autorelease];
     UINavigationController *navigationController;

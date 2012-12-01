@@ -86,6 +86,7 @@
 }
 -(void)goBack
 {
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
     [self dismissModalViewControllerAnimated:YES];
 }
 

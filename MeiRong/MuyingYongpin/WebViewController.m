@@ -134,6 +134,7 @@
 }
 -(void)goBack
 {
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
     [NSObject cancelPreviousPerformRequestsWithTarget:self];
     [self dismissModalViewControllerAnimated:YES];
 }
