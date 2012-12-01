@@ -83,6 +83,7 @@
     [self.view addSubview:webView];
     
     [MBProgressHUD showHUDAddedTo:backView animated:YES];
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
 }
 - (void)webViewDidFinishLoad:(UIWebView *)theWebView
 {
@@ -127,6 +128,7 @@
 }
 -(void)hideWebview
 {
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
     [MBProgressHUD hideHUDForView:backView animated:NO];
     webView.hidden = NO;
 }

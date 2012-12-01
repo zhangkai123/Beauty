@@ -34,11 +34,12 @@
 
 -(void)fetachHotProducts:(int)pageN
 {
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         
         NSError *error;
         NSURLResponse *theResponse;
-        NSMutableURLRequest *theRequest=[NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://10.21.30.8/~zhangkai/PinPHP_V2.21/fetchProducts.php"]];
+        NSMutableURLRequest *theRequest=[NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://172.20.183.36/~zhangkai/PinPHP_V2.21/fetchProducts.php"]];
         [theRequest setHTTPMethod:@"POST"];
         NSString *postString = [NSString stringWithFormat:@"catId=434&pageNumber=%d",pageN];  
         [theRequest setHTTPBody:[postString dataUsingEncoding:NSUTF8StringEncoding]];
@@ -48,17 +49,19 @@
         NSMutableArray *pArray = [self parseProductsData:resultData];
 
         [[NSNotificationCenter defaultCenter]postNotificationName:@"HOT_PRODUCTS_REARDY" object:pArray userInfo:nil];
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
     });
 }
 -(void)fetachCateProducts:(NSString *)cateName notiName:(NSString *)nName pageNumber:(int)pageN
 {
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
                 
         int catId = [self getNotificationId:cateName];
         
         NSError *error;
         NSURLResponse *theResponse;
-        NSMutableURLRequest *theRequest=[NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://10.21.30.8/~zhangkai/PinPHP_V2.21/fetchProducts.php"]];
+        NSMutableURLRequest *theRequest=[NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://172.20.183.36/~zhangkai/PinPHP_V2.21/fetchProducts.php"]];
         [theRequest setHTTPMethod:@"POST"];
         NSString *postString = [NSString stringWithFormat:@"catId=%d&pageNumber=%d",catId,pageN];
         [theRequest setHTTPBody:[postString dataUsingEncoding:NSUTF8StringEncoding]];
@@ -68,12 +71,12 @@
         NSMutableArray *pArray = [self parseProductsData:resultData];
         
         [[NSNotificationCenter defaultCenter]postNotificationName:nName object:pArray userInfo:nil];
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
     });
 }
 -(NSMutableArray *)parseProductsData:(NSData *)data
 {
     NSString *productsString = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
-//    NSDictionary *productsDic = [productsString JSONValue];
 
     NSArray *productArray = [productsString JSONValue];
     
@@ -99,6 +102,7 @@
 //send the rss request
 -(void)featchRssData
 {
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         
         NSString *postURL = @"http://rss.sina.com.cn/eladies/gnspxw.xml";
@@ -110,6 +114,7 @@
 //        NSLog(@"%@",xmlString);
         NSMutableArray *newsArray = [self parseRssData:xmlData];
         [[NSNotificationCenter defaultCenter]postNotificationName:@"NEWS_READY" object:newsArray userInfo:nil];
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
     });
 }
 -(NSMutableArray *)parseRssData:(NSData *)data
@@ -117,7 +122,6 @@
     NSError *error;
     DDXMLDocument *ddDoc = [[DDXMLDocument alloc] initWithData:data options:0 error:&error];
     NSArray *xmlItems = [ddDoc nodesForXPath:@"//item" error:&error];
-//    NSMutableArray *returnArray = [[NSMutableArray alloc] initWithCapacity:[xmlItems count]];
     
     NSMutableArray *newsArray = [[NSMutableArray alloc]init];
     for(DDXMLElement* itemElement in xmlItems)

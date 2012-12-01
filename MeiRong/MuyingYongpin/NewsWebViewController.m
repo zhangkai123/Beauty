@@ -76,9 +76,11 @@
     [self.view addSubview:webView];
     
     [MBProgressHUD showHUDAddedTo:webView animated:YES];
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
 }
 - (void)webViewDidFinishLoad:(UIWebView *)theWebView
 {
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
     [MBProgressHUD hideHUDForView:webView animated:YES];
     [[NSUserDefaults standardUserDefaults] setInteger:0 forKey:@"WebKitCacheModelPreferenceKey"];
 }
