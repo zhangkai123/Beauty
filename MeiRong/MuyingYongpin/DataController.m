@@ -14,6 +14,7 @@
 #import "FashionNews.h"
 #import "ReachableManager.h"
 
+#define ServerIp @"http://42.121.112.195"
 #define hostIp @"http://10.21.98.93"
 
 @implementation DataController
@@ -46,10 +47,11 @@
         
         NSError *error;
         NSURLResponse *theResponse;
-        NSString *urlString = [NSString stringWithFormat:@"%@/~zhangkai/PinPHP_V2.21/fetchProducts.php",hostIp];
+//        NSString *urlString = [NSString stringWithFormat:@"%@/~zhangkai/PinPHP_V2.21/fetchProducts.php",hostIp];
+        NSString *urlString = [NSString stringWithFormat:@"%@/PinPHP_V2.21/fetchProducts.php",ServerIp];
         NSMutableURLRequest *theRequest=[NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlString]];
         [theRequest setHTTPMethod:@"POST"];
-        NSString *postString = [NSString stringWithFormat:@"catId=434&pageNumber=%d",pageN];  
+        NSString *postString = [NSString stringWithFormat:@"catId=415&pageNumber=%d",pageN];  
         [theRequest setHTTPBody:[postString dataUsingEncoding:NSUTF8StringEncoding]];
         
         [theRequest addValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
@@ -69,11 +71,13 @@
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
                 
-        int catId = [self getNotificationId:cateName];
+//        int catId = [self getNotificationId:cateName];
+        int catId = [self getServerNotificationId:cateName];
         
         NSError *error;
         NSURLResponse *theResponse;
-        NSString *urlString = [NSString stringWithFormat:@"%@/~zhangkai/PinPHP_V2.21/fetchProducts.php",hostIp];
+//        NSString *urlString = [NSString stringWithFormat:@"%@/~zhangkai/PinPHP_V2.21/fetchProducts.php",hostIp];
+        NSString *urlString = [NSString stringWithFormat:@"%@/PinPHP_V2.21/fetchProducts.php",ServerIp];
         NSMutableURLRequest *theRequest=[NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlString]];
         [theRequest setHTTPMethod:@"POST"];
         NSString *postString = [NSString stringWithFormat:@"catId=%d&pageNumber=%d",catId,pageN];
@@ -234,6 +238,55 @@
     }else if([catName isEqualToString:@"卡姿兰"]){
         
         notificationId = 432;
+    }
+    return notificationId;
+}
+//get categoryId
+-(int)getServerNotificationId:(NSString *)catName
+{
+    int notificationId;
+    if ([catName isEqualToString:@"碧欧泉"]) {
+        
+        notificationId = 430;
+    }else if([catName isEqualToString:@"香奈儿"]){
+        
+        notificationId = 429;
+    }else if([catName isEqualToString:@"倩碧"]){
+        
+        notificationId = 428;
+    }else if([catName isEqualToString:@"雅诗兰黛"]){
+        
+        notificationId = 427;
+    }else if([catName isEqualToString:@"兰蔻"]){
+        
+        notificationId = 426;
+    }else if([catName isEqualToString:@"玫琳凯"]){
+        
+        notificationId = 425;
+    }else if([catName isEqualToString:@"迪奥"]){
+        
+        notificationId = 424;
+    }else if([catName isEqualToString:@"欧莱雅"]){
+        
+        notificationId = 423;
+    }else if([catName isEqualToString:@"相宜本草"]){
+        
+        notificationId = 422;
+    }else if([catName isEqualToString:@"玉兰油"]){
+        
+        notificationId = 421;
+    }else if([catName isEqualToString:@"the face shop"]){
+        
+        notificationId = 420;
+    }else if([catName isEqualToString:@"美宝莲"]){
+        
+        notificationId = 419;
+    }else if([catName isEqualToString:@"skin79"]){
+        
+        notificationId = 418;
+    }else if([catName isEqualToString:@"卡姿兰"]){
+        
+        notificationId = 417;
     }
     return notificationId;
 }
