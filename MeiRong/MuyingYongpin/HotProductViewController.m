@@ -133,6 +133,7 @@
     
     if ([myArray count] == 0) {
         dispatch_async(dispatch_get_main_queue(), ^{
+            [productTableView.pullToRefreshView performSelector:@selector(stopAnimating) withObject:nil afterDelay:0];
             [productTableView.infiniteScrollingView performSelector:@selector(stopAnimating) withObject:nil afterDelay:0];
             [MBProgressHUD hideHUDForView:self.view animated:YES];
         });

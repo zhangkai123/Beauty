@@ -137,6 +137,7 @@
 
     if ([pArray count] == 0) {
         dispatch_async(dispatch_get_main_queue(), ^{
+            [theTalbleView.pullToRefreshView performSelector:@selector(stopAnimating) withObject:nil afterDelay:0];
            [theTalbleView.infiniteScrollingView performSelector:@selector(stopAnimating) withObject:nil afterDelay:0];
             [MBProgressHUD hideHUDForView:self.view animated:YES];
         });

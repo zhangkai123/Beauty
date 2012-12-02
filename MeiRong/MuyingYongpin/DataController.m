@@ -115,6 +115,10 @@
 //send the rss request
 -(void)featchRssData
 {
+    if (![[ReachableManager sharedReachableManager]reachable]) {
+        [[NSNotificationCenter defaultCenter] postNotificationName: kNotReachabilityNotification object: nil];
+    }
+
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         

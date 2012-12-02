@@ -11,6 +11,7 @@
 #import "DataController.h"
 #import "FashionNews.h"
 #import "MBProgressHUD.h"
+#import "SVPullToRefresh.h"
 
 @interface NewsFeedViewController()
 {
@@ -81,6 +82,15 @@
     theTableView.delegate = self;
     [self.view addSubview:theTableView];
     
+    __block UITableView *weaktheTalbleView = theTableView;
+    [theTableView addPullToRefreshWithActionHandler:^{
+        
+        if (weaktheTalbleView.pullToRefreshView.state == SVPullToRefreshStateLoading)
+            NSLog(@"Pull to refresh is loading");
+        DataController *dataController = [DataController sharedDataController];
+        [dataController featchRssData];
+    }];
+    
     dataArray = [[NSMutableArray alloc]init];
     DataController *dataController = [DataController sharedDataController];
     [dataController featchRssData];
@@ -89,11 +99,22 @@
 }
 -(void)recieveNews:(NSNotification *)notification
 {
+    if ([[notification object]count] == 0) {
+        //nofification is recieved in another thread
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            [theTableView.pullToRefreshView performSelector:@selector(stopAnimating) withObject:nil afterDelay:0];
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+            return;
+        });
+    }
+    [dataArray removeAllObjects];
     [dataArray addObjectsFromArray:[notification object]];
     
     //nofification is recieved in another thread
     dispatch_async(dispatch_get_main_queue(), ^{
         
+        [theTableView.pullToRefreshView performSelector:@selector(stopAnimating) withObject:nil afterDelay:0];
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         [theTableView reloadData];
     });
