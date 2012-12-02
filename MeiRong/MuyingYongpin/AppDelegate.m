@@ -87,12 +87,14 @@
     [self.window makeKeyAndVisible];
     
     hud = [[ATMHud alloc] initWithDelegate:self];
+    [hud setFixedSize:CGSizeMake(150, 150)];
 	[self.window addSubview:hud.view];
         
     return YES;
 }
 -(void)showHud
 {
+    [hud setFixedSize:CGSizeMake(150, 150)];
     [hud setCaption:@"无网络连接"];
     [hud show];
     [hud hideAfter:5.0];

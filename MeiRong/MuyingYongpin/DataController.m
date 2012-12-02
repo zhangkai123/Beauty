@@ -12,8 +12,9 @@
 #import "Product.h"
 #import "DDXML.h"
 #import "FashionNews.h"
+#import "ReachableManager.h"
 
-#define hostIp @"http://10.21.125.90"
+#define hostIp @"http://10.21.98.93"
 
 @implementation DataController
 
@@ -36,6 +37,10 @@
 
 -(void)fetachHotProducts:(int)pageN
 {
+    if (![[ReachableManager sharedReachableManager]reachable]) {
+        [[NSNotificationCenter defaultCenter] postNotificationName: kNotReachabilityNotification object: nil];
+    }
+    
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         
@@ -57,6 +62,10 @@
 }
 -(void)fetachCateProducts:(NSString *)cateName notiName:(NSString *)nName pageNumber:(int)pageN
 {
+    if (![[ReachableManager sharedReachableManager]reachable]) {
+        [[NSNotificationCenter defaultCenter] postNotificationName: kNotReachabilityNotification object: nil];
+    }
+    
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
                 
