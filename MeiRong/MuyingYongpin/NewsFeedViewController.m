@@ -74,7 +74,7 @@
         [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"navbar_background"] forBarMetrics:UIBarMetricsDefault];
         [self.navigationController.navigationBar setOpaque:1.0];
     }
-    UIEdgeInsets insets = UIEdgeInsetsMake(0, 0, self.navigationController.navigationBar.frame.size.height, 0);
+//    UIEdgeInsets insets = UIEdgeInsetsMake(0, 0, self.navigationController.navigationBar.frame.size.height, 0);
     
     theTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, 320, 460-44-49) style:UITableViewStylePlain];
     theTableView.rowHeight = 180;
@@ -83,7 +83,7 @@
     theTableView.dataSource = self;
     theTableView.delegate = self;
 //    theTableView.scrollIndicatorInsets = insets;
-    theTableView.contentInset = insets;
+//    theTableView.contentInset = insets;
     [self.view addSubview:theTableView];
     
     __block UITableView *weaktheTalbleView = theTableView;
@@ -94,7 +94,7 @@
         DataController *dataController = [DataController sharedDataController];
         [dataController featchRssData];
     }];
-    
+
     dataArray = [[NSMutableArray alloc]init];
     DataController *dataController = [DataController sharedDataController];
     [dataController featchRssData];
@@ -169,6 +169,14 @@
     [newsWebViewController release];
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.row == [dataArray count] - 1) {
+        return 200;
+    }else{
+        return 180;
+    }
+}
 - (void)viewDidUnload
 {
     [super viewDidUnload];
