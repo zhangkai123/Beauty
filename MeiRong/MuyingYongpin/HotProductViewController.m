@@ -22,6 +22,7 @@
 {
     UITableViewCell *selectedCell;
     BOOL finishLoad;
+    BOOL refresh;
 }
 @end
 
@@ -87,19 +88,22 @@
     __block UITableView *weaktheTalbleView = productTableView;
     __block NSMutableArray *weakproductsArray = productsArray;
     __block NSInteger weakCurrentPage = currentPage;
+    
     //add the pull fresh and add more data
     // setup the pull-to-refresh view
     [productTableView addPullToRefreshWithActionHandler:^{
-        NSLog(@"refresh dataSource");
+        
+        refresh = YES;
         if (weaktheTalbleView.pullToRefreshView.state == SVPullToRefreshStateLoading)
             NSLog(@"Pull to refresh is loading");
-        [weakproductsArray removeAllObjects];
+        //[weakproductsArray removeAllObjects];
         weakCurrentPage = 0;
         DataController *dataController = [DataController sharedDataController];
         [dataController fetachHotProducts:1];
     }];
     [productTableView addInfiniteScrollingWithActionHandler:^{
-        NSLog(@"load more data");
+        
+        refresh = NO;
         if (!finishLoad) {
             return;
         }
@@ -140,7 +144,9 @@
         [myArray release];
         return;
     }
-    
+    if (refresh) {
+        [productsArray removeAllObjects];
+    }
     for (int i = 0; i < [myArray count]; i++) {
         Product *product = [myArray objectAtIndex:i];
         

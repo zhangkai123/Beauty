@@ -20,6 +20,7 @@
     NSManagedObjectContext *context;
     UITableViewCell *selectedCell;
     BOOL finishLoad;
+    BOOL refresh;
 }
 -(NSString *)getNotificationName;
 @end
@@ -93,19 +94,21 @@
     __block NSMutableArray *weakproductsArray = productsArray;
     __block NSString *weakcatName = self.catName;
     __block NSInteger weakCurrentPage = currentPage;
+    
     //add the pull fresh and add more data
     // setup the pull-to-refresh view
     [theTalbleView addPullToRefreshWithActionHandler:^{
-        NSLog(@"refresh dataSource");
+        
+        refresh = YES;
         if (weaktheTalbleView.pullToRefreshView.state == SVPullToRefreshStateLoading)
             NSLog(@"Pull to refresh is loading");
-        [weakproductsArray removeAllObjects];
         weakCurrentPage = 0;
         DataController *dataController = [DataController sharedDataController];
         [dataController fetachCateProducts:weakcatName notiName:notificationName pageNumber:1];
     }];
     [theTalbleView addInfiniteScrollingWithActionHandler:^{
-        NSLog(@"load more data");
+        
+        refresh = NO;
         if (!finishLoad) {
             return;
         }
@@ -144,7 +147,10 @@
         [pArray release];
         return;
     }
-
+    if (refresh) {
+        [productsArray removeAllObjects];
+    }
+    
     for (int i = 0; i < [pArray count]; i++) {
         Product *product = [pArray objectAtIndex:i];
         

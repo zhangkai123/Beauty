@@ -35,11 +35,14 @@
     }
     return self;
 }
-
+-(void)showNoNetwork
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName: kNotReachabilityNotification object: nil];
+}
 -(void)fetachHotProducts:(int)pageN
 {
     if (![[ReachableManager sharedReachableManager]reachable]) {
-        [[NSNotificationCenter defaultCenter] postNotificationName: kNotReachabilityNotification object: nil];
+        [self performSelector:@selector(showNoNetwork) withObject:nil afterDelay:1.0];
     }
     
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
@@ -65,7 +68,7 @@
 -(void)fetachCateProducts:(NSString *)cateName notiName:(NSString *)nName pageNumber:(int)pageN
 {
     if (![[ReachableManager sharedReachableManager]reachable]) {
-        [[NSNotificationCenter defaultCenter] postNotificationName: kNotReachabilityNotification object: nil];
+        [self performSelector:@selector(showNoNetwork) withObject:nil afterDelay:1.0];
     }
     
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
@@ -120,7 +123,7 @@
 -(void)featchRssData
 {
     if (![[ReachableManager sharedReachableManager]reachable]) {
-        [[NSNotificationCenter defaultCenter] postNotificationName: kNotReachabilityNotification object: nil];
+        [self performSelector:@selector(showNoNetwork) withObject:nil afterDelay:1.0];
     }
 
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];

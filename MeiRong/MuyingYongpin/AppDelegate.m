@@ -97,7 +97,7 @@
     [hud setFixedSize:CGSizeMake(150, 150)];
     [hud setCaption:@"无网络连接"];
     [hud show];
-    [hud hideAfter:5.0];
+    [hud hideAfter:3.0];
 }
 - (void)applicationWillResignActive:(UIApplication *)application
 {
