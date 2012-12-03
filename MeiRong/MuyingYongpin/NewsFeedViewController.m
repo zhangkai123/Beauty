@@ -82,7 +82,7 @@
     theTableView.backgroundColor = [UIColor clearColor];
     theTableView.dataSource = self;
     theTableView.delegate = self;
-    theTableView.scrollIndicatorInsets = insets;
+//    theTableView.scrollIndicatorInsets = insets;
     theTableView.contentInset = insets;
     [self.view addSubview:theTableView];
     
