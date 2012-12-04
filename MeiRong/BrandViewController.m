@@ -67,13 +67,19 @@
         [self.navigationController.navigationBar setOpaque:1.0];
     }
     dataArray = [[NSMutableArray alloc]initWithObjects:@"碧欧泉",@"香奈儿",@"倩碧",@"雅诗兰黛",@"兰蔻",@"玫琳凯",@"迪奥",@"欧莱雅",@"相宜本草",@"玉兰油",@"the face shop",@"美宝莲",@"skin79",@"卡姿兰", nil];
+    
+    UIEdgeInsets insets = UIEdgeInsetsMake(0, 0, self.navigationController.navigationBar.frame.size.height, 0);
     myTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 460-44-49) style:UITableViewStylePlain];
     //    [productTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     myTableView.delegate = self;
     myTableView.dataSource = self;
+    myTableView.contentInset = insets;
     //    productTableView.rowHeight = 480;
     [self.view addSubview:myTableView];
 
+}
+- (UITableViewCellAccessoryType)tableView:(UITableView *)tv accessoryTypeForRowWithIndexPath:(NSIndexPath *)indexPath {
+    return UITableViewCellAccessoryDisclosureIndicator;
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {

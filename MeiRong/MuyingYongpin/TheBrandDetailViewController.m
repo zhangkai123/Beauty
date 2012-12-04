@@ -49,7 +49,7 @@
     theTableView.showsVerticalScrollIndicator = NO;
     theTableView.delegate = self;
     theTableView.dataSource = self;
-    theTableView.rowHeight = 430;
+    theTableView.rowHeight = 450;
     [self.view addSubview:theTableView];
 
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"SheetBackground"]];
