@@ -12,6 +12,7 @@
 @interface BrandViewController()
 {
     UIView *bgColorView;
+    NSMutableArray *headerArray;
 }
 @end
 
@@ -66,7 +67,17 @@
         [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"navbar_background"] forBarMetrics:UIBarMetricsDefault];
         [self.navigationController.navigationBar setOpaque:1.0];
     }
-    dataArray = [[NSMutableArray alloc]initWithObjects:@"碧欧泉",@"香奈儿",@"倩碧",@"雅诗兰黛",@"兰蔻",@"玫琳凯",@"迪奥",@"欧莱雅",@"相宜本草",@"玉兰油",@"the face shop",@"美宝莲",@"skin79",@"卡姿兰", nil];
+    headerArray = [[NSMutableArray alloc]initWithObjects:@"功效",@"护肤",@"彩妆",@"美体", nil];
+
+//    dataArray = [[NSMutableArray alloc]initWithObjects:@"碧欧泉",@"香奈儿",@"倩碧",@"雅诗兰黛",@"兰蔻",@"玫琳凯",@"迪奥",@"欧莱雅",@"相宜本草",@"玉兰油",@"the face shop",@"美宝莲",@"skin79",@"卡姿兰", nil];
+    
+    dataArray1 = [[NSMutableArray alloc]initWithObjects:@"美白",@"保湿",@"祛痘",@"抗敏",@"遮瑕",@"祛斑",@"控油",@"补水",@"去黑头",@"收毛孔",@"去眼袋", nil];
+
+    dataArray2 = [[NSMutableArray alloc]initWithObjects:@"防晒霜",@"喷雾",@"卸妆油",@"洗面奶",@"面膜",@"眼霜",@"化妆水",@"面霜",@"隔离霜",@"吸油面纸",@"药妆",nil];
+
+    dataArray3 = [[NSMutableArray alloc]initWithObjects:@"香水",@"指甲油",@"睫毛膏",@"BB霜",@"粉饼",@"蜜粉",@"口红",@"腮红",@"眼影",@"眉笔",@"唇彩",@"眼线膏",nil];
+
+    dataArray4 = [[NSMutableArray alloc]initWithObjects:@"手工皂",@"沐浴露",@"美颈霜",@"身体乳",@"护手霜",@"假发",@"发蜡",@"弹力素",@"发膜",@"蓬蓬粉",@"染发膏",nil];
     
     UIEdgeInsets insets = UIEdgeInsetsMake(0, 0, self.navigationController.navigationBar.frame.size.height, 0);
     myTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 460-44-49) style:UITableViewStylePlain];
@@ -83,12 +94,32 @@
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+    return 4;
 }
-
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    return [headerArray objectAtIndex:section];
+}
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [dataArray count];
+    int row;
+    switch (section) {
+        case 0:
+            row = [dataArray1 count];
+            break;
+        case 1:
+            row = [dataArray2 count];
+            break;
+        case 2:
+            row = [dataArray3 count];
+            break;
+        case 3:
+            row = [dataArray4 count];
+            break;
+
+        default:
+            break;
+    }
+    return row;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -97,12 +128,46 @@
         cell = [[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"]autorelease];
         [cell setSelectedBackgroundView:bgColorView];
     }
-    cell.textLabel.text = [dataArray objectAtIndex:indexPath.row];
+    switch (indexPath.section) {
+        case 0:
+            cell.textLabel.text = [dataArray1 objectAtIndex:indexPath.row];
+            break;
+        case 1:
+            cell.textLabel.text = [dataArray2 objectAtIndex:indexPath.row];
+            break;
+        case 2:
+            cell.textLabel.text = [dataArray3 objectAtIndex:indexPath.row];
+            break;
+        case 3:
+            cell.textLabel.text = [dataArray4 objectAtIndex:indexPath.row];
+            break;
+  
+        default:
+            break;
+    }
     return cell;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *categoryName = [dataArray objectAtIndex:indexPath.row];
+    NSString *categoryName;
+    
+    switch (indexPath.section) {
+        case 0:
+            categoryName = [dataArray1 objectAtIndex:indexPath.row];
+            break;
+        case 1:
+            categoryName = [dataArray2 objectAtIndex:indexPath.row];
+            break;
+        case 2:
+            categoryName = [dataArray3 objectAtIndex:indexPath.row];
+            break;
+        case 3:
+            categoryName = [dataArray4 objectAtIndex:indexPath.row];
+            break;
+            
+        default:
+            break;
+    }
     TheBrandViewController *theBrandViewController = [[TheBrandViewController alloc]init];
     theBrandViewController.catName = categoryName;
     [self.navigationController pushViewController:theBrandViewController animated:YES];

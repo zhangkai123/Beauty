@@ -12,6 +12,11 @@
 {
     UITableView *myTableView;
     NSMutableArray *dataArray;
+    
+    NSMutableArray *dataArray1;
+    NSMutableArray *dataArray2;
+    NSMutableArray *dataArray3;
+    NSMutableArray *dataArray4;
 }
 -(id) initWithTabBar;
 @end
