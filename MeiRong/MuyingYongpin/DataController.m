@@ -7,7 +7,6 @@
 //
 
 #import "DataController.h"
-#import "Utility.h"
 #import "SBJson.h"
 #import "Product.h"
 #import "DDXML.h"
@@ -146,6 +145,7 @@
     NSError *error;
     DDXMLDocument *ddDoc = [[DDXMLDocument alloc] initWithData:data options:0 error:&error];
     NSArray *xmlItems = [ddDoc nodesForXPath:@"//item" error:&error];
+    [ddDoc release];
     
     NSMutableArray *newsArray = [[NSMutableArray alloc]init];
     for(DDXMLElement* itemElement in xmlItems)

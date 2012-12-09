@@ -15,6 +15,8 @@
     NSString *catName;
     NSMutableArray *productsArray;
     int currentPage;
+    BOOL finishLoad;
+    BOOL refresh;
 }
 @property(nonatomic,retain)  NSString *catName;
 @end

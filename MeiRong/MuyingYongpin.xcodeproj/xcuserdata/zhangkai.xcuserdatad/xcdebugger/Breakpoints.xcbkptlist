@@ -73,11 +73,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "MuyingYongpin/TheBrandViewController.m"
-         timestampString = "376234568.807722"
+         timestampString = "376754213.610188"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "40"
-         endingLineNumber = "40"
+         startingLineNumber = "38"
+         endingLineNumber = "38"
          landmarkName = "-didReceiveMemoryWarning"
          landmarkType = "5">
       </FileBreakpoint>
@@ -86,11 +86,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "MuyingYongpin/DataController.m"
-         timestampString = "376401828.984919"
+         timestampString = "376727654.238071"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "111"
-         endingLineNumber = "111"
+         startingLineNumber = "110"
+         endingLineNumber = "110"
          landmarkName = "-parseProductsData:"
          landmarkType = "5">
       </FileBreakpoint>

@@ -19,8 +19,6 @@
 {
     NSManagedObjectContext *context;
     UITableViewCell *selectedCell;
-    BOOL finishLoad;
-    BOOL refresh;
 }
 -(NSString *)getNotificationName;
 @end
@@ -94,12 +92,14 @@
     __block NSMutableArray *weakproductsArray = productsArray;
     __block NSString *weakcatName = self.catName;
     __block NSInteger weakCurrentPage = currentPage;
+    __block BOOL *weakRefresh = &refresh;
+    __block BOOL *weakFinishLoad = &finishLoad;
     
     //add the pull fresh and add more data
     // setup the pull-to-refresh view
     [theTalbleView addPullToRefreshWithActionHandler:^{
         
-        refresh = YES;
+        *weakRefresh = YES;
         if (weaktheTalbleView.pullToRefreshView.state == SVPullToRefreshStateLoading)
             NSLog(@"Pull to refresh is loading");
         weakCurrentPage = 0;
@@ -108,11 +108,11 @@
     }];
     [theTalbleView addInfiniteScrollingWithActionHandler:^{
         
-        refresh = NO;
-        if (!finishLoad) {
+        *weakRefresh = NO;
+        if (!*weakFinishLoad) {
             return;
         }
-        finishLoad = NO;
+        *weakFinishLoad = NO;
         int productN = [weakproductsArray count];
         int pageN;
         if (productN % 20 == 0) {
