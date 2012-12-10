@@ -154,7 +154,9 @@
     for (int i = 0; i < [pArray count]; i++) {
         Product *product = [pArray objectAtIndex:i];
         
-        context = [[CoreDataController sharedInstance]newManagedObjectContext];
+        if (context == nil) {
+            context = [[CoreDataController sharedInstance]newManagedObjectContext];
+        }
         
         NSFetchRequest *request= [[NSFetchRequest alloc] init];
         NSEntityDescription *entity = [NSEntityDescription entityForName:@"CollectProduct" inManagedObjectContext:context];
