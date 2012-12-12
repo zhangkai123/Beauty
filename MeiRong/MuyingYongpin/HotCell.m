@@ -18,10 +18,11 @@
 @synthesize desLable;
 @synthesize collectButton ,collectLabel ,sharedButton;
 @synthesize delegate ,rowNum;
-@synthesize coverView;
+@synthesize coverView ,myImageView;
 -(void)dealloc
 {
     [coverView release];
+    [myImageView release];
     [desLable release];
     [super dealloc];
 }
@@ -75,10 +76,17 @@
         [sButton addTarget:self action:@selector(shareProduct) forControlEvents:UIControlEventTouchDown];
         self.sharedButton = sButton;
         
+        TouchableImageView *mImageView = [[TouchableImageView alloc]initWithFrame:CGRectMake(10, 10, 300, 300)];
+        mImageView.backgroundColor = [UIColor clearColor];
+        mImageView.userInteractionEnabled = YES;
+        mImageView.delegate = self;
+        self.myImageView = mImageView;
+        [mImageView release];
+        
         HotCellView *cView = [[HotCellView alloc]initWithFrame:CGRectMake(0, 0, 320, 400)];
-        cView.delegate = self;
         self.coverView = cView;
         [cView release];
+        [self.coverView addSubview:self.myImageView];
         
         [self.coverView addSubview:self.desLable];
         [self.coverView addSubview:self.collectButton];
@@ -107,9 +115,14 @@
     [super setSelected:selected animated:animated];
     // Configure the view for the selected state
 }
-#pragma HotCellViewDelegate
 
-- (void)hotCellViewWasSelected:(HotCellView *)hotCellView
+-(void)diselectCell
+{
+    UIView *selectedView = [self viewWithTag:1000];
+    [selectedView removeFromSuperview];
+}
+
+- (void)touchableImageViewViewWasSelected:(TouchableImageView *)thumbnailImageView
 {
     UIView *selectedView = [[UIView alloc]initWithFrame:CGRectMake(10, 10, 300, 300)];
     selectedView.backgroundColor = [UIColor colorWithRed:1 green:0.6 blue:0.8 alpha:1.0];
@@ -118,11 +131,5 @@
     [self addSubview:selectedView];
     [selectedView release];
     [delegate selectTableViewCell:self];
-}
-
--(void)diselectCell
-{
-    UIView *selectedView = [self viewWithTag:1000];
-    [selectedView removeFromSuperview];
 }
 @end

@@ -14,8 +14,11 @@
 {
     UITableView *theTableView;
     Product *product;
+    UIImageView *myImageView;
+    UIImage *smallImage;
     BOOL collection;
 }
 @property(nonatomic,retain) Product *product;
+@property(nonatomic,retain) UIImage *smallImage;
 @property(nonatomic,assign) BOOL collection;
 @end

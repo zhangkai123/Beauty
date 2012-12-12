@@ -21,12 +21,14 @@
 
 @implementation TheBrandDetailViewController
 @synthesize product;
+@synthesize smallImage;
 @synthesize collection;
 
 -(void)dealloc
 {
     [theTableView release];
     [product release];
+    [smallImage release];
     [super dealloc];
 }
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -68,6 +70,7 @@
 }
 -(void)goBack
 {
+    [myImageView removeObserver:self forKeyPath:@"image" context:NULL];
     [self.navigationController popViewControllerAnimated:YES];
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -86,7 +89,14 @@
     }
     cell.delegate = self;
     cell.rowNum = indexPath.row;
-    [cell.coverView setImageWithURL:[NSURL URLWithString:product.pic_url] placeholderImage:[UIImage imageNamed:@"BackgroundPattern"]];
+    [cell.myImageView setImageWithURL:[NSURL URLWithString:product.pic_url] placeholderImage:self.smallImage];
+    
+    myImageView = cell.myImageView;
+    [myImageView addObserver:self
+                forKeyPath:@"image"
+                   options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld
+                   context:NULL];
+    
     cell.desLable.text = product.title;
     if (product.collect) {
         [cell.collectLabel setText:@"已收藏"];
@@ -100,6 +110,20 @@
     }
     return cell;
 }
+- (void) observeValueForKeyPath:(NSString *)path ofObject:(id) object change:(NSDictionary *) change context:(void *)context
+{
+    // this method is used for all observations, so you need to make sure
+    // you are responding to the right one.
+    if (object == myImageView && [path isEqualToString:@"image"])
+    {
+        UIImage *newImage = [change objectForKey:NSKeyValueChangeNewKey];
+        UIImage *oldImage = [change objectForKey:NSKeyValueChangeOldKey];
+        
+        // oldImage is the image *before* the property changed
+        // newImage is the image *after* the property changed
+    }
+}
+
 #pragma HotCellSelectionDelegate
 -(void)selectTableViewCell:(HotCell *)cell
 {
@@ -152,7 +176,7 @@
 -(void)shareProduct:(HotCell *)cell
 {
     ShareSns *shareSns = [[ShareSns alloc]init];
-    [shareSns showSnsShareSheet:self.tabBarController.view viewController:self shareImage:cell.coverView.myImageView.image shareText:cell.desLable.text];
+    [shareSns showSnsShareSheet:self.tabBarController.view viewController:self shareImage:cell.myImageView.image shareText:cell.desLable.text];
 }
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
 	if (buttonIndex == 1) {

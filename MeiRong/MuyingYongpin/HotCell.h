@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TouchableImageView.h"
 #import "HotCellView.h"
 
 @class HotCell;
@@ -20,7 +21,7 @@
 @end
 
 
-@interface HotCell : UITableViewCell<HotCellViewDelegate>
+@interface HotCell : UITableViewCell<TouchableImageViewSelectionDelegate>
 {
     UILabel *desLable;
     UIButton *collectButton;
@@ -30,6 +31,7 @@
     int rowNum;
     
     HotCellView *coverView;
+    TouchableImageView *myImageView;
 }
 
 @property(nonatomic,retain) UILabel *desLable;
@@ -40,6 +42,7 @@
 @property(nonatomic,assign) int rowNum;
 
 @property(nonatomic,retain) HotCellView *coverView;
+@property(nonatomic,retain) TouchableImageView *myImageView;
 
 -(void)diselectCell;
 @end

@@ -206,7 +206,7 @@
     cell.delegate = self;
     cell.rowNum = indexPath.row;
     Product *product = [productsArray objectAtIndex:indexPath.row];
-    [cell.coverView setImageWithURL:[NSURL URLWithString:product.pic_url] placeholderImage:[UIImage imageNamed:@"placeholder"]];
+    [cell.myImageView setImageWithURL:[NSURL URLWithString:product.pic_url] placeholderImage:nil];
     cell.desLable.text = product.title;
     if (product.collect) {
         [cell.collectLabel setText:@"已收藏"];
@@ -252,7 +252,7 @@
 -(void)shareProduct:(HotCell *)cell
 {
     ShareSns *shareSns = [[ShareSns alloc]init];
-    [shareSns showSnsShareSheet:self.tabBarController.view viewController:self shareImage:cell.coverView.myImageView.image shareText:cell.desLable.text];
+    [shareSns showSnsShareSheet:self.tabBarController.view viewController:self shareImage:cell.myImageView.image shareText:cell.desLable.text];
 }
 
 - (void)viewDidUnload

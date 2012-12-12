@@ -132,13 +132,13 @@
     
     CollectProduct *leftProduct = [dataArray objectAtIndex:indexPath.row*2];
     NSString *lProduct = [NSString stringWithFormat:@"%@_160x160.jpg",leftProduct.pic_url];
-    [cell.leftImageView setImageWithURL:[NSURL URLWithString:lProduct] placeholderImage:[UIImage imageNamed:@"BackgroundPattern"]];
+    [cell.leftImageView setImageWithURL:[NSURL URLWithString:lProduct] placeholderImage:nil];
     
     cell.coverView2.hidden = NO;
     if ([dataArray count] > indexPath.row*2 + 1) {
         CollectProduct *rightProduct = [dataArray objectAtIndex:indexPath.row*2 + 1];
         NSString *rProduct = [NSString stringWithFormat:@"%@_160x160.jpg",rightProduct.pic_url];
-        [cell.rightImageView setImageWithURL:[NSURL URLWithString:rProduct] placeholderImage:[UIImage imageNamed:@"BackgroundPattern"]];
+        [cell.rightImageView setImageWithURL:[NSURL URLWithString:rProduct] placeholderImage:nil];
     }else{
         cell.coverView2.hidden = YES;
 //        [cell.rightImageView setImageWithURL:[NSURL URLWithString:nil] placeholderImage:[UIImage imageNamed:nil]];

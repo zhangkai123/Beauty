@@ -9,12 +9,9 @@
 #import "HotCellView.h"
 
 @implementation HotCellView
-@synthesize myImageView;
-@synthesize delegate;
 
 -(void)dealloc
 {
-    [myImageView release];
     [super dealloc];
 }
 
@@ -24,47 +21,8 @@
     if (self) {
         // Initialization code
         self.backgroundColor = [UIColor clearColor];
-        myImageView = [[TouchableImageView alloc]initWithFrame:CGRectZero];
-        myImageView.delegate = self;
-        [self addSubview:myImageView];
     }
     return self;
-}
-#pragma imageview delegate
-- (void)touchableImageViewViewWasSelected:(TouchableImageView *)thumbnailImageView
-{
-    [delegate hotCellViewWasSelected:self];
-}
-
-- (void)setImageWithURL:(NSURL *)url placeholderImage:(UIImage *)placeholder
-{
-    [self setImageWithURL:url placeholderImage:placeholder options:0];
-}
-
-- (void)setImageWithURL:(NSURL *)url placeholderImage:(UIImage *)placeholder options:(SDWebImageOptions)options
-{
-    SDWebImageManager *manager = [SDWebImageManager sharedManager];
-    
-    // Remove in progress downloader from queue
-    [manager cancelForDelegate:self];
-    
-    myImageView.image = nil;
-    if (url)
-    {
-        [manager downloadWithURL:url delegate:self options:options];
-    }
-}
-
-#pragma SDWebImageView
-- (void)cancelCurrentImageLoad
-{
-    [[SDWebImageManager sharedManager] cancelForDelegate:self];
-}
-
-- (void)webImageManager:(SDWebImageManager *)imageManager didFinishWithImage:(UIImage *)image
-{
-    myImageView.image = image;
-    myImageView.frame = CGRectMake(10, 10, 300, 300);
 }
 
 #pragma drawRect

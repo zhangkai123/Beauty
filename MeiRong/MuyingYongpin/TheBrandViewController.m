@@ -386,14 +386,15 @@
     cell.rowNum = indexPath.row;
     cell.delegate = self;
     Product *leftProduct = [productsArray objectAtIndex:indexPath.row*2];
+    //change to big image to see if better performance
     NSString *lProduct = [NSString stringWithFormat:@"%@_160x160.jpg",leftProduct.pic_url];
-    [cell.leftImageView setImageWithURL:[NSURL URLWithString:lProduct] placeholderImage:[UIImage imageNamed:@"BackgroundPattern"]];
+    [cell.leftImageView setImageWithURL:[NSURL URLWithString:lProduct] placeholderImage:nil];
 
     cell.coverView2.hidden = NO;
     if ([productsArray count] > indexPath.row*2 + 1) {
         Product *rightProduct = [productsArray objectAtIndex:indexPath.row*2 + 1];
         NSString *rProduct = [NSString stringWithFormat:@"%@_160x160.jpg",rightProduct.pic_url];
-        [cell.rightImageView setImageWithURL:[NSURL URLWithString:rProduct] placeholderImage:[UIImage imageNamed:@"BackgroundPattern"]];
+        [cell.rightImageView setImageWithURL:[NSURL URLWithString:rProduct] placeholderImage:nil];
     }else{
 //        [cell.rightImageView setImageWithURL:[NSURL URLWithString:nil] placeholderImage:[UIImage imageNamed:@"BackgroundPattern"]];
         cell.coverView2.hidden = YES;
@@ -405,15 +406,19 @@
 {
     selectedCell = cell;
     int productIndex;
+    UIImage *smallImage = nil;
     if (index == 0) {
         productIndex = cell.rowNum * 2;
+        smallImage = cell.leftImageView.image;
     }else{
         productIndex = cell.rowNum * 2 + 1;
+        smallImage = cell.rightImageView.image;
     }
     Product *product = [productsArray objectAtIndex:productIndex];
     
     TheBrandDetailViewController *theBrandDetailViewController = [[TheBrandDetailViewController alloc]init];
     theBrandDetailViewController.product = product;
+    theBrandDetailViewController.smallImage = smallImage;
     [self.navigationController pushViewController:theBrandDetailViewController animated:YES];
     [theBrandDetailViewController release];
 }

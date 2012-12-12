@@ -27,7 +27,7 @@
     // Remove in progress downloader from queue
     [manager cancelForDelegate:self];
 
-    self.image = nil;
+    self.image = placeholder;
 
     if (url)
     {
