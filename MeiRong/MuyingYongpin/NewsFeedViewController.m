@@ -10,7 +10,6 @@
 #import "NewsWebViewController.h"
 #import "DataController.h"
 #import "FashionNews.h"
-#import "MBProgressHUD.h"
 #import "SVPullToRefresh.h"
 
 @interface NewsFeedViewController()
@@ -54,9 +53,36 @@
         titleLabel.text = @"时尚";
         [self.navigationItem setTitleView:titleLabel];
         [titleLabel release];
+
+        [self createActivity];
     }
     return self;
     
+}
+-(void)startActivity{
+    
+    UIActivityIndicatorView *activityView = [[[self navigationItem].rightBarButtonItem.customView subviews]objectAtIndex:0];
+    [activityView startAnimating];
+}
+
+-(void)stopActivity{
+    
+    UIActivityIndicatorView *activityView = [[[self navigationItem].rightBarButtonItem.customView subviews]objectAtIndex:0];
+    [activityView stopAnimating];
+}
+
+-(void)createActivity
+{
+    UIActivityIndicatorView * activityIndicator = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
+    [activityIndicator stopAnimating];
+    [activityIndicator hidesWhenStopped];
+    UIView *rightItem = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 30, 20)];
+    [rightItem addSubview:activityIndicator];
+    [activityIndicator release];
+    UIBarButtonItem * barButton = [[UIBarButtonItem alloc] initWithCustomView:rightItem];
+    [self navigationItem].rightBarButtonItem = barButton;
+    [rightItem release];
+    [barButton release];
 }
 
 - (void)viewDidLoad
@@ -99,7 +125,7 @@
     DataController *dataController = [DataController sharedDataController];
     [dataController featchRssData];
     
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [self startActivity];
 }
 -(void)recieveNews:(NSNotification *)notification
 {
@@ -108,7 +134,7 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             
             [theTableView.pullToRefreshView performSelector:@selector(stopAnimating) withObject:nil afterDelay:0];
-            [MBProgressHUD hideHUDForView:self.view animated:YES];
+            [self stopActivity];
             return;
         });
     }
@@ -119,7 +145,7 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         
         [theTableView.pullToRefreshView performSelector:@selector(stopAnimating) withObject:nil afterDelay:0];
-        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        [self stopActivity];
         [theTableView reloadData];
     });
 }

@@ -27,7 +27,6 @@
 		4B39A09C160DC39C00C922B2 /* SVPullToRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B39A09B160DC39C00C922B2 /* SVPullToRefresh.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		4B39A09E160DC4F200C922B2 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B39A09D160DC4F200C922B2 /* QuartzCore.framework */; };
 		4B421C0A15ECFEC2001094FE /* CollectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B421C0915ECFEC2001094FE /* CollectViewController.m */; };
-		4B423EB5164BE3B800251ECE /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B423EB4164BE3B800251ECE /* MBProgressHUD.m */; };
 		4B4EAF73166A06B500E29D6B /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B4EAF72166A06B500E29D6B /* Reachability.m */; };
 		4B4EAF7A166A0C4A00E29D6B /* ReachableManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B4EAF79166A0C4A00E29D6B /* ReachableManager.m */; };
 		4B4EAF8D166A321200E29D6B /* ATMHud.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B4EAF81166A321200E29D6B /* ATMHud.m */; };
@@ -229,8 +228,6 @@
 		4B39A09D160DC4F200C922B2 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		4B421C0815ECFEC2001094FE /* CollectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CollectViewController.h; path = ../CollectViewController.h; sourceTree = "<group>"; };
 		4B421C0915ECFEC2001094FE /* CollectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CollectViewController.m; path = ../CollectViewController.m; sourceTree = "<group>"; };
-		4B423EB3164BE3B800251ECE /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
-		4B423EB4164BE3B800251ECE /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		4B4EAF71166A06B500E29D6B /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		4B4EAF72166A06B500E29D6B /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		4B4EAF78166A0C4A00E29D6B /* ReachableManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReachableManager.h; sourceTree = "<group>"; };
@@ -509,15 +506,6 @@
 				4B39A09B160DC39C00C922B2 /* SVPullToRefresh.m */,
 			);
 			name = SVPullToRefresh;
-			sourceTree = "<group>";
-		};
-		4B423EB1164BE3A500251ECE /* MBProgressHUD */ = {
-			isa = PBXGroup;
-			children = (
-				4B423EB3164BE3B800251ECE /* MBProgressHUD.h */,
-				4B423EB4164BE3B800251ECE /* MBProgressHUD.m */,
-			);
-			name = MBProgressHUD;
 			sourceTree = "<group>";
 		};
 		4B4EAF641669FDE700E29D6B /* Reachability */ = {
@@ -812,7 +800,6 @@
 			children = (
 				4B4EAF7F166A320000E29D6B /* ATMHud */,
 				4B4EAF641669FDE700E29D6B /* Reachability */,
-				4B423EB1164BE3A500251ECE /* MBProgressHUD */,
 				4BACE06B1615E4AA006B3E00 /* UIWebView+Clean */,
 				4B39A098160DC38A00C922B2 /* SVPullToRefresh */,
 				4BCB56FB160220500082D965 /* KissXML */,
@@ -1243,7 +1230,6 @@
 				4B348A161635A15500A6DA91 /* StyleOneCellView.m in Sources */,
 				4BACD362164005E400C8FB89 /* ImageProcesser.m in Sources */,
 				4B1E2BA416440803001F7B93 /* UIImage+roundCorner.m in Sources */,
-				4B423EB5164BE3B800251ECE /* MBProgressHUD.m in Sources */,
 				4B4EAF73166A06B500E29D6B /* Reachability.m in Sources */,
 				4B4EAF7A166A0C4A00E29D6B /* ReachableManager.m in Sources */,
 				4B4EAF8D166A321200E29D6B /* ATMHud.m in Sources */,

@@ -8,12 +8,12 @@
 
 #import "WebViewController.h"
 #import "UIWebView+Clean.h"
-#import "MBProgressHUD.h"
 
 @interface WebViewController ()
 {
     UIView *backView;
     UIWebView *webView;
+    UIActivityIndicatorView * activityIndicator;
 }
 - (void)hideUnwantedHTML;
 @end
@@ -29,6 +29,7 @@
 
     [productUrlS release];
     [backView release];
+    [activityIndicator release];
     [super dealloc];
 }
 
@@ -79,10 +80,14 @@
     NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
     [webView loadRequest:requestObj];
     webView.hidden = YES;
-    
     [self.view addSubview:webView];
     
-    [MBProgressHUD showHUDAddedTo:backView animated:YES];
+    activityIndicator = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(285, 12, 20, 20)];
+    //set the initial property
+    [activityIndicator startAnimating];
+    [activityIndicator hidesWhenStopped];
+    [topBar addSubview:activityIndicator];
+
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
 }
 - (void)webViewDidFinishLoad:(UIWebView *)theWebView
@@ -129,7 +134,7 @@
 -(void)hideWebview
 {
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
-    [MBProgressHUD hideHUDForView:backView animated:NO];
+    [activityIndicator stopAnimating];
     webView.hidden = NO;
 }
 -(void)goBack

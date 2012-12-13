@@ -13,7 +13,6 @@
 #import "SVPullToRefresh.h"
 #import "TheBrandDetailViewController.h"
 #import "CoreDataController.h"
-#import "MBProgressHUD.h"
 
 @interface TheBrandViewController ()
 {
@@ -62,6 +61,33 @@
     [self.navigationItem setTitleView:titleLabel];
     [titleLabel release];
 }
+
+-(void)startActivity{
+    
+    UIActivityIndicatorView *activityView = [[[self navigationItem].rightBarButtonItem.customView subviews]objectAtIndex:0];
+    [activityView startAnimating];
+}
+
+-(void)stopActivity{
+    
+    UIActivityIndicatorView *activityView = [[[self navigationItem].rightBarButtonItem.customView subviews]objectAtIndex:0];
+    [activityView stopAnimating];
+}
+
+-(void)createActivity
+{
+    UIActivityIndicatorView * activityIndicator = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
+    [activityIndicator stopAnimating];
+    [activityIndicator hidesWhenStopped];
+    UIView *rightItem = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 30, 20)];
+    [rightItem addSubview:activityIndicator];
+    [activityIndicator release];
+    UIBarButtonItem * barButton = [[UIBarButtonItem alloc] initWithCustomView:rightItem];
+    [self navigationItem].rightBarButtonItem = barButton;
+    [rightItem release];
+    [barButton release];
+}
+
 -(void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
@@ -72,7 +98,9 @@
     
     [self createNavBackButton];
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"SheetBackground"]];
-            
+    
+    [self createActivity];
+    
     NSString *notificationName = [self getNotificationName];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(recieveCatProducts:) name:notificationName object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(refreshCollected:) name:@"REFRESH_COLLECTED" object:nil];
@@ -130,7 +158,7 @@
     DataController *dataController = [DataController sharedDataController];
     [dataController fetachCateProducts:self.catName notiName:notificationName pageNumber:1];
     
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [self startActivity];
 }
 -(void)recieveCatProducts:(NSNotification *)notification
 {
@@ -142,7 +170,7 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             [theTalbleView.pullToRefreshView performSelector:@selector(stopAnimating) withObject:nil afterDelay:0];
            [theTalbleView.infiniteScrollingView performSelector:@selector(stopAnimating) withObject:nil afterDelay:0];
-            [MBProgressHUD hideHUDForView:self.view animated:YES];
+            [self stopActivity];
         });
         [pArray release];
         return;
@@ -178,7 +206,7 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         [theTalbleView.pullToRefreshView performSelector:@selector(stopAnimating) withObject:nil afterDelay:0];
         [theTalbleView.infiniteScrollingView performSelector:@selector(stopAnimating) withObject:nil afterDelay:0];
-        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        [self stopActivity];
         [theTalbleView reloadData];
     });
 }

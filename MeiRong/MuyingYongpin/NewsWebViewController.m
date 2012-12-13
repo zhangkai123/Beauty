@@ -8,11 +8,11 @@
 
 #import "NewsWebViewController.h"
 #import "UIWebView+Clean.h"
-#import "MBProgressHUD.h"
 
 @interface NewsWebViewController ()
 {
     UIWebView *webView;
+    UIActivityIndicatorView * activityIndicator;
 }
 @end
 
@@ -26,6 +26,7 @@
     [[NSURLCache sharedURLCache] setMemoryCapacity:0];
 
     [newsUrls release];
+    [activityIndicator release];
     [super dealloc];
 }
 
@@ -75,13 +76,18 @@
     
     [self.view addSubview:webView];
     
-    [MBProgressHUD showHUDAddedTo:webView animated:YES];
+    activityIndicator = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(285, 12, 20, 20)];
+    //set the initial property
+    [activityIndicator startAnimating];
+    [activityIndicator hidesWhenStopped];
+    [topBar addSubview:activityIndicator];
+    
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
 }
 - (void)webViewDidFinishLoad:(UIWebView *)theWebView
 {
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
-    [MBProgressHUD hideHUDForView:webView animated:YES];
+    [activityIndicator stopAnimating];
     [[NSUserDefaults standardUserDefaults] setInteger:0 forKey:@"WebKitCacheModelPreferenceKey"];
 }
 -(void)goBack

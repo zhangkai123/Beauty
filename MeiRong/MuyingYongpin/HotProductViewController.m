@@ -16,7 +16,6 @@
 #import "CoreDataController.h"
 #import "CollectProduct.h"
 #import "ShareSns.h"
-#import "MBProgressHUD.h"
 
 @interface HotProductViewController()
 {
@@ -59,10 +58,38 @@
         titleLabel.text = @"热销单品";
         [self.navigationItem setTitleView:titleLabel];
         [titleLabel release];
+
+        [self createActivity];
     }
     return self;
     
 }
+-(void)startActivity{
+    
+    UIActivityIndicatorView *activityView = [[[self navigationItem].rightBarButtonItem.customView subviews]objectAtIndex:0];
+    [activityView startAnimating];
+}
+
+-(void)stopActivity{
+    
+    UIActivityIndicatorView *activityView = [[[self navigationItem].rightBarButtonItem.customView subviews]objectAtIndex:0];
+    [activityView stopAnimating];
+}
+
+-(void)createActivity
+{
+    UIActivityIndicatorView * activityIndicator = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
+    [activityIndicator stopAnimating];
+    [activityIndicator hidesWhenStopped];
+    UIView *rightItem = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 30, 20)];
+    [rightItem addSubview:activityIndicator];
+    [activityIndicator release];
+    UIBarButtonItem * barButton = [[UIBarButtonItem alloc] initWithCustomView:rightItem];
+    [self navigationItem].rightBarButtonItem = barButton;
+    [rightItem release];
+    [barButton release];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -127,7 +154,7 @@
     DataController *dataController = [DataController sharedDataController];
     [dataController fetachHotProducts:1];
     
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [self startActivity];
 }
 -(void)recieveHotProducts:(NSNotification *)notification
 {
@@ -139,7 +166,7 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             [productTableView.pullToRefreshView performSelector:@selector(stopAnimating) withObject:nil afterDelay:0];
             [productTableView.infiniteScrollingView performSelector:@selector(stopAnimating) withObject:nil afterDelay:0];
-            [MBProgressHUD hideHUDForView:self.view animated:YES];
+            [self stopActivity];
         });
         [myArray release];
         return;
@@ -171,7 +198,7 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         [productTableView.pullToRefreshView performSelector:@selector(stopAnimating) withObject:nil afterDelay:0];
         [productTableView.infiniteScrollingView performSelector:@selector(stopAnimating) withObject:nil afterDelay:0];
-        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        [self stopActivity];
         [productTableView reloadData];
     });
 }
@@ -264,7 +291,7 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    [super viewWillAppear:animated];
+    [super viewWillAppear:animated];    
 }
 
 - (void)viewDidAppear:(BOOL)animated

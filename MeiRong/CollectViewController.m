@@ -71,12 +71,16 @@
         [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"navbar_background"] forBarMetrics:UIBarMetricsDefault];
         [self.navigationController.navigationBar setOpaque:1.0];
     }
+    UIEdgeInsets insets = UIEdgeInsetsMake(0, 0, self.navigationController.navigationBar.frame.size.height, 0);
+    
     myTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, 320, 460-44-49) style:UITableViewStylePlain];
     [myTableView setBackgroundColor:[UIColor clearColor]];
     [myTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     myTableView.rowHeight = 155;
     myTableView.dataSource = self;
     myTableView.delegate = self;
+//    myTableView.scrollIndicatorInsets = insets;
+    myTableView.contentInset = insets;
     [self.view addSubview:myTableView];
     
     dataArray = [[NSMutableArray alloc]init];
