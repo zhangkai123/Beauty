@@ -34,7 +34,7 @@
         self.selectionStyle = UITableViewCellSelectionStyleNone;
         self.backgroundColor = [UIColor whiteColor];
         
-        UILabel *dLable = [[UILabel alloc]initWithFrame:CGRectMake(15, 310, 290, 45)];
+        UILabel *dLable = [[UILabel alloc]initWithFrame:CGRectMake(20, 300, 280, 45)];
         dLable.backgroundColor = [UIColor clearColor];
         dLable.lineBreakMode = UILineBreakModeWordWrap;
         dLable.numberOfLines = 0;
@@ -42,7 +42,7 @@
         self.desLable = dLable;
         [dLable release];
         
-        UIView *separateLineView = [[UIView alloc]initWithFrame:CGRectMake(10, 310 - 1, 300, 1)];
+        UIView *separateLineView = [[UIView alloc]initWithFrame:CGRectMake(15, 300 - 1, 290, 1)];
         separateLineView.backgroundColor = [UIColor lightGrayColor];
         [separateLineView setAlpha:0.3];
         [self addSubview:separateLineView];
@@ -51,7 +51,7 @@
         UIImage *cImage = [UIImage imageNamed:@"likeButton"];
         UIImage *stretchableButtonImageNormal = [cImage stretchableImageWithLeftCapWidth:23 topCapHeight:0];
         UIButton *cButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-        cButton.frame = CGRectMake(183, 360, cImage.size.width*2 + 8, cImage.size.height);
+        cButton.frame = CGRectMake(183, 342, cImage.size.width*2 + 8, cImage.size.height);
         [cButton setBackgroundImage:stretchableButtonImageNormal forState:UIControlStateNormal];
         [cButton addTarget:self action:@selector(collectProduct) forControlEvents:UIControlEventTouchDown];
         self.collectButton = cButton;
@@ -71,19 +71,19 @@
 
         UIImage *moreButtonImage = [UIImage imageNamed:@"moreButton"];
         UIButton *sButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-        sButton.frame = CGRectMake(255, 360, moreButtonImage.size.width, moreButtonImage.size.height);
+        sButton.frame = CGRectMake(255, 342, moreButtonImage.size.width, moreButtonImage.size.height);
         [sButton setBackgroundImage:moreButtonImage forState:UIControlStateNormal];
         [sButton addTarget:self action:@selector(shareProduct) forControlEvents:UIControlEventTouchDown];
         self.sharedButton = sButton;
         
-        TouchableImageView *mImageView = [[TouchableImageView alloc]initWithFrame:CGRectMake(10, 10, 300, 300)];
+        TouchableImageView *mImageView = [[TouchableImageView alloc]initWithFrame:CGRectMake(15, 10, 290,290)];
         mImageView.backgroundColor = [UIColor clearColor];
         mImageView.userInteractionEnabled = YES;
         mImageView.delegate = self;
         self.myImageView = mImageView;
         [mImageView release];
         
-        HotCellView *cView = [[HotCellView alloc]initWithFrame:CGRectMake(0, 0, 320, 400)];
+        HotCellView *cView = [[HotCellView alloc]initWithFrame:CGRectMake(0, 0, 320, 380)];
         self.coverView = cView;
         [cView release];
         [self.coverView addSubview:self.myImageView];
@@ -124,7 +124,7 @@
 
 - (void)touchableImageViewViewWasSelected:(TouchableImageView *)thumbnailImageView
 {
-    UIView *selectedView = [[UIView alloc]initWithFrame:CGRectMake(10, 10, 300, 300)];
+    UIView *selectedView = [[UIView alloc]initWithFrame:CGRectMake(15, 10, 290,290)];
     selectedView.backgroundColor = [UIColor colorWithRed:1 green:0.6 blue:0.8 alpha:1.0];
     selectedView.tag = 1000;
     [selectedView setAlpha:0.2];

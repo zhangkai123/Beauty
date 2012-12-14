@@ -18,7 +18,7 @@
  */
 -(UIImage*) imageWithRoundedCorners:(CGFloat) radius alphaBackground:(UIColor*) aColor
 {
-    return [self imageWithSize:CGSizeMake(300, 300)//[self size]
+    return [self imageWithSize:CGSizeMake(512, 512)//[self size]
 						 block:^(CGContextRef context) {
                              
 							 CGImageRef	mask,imageMask,maskedImage;
@@ -26,7 +26,7 @@
 							 CGRect		rect	= CGRectZero;
                              
                              //							 rect.size = [self size];
-                             rect.size = CGSizeMake(300, 300);
+                             rect.size = CGSizeMake(512, 512);
                              
 							 //Create a path
 							 path = [self newPathForRoundedRect:rect

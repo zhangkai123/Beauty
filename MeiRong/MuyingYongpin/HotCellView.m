@@ -33,7 +33,7 @@
     
     CGContextRef ctx = UIGraphicsGetCurrentContext();
 
-    CGPathRef outlinePath = [self newPathForRoundedRect:CGRectMake(10, 10, 300, 390) radius:5];
+    CGPathRef outlinePath = [self newPathForRoundedRect:CGRectMake(15, 10, 290, 360) radius:5];
     
     CGContextSetShadow(ctx, CGSizeMake(1,1), 3);
     CGContextAddPath(ctx, outlinePath);

@@ -57,7 +57,7 @@ static ImageProcesser *sharedInstance;
 {
     UIImage *image = [processInfo objectForKey:IMAGE_KEY];
     
-    UIImage *processedImage = [image imageWithRoundedCorners:5 alphaBackground:[UIColor clearColor]];
+    UIImage *processedImage = [image imageWithRoundedCorners:8 alphaBackground:[UIColor clearColor]];
     
     NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:
                           processedImage, PROCESSED_IMAGE_KEY,

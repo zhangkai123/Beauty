@@ -107,7 +107,7 @@
     productTableView.showsVerticalScrollIndicator = NO;
     productTableView.delegate = self;
     productTableView.dataSource = self;
-    productTableView.rowHeight = 400;
+    productTableView.rowHeight = 380;
     [self.view addSubview:productTableView];
     
      productsArray = [[NSMutableArray alloc]init];
