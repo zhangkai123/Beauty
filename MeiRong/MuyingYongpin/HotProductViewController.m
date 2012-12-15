@@ -192,14 +192,27 @@
             product.collect = YES;
         }
     }
+    
+    int currentCount = [productsArray count];
+    NSMutableArray *rowsInsertIndexPath = [[NSMutableArray alloc] init];
+    for (NSInteger i = 0; i < [myArray count]; i++) {
+        NSIndexPath *tempIndexPath = [NSIndexPath indexPathForRow:currentCount + i inSection:0];
+        [rowsInsertIndexPath addObject:tempIndexPath];
+    }
     [productsArray addObjectsFromArray:myArray];
     [myArray release];
+    
     //nofification is recieved in another thread
     dispatch_async(dispatch_get_main_queue(), ^{
         [productTableView.pullToRefreshView performSelector:@selector(stopAnimating) withObject:nil afterDelay:0];
         [productTableView.infiniteScrollingView performSelector:@selector(stopAnimating) withObject:nil afterDelay:0];
         [self stopActivity];
-        [productTableView reloadData];
+        if (refresh) {
+            [productTableView reloadData];
+        }else{
+            [productTableView insertRowsAtIndexPaths:rowsInsertIndexPath withRowAnimation:UITableViewRowAnimationTop];
+            [rowsInsertIndexPath release];
+        }
     });
 }
 -(void)refreshCollected:(NSNotification *)notification

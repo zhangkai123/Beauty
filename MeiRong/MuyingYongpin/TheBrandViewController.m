@@ -200,14 +200,35 @@
             product.collect = YES;
         }
     }
+    
+    int rowCount;
+    int totalProducts = [pArray count];
+    if (totalProducts%2 == 1) {
+        rowCount = (totalProducts +1)/2;
+    }else{
+        rowCount = totalProducts/2;
+    }
+    
+    int currentCount = [theTalbleView numberOfRowsInSection:0];
+    NSMutableArray *rowsInsertIndexPath = [[NSMutableArray alloc] init];
+    for (NSInteger i = 0; i < rowCount; i++) {
+        NSIndexPath *tempIndexPath = [NSIndexPath indexPathForRow:currentCount + i inSection:0];
+        [rowsInsertIndexPath addObject:tempIndexPath];
+    }
     [productsArray addObjectsFromArray:pArray];
     [pArray release];
+
     
     dispatch_async(dispatch_get_main_queue(), ^{
         [theTalbleView.pullToRefreshView performSelector:@selector(stopAnimating) withObject:nil afterDelay:0];
         [theTalbleView.infiniteScrollingView performSelector:@selector(stopAnimating) withObject:nil afterDelay:0];
         [self stopActivity];
-        [theTalbleView reloadData];
+        if (refresh) {
+            [theTalbleView reloadData];
+        }else{
+            [theTalbleView insertRowsAtIndexPaths:rowsInsertIndexPath withRowAnimation:UITableViewRowAnimationRight];
+            [rowsInsertIndexPath release];
+        }
     });
 }
 -(void)createNavBackButton

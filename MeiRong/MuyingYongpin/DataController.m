@@ -38,6 +38,17 @@
 {
     [[NSNotificationCenter defaultCenter] postNotificationName: kNotReachabilityNotification object: nil];
 }
+-(void)showAlert:(NSString *)alertMessage
+{
+    UIAlertView *alert = [[UIAlertView alloc]
+                          initWithTitle: nil
+                          message: alertMessage
+                          delegate: self
+                          cancelButtonTitle:@"ok"
+                          otherButtonTitles:nil,nil];
+    [alert show];
+    [alert release];
+}
 -(void)fetachHotProducts:(int)pageN
 {
     if (![[ReachableManager sharedReachableManager]reachable]) {
@@ -58,10 +69,24 @@
         
         [theRequest addValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
         NSData *resultData = [NSURLConnection sendSynchronousRequest:theRequest returningResponse:&theResponse error:&error];
-        NSMutableArray *pArray = [self parseProductsData:resultData];
-
-        [[NSNotificationCenter defaultCenter]postNotificationName:@"HOT_PRODUCTS_REARDY" object:pArray userInfo:nil];
-        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+        /* Return Value
+         The downloaded data for the URL request. Returns nil if a connection could not be created or if the download fails.
+         */
+        if (resultData == nil) {
+            
+            // Check for problems
+            if (error != nil) {
+                [self showAlert:[error description]];
+            }else{
+                [self showAlert:@"返回数据为空"];
+            }
+        }
+        else {
+            // Data was received.. continue processing
+            NSMutableArray *pArray = [self parseProductsData:resultData];
+            [[NSNotificationCenter defaultCenter]postNotificationName:@"HOT_PRODUCTS_REARDY" object:pArray userInfo:nil];
+            [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+        }        
     });
 }
 -(void)fetachCateProducts:(NSString *)cateName notiName:(NSString *)nName pageNumber:(int)pageN
@@ -87,10 +112,25 @@
         
         [theRequest addValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
         NSData *resultData = [NSURLConnection sendSynchronousRequest:theRequest returningResponse:&theResponse error:&error];
-        NSMutableArray *pArray = [self parseProductsData:resultData];
         
-        [[NSNotificationCenter defaultCenter]postNotificationName:nName object:pArray userInfo:nil];
-        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+        /* Return Value
+         The downloaded data for the URL request. Returns nil if a connection could not be created or if the download fails.
+         */
+        if (resultData == nil) {
+            
+            // Check for problems
+            if (error != nil) {
+                [self showAlert:[error description]];
+            }else{
+                [self showAlert:@"返回数据为空"];
+            }
+        }
+        else {
+            // Data was received.. continue processing
+            NSMutableArray *pArray = [self parseProductsData:resultData];
+            [[NSNotificationCenter defaultCenter]postNotificationName:nName object:pArray userInfo:nil];
+            [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+        }
     });
 }
 -(NSMutableArray *)parseProductsData:(NSData *)data
@@ -135,9 +175,25 @@
         NSData *xmlData = [NSURLConnection sendSynchronousRequest:theRequest returningResponse:&theResponse error:&error];
 //        NSString *xmlString = [[NSString alloc]initWithData:xmlData encoding:NSUTF8StringEncoding];
 //        NSLog(@"%@",xmlString);
-        NSMutableArray *newsArray = [self parseRssData:xmlData];
-        [[NSNotificationCenter defaultCenter]postNotificationName:@"NEWS_READY" object:newsArray userInfo:nil];
-        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+        
+        /* Return Value
+         The downloaded data for the URL request. Returns nil if a connection could not be created or if the download fails.
+         */
+        if (xmlData == nil) {
+            
+            // Check for problems
+            if (error != nil) {
+                [self showAlert:[error description]];
+            }else{
+                [self showAlert:@"返回数据为空"];
+            }
+        }
+        else {
+            // Data was received.. continue processing
+            NSMutableArray *newsArray = [self parseRssData:xmlData];
+            [[NSNotificationCenter defaultCenter]postNotificationName:@"NEWS_READY" object:newsArray userInfo:nil];
+            [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+        }
     });
 }
 -(NSMutableArray *)parseRssData:(NSData *)data

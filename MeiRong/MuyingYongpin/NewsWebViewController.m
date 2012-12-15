@@ -30,6 +30,18 @@
     [super dealloc];
 }
 
+-(void)showAlert:(NSString *)alertMessage
+{
+    UIAlertView *alert = [[UIAlertView alloc]
+                          initWithTitle: nil
+                          message: alertMessage
+                          delegate: self
+                          cancelButtonTitle:@"ok"
+                          otherButtonTitles:nil,nil];
+    [alert show];
+    [alert release];
+}
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -89,6 +101,9 @@
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
     [activityIndicator stopAnimating];
     [[NSUserDefaults standardUserDefaults] setInteger:0 forKey:@"WebKitCacheModelPreferenceKey"];
+}
+- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error{
+    [self showAlert:[error description]];
 }
 -(void)goBack
 {
