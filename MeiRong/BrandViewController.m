@@ -85,7 +85,7 @@
     myTableView.delegate = self;
     myTableView.dataSource = self;
     myTableView.contentInset = insets;
-    myTableView.backgroundColor = [UIColor clearColor];
+//    myTableView.backgroundColor = [UIColor clearColor];
     //    productTableView.rowHeight = 480;
     [self.view addSubview:myTableView];
 

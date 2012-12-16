@@ -211,7 +211,11 @@
         if (refresh) {
             [productTableView reloadData];
         }else{
-            [productTableView insertRowsAtIndexPaths:rowsInsertIndexPath withRowAnimation:UITableViewRowAnimationTop];
+            if (currentCount == 0) {
+                [productTableView insertRowsAtIndexPaths:rowsInsertIndexPath withRowAnimation:UITableViewRowAnimationNone];
+            }else{
+                [productTableView insertRowsAtIndexPaths:rowsInsertIndexPath withRowAnimation:UITableViewRowAnimationRight];
+            }
             [rowsInsertIndexPath release];
         }
     });
