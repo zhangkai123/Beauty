@@ -92,6 +92,7 @@
     shadowView.backgroundColor = [UIColor blackColor];
     [shadowView setAlpha:0.3];
     [self.view addSubview:shadowView];
+    [shadowView release];
     
     UIImageView *bottomBar = [[UIImageView alloc]initWithFrame:CGRectMake(0, 460 - 40, 320, 40)];
     bottomBar.image = [UIImage imageNamed:@"navbar_background"];
@@ -103,6 +104,7 @@
     shadowView2.backgroundColor = [UIColor blackColor];
     [shadowView2 setAlpha:0.1];
     [self.view addSubview:shadowView2];
+    [shadowView2 release];
     
     activityIndicator = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(285, 12, 20, 20)];
     //set the initial property
