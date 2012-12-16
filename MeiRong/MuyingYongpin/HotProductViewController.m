@@ -47,7 +47,7 @@
         self.tabBarItem.image = [UIImage imageNamed:@"iconListTab"];
 
         // set the long name shown in the navigation bar at the top
-        UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 320, 30)];
+        UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(50, 0, 220, 30)];
 //        titleLabel.textColor = [UIColor colorWithRed:1 green: 0.6 blue:0.8 alpha:1];
         titleLabel.textColor = [UIColor whiteColor];
         [titleLabel setTextAlignment:UITextAlignmentCenter];
@@ -82,6 +82,7 @@
     [activityIndicator stopAnimating];
     [activityIndicator hidesWhenStopped];
     UIView *rightItem = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 30, 20)];
+    rightItem.backgroundColor = [UIColor clearColor];
     [rightItem addSubview:activityIndicator];
     [activityIndicator release];
     UIBarButtonItem * barButton = [[UIBarButtonItem alloc] initWithCustomView:rightItem];
@@ -104,7 +105,7 @@
     productTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 460-44-49) style:UITableViewStylePlain];
     productTableView.backgroundColor = [UIColor clearColor];
     [productTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-    productTableView.showsVerticalScrollIndicator = NO;
+///    productTableView.showsVerticalScrollIndicator = NO;
     productTableView.delegate = self;
     productTableView.dataSource = self;
     productTableView.rowHeight = 380;

@@ -11,7 +11,6 @@
 
 @interface WebViewController ()
 {
-    UIView *backView;
     UIWebView *webView;
     UIActivityIndicatorView * activityIndicator;
 }
@@ -28,7 +27,6 @@
     [[NSURLCache sharedURLCache] setMemoryCapacity:0];
 
     [productUrlS release];
-    [backView release];
     [activityIndicator release];
     [super dealloc];
 }
@@ -61,6 +59,19 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+        
+	// Do any additional setup after loading the view.
+    self.view.backgroundColor = [UIColor whiteColor];
+    webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 44, 320, 460 - 44 - 40)];
+    webView.scalesPageToFit = YES;
+    [webView setDelegate:self];
+    
+    NSLog(@"%@",productUrlS);
+    NSURL *url = [NSURL URLWithString:productUrlS];
+    NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
+    [webView loadRequest:requestObj];
+    webView.hidden = YES;
+    [self.view addSubview:webView];
     
     UIImageView *topBar = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 320, 44)];
     topBar.image = [UIImage imageNamed:@"navbar_background"];
@@ -77,21 +88,21 @@
     [topBarBackButton release];
     [topBar release];
     
-    backView = [[UIView alloc] initWithFrame:CGRectMake(0, 44, 320, 460-44)];
-    [self.view addSubview:backView];
+    UIImageView *shadowView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 44, 320, 1)];
+    shadowView.backgroundColor = [UIColor blackColor];
+    [shadowView setAlpha:0.3];
+    [self.view addSubview:shadowView];
     
-	// Do any additional setup after loading the view.
-    self.view.backgroundColor = [UIColor whiteColor];
-    webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 44, 320, 460-44)];
-    webView.scalesPageToFit = YES;
-    [webView setDelegate:self];
+    UIImageView *bottomBar = [[UIImageView alloc]initWithFrame:CGRectMake(0, 460 - 40, 320, 40)];
+    bottomBar.image = [UIImage imageNamed:@"navbar_background"];
+    bottomBar.userInteractionEnabled = YES;
+    [self.view addSubview:bottomBar];
+    [bottomBar release];
     
-    NSLog(@"%@",productUrlS);
-    NSURL *url = [NSURL URLWithString:productUrlS];
-    NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
-    [webView loadRequest:requestObj];
-    webView.hidden = YES;
-    [self.view addSubview:webView];
+    UIImageView *shadowView2 = [[UIImageView alloc]initWithFrame:CGRectMake(0, 460 - 40 - 1, 320, 1)];
+    shadowView2.backgroundColor = [UIColor blackColor];
+    [shadowView2 setAlpha:0.1];
+    [self.view addSubview:shadowView2];
     
     activityIndicator = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(285, 12, 20, 20)];
     //set the initial property
@@ -127,7 +138,11 @@
      "}\";"
      "document.getElementsByTagName('head')[0].appendChild(script);"];
     
-    [webView stringByEvaluatingJavaScriptFromString:@"hideID('header');"
+//    [webView stringByEvaluatingJavaScriptFromString:@"hideID('h5back_btn');"
+//    "hideID('head');"
+//     "window.location = 'fake://myApp/something_happened:param1:param2:param3';"];
+    
+    [webView stringByEvaluatingJavaScriptFromString:@"hideID('h5back_btn');"
      "window.location = 'fake://myApp/something_happened:param1:param2:param3';"];
 }
 - (BOOL)webView:(UIWebView *)webView2 shouldStartLoadWithRequest:(NSURLRequest *)request

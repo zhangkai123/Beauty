@@ -57,12 +57,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"SheetBackground"]];
     
     //for tableview selected color
     bgColorView = [[UIView alloc] init];
     [bgColorView setBackgroundColor:[UIColor colorWithRed:1 green:0.6 blue:0.8 alpha:1.0]];
 
-    self.view.backgroundColor = [UIColor blueColor];
     if ([self.navigationController.navigationBar respondsToSelector:@selector( setBackgroundImage:forBarMetrics:)]){
         [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"navbar_background"] forBarMetrics:UIBarMetricsDefault];
         [self.navigationController.navigationBar setOpaque:1.0];
@@ -85,6 +85,7 @@
     myTableView.delegate = self;
     myTableView.dataSource = self;
     myTableView.contentInset = insets;
+    myTableView.backgroundColor = [UIColor clearColor];
     //    productTableView.rowHeight = 480;
     [self.view addSubview:myTableView];
 
