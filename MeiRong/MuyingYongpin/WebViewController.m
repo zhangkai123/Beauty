@@ -100,6 +100,30 @@
     [self.view addSubview:bottomBar];
     [bottomBar release];
     
+    UIButton *leftArrow = [[UIButton alloc]initWithFrame:CGRectMake(40, 0, 40, 40)];
+    [leftArrow setImage:[UIImage imageNamed:@"web_tab_back"] forState:UIControlStateNormal];
+    [leftArrow addTarget:self action:@selector(webGoback) forControlEvents:UIControlEventTouchDown];
+//    leftArrow.backgroundColor = [UIColor blueColor];
+    leftArrow.showsTouchWhenHighlighted = YES;
+    [bottomBar addSubview:leftArrow];
+    [leftArrow release];
+    
+    UIButton *rightArrow = [[UIButton alloc]initWithFrame:CGRectMake(140, 0, 40, 40)];
+    [rightArrow setImage:[UIImage imageNamed:@"web_tab_forward"] forState:UIControlStateNormal];
+    [rightArrow addTarget:self action:@selector(webGoforward) forControlEvents:UIControlEventTouchDown];
+//    rightArrow.backgroundColor = [UIColor blueColor];
+    rightArrow.showsTouchWhenHighlighted = YES;
+    [bottomBar addSubview:rightArrow];
+    [rightArrow release];
+    
+    UIButton *refreshButton = [[UIButton alloc]initWithFrame:CGRectMake(250, 0, 40, 40)];
+    [refreshButton setImage:[UIImage imageNamed:@"button_refresh"] forState:UIControlStateNormal];
+    [refreshButton addTarget:self action:@selector(webRefresh) forControlEvents:UIControlEventTouchDown];
+//    refreshButton.backgroundColor = [UIColor blueColor];
+    refreshButton.showsTouchWhenHighlighted = YES;
+    [bottomBar addSubview:refreshButton];
+    [refreshButton release];
+    
     UIImageView *shadowView2 = [[UIImageView alloc]initWithFrame:CGRectMake(0, 460 - 40 - 1, 320, 1)];
     shadowView2.backgroundColor = [UIColor blackColor];
     [shadowView2 setAlpha:0.1];
@@ -114,6 +138,19 @@
 
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
 }
+-(void)webGoback
+{
+    [webView goBack];
+}
+-(void)webGoforward
+{
+    [webView goForward];
+}
+-(void)webRefresh
+{
+    [webView reload];
+}
+
 - (void)webViewDidFinishLoad:(UIWebView *)theWebView
 {
     [[NSUserDefaults standardUserDefaults] setInteger:0 forKey:@"WebKitCacheModelPreferenceKey"];
@@ -139,13 +176,9 @@
      
      "}\";"
      "document.getElementsByTagName('head')[0].appendChild(script);"];
-    
-//    [webView stringByEvaluatingJavaScriptFromString:@"hideID('h5back_btn');"
-//    "hideID('head');"
-//     "window.location = 'fake://myApp/something_happened:param1:param2:param3';"];
-    
+        
     [webView stringByEvaluatingJavaScriptFromString:@"hideID('h5back_btn');"
-     "window.location = 'fake://myApp/something_happened:param1:param2:param3';"];
+     "window.location = 'fake://myApp/something_happened:param1:param2:param3';"];    
 }
 - (BOOL)webView:(UIWebView *)webView2 shouldStartLoadWithRequest:(NSURLRequest *)request
  navigationType:(UIWebViewNavigationType)navigationType {
