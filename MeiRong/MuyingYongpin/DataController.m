@@ -40,14 +40,17 @@
 }
 -(void)showAlert:(NSString *)alertMessage
 {
-    UIAlertView *alert = [[UIAlertView alloc]
-                          initWithTitle: nil
-                          message: alertMessage
-                          delegate: self
-                          cancelButtonTitle:@"ok"
-                          otherButtonTitles:nil,nil];
-    [alert show];
-    [alert release];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        
+            UIAlertView *alert = [[UIAlertView alloc]
+                                  initWithTitle: nil
+                                  message: alertMessage
+                                  delegate: nil
+                                  cancelButtonTitle:@"ok"
+                                  otherButtonTitles:nil,nil];
+            [alert show];
+            [alert release];
+    });
 }
 -(void)fetachHotProducts:(int)pageN
 {
