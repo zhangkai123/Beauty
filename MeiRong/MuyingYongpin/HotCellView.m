@@ -29,7 +29,6 @@
 - (void)drawRect:(CGRect)rect
 {
     [super drawRect:rect];
-    CGGradientRef gradient = [self normalGradient];
     
     CGContextRef ctx = UIGraphicsGetCurrentContext();
 
@@ -37,47 +36,10 @@
     
     CGContextSetShadow(ctx, CGSizeMake(1,1), 3);
     CGContextAddPath(ctx, outlinePath);
+    CGContextSetRGBFillColor(ctx, 1.0f, 1.0f, 1.0f, 1.0f);
     CGContextFillPath(ctx);
-    
-    CGContextAddPath(ctx, outlinePath);
-    CGContextClip(ctx);
-    
-    CGPoint start = CGPointMake(rect.origin.x, rect.origin.y);
-    CGPoint end = CGPointMake(rect.origin.x, rect.size.height);
-    CGContextDrawLinearGradient(ctx, gradient, start, end, 0);
-    
+            
     CGPathRelease(outlinePath);
-    CGGradientRelease(gradient);
-}
-- (CGGradientRef)normalGradient
-{
-    
-    NSMutableArray *normalGradientLocations = [NSMutableArray arrayWithObjects:
-                                               [NSNumber numberWithFloat:0.0f],
-                                               [NSNumber numberWithFloat:1.0f],
-                                               nil];
-    
-    
-    NSMutableArray *colors = [NSMutableArray arrayWithCapacity:2];
-    
-    UIColor *color = [UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:1.0];
-    [colors addObject:(id)[color CGColor]];
-    color = [UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:1.0];
-    [colors addObject:(id)[color CGColor]];
-    NSMutableArray  *normalGradientColors = colors;
-    
-    int locCount = [normalGradientLocations count];
-    CGFloat locations[locCount];
-    for (int i = 0; i < [normalGradientLocations count]; i++)
-    {
-        NSNumber *location = [normalGradientLocations objectAtIndex:i];
-        locations[i] = [location floatValue];
-    }
-    CGColorSpaceRef space = CGColorSpaceCreateDeviceRGB();
-    
-    CGGradientRef normalGradient = CGGradientCreateWithColors(space, (CFArrayRef)normalGradientColors, locations);
-    CGColorSpaceRelease(space);
-    return normalGradient;
 }
 //Create a pill with the given rect
 - (CGPathRef) newPathForRoundedRect:(CGRect)rect radius:(CGFloat)radius

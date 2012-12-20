@@ -87,7 +87,6 @@
         self.coverView = cView;
         [cView release];
         [self.coverView addSubview:self.myImageView];
-        
         [self.coverView addSubview:self.desLable];
         [self.coverView addSubview:self.collectButton];
         [self.coverView addSubview:self.sharedButton];
