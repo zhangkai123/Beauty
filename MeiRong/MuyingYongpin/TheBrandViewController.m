@@ -109,7 +109,7 @@
     theTalbleView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, 320, 460-44-50) style:UITableViewStylePlain];
     [theTalbleView setBackgroundColor:[UIColor clearColor]];
     [theTalbleView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-    theTalbleView.rowHeight = 155;
+    theTalbleView.rowHeight = 190;
     theTalbleView.dataSource = self;
     theTalbleView.delegate = self;
     [self.view addSubview:theTalbleView];
@@ -445,7 +445,6 @@
         NSString *rProduct = [NSString stringWithFormat:@"%@_160x160.jpg",rightProduct.pic_url];
         [cell.rightImageView setImageWithURL:[NSURL URLWithString:rProduct] placeholderImage:nil];
     }else{
-//        [cell.rightImageView setImageWithURL:[NSURL URLWithString:nil] placeholderImage:[UIImage imageNamed:@"BackgroundPattern"]];
         cell.coverView2.hidden = YES;
     }
     return cell;

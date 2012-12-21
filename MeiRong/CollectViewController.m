@@ -76,7 +76,7 @@
     myTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, 320, 460-44-49) style:UITableViewStylePlain];
     [myTableView setBackgroundColor:[UIColor clearColor]];
     [myTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-    myTableView.rowHeight = 155;
+    myTableView.rowHeight = 190;
     myTableView.dataSource = self;
     myTableView.delegate = self;
 //    myTableView.scrollIndicatorInsets = insets;

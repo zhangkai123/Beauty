@@ -24,29 +24,29 @@
     if (self) {
         self.selectionStyle = UITableViewCellSelectionStyleNone;
         // Initialization code
-        TouchableImageView *lImageView = [[TouchableImageView alloc]initWithFrame:CGRectMake(15, 10, 137, 137)];
+        TouchableImageView *lImageView = [[TouchableImageView alloc]initWithFrame:CGRectMake(10, 10, 145, 145)];
         lImageView.backgroundColor = [UIColor clearColor];
         lImageView.userInteractionEnabled = YES;
         lImageView.delegate = self;
         self.leftImageView = lImageView;
         [lImageView release];
         
-        StyleOneCellView *coverView1 = [[StyleOneCellView alloc]initWithFrame:CGRectMake(0, 0, 160, 155)];
-        coverView1.frameRect = CGRectMake(15, 10, 137, 137);
+        StyleOneCellView *coverView1 = [[StyleOneCellView alloc]initWithFrame:CGRectMake(0, 0, 160, 200)];
+        coverView1.frameRect = CGRectMake(10, 10, 145, 180);
         [coverView1 addSubview:self.leftImageView];
         
         [self addSubview:coverView1];
         [coverView1 release];
         
-        TouchableImageView *rImageView = [[TouchableImageView alloc]initWithFrame:CGRectMake(7.5, 10, 137, 137)];
+        TouchableImageView *rImageView = [[TouchableImageView alloc]initWithFrame:CGRectMake(5, 10, 145, 145)];
         rImageView.backgroundColor = [UIColor clearColor];
         rImageView.userInteractionEnabled = YES;
         rImageView.delegate = self;
         self.rightImageView = rImageView;
         [rImageView release];
                 
-        StyleOneCellView *rCoverView = [[StyleOneCellView alloc]initWithFrame:CGRectMake(160, 0, 160, 155)];
-        rCoverView.frameRect = CGRectMake(7.5, 10, 137, 137);
+        StyleOneCellView *rCoverView = [[StyleOneCellView alloc]initWithFrame:CGRectMake(160, 0, 160, 200)];
+        rCoverView.frameRect = CGRectMake(5, 10, 145, 180);
         [rCoverView addSubview:self.rightImageView];
         self.coverView2 = rCoverView;
         [rCoverView release];
