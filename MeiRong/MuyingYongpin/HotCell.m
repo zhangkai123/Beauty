@@ -34,17 +34,17 @@
         self.selectionStyle = UITableViewCellSelectionStyleNone;
         self.backgroundColor = [UIColor whiteColor];
         
-        UILabel *dLable = [[UILabel alloc]initWithFrame:CGRectMake(20, 300, 280, 45)];
+        UILabel *dLable = [[UILabel alloc]initWithFrame:CGRectMake(20, 300, 280, 40)];
         dLable.backgroundColor = [UIColor clearColor];
         dLable.lineBreakMode = UILineBreakModeWordWrap;
         dLable.numberOfLines = 0;
-        [dLable setFont:[UIFont fontWithName:@"Heiti TC" size:15]];
+        [dLable setFont:[UIFont fontWithName:@"Heiti TC" size:12]];
         self.desLable = dLable;
         [dLable release];
         
         UIView *separateLineView = [[UIView alloc]initWithFrame:CGRectMake(15, 300 - 1, 290, 1)];
-        separateLineView.backgroundColor = [UIColor lightGrayColor];
-        [separateLineView setAlpha:0.3];
+        separateLineView.backgroundColor = [UIColor darkGrayColor];
+        [separateLineView setAlpha:0.1];
         [self addSubview:separateLineView];
         [separateLineView release];
         

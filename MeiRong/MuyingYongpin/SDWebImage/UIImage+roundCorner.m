@@ -100,22 +100,9 @@
 	CGFloat inside_bottom = innerRect.origin.y + innerRect.size.height;
 	CGFloat outside_bottom = rect.origin.y + rect.size.height;
     
-	CGFloat inside_top = innerRect.origin.y;
 	CGFloat outside_top = rect.origin.y;
 	CGFloat outside_left = rect.origin.x;
-    
-//	CGPathMoveToPoint(retPath, NULL, innerRect.origin.x, outside_top);
-//    
-//	CGPathAddLineToPoint(retPath, NULL, inside_right, outside_top);
-//	CGPathAddArcToPoint(retPath, NULL, outside_right, outside_top, outside_right, inside_top, radius);
-//	CGPathAddLineToPoint(retPath, NULL, outside_right, inside_bottom);
-//	CGPathAddArcToPoint(retPath, NULL,  outside_right, outside_bottom, inside_right, outside_bottom, radius);
-//    
-//	CGPathAddLineToPoint(retPath, NULL, innerRect.origin.x, outside_bottom);
-//	CGPathAddArcToPoint(retPath, NULL,  outside_left, outside_bottom, outside_left, inside_bottom, radius);
-//	CGPathAddLineToPoint(retPath, NULL, outside_left, inside_top);
-//	CGPathAddArcToPoint(retPath, NULL,  outside_left, outside_top, innerRect.origin.x, outside_top, radius);
-    
+        
     CGPathMoveToPoint(retPath, NULL, outside_left, outside_top);
     
 	CGPathAddLineToPoint(retPath, NULL, outside_right, outside_top);

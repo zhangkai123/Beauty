@@ -36,7 +36,7 @@
     
     CGContextSetShadow(ctx, CGSizeMake(1,1), 3);
     CGContextAddPath(ctx, outlinePath);
-    CGContextSetRGBFillColor(ctx, 1.0f, 1.0f, 1.0f, 1.0f);
+    CGContextSetRGBFillColor(ctx, 1, 1, 1, 1.0f);
     CGContextFillPath(ctx);
             
     CGPathRelease(outlinePath);
