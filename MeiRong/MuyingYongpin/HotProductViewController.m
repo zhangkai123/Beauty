@@ -251,7 +251,7 @@
     cell.delegate = self;
     cell.rowNum = indexPath.row;
     Product *product = [productsArray objectAtIndex:indexPath.row];
-    [cell.myImageView setImageWithURL:[NSURL URLWithString:product.pic_url] placeholderImage:nil];
+    [cell.myImageView setImageWithURL:[NSURL URLWithString:product.pic_url] placeholderImage:[UIImage imageNamed:@"bPlaceHolder.png"]];
     cell.desLable.text = product.title;
     if (product.collect) {
         [cell.collectLabel setText:@"已收藏"];
