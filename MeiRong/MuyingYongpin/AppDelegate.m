@@ -116,7 +116,7 @@
      If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
      */
     SDImageCache *imageCache = [SDImageCache sharedImageCache];
-    if ([imageCache getSize] > 200) {
+    if ([imageCache getSize] > 50) {
         [imageCache clearDisk];
     }else{
         [imageCache cleanDisk];

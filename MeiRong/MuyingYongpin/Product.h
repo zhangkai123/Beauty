@@ -14,7 +14,8 @@
 @property(nonatomic,copy) NSString * title;
 //@property(nonatomic,copy) NSString * nick;
 @property(nonatomic,copy) NSString *pic_url;
-//@property(nonatomic,copy) NSString *price;
+@property(nonatomic,copy) NSString *price;
+@property(nonatomic,copy) NSString *likes;
 @property(nonatomic,copy) NSString *click_url;
 //@property(nonatomic,copy) NSString *commission;
 //@property(nonatomic,copy) NSString *commission_rate;

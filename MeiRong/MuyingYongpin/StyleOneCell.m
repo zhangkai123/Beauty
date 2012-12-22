@@ -9,13 +9,19 @@
 #import "StyleOneCell.h"
 
 @implementation StyleOneCell
-@synthesize leftImageView ,rightImageView ,coverView2 ,rowNum;
+@synthesize leftImageView ,rightImageView ,priceLabel2 ,priceLabelR2 ,likeLabel2 ,coverView2 ,rowNum;
+@synthesize price ,likes;
 @synthesize delegate;
 -(void)dealloc
 {
     [leftImageView release];
     [rightImageView release];
+    [priceLabel2 release];
+    [priceLabelR2 release];
+    [likeLabel2 release];
     [coverView2 release];
+    [price release];
+    [likes release];
     [super dealloc];
 }
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -35,6 +41,33 @@
         coverView1.frameRect = CGRectMake(10, 10, 145, 180);
         [coverView1 addSubview:self.leftImageView];
         
+        UILabel *priceLabel1 = [[UILabel alloc]initWithFrame:CGRectMake(15, 155, 40, 35)];
+        priceLabel1.text = @"价格:";
+        priceLabel1.font = [UIFont fontWithName:@"Heiti TC" size:12];
+//        priceLabel1.backgroundColor = [UIColor blueColor];
+        [coverView1 addSubview:priceLabel1];
+        [priceLabel1 release];
+        
+        priceLabel2 = [[UILabel alloc]initWithFrame:CGRectMake(5 + 40, 155, 40, 35)];
+        priceLabel2.font = [UIFont fontWithName:@"Heiti TC" size:12];
+        priceLabel2.textColor = [UIColor colorWithRed:(196/255.f) green:(72/255.f) blue:(72/255.f) alpha:1];
+//        priceLabel2.backgroundColor = [UIColor blueColor];
+        [coverView1 addSubview:priceLabel2];
+        
+        UILabel *likeLabel1 = [[UILabel alloc]initWithFrame:CGRectMake(95, 155, 25, 35)];
+        likeLabel1.text = @"喜欢";
+        likeLabel1.font = [UIFont fontWithName:@"Heiti TC" size:12];
+//        likeLabel1.backgroundColor = [UIColor yellowColor];
+        [coverView1 addSubview:likeLabel1];
+        [likeLabel1 release];
+        
+        likeLabel2 = [[UILabel alloc]initWithFrame:CGRectMake(95 + 25, 155, 30, 35)];
+        likeLabel2.font = [UIFont fontWithName:@"Heiti TC" size:12];
+        likeLabel2.textColor = [UIColor colorWithRed:(196/255.f) green:(72/255.f) blue:(72/255.f) alpha:1];
+        likeLabel2.textAlignment = UITextAlignmentCenter;
+//        likeLabel2.backgroundColor = [UIColor blueColor];
+        [coverView1 addSubview:likeLabel2];
+        
         [self addSubview:coverView1];
         [coverView1 release];
         
@@ -50,6 +83,19 @@
         [rCoverView addSubview:self.rightImageView];
         self.coverView2 = rCoverView;
         [rCoverView release];
+        
+        UILabel *priceLabelR1 = [[UILabel alloc]initWithFrame:CGRectMake(10, 155, 40, 35)];
+        priceLabelR1.text = @"价格:";
+        priceLabelR1.font = [UIFont fontWithName:@"Heiti TC" size:12];
+//        priceLabelR1.backgroundColor = [UIColor blueColor];
+        [coverView2 addSubview:priceLabelR1];
+        [priceLabelR1 release];
+        
+        priceLabelR2 = [[UILabel alloc]initWithFrame:CGRectMake(40, 155, 40, 35)];
+        priceLabelR2.font = [UIFont fontWithName:@"Heiti TC" size:12];
+        priceLabelR2.textColor = [UIColor colorWithRed:(196/255.f) green:(72/255.f) blue:(72/255.f) alpha:1];
+//        priceLabelR2.backgroundColor = [UIColor blueColor];
+        [coverView2 addSubview:priceLabelR2];
         
         [self addSubview:coverView2];
     }

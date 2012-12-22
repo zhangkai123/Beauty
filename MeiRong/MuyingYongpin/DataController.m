@@ -151,6 +151,8 @@
         
         Product *product = [[Product alloc]init];
         product.title = [item objectForKey:@"title"];
+        product.price = [item objectForKey:@"price"];
+        product.likes = [item objectForKey:@"likes"];
         product.pic_url = [item objectForKey:@"bimg"];
         product.click_url = [item objectForKey:@"url"];
         NSLog(@"%@",product.click_url);

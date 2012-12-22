@@ -9,7 +9,7 @@
 #import "Product.h"
 
 @implementation Product
-@synthesize /*num_iid,*/title/*,nick*/,pic_url/*,price*/,click_url/*,commission,commission_rate,commission_num,commission_volume,shop_click_url,seller_credit_score,item_location,volume */,collect;
+@synthesize /*num_iid,*/title/*,nick*/,pic_url,price,likes,click_url/*,commission,commission_rate,commission_num,commission_volume,shop_click_url,seller_credit_score,item_location,volume */,collect;
 
 -(void)dealloc
 {
@@ -17,7 +17,8 @@
     [title release];
 //    [nick release];
     [pic_url release];
-//    [price release];
+    [price release];
+    [likes release];
     [click_url release];
 //    [commission release];
 //    [commission_rate release];
