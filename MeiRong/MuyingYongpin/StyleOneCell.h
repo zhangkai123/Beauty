@@ -25,6 +25,7 @@
     UILabel *priceLabel2;
     UILabel *priceLabelR2;
     UILabel *likeLabel2;
+    UILabel *likeLabel2R;
     StyleOneCellView *coverView2;
     int rowNum;
     id<StyleOneCellSelectionDelegate> delegate;
@@ -37,6 +38,7 @@
 @property(nonatomic,retain) UILabel *priceLabel2;
 @property(nonatomic,retain) UILabel *priceLabelR2;
 @property(nonatomic,retain) UILabel *likeLabel2;
+@property(nonatomic,retain) UILabel *likeLabel2R;
 @property(nonatomic,retain) StyleOneCellView *coverView2;
 @property(nonatomic,assign) int rowNum;
 @property(nonatomic,assign) id<StyleOneCellSelectionDelegate> delegate;

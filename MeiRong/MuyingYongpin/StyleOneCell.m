@@ -9,7 +9,7 @@
 #import "StyleOneCell.h"
 
 @implementation StyleOneCell
-@synthesize leftImageView ,rightImageView ,priceLabel2 ,priceLabelR2 ,likeLabel2 ,coverView2 ,rowNum;
+@synthesize leftImageView ,rightImageView ,priceLabel2 ,priceLabelR2 ,likeLabel2 ,likeLabel2R ,coverView2 ,rowNum;
 @synthesize price ,likes;
 @synthesize delegate;
 -(void)dealloc
@@ -19,6 +19,7 @@
     [priceLabel2 release];
     [priceLabelR2 release];
     [likeLabel2 release];
+    [likeLabel2R release];
     [coverView2 release];
     [price release];
     [likes release];
@@ -96,6 +97,20 @@
         priceLabelR2.textColor = [UIColor colorWithRed:(196/255.f) green:(72/255.f) blue:(72/255.f) alpha:1];
 //        priceLabelR2.backgroundColor = [UIColor blueColor];
         [coverView2 addSubview:priceLabelR2];
+        
+        UILabel *likeLabel1R = [[UILabel alloc]initWithFrame:CGRectMake(90, 155, 25, 35)];
+        likeLabel1R.text = @"喜欢";
+        likeLabel1R.font = [UIFont fontWithName:@"Heiti TC" size:12];
+//        likeLabel1R.backgroundColor = [UIColor yellowColor];
+        [coverView2 addSubview:likeLabel1R];
+        [likeLabel1R release];
+        
+        likeLabel2R = [[UILabel alloc]initWithFrame:CGRectMake(90 + 25, 155, 30, 35)];
+        likeLabel2R.font = [UIFont fontWithName:@"Heiti TC" size:12];
+        likeLabel2R.textColor = [UIColor colorWithRed:(196/255.f) green:(72/255.f) blue:(72/255.f) alpha:1];
+        likeLabel2R.textAlignment = UITextAlignmentCenter;
+//        likeLabel2R.backgroundColor = [UIColor blueColor];
+        [coverView2 addSubview:likeLabel2R];
         
         [self addSubview:coverView2];
     }
