@@ -282,6 +282,8 @@
                                             inManagedObjectContext:context];
     collectProduct.pic_url = product.pic_url;
     collectProduct.title = product.title;
+    collectProduct.price = product.price;
+    collectProduct.likes = product.likes;
     collectProduct.click_url = product.click_url;
 
     NSError *error;

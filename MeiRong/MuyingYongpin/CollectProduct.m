@@ -14,7 +14,8 @@
 @dynamic title;
 //@dynamic nick;
 @dynamic pic_url;
-//@dynamic price;
+@dynamic price;
+@dynamic likes;
 @dynamic click_url;
 //@dynamic commission;
 //@dynamic commission_rate;
