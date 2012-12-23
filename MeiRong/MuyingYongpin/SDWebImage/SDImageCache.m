@@ -18,7 +18,7 @@ static SDImageCache *instance;
 static NSInteger cacheMaxCacheAge = 60*60*24*7; // 1 week
 //change the cache memory to 5MB
 static natural_t minFreeMemLeft = 1024*1024*12; // reserve 12MB RAM
-//static natural_t minFreeMemLeft = 1024*1024*4;
+//static natural_t minFreeMemLeft = 1024*1024*3;
 
 // inspired by http://stackoverflow.com/questions/5012886/knowing-available-ram-on-an-ios-device
 static natural_t get_free_memory(void)

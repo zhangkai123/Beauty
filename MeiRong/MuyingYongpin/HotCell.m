@@ -105,7 +105,7 @@
         mImageView.delegate = self;
         self.myImageView = mImageView;
         [mImageView release];
-        
+                
         HotCellView *cView = [[HotCellView alloc]initWithFrame:CGRectMake(0, 0, 320, 380)];
         self.coverView = cView;
         [cView release];
