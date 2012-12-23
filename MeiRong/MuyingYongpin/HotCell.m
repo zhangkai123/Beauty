@@ -19,11 +19,14 @@
 @synthesize collectButton ,collectLabel ,sharedButton;
 @synthesize delegate ,rowNum;
 @synthesize coverView ,myImageView;
+@synthesize priceLabel2 ,likeLabel2;
 -(void)dealloc
 {
     [coverView release];
     [myImageView release];
     [desLable release];
+    [priceLabel2 release];
+    [likeLabel2 release];
     [super dealloc];
 }
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -34,7 +37,7 @@
         self.selectionStyle = UITableViewCellSelectionStyleNone;
         self.backgroundColor = [UIColor whiteColor];
         
-        UILabel *dLable = [[UILabel alloc]initWithFrame:CGRectMake(20, 300, 280, 40)];
+        UILabel *dLable = [[UILabel alloc]initWithFrame:CGRectMake(20, 300, 280, 37)];
         dLable.backgroundColor = [UIColor clearColor];
         dLable.lineBreakMode = UILineBreakModeWordWrap;
         dLable.numberOfLines = 0;
@@ -47,11 +50,31 @@
         [separateLineView setAlpha:0.1];
         [self addSubview:separateLineView];
         [separateLineView release];
+    
+        UILabel *priceLabel1 = [[UILabel alloc]initWithFrame:CGRectMake(15 + 10, 337, 40, 25)];
+        priceLabel1.text = @"价格:";
+        priceLabel1.font = [UIFont fontWithName:@"Heiti TC" size:12];
+//        priceLabel1.backgroundColor = [UIColor yellowColor];
         
+        priceLabel2 = [[UILabel alloc]initWithFrame:CGRectMake(5 + 40 + 10, 337, 40, 25)];
+        priceLabel2.font = [UIFont fontWithName:@"Heiti TC" size:12];
+        priceLabel2.textColor = [UIColor colorWithRed:(196/255.f) green:(72/255.f) blue:(72/255.f) alpha:1];
+//        priceLabel2.backgroundColor = [UIColor blueColor];
+        
+        UILabel *likeLabel1 = [[UILabel alloc]initWithFrame:CGRectMake(95, 337, 25, 25)];
+        likeLabel1.text = @"喜欢";
+        likeLabel1.font = [UIFont fontWithName:@"Heiti TC" size:12];
+//        likeLabel1.backgroundColor = [UIColor yellowColor];
+        
+        likeLabel2 = [[UILabel alloc]initWithFrame:CGRectMake(95 + 25 + 3, 337, 30, 25)];
+        likeLabel2.font = [UIFont fontWithName:@"Heiti TC" size:12];
+        likeLabel2.textColor = [UIColor colorWithRed:(196/255.f) green:(72/255.f) blue:(72/255.f) alpha:1];
+//        likeLabel2.backgroundColor = [UIColor blueColor];
+
         UIImage *cImage = [UIImage imageNamed:@"likeButton"];
         UIImage *stretchableButtonImageNormal = [cImage stretchableImageWithLeftCapWidth:23 topCapHeight:0];
         UIButton *cButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-        cButton.frame = CGRectMake(183, 342, cImage.size.width*2 + 8, cImage.size.height);
+        cButton.frame = CGRectMake(183, 337, cImage.size.width*2 + 8, cImage.size.height);
         [cButton setBackgroundImage:stretchableButtonImageNormal forState:UIControlStateNormal];
         [cButton addTarget:self action:@selector(collectProduct) forControlEvents:UIControlEventTouchDown];
         self.collectButton = cButton;
@@ -71,7 +94,7 @@
 
         UIImage *moreButtonImage = [UIImage imageNamed:@"moreButton"];
         UIButton *sButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-        sButton.frame = CGRectMake(255, 342, moreButtonImage.size.width, moreButtonImage.size.height);
+        sButton.frame = CGRectMake(255, 337, moreButtonImage.size.width, moreButtonImage.size.height);
         [sButton setBackgroundImage:moreButtonImage forState:UIControlStateNormal];
         [sButton addTarget:self action:@selector(shareProduct) forControlEvents:UIControlEventTouchDown];
         self.sharedButton = sButton;
@@ -90,6 +113,13 @@
         [self.coverView addSubview:self.desLable];
         [self.coverView addSubview:self.collectButton];
         [self.coverView addSubview:self.sharedButton];
+        
+        [self.coverView addSubview:priceLabel1];
+        [self.coverView addSubview:priceLabel2];
+        [self.coverView addSubview:likeLabel1];
+        [self.coverView addSubview:likeLabel2];
+        [priceLabel1 release];
+        [likeLabel1 release];
         
         [self.contentView addSubview:self.coverView];        
     }

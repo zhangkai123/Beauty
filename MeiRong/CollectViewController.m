@@ -169,6 +169,8 @@
     myProduct.pic_url = product.pic_url;
     myProduct.title = product.title;
     myProduct.click_url = product.click_url;
+    myProduct.price = product.price;
+    myProduct.likes = product.likes;
     
     TheBrandDetailViewController *theBrandDetailViewController = [[TheBrandDetailViewController alloc]init];
     theBrandDetailViewController.product = myProduct;

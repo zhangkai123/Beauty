@@ -32,6 +32,9 @@
     
     HotCellView *coverView;
     TouchableImageView *myImageView;
+    
+    UILabel *priceLabel2;
+    UILabel *likeLabel2;
 }
 
 @property(nonatomic,retain) UILabel *desLable;
@@ -43,6 +46,9 @@
 
 @property(nonatomic,retain) HotCellView *coverView;
 @property(nonatomic,retain) TouchableImageView *myImageView;
+
+@property(nonatomic,retain) UILabel *priceLabel2;
+@property(nonatomic,retain) UILabel *likeLabel2;
 
 -(void)diselectCell;
 @end

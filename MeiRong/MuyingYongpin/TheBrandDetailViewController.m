@@ -98,6 +98,8 @@
                    context:NULL];
     
     cell.desLable.text = product.title;
+    cell.priceLabel2.text = product.price;
+    cell.likeLabel2.text = product.likes;
     if (product.collect) {
         [cell.collectLabel setText:@"已收藏"];
         cell.collectButton.enabled = NO;
