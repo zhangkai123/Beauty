@@ -118,7 +118,7 @@
 }
 - (void)touchableImageViewViewWasSelected:(TouchableImageView *)thumbnailImageView
 {
-    UIView *selectedView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 137, 137)];
+    UIView *selectedView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 145, 145)];
     selectedView.backgroundColor = [UIColor colorWithRed:1 green:0.6 blue:0.8 alpha:1.0];
     selectedView.tag = 1000;
     [selectedView setAlpha:0.2];
