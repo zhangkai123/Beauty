@@ -42,6 +42,55 @@
 		4B39A09C160DC39C00C922B2 /* SVPullToRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B39A09B160DC39C00C922B2 /* SVPullToRefresh.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		4B39A09E160DC4F200C922B2 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B39A09D160DC4F200C922B2 /* QuartzCore.framework */; };
 		4B421C0A15ECFEC2001094FE /* CollectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B421C0915ECFEC2001094FE /* CollectViewController.m */; };
+		4B43DDCD1689E0A100A11133 /* BB霜.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B43DDA01689E0A100A11133 /* BB霜.png */; };
+		4B43DDCE1689E0A100A11133 /* T区护理.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B43DDA11689E0A100A11133 /* T区护理.png */; };
+		4B43DDCF1689E0A100A11133 /* 乳业面霜.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B43DDA21689E0A100A11133 /* 乳业面霜.png */; };
+		4B43DDD01689E0A100A11133 /* 假发.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B43DDA31689E0A100A11133 /* 假发.png */; };
+		4B43DDD11689E0A100A11133 /* 假睫毛.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B43DDA41689E0A100A11133 /* 假睫毛.png */; };
+		4B43DDD21689E0A100A11133 /* 化妆刷.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B43DDA51689E0A100A11133 /* 化妆刷.png */; };
+		4B43DDD31689E0A100A11133 /* 化妆工具.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B43DDA61689E0A100A11133 /* 化妆工具.png */; };
+		4B43DDD41689E0A100A11133 /* 化妆水.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B43DDA71689E0A100A11133 /* 化妆水.png */; };
+		4B43DDD51689E0A100A11133 /* 卸妆.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B43DDA81689E0A100A11133 /* 卸妆.png */; };
+		4B43DDD61689E0A100A11133 /* 去角质.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B43DDA91689E0A100A11133 /* 去角质.png */; };
+		4B43DDD71689E0A100A11133 /* 唇彩唇膏.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B43DDAA1689E0A100A11133 /* 唇彩唇膏.png */; };
+		4B43DDD81689E0A100A11133 /* 唇笔:唇线笔.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B43DDAB1689E0A100A11133 /* 唇笔:唇线笔.png */; };
+		4B43DDD91689E0A100A11133 /* 唇部护理.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B43DDAC1689E0A100A11133 /* 唇部护理.png */; };
+		4B43DDDA1689E0A100A11133 /* 头发造型.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B43DDAD1689E0A100A11133 /* 头发造型.png */; };
+		4B43DDDB1689E0A100A11133 /* 彩妆套装.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B43DDAE1689E0A100A11133 /* 彩妆套装.png */; };
+		4B43DDDC1689E0A100A11133 /* 彩妆香水.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B43DDAF1689E0A100A11133 /* 彩妆香水.png */; };
+		4B43DDDD1689E0A100A11133 /* 手部护理.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B43DDB01689E0A100A11133 /* 手部护理.png */; };
+		4B43DDDE1689E0A100A11133 /* 护肤.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B43DDB11689E0A100A11133 /* 护肤.png */; };
+		4B43DDDF1689E0A100A11133 /* 护肤套装.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B43DDB21689E0A100A11133 /* 护肤套装.png */; };
+		4B43DDE01689E0A100A11133 /* 指甲油:美甲.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B43DDB31689E0A100A11133 /* 指甲油:美甲.png */; };
+		4B43DDE11689E0A100A11133 /* 染发烫发.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B43DDB41689E0A100A11133 /* 染发烫发.png */; };
+		4B43DDE21689E0A100A11133 /* 洁面.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B43DDB51689E0A100A11133 /* 洁面.png */; };
+		4B43DDE31689E0A100A11133 /* 洗发护发.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B43DDB61689E0A100A11133 /* 洗发护发.png */; };
+		4B43DDE41689E0A100A11133 /* 男士护理.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B43DDB71689E0A100A11133 /* 男士护理.png */; };
+		4B43DDE51689E0A100A11133 /* 眉笔眉粉.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B43DDB81689E0A100A11133 /* 眉笔眉粉.png */; };
+		4B43DDE61689E0A100A11133 /* 眼影.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B43DDB91689E0A100A11133 /* 眼影.png */; };
+		4B43DDE71689E0A100A11133 /* 眼线.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B43DDBA1689E0A100A11133 /* 眼线.png */; };
+		4B43DDE81689E0A100A11133 /* 眼霜.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B43DDBB1689E0A100A11133 /* 眼霜.png */; };
+		4B43DDE91689E0A100A11133 /* 睫毛膏.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B43DDBC1689E0A100A11133 /* 睫毛膏.png */; };
+		4B43DDEA1689E0A100A11133 /* 粉底液:膏.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B43DDBD1689E0A100A11133 /* 粉底液:膏.png */; };
+		4B43DDEB1689E0A100A11133 /* 粉饼.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B43DDBE1689E0A100A11133 /* 粉饼.png */; };
+		4B43DDEC1689E0A100A11133 /* 精华.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B43DDBF1689E0A100A11133 /* 精华.png */; };
+		4B43DDED1689E0A100A11133 /* 精油芳疗.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B43DDC01689E0A100A11133 /* 精油芳疗.png */; };
+		4B43DDEE1689E0A100A11133 /* 美体.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B43DDC11689E0A100A11133 /* 美体.png */; };
+		4B43DDEF1689E0A100A11133 /* 美发.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B43DDC21689E0A100A11133 /* 美发.png */; };
+		4B43DDF01689E0A100A11133 /* 美容工具.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B43DDC31689E0A100A11133 /* 美容工具.png */; };
+		4B43DDF11689E0A100A11133 /* 胸部护理.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B43DDC41689E0A100A11133 /* 胸部护理.png */; };
+		4B43DDF21689E0A100A11133 /* 腮红:胭脂.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B43DDC51689E0A100A11133 /* 腮红:胭脂.png */; };
+		4B43DDF31689E0A100A11133 /* 蜜粉:散粉.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B43DDC61689E0A100A11133 /* 蜜粉:散粉.png */; };
+		4B43DDF41689E0A100A11133 /* 身体护理.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B43DDC71689E0A100A11133 /* 身体护理.png */; };
+		4B43DDF51689E0A100A11133 /* 遮瑕.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B43DDC81689E0A100A11133 /* 遮瑕.png */; };
+		4B43DDF61689E0A100A11133 /* 防晒.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B43DDC91689E0A100A11133 /* 防晒.png */; };
+		4B43DDF71689E0A100A11133 /* 隔离:打底.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B43DDCA1689E0A100A11133 /* 隔离:打底.png */; };
+		4B43DDF81689E0A100A11133 /* 面膜.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B43DDCB1689E0A100A11133 /* 面膜.png */; };
+		4B43DDF91689E0A100A11133 /* 香水.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B43DDCC1689E0A100A11133 /* 香水.png */; };
+		4B43DE0A1689E71400A11133 /* libGoogleAdMobAds.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B43DE081689E71400A11133 /* libGoogleAdMobAds.a */; };
+		4B43DE0B1689E71400A11133 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4B43DE091689E71400A11133 /* README.txt */; };
+		4B43DE0D1689E77B00A11133 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B43DE0C1689E77A00A11133 /* MediaPlayer.framework */; };
+		4B43DE0F1689E79D00A11133 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B43DE0E1689E79C00A11133 /* MessageUI.framework */; };
 		4B4EAF73166A06B500E29D6B /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B4EAF72166A06B500E29D6B /* Reachability.m */; };
 		4B4EAF7A166A0C4A00E29D6B /* ReachableManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B4EAF79166A0C4A00E29D6B /* ReachableManager.m */; };
 		4B4EAF8D166A321200E29D6B /* ATMHud.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B4EAF81166A321200E29D6B /* ATMHud.m */; };
@@ -257,6 +306,64 @@
 		4B39A09D160DC4F200C922B2 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		4B421C0815ECFEC2001094FE /* CollectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CollectViewController.h; path = ../CollectViewController.h; sourceTree = "<group>"; };
 		4B421C0915ECFEC2001094FE /* CollectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CollectViewController.m; path = ../CollectViewController.m; sourceTree = "<group>"; };
+		4B43DDA01689E0A100A11133 /* BB霜.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BB霜.png"; sourceTree = "<group>"; };
+		4B43DDA11689E0A100A11133 /* T区护理.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "T区护理.png"; sourceTree = "<group>"; };
+		4B43DDA21689E0A100A11133 /* 乳业面霜.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "乳业面霜.png"; sourceTree = "<group>"; };
+		4B43DDA31689E0A100A11133 /* 假发.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "假发.png"; sourceTree = "<group>"; };
+		4B43DDA41689E0A100A11133 /* 假睫毛.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "假睫毛.png"; sourceTree = "<group>"; };
+		4B43DDA51689E0A100A11133 /* 化妆刷.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "化妆刷.png"; sourceTree = "<group>"; };
+		4B43DDA61689E0A100A11133 /* 化妆工具.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "化妆工具.png"; sourceTree = "<group>"; };
+		4B43DDA71689E0A100A11133 /* 化妆水.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "化妆水.png"; sourceTree = "<group>"; };
+		4B43DDA81689E0A100A11133 /* 卸妆.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "卸妆.png"; sourceTree = "<group>"; };
+		4B43DDA91689E0A100A11133 /* 去角质.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "去角质.png"; sourceTree = "<group>"; };
+		4B43DDAA1689E0A100A11133 /* 唇彩唇膏.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "唇彩唇膏.png"; sourceTree = "<group>"; };
+		4B43DDAB1689E0A100A11133 /* 唇笔:唇线笔.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "唇笔:唇线笔.png"; sourceTree = "<group>"; };
+		4B43DDAC1689E0A100A11133 /* 唇部护理.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "唇部护理.png"; sourceTree = "<group>"; };
+		4B43DDAD1689E0A100A11133 /* 头发造型.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "头发造型.png"; sourceTree = "<group>"; };
+		4B43DDAE1689E0A100A11133 /* 彩妆套装.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "彩妆套装.png"; sourceTree = "<group>"; };
+		4B43DDAF1689E0A100A11133 /* 彩妆香水.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "彩妆香水.png"; sourceTree = "<group>"; };
+		4B43DDB01689E0A100A11133 /* 手部护理.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "手部护理.png"; sourceTree = "<group>"; };
+		4B43DDB11689E0A100A11133 /* 护肤.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "护肤.png"; sourceTree = "<group>"; };
+		4B43DDB21689E0A100A11133 /* 护肤套装.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "护肤套装.png"; sourceTree = "<group>"; };
+		4B43DDB31689E0A100A11133 /* 指甲油:美甲.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "指甲油:美甲.png"; sourceTree = "<group>"; };
+		4B43DDB41689E0A100A11133 /* 染发烫发.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "染发烫发.png"; sourceTree = "<group>"; };
+		4B43DDB51689E0A100A11133 /* 洁面.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "洁面.png"; sourceTree = "<group>"; };
+		4B43DDB61689E0A100A11133 /* 洗发护发.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "洗发护发.png"; sourceTree = "<group>"; };
+		4B43DDB71689E0A100A11133 /* 男士护理.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "男士护理.png"; sourceTree = "<group>"; };
+		4B43DDB81689E0A100A11133 /* 眉笔眉粉.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "眉笔眉粉.png"; sourceTree = "<group>"; };
+		4B43DDB91689E0A100A11133 /* 眼影.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "眼影.png"; sourceTree = "<group>"; };
+		4B43DDBA1689E0A100A11133 /* 眼线.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "眼线.png"; sourceTree = "<group>"; };
+		4B43DDBB1689E0A100A11133 /* 眼霜.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "眼霜.png"; sourceTree = "<group>"; };
+		4B43DDBC1689E0A100A11133 /* 睫毛膏.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "睫毛膏.png"; sourceTree = "<group>"; };
+		4B43DDBD1689E0A100A11133 /* 粉底液:膏.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "粉底液:膏.png"; sourceTree = "<group>"; };
+		4B43DDBE1689E0A100A11133 /* 粉饼.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "粉饼.png"; sourceTree = "<group>"; };
+		4B43DDBF1689E0A100A11133 /* 精华.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "精华.png"; sourceTree = "<group>"; };
+		4B43DDC01689E0A100A11133 /* 精油芳疗.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "精油芳疗.png"; sourceTree = "<group>"; };
+		4B43DDC11689E0A100A11133 /* 美体.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "美体.png"; sourceTree = "<group>"; };
+		4B43DDC21689E0A100A11133 /* 美发.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "美发.png"; sourceTree = "<group>"; };
+		4B43DDC31689E0A100A11133 /* 美容工具.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "美容工具.png"; sourceTree = "<group>"; };
+		4B43DDC41689E0A100A11133 /* 胸部护理.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "胸部护理.png"; sourceTree = "<group>"; };
+		4B43DDC51689E0A100A11133 /* 腮红:胭脂.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "腮红:胭脂.png"; sourceTree = "<group>"; };
+		4B43DDC61689E0A100A11133 /* 蜜粉:散粉.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "蜜粉:散粉.png"; sourceTree = "<group>"; };
+		4B43DDC71689E0A100A11133 /* 身体护理.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "身体护理.png"; sourceTree = "<group>"; };
+		4B43DDC81689E0A100A11133 /* 遮瑕.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "遮瑕.png"; sourceTree = "<group>"; };
+		4B43DDC91689E0A100A11133 /* 防晒.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "防晒.png"; sourceTree = "<group>"; };
+		4B43DDCA1689E0A100A11133 /* 隔离:打底.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "隔离:打底.png"; sourceTree = "<group>"; };
+		4B43DDCB1689E0A100A11133 /* 面膜.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "面膜.png"; sourceTree = "<group>"; };
+		4B43DDCC1689E0A100A11133 /* 香水.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "香水.png"; sourceTree = "<group>"; };
+		4B43DDFF1689E71400A11133 /* GADAdMobExtras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADAdMobExtras.h; sourceTree = "<group>"; };
+		4B43DE001689E71400A11133 /* GADAdNetworkExtras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADAdNetworkExtras.h; sourceTree = "<group>"; };
+		4B43DE011689E71400A11133 /* GADAdSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADAdSize.h; sourceTree = "<group>"; };
+		4B43DE021689E71400A11133 /* GADBannerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADBannerView.h; sourceTree = "<group>"; };
+		4B43DE031689E71400A11133 /* GADBannerViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADBannerViewDelegate.h; sourceTree = "<group>"; };
+		4B43DE041689E71400A11133 /* GADInterstitial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADInterstitial.h; sourceTree = "<group>"; };
+		4B43DE051689E71400A11133 /* GADInterstitialDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADInterstitialDelegate.h; sourceTree = "<group>"; };
+		4B43DE061689E71400A11133 /* GADRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADRequest.h; sourceTree = "<group>"; };
+		4B43DE071689E71400A11133 /* GADRequestError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADRequestError.h; sourceTree = "<group>"; };
+		4B43DE081689E71400A11133 /* libGoogleAdMobAds.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGoogleAdMobAds.a; sourceTree = "<group>"; };
+		4B43DE091689E71400A11133 /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
+		4B43DE0C1689E77A00A11133 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		4B43DE0E1689E79C00A11133 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		4B4EAF71166A06B500E29D6B /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		4B4EAF72166A06B500E29D6B /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		4B4EAF78166A0C4A00E29D6B /* ReachableManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReachableManager.h; sourceTree = "<group>"; };
@@ -499,6 +606,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4B43DE0F1689E79D00A11133 /* MessageUI.framework in Frameworks */,
+				4B43DE0D1689E77B00A11133 /* MediaPlayer.framework in Frameworks */,
 				4B32EE5316889D420079FDEA /* StoreKit.framework in Frameworks */,
 				4B32EE5116889D2D0079FDEA /* Security.framework in Frameworks */,
 				4B32EE4F16889D120079FDEA /* MobileCoreServices.framework in Frameworks */,
@@ -522,6 +631,7 @@
 				4BACE0931615F016006B3E00 /* libMobClickLibrary.a in Frameworks */,
 				4BF3F48E162A8BAE0070BDE5 /* UMSNSLibrary.a in Frameworks */,
 				4B32EE40168899E20079FDEA /* Parse.framework in Frameworks */,
+				4B43DE0A1689E71400A11133 /* libGoogleAdMobAds.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -544,6 +654,76 @@
 				4B39A09B160DC39C00C922B2 /* SVPullToRefresh.m */,
 			);
 			name = SVPullToRefresh;
+			sourceTree = "<group>";
+		};
+		4B43DD9E1689E07700A11133 /* CategoryImage */ = {
+			isa = PBXGroup;
+			children = (
+				4B43DDA01689E0A100A11133 /* BB霜.png */,
+				4B43DDA11689E0A100A11133 /* T区护理.png */,
+				4B43DDA21689E0A100A11133 /* 乳业面霜.png */,
+				4B43DDA31689E0A100A11133 /* 假发.png */,
+				4B43DDA41689E0A100A11133 /* 假睫毛.png */,
+				4B43DDA51689E0A100A11133 /* 化妆刷.png */,
+				4B43DDA61689E0A100A11133 /* 化妆工具.png */,
+				4B43DDA71689E0A100A11133 /* 化妆水.png */,
+				4B43DDA81689E0A100A11133 /* 卸妆.png */,
+				4B43DDA91689E0A100A11133 /* 去角质.png */,
+				4B43DDAA1689E0A100A11133 /* 唇彩唇膏.png */,
+				4B43DDAB1689E0A100A11133 /* 唇笔:唇线笔.png */,
+				4B43DDAC1689E0A100A11133 /* 唇部护理.png */,
+				4B43DDAD1689E0A100A11133 /* 头发造型.png */,
+				4B43DDAE1689E0A100A11133 /* 彩妆套装.png */,
+				4B43DDAF1689E0A100A11133 /* 彩妆香水.png */,
+				4B43DDB01689E0A100A11133 /* 手部护理.png */,
+				4B43DDB11689E0A100A11133 /* 护肤.png */,
+				4B43DDB21689E0A100A11133 /* 护肤套装.png */,
+				4B43DDB31689E0A100A11133 /* 指甲油:美甲.png */,
+				4B43DDB41689E0A100A11133 /* 染发烫发.png */,
+				4B43DDB51689E0A100A11133 /* 洁面.png */,
+				4B43DDB61689E0A100A11133 /* 洗发护发.png */,
+				4B43DDB71689E0A100A11133 /* 男士护理.png */,
+				4B43DDB81689E0A100A11133 /* 眉笔眉粉.png */,
+				4B43DDB91689E0A100A11133 /* 眼影.png */,
+				4B43DDBA1689E0A100A11133 /* 眼线.png */,
+				4B43DDBB1689E0A100A11133 /* 眼霜.png */,
+				4B43DDBC1689E0A100A11133 /* 睫毛膏.png */,
+				4B43DDBD1689E0A100A11133 /* 粉底液:膏.png */,
+				4B43DDBE1689E0A100A11133 /* 粉饼.png */,
+				4B43DDBF1689E0A100A11133 /* 精华.png */,
+				4B43DDC01689E0A100A11133 /* 精油芳疗.png */,
+				4B43DDC11689E0A100A11133 /* 美体.png */,
+				4B43DDC21689E0A100A11133 /* 美发.png */,
+				4B43DDC31689E0A100A11133 /* 美容工具.png */,
+				4B43DDC41689E0A100A11133 /* 胸部护理.png */,
+				4B43DDC51689E0A100A11133 /* 腮红:胭脂.png */,
+				4B43DDC61689E0A100A11133 /* 蜜粉:散粉.png */,
+				4B43DDC71689E0A100A11133 /* 身体护理.png */,
+				4B43DDC81689E0A100A11133 /* 遮瑕.png */,
+				4B43DDC91689E0A100A11133 /* 防晒.png */,
+				4B43DDCA1689E0A100A11133 /* 隔离:打底.png */,
+				4B43DDCB1689E0A100A11133 /* 面膜.png */,
+				4B43DDCC1689E0A100A11133 /* 香水.png */,
+			);
+			name = CategoryImage;
+			sourceTree = "<group>";
+		};
+		4B43DDFE1689E6F600A11133 /* Admob */ = {
+			isa = PBXGroup;
+			children = (
+				4B43DDFF1689E71400A11133 /* GADAdMobExtras.h */,
+				4B43DE001689E71400A11133 /* GADAdNetworkExtras.h */,
+				4B43DE011689E71400A11133 /* GADAdSize.h */,
+				4B43DE021689E71400A11133 /* GADBannerView.h */,
+				4B43DE031689E71400A11133 /* GADBannerViewDelegate.h */,
+				4B43DE041689E71400A11133 /* GADInterstitial.h */,
+				4B43DE051689E71400A11133 /* GADInterstitialDelegate.h */,
+				4B43DE061689E71400A11133 /* GADRequest.h */,
+				4B43DE071689E71400A11133 /* GADRequestError.h */,
+				4B43DE081689E71400A11133 /* libGoogleAdMobAds.a */,
+				4B43DE091689E71400A11133 /* README.txt */,
+			);
+			name = Admob;
 			sourceTree = "<group>";
 		};
 		4B4EAF641669FDE700E29D6B /* Reachability */ = {
@@ -814,6 +994,8 @@
 		4BDB315315BA56DE007B1C6F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4B43DE0E1689E79C00A11133 /* MessageUI.framework */,
+				4B43DE0C1689E77A00A11133 /* MediaPlayer.framework */,
 				4B32EE5216889D420079FDEA /* StoreKit.framework */,
 				4B32EE5016889D2D0079FDEA /* Security.framework */,
 				4B32EE4E16889D120079FDEA /* MobileCoreServices.framework */,
@@ -844,6 +1026,7 @@
 		4BDB315A15BA56DE007B1C6F /* MuyingYongpin */ = {
 			isa = PBXGroup;
 			children = (
+				4B43DDFE1689E6F600A11133 /* Admob */,
 				4B4EAF7F166A320000E29D6B /* ATMHud */,
 				4B4EAF641669FDE700E29D6B /* Reachability */,
 				4BACE06B1615E4AA006B3E00 /* UIWebView+Clean */,
@@ -886,6 +1069,7 @@
 		4BDB315B15BA56DE007B1C6F /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				4B43DD9E1689E07700A11133 /* CategoryImage */,
 				4B171B241684C72F00C0AE43 /* bPlaceHolder.png */,
 				4B1E2BAA164438A9001F7B93 /* placeholder.png */,
 				4B68109E167DB76F00B37E31 /* button_refresh@2x.png */,
@@ -1224,6 +1408,52 @@
 				4B18F8C2167F60F300C2D3C4 /* web_tab_forward@2x.png in Resources */,
 				4B18F8C3167F60F300C2D3C4 /* web_tab_forward.png in Resources */,
 				4B171B251684C72F00C0AE43 /* bPlaceHolder.png in Resources */,
+				4B43DDCD1689E0A100A11133 /* BB霜.png in Resources */,
+				4B43DDCE1689E0A100A11133 /* T区护理.png in Resources */,
+				4B43DDCF1689E0A100A11133 /* 乳业面霜.png in Resources */,
+				4B43DDD01689E0A100A11133 /* 假发.png in Resources */,
+				4B43DDD11689E0A100A11133 /* 假睫毛.png in Resources */,
+				4B43DDD21689E0A100A11133 /* 化妆刷.png in Resources */,
+				4B43DDD31689E0A100A11133 /* 化妆工具.png in Resources */,
+				4B43DDD41689E0A100A11133 /* 化妆水.png in Resources */,
+				4B43DDD51689E0A100A11133 /* 卸妆.png in Resources */,
+				4B43DDD61689E0A100A11133 /* 去角质.png in Resources */,
+				4B43DDD71689E0A100A11133 /* 唇彩唇膏.png in Resources */,
+				4B43DDD81689E0A100A11133 /* 唇笔:唇线笔.png in Resources */,
+				4B43DDD91689E0A100A11133 /* 唇部护理.png in Resources */,
+				4B43DDDA1689E0A100A11133 /* 头发造型.png in Resources */,
+				4B43DDDB1689E0A100A11133 /* 彩妆套装.png in Resources */,
+				4B43DDDC1689E0A100A11133 /* 彩妆香水.png in Resources */,
+				4B43DDDD1689E0A100A11133 /* 手部护理.png in Resources */,
+				4B43DDDE1689E0A100A11133 /* 护肤.png in Resources */,
+				4B43DDDF1689E0A100A11133 /* 护肤套装.png in Resources */,
+				4B43DDE01689E0A100A11133 /* 指甲油:美甲.png in Resources */,
+				4B43DDE11689E0A100A11133 /* 染发烫发.png in Resources */,
+				4B43DDE21689E0A100A11133 /* 洁面.png in Resources */,
+				4B43DDE31689E0A100A11133 /* 洗发护发.png in Resources */,
+				4B43DDE41689E0A100A11133 /* 男士护理.png in Resources */,
+				4B43DDE51689E0A100A11133 /* 眉笔眉粉.png in Resources */,
+				4B43DDE61689E0A100A11133 /* 眼影.png in Resources */,
+				4B43DDE71689E0A100A11133 /* 眼线.png in Resources */,
+				4B43DDE81689E0A100A11133 /* 眼霜.png in Resources */,
+				4B43DDE91689E0A100A11133 /* 睫毛膏.png in Resources */,
+				4B43DDEA1689E0A100A11133 /* 粉底液:膏.png in Resources */,
+				4B43DDEB1689E0A100A11133 /* 粉饼.png in Resources */,
+				4B43DDEC1689E0A100A11133 /* 精华.png in Resources */,
+				4B43DDED1689E0A100A11133 /* 精油芳疗.png in Resources */,
+				4B43DDEE1689E0A100A11133 /* 美体.png in Resources */,
+				4B43DDEF1689E0A100A11133 /* 美发.png in Resources */,
+				4B43DDF01689E0A100A11133 /* 美容工具.png in Resources */,
+				4B43DDF11689E0A100A11133 /* 胸部护理.png in Resources */,
+				4B43DDF21689E0A100A11133 /* 腮红:胭脂.png in Resources */,
+				4B43DDF31689E0A100A11133 /* 蜜粉:散粉.png in Resources */,
+				4B43DDF41689E0A100A11133 /* 身体护理.png in Resources */,
+				4B43DDF51689E0A100A11133 /* 遮瑕.png in Resources */,
+				4B43DDF61689E0A100A11133 /* 防晒.png in Resources */,
+				4B43DDF71689E0A100A11133 /* 隔离:打底.png in Resources */,
+				4B43DDF81689E0A100A11133 /* 面膜.png in Resources */,
+				4B43DDF91689E0A100A11133 /* 香水.png in Resources */,
+				4B43DE0B1689E71400A11133 /* README.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1383,6 +1613,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
 					"\"$(SRCROOT)/MuyingYongpin/AdsMoGoSDK\"",
+					"\"$(SRCROOT)/MuyingYongpin\"",
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				"OTHER_LDFLAGS[arch=*]" = "";
@@ -1408,6 +1639,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
 					"\"$(SRCROOT)/MuyingYongpin/AdsMoGoSDK\"",
+					"\"$(SRCROOT)/MuyingYongpin\"",
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "淘妆";
