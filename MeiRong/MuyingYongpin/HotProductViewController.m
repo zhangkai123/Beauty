@@ -254,7 +254,7 @@
     [cell.myImageView setImageWithURL:[NSURL URLWithString:product.pic_url] placeholderImage:[UIImage imageNamed:@"bPlaceHolder.png"]];
     cell.desLable.text = product.title;
     cell.priceLabel2.text = product.price;
-    cell.likeLabel2.text = product.likes;
+    cell.likeLabel2.text = product.seller_credit_score;
     if (product.collect) {
         [cell.collectLabel setText:@"已收藏"];
         cell.collectButton.enabled = NO;
@@ -285,7 +285,7 @@
     collectProduct.pic_url = product.pic_url;
     collectProduct.title = product.title;
     collectProduct.price = product.price;
-    collectProduct.likes = product.likes;
+    collectProduct.seller_credit_score = product.seller_credit_score;
     collectProduct.click_url = product.click_url;
 
     NSError *error;

@@ -28,6 +28,7 @@
 		4B1E2BA416440803001F7B93 /* UIImage+roundCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B1E2BA316440803001F7B93 /* UIImage+roundCorner.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		4B1E2BAB164438AA001F7B93 /* placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B1E2BAA164438A9001F7B93 /* placeholder.png */; };
 		4B21FE251631A29A00AD5C13 /* HotCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B21FE241631A29A00AD5C13 /* HotCellView.m */; };
+		4B220BE3168B3250009824A1 /* smallbPlaceHolder.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B220BE2168B3250009824A1 /* smallbPlaceHolder.png */; };
 		4B32EE40168899E20079FDEA /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B32EE3F168899E20079FDEA /* Parse.framework */; };
 		4B32EE4316889C7A0079FDEA /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B32EE4216889C7A0079FDEA /* AdSupport.framework */; };
 		4B32EE4516889C860079FDEA /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B32EE4416889C860079FDEA /* Social.framework */; };
@@ -42,53 +43,6 @@
 		4B39A09C160DC39C00C922B2 /* SVPullToRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B39A09B160DC39C00C922B2 /* SVPullToRefresh.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		4B39A09E160DC4F200C922B2 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B39A09D160DC4F200C922B2 /* QuartzCore.framework */; };
 		4B421C0A15ECFEC2001094FE /* CollectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B421C0915ECFEC2001094FE /* CollectViewController.m */; };
-		4B43DDCD1689E0A100A11133 /* BB霜.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B43DDA01689E0A100A11133 /* BB霜.png */; };
-		4B43DDCE1689E0A100A11133 /* T区护理.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B43DDA11689E0A100A11133 /* T区护理.png */; };
-		4B43DDCF1689E0A100A11133 /* 乳业面霜.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B43DDA21689E0A100A11133 /* 乳业面霜.png */; };
-		4B43DDD01689E0A100A11133 /* 假发.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B43DDA31689E0A100A11133 /* 假发.png */; };
-		4B43DDD11689E0A100A11133 /* 假睫毛.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B43DDA41689E0A100A11133 /* 假睫毛.png */; };
-		4B43DDD21689E0A100A11133 /* 化妆刷.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B43DDA51689E0A100A11133 /* 化妆刷.png */; };
-		4B43DDD31689E0A100A11133 /* 化妆工具.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B43DDA61689E0A100A11133 /* 化妆工具.png */; };
-		4B43DDD41689E0A100A11133 /* 化妆水.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B43DDA71689E0A100A11133 /* 化妆水.png */; };
-		4B43DDD51689E0A100A11133 /* 卸妆.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B43DDA81689E0A100A11133 /* 卸妆.png */; };
-		4B43DDD61689E0A100A11133 /* 去角质.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B43DDA91689E0A100A11133 /* 去角质.png */; };
-		4B43DDD71689E0A100A11133 /* 唇彩唇膏.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B43DDAA1689E0A100A11133 /* 唇彩唇膏.png */; };
-		4B43DDD81689E0A100A11133 /* 唇笔:唇线笔.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B43DDAB1689E0A100A11133 /* 唇笔:唇线笔.png */; };
-		4B43DDD91689E0A100A11133 /* 唇部护理.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B43DDAC1689E0A100A11133 /* 唇部护理.png */; };
-		4B43DDDA1689E0A100A11133 /* 头发造型.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B43DDAD1689E0A100A11133 /* 头发造型.png */; };
-		4B43DDDB1689E0A100A11133 /* 彩妆套装.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B43DDAE1689E0A100A11133 /* 彩妆套装.png */; };
-		4B43DDDC1689E0A100A11133 /* 彩妆香水.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B43DDAF1689E0A100A11133 /* 彩妆香水.png */; };
-		4B43DDDD1689E0A100A11133 /* 手部护理.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B43DDB01689E0A100A11133 /* 手部护理.png */; };
-		4B43DDDE1689E0A100A11133 /* 护肤.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B43DDB11689E0A100A11133 /* 护肤.png */; };
-		4B43DDDF1689E0A100A11133 /* 护肤套装.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B43DDB21689E0A100A11133 /* 护肤套装.png */; };
-		4B43DDE01689E0A100A11133 /* 指甲油:美甲.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B43DDB31689E0A100A11133 /* 指甲油:美甲.png */; };
-		4B43DDE11689E0A100A11133 /* 染发烫发.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B43DDB41689E0A100A11133 /* 染发烫发.png */; };
-		4B43DDE21689E0A100A11133 /* 洁面.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B43DDB51689E0A100A11133 /* 洁面.png */; };
-		4B43DDE31689E0A100A11133 /* 洗发护发.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B43DDB61689E0A100A11133 /* 洗发护发.png */; };
-		4B43DDE41689E0A100A11133 /* 男士护理.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B43DDB71689E0A100A11133 /* 男士护理.png */; };
-		4B43DDE51689E0A100A11133 /* 眉笔眉粉.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B43DDB81689E0A100A11133 /* 眉笔眉粉.png */; };
-		4B43DDE61689E0A100A11133 /* 眼影.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B43DDB91689E0A100A11133 /* 眼影.png */; };
-		4B43DDE71689E0A100A11133 /* 眼线.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B43DDBA1689E0A100A11133 /* 眼线.png */; };
-		4B43DDE81689E0A100A11133 /* 眼霜.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B43DDBB1689E0A100A11133 /* 眼霜.png */; };
-		4B43DDE91689E0A100A11133 /* 睫毛膏.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B43DDBC1689E0A100A11133 /* 睫毛膏.png */; };
-		4B43DDEA1689E0A100A11133 /* 粉底液:膏.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B43DDBD1689E0A100A11133 /* 粉底液:膏.png */; };
-		4B43DDEB1689E0A100A11133 /* 粉饼.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B43DDBE1689E0A100A11133 /* 粉饼.png */; };
-		4B43DDEC1689E0A100A11133 /* 精华.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B43DDBF1689E0A100A11133 /* 精华.png */; };
-		4B43DDED1689E0A100A11133 /* 精油芳疗.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B43DDC01689E0A100A11133 /* 精油芳疗.png */; };
-		4B43DDEE1689E0A100A11133 /* 美体.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B43DDC11689E0A100A11133 /* 美体.png */; };
-		4B43DDEF1689E0A100A11133 /* 美发.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B43DDC21689E0A100A11133 /* 美发.png */; };
-		4B43DDF01689E0A100A11133 /* 美容工具.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B43DDC31689E0A100A11133 /* 美容工具.png */; };
-		4B43DDF11689E0A100A11133 /* 胸部护理.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B43DDC41689E0A100A11133 /* 胸部护理.png */; };
-		4B43DDF21689E0A100A11133 /* 腮红:胭脂.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B43DDC51689E0A100A11133 /* 腮红:胭脂.png */; };
-		4B43DDF31689E0A100A11133 /* 蜜粉:散粉.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B43DDC61689E0A100A11133 /* 蜜粉:散粉.png */; };
-		4B43DDF41689E0A100A11133 /* 身体护理.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B43DDC71689E0A100A11133 /* 身体护理.png */; };
-		4B43DDF51689E0A100A11133 /* 遮瑕.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B43DDC81689E0A100A11133 /* 遮瑕.png */; };
-		4B43DDF61689E0A100A11133 /* 防晒.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B43DDC91689E0A100A11133 /* 防晒.png */; };
-		4B43DDF71689E0A100A11133 /* 隔离:打底.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B43DDCA1689E0A100A11133 /* 隔离:打底.png */; };
-		4B43DDF81689E0A100A11133 /* 面膜.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B43DDCB1689E0A100A11133 /* 面膜.png */; };
-		4B43DDF91689E0A100A11133 /* 香水.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B43DDCC1689E0A100A11133 /* 香水.png */; };
-		4B43DE0A1689E71400A11133 /* libGoogleAdMobAds.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B43DE081689E71400A11133 /* libGoogleAdMobAds.a */; };
-		4B43DE0B1689E71400A11133 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4B43DE091689E71400A11133 /* README.txt */; };
 		4B43DE0D1689E77B00A11133 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B43DE0C1689E77A00A11133 /* MediaPlayer.framework */; };
 		4B43DE0F1689E79D00A11133 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B43DE0E1689E79C00A11133 /* MessageUI.framework */; };
 		4B4EAF73166A06B500E29D6B /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B4EAF72166A06B500E29D6B /* Reachability.m */; };
@@ -102,26 +56,10 @@
 		4B4EAF94166A327200E29D6B /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B4EAF93166A327100E29D6B /* AudioToolbox.framework */; };
 		4B534E491666403700EF5004 /* NewsNode.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B534E471666403700EF5004 /* NewsNode.png */; };
 		4B534E4A1666403700EF5004 /* NewsNode@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B534E481666403700EF5004 /* NewsNode@2x.png */; };
-		4B5621351630513400C0D9F7 /* Follow_Selected@2xUncrushedPng.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B5621331630513400C0D9F7 /* Follow_Selected@2xUncrushedPng.png */; };
-		4B5621361630513400C0D9F7 /* Follow_SelectedUncrushedPng.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B5621341630513400C0D9F7 /* Follow_SelectedUncrushedPng.png */; };
-		4B5621391630514C00C0D9F7 /* FollowButton@2xUncrushedPng.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B5621371630514C00C0D9F7 /* FollowButton@2xUncrushedPng.png */; };
-		4B56213A1630514C00C0D9F7 /* FollowButtonUncrushedPng.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B5621381630514C00C0D9F7 /* FollowButtonUncrushedPng.png */; };
-		4B56213D1630517D00C0D9F7 /* FollowerFollowing@2xUncrushedPng.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B56213B1630517D00C0D9F7 /* FollowerFollowing@2xUncrushedPng.png */; };
-		4B56213E1630517D00C0D9F7 /* FollowerFollowingUncrushedPng.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B56213C1630517D00C0D9F7 /* FollowerFollowingUncrushedPng.png */; };
 		4B56214B163054A700C0D9F7 /* PersonImageMask@2xUncrushedPng.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B562149163054A700C0D9F7 /* PersonImageMask@2xUncrushedPng.png */; };
 		4B56214C163054A700C0D9F7 /* PersonImageMaskUncrushedPng.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B56214A163054A700C0D9F7 /* PersonImageMaskUncrushedPng.png */; };
 		4B5621511630570100C0D9F7 /* SheetBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B56214F1630570100C0D9F7 /* SheetBackground@2x.png */; };
 		4B5621521630570100C0D9F7 /* SheetBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B5621501630570100C0D9F7 /* SheetBackground.png */; };
-		4B5621551630572C00C0D9F7 /* SheetRightEdge_A@2xUncrushedPng.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B5621531630572C00C0D9F7 /* SheetRightEdge_A@2xUncrushedPng.png */; };
-		4B5621561630572C00C0D9F7 /* SheetRightEdge_AUncrushedPng.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B5621541630572C00C0D9F7 /* SheetRightEdge_AUncrushedPng.png */; };
-		4B5621591630574200C0D9F7 /* SheetRightEdge_B@2xUncrushedPng.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B5621571630574200C0D9F7 /* SheetRightEdge_B@2xUncrushedPng.png */; };
-		4B56215A1630574200C0D9F7 /* SheetRightEdge_BUncrushedPng.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B5621581630574200C0D9F7 /* SheetRightEdge_BUncrushedPng.png */; };
-		4B5621621630586F00C0D9F7 /* tabbar_selected@2xUncrushedPng.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B5621601630586E00C0D9F7 /* tabbar_selected@2xUncrushedPng.png */; };
-		4B5621631630586F00C0D9F7 /* tabbar_selectedUncrushedPng.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B5621611630586F00C0D9F7 /* tabbar_selectedUncrushedPng.png */; };
-		4B562166163058B600C0D9F7 /* TabsBackground_Selected@2xUncrushedPng.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B562164163058B500C0D9F7 /* TabsBackground_Selected@2xUncrushedPng.png */; };
-		4B562167163058B600C0D9F7 /* TabsBackground_SelectedUncrushedPng.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B562165163058B500C0D9F7 /* TabsBackground_SelectedUncrushedPng.png */; };
-		4B56216A163058E500C0D9F7 /* TabsBackground@2xUncrushedPng.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B562168163058E400C0D9F7 /* TabsBackground@2xUncrushedPng.png */; };
-		4B56216B163058E500C0D9F7 /* TabsBackgroundShadow@2xUncrushedPng.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B562169163058E400C0D9F7 /* TabsBackgroundShadow@2xUncrushedPng.png */; };
 		4B6810A0167DB77400B37E31 /* button_refresh@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B68109E167DB76F00B37E31 /* button_refresh@2x.png */; };
 		4B6810A1167DB77400B37E31 /* button_refresh.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B68109F167DB77200B37E31 /* button_refresh.png */; };
 		4B6E09F01633D8D800F8FF4B /* likeButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B6E09EA1633D8D800F8FF4B /* likeButton@2x.png */; };
@@ -258,6 +196,19 @@
 		4BF3F504162A8BC60070BDE5 /* umeng_share_topic.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BF3F4C9162A8BC50070BDE5 /* umeng_share_topic.png */; };
 		4BF3F505162A8BC60070BDE5 /* umeng_share_topicSel.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BF3F4CA162A8BC50070BDE5 /* umeng_share_topicSel.png */; };
 		4BF3F508162A9E940070BDE5 /* ShareSns.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BF3F507162A9E940070BDE5 /* ShareSns.m */; };
+		4BF8B35516E24C5C00FF2CD3 /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BF8B34B16E24C5C00FF2CD3 /* Icon-72.png */; };
+		4BF8B35616E24C5C00FF2CD3 /* Icon-72@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BF8B34C16E24C5C00FF2CD3 /* Icon-72@2x.png */; };
+		4BF8B35716E24C5C00FF2CD3 /* Icon-Small-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BF8B34D16E24C5C00FF2CD3 /* Icon-Small-50.png */; };
+		4BF8B35816E24C5C00FF2CD3 /* Icon-Small-50@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BF8B34E16E24C5C00FF2CD3 /* Icon-Small-50@2x.png */; };
+		4BF8B35916E24C5C00FF2CD3 /* Icon-Small.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BF8B34F16E24C5C00FF2CD3 /* Icon-Small.png */; };
+		4BF8B35A16E24C5C00FF2CD3 /* Icon-Small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BF8B35016E24C5C00FF2CD3 /* Icon-Small@2x.png */; };
+		4BF8B35B16E24C5C00FF2CD3 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BF8B35116E24C5C00FF2CD3 /* Icon.png */; };
+		4BF8B35C16E24C5C00FF2CD3 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BF8B35216E24C5C00FF2CD3 /* Icon@2x.png */; };
+		4BF8B35D16E24C5C00FF2CD3 /* iTunesArtwork.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BF8B35316E24C5C00FF2CD3 /* iTunesArtwork.png */; };
+		4BF8B35E16E24C5C00FF2CD3 /* iTunesArtwork@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BF8B35416E24C5C00FF2CD3 /* iTunesArtwork@2x.png */; };
+		4BF8B36016E24D3D00FF2CD3 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BF8B35F16E24D3D00FF2CD3 /* Default.png */; };
+		4BF8B36216E24DE800FF2CD3 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BF8B36116E24DE800FF2CD3 /* Default-568h@2x.png */; };
+		4BF8B36716E2554A00FF2CD3 /* Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BF8B36616E2554A00FF2CD3 /* Utility.m */; };
 		4BF917CC160425A000FFA523 /* NewsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BF917CB160425A000FFA523 /* NewsCell.m */; };
 		4BFDC31915FCA9F9002E3101 /* StyleOneCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BFDC31815FCA9F9002E3101 /* StyleOneCell.m */; };
 		4BFDC31E15FCADA5002E3101 /* HotCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BFDC31D15FCADA5002E3101 /* HotCell.m */; };
@@ -288,6 +239,7 @@
 		4B1E2BAA164438A9001F7B93 /* placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = placeholder.png; sourceTree = "<group>"; };
 		4B21FE231631A29A00AD5C13 /* HotCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HotCellView.h; sourceTree = "<group>"; };
 		4B21FE241631A29A00AD5C13 /* HotCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HotCellView.m; sourceTree = "<group>"; };
+		4B220BE2168B3250009824A1 /* smallbPlaceHolder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = smallbPlaceHolder.png; sourceTree = "<group>"; };
 		4B32EE3F168899E20079FDEA /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		4B32EE4216889C7A0079FDEA /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		4B32EE4416889C860079FDEA /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
@@ -306,62 +258,6 @@
 		4B39A09D160DC4F200C922B2 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		4B421C0815ECFEC2001094FE /* CollectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CollectViewController.h; path = ../CollectViewController.h; sourceTree = "<group>"; };
 		4B421C0915ECFEC2001094FE /* CollectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CollectViewController.m; path = ../CollectViewController.m; sourceTree = "<group>"; };
-		4B43DDA01689E0A100A11133 /* BB霜.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BB霜.png"; sourceTree = "<group>"; };
-		4B43DDA11689E0A100A11133 /* T区护理.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "T区护理.png"; sourceTree = "<group>"; };
-		4B43DDA21689E0A100A11133 /* 乳业面霜.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "乳业面霜.png"; sourceTree = "<group>"; };
-		4B43DDA31689E0A100A11133 /* 假发.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "假发.png"; sourceTree = "<group>"; };
-		4B43DDA41689E0A100A11133 /* 假睫毛.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "假睫毛.png"; sourceTree = "<group>"; };
-		4B43DDA51689E0A100A11133 /* 化妆刷.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "化妆刷.png"; sourceTree = "<group>"; };
-		4B43DDA61689E0A100A11133 /* 化妆工具.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "化妆工具.png"; sourceTree = "<group>"; };
-		4B43DDA71689E0A100A11133 /* 化妆水.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "化妆水.png"; sourceTree = "<group>"; };
-		4B43DDA81689E0A100A11133 /* 卸妆.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "卸妆.png"; sourceTree = "<group>"; };
-		4B43DDA91689E0A100A11133 /* 去角质.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "去角质.png"; sourceTree = "<group>"; };
-		4B43DDAA1689E0A100A11133 /* 唇彩唇膏.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "唇彩唇膏.png"; sourceTree = "<group>"; };
-		4B43DDAB1689E0A100A11133 /* 唇笔:唇线笔.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "唇笔:唇线笔.png"; sourceTree = "<group>"; };
-		4B43DDAC1689E0A100A11133 /* 唇部护理.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "唇部护理.png"; sourceTree = "<group>"; };
-		4B43DDAD1689E0A100A11133 /* 头发造型.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "头发造型.png"; sourceTree = "<group>"; };
-		4B43DDAE1689E0A100A11133 /* 彩妆套装.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "彩妆套装.png"; sourceTree = "<group>"; };
-		4B43DDAF1689E0A100A11133 /* 彩妆香水.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "彩妆香水.png"; sourceTree = "<group>"; };
-		4B43DDB01689E0A100A11133 /* 手部护理.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "手部护理.png"; sourceTree = "<group>"; };
-		4B43DDB11689E0A100A11133 /* 护肤.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "护肤.png"; sourceTree = "<group>"; };
-		4B43DDB21689E0A100A11133 /* 护肤套装.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "护肤套装.png"; sourceTree = "<group>"; };
-		4B43DDB31689E0A100A11133 /* 指甲油:美甲.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "指甲油:美甲.png"; sourceTree = "<group>"; };
-		4B43DDB41689E0A100A11133 /* 染发烫发.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "染发烫发.png"; sourceTree = "<group>"; };
-		4B43DDB51689E0A100A11133 /* 洁面.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "洁面.png"; sourceTree = "<group>"; };
-		4B43DDB61689E0A100A11133 /* 洗发护发.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "洗发护发.png"; sourceTree = "<group>"; };
-		4B43DDB71689E0A100A11133 /* 男士护理.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "男士护理.png"; sourceTree = "<group>"; };
-		4B43DDB81689E0A100A11133 /* 眉笔眉粉.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "眉笔眉粉.png"; sourceTree = "<group>"; };
-		4B43DDB91689E0A100A11133 /* 眼影.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "眼影.png"; sourceTree = "<group>"; };
-		4B43DDBA1689E0A100A11133 /* 眼线.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "眼线.png"; sourceTree = "<group>"; };
-		4B43DDBB1689E0A100A11133 /* 眼霜.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "眼霜.png"; sourceTree = "<group>"; };
-		4B43DDBC1689E0A100A11133 /* 睫毛膏.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "睫毛膏.png"; sourceTree = "<group>"; };
-		4B43DDBD1689E0A100A11133 /* 粉底液:膏.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "粉底液:膏.png"; sourceTree = "<group>"; };
-		4B43DDBE1689E0A100A11133 /* 粉饼.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "粉饼.png"; sourceTree = "<group>"; };
-		4B43DDBF1689E0A100A11133 /* 精华.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "精华.png"; sourceTree = "<group>"; };
-		4B43DDC01689E0A100A11133 /* 精油芳疗.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "精油芳疗.png"; sourceTree = "<group>"; };
-		4B43DDC11689E0A100A11133 /* 美体.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "美体.png"; sourceTree = "<group>"; };
-		4B43DDC21689E0A100A11133 /* 美发.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "美发.png"; sourceTree = "<group>"; };
-		4B43DDC31689E0A100A11133 /* 美容工具.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "美容工具.png"; sourceTree = "<group>"; };
-		4B43DDC41689E0A100A11133 /* 胸部护理.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "胸部护理.png"; sourceTree = "<group>"; };
-		4B43DDC51689E0A100A11133 /* 腮红:胭脂.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "腮红:胭脂.png"; sourceTree = "<group>"; };
-		4B43DDC61689E0A100A11133 /* 蜜粉:散粉.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "蜜粉:散粉.png"; sourceTree = "<group>"; };
-		4B43DDC71689E0A100A11133 /* 身体护理.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "身体护理.png"; sourceTree = "<group>"; };
-		4B43DDC81689E0A100A11133 /* 遮瑕.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "遮瑕.png"; sourceTree = "<group>"; };
-		4B43DDC91689E0A100A11133 /* 防晒.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "防晒.png"; sourceTree = "<group>"; };
-		4B43DDCA1689E0A100A11133 /* 隔离:打底.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "隔离:打底.png"; sourceTree = "<group>"; };
-		4B43DDCB1689E0A100A11133 /* 面膜.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "面膜.png"; sourceTree = "<group>"; };
-		4B43DDCC1689E0A100A11133 /* 香水.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "香水.png"; sourceTree = "<group>"; };
-		4B43DDFF1689E71400A11133 /* GADAdMobExtras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADAdMobExtras.h; sourceTree = "<group>"; };
-		4B43DE001689E71400A11133 /* GADAdNetworkExtras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADAdNetworkExtras.h; sourceTree = "<group>"; };
-		4B43DE011689E71400A11133 /* GADAdSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADAdSize.h; sourceTree = "<group>"; };
-		4B43DE021689E71400A11133 /* GADBannerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADBannerView.h; sourceTree = "<group>"; };
-		4B43DE031689E71400A11133 /* GADBannerViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADBannerViewDelegate.h; sourceTree = "<group>"; };
-		4B43DE041689E71400A11133 /* GADInterstitial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADInterstitial.h; sourceTree = "<group>"; };
-		4B43DE051689E71400A11133 /* GADInterstitialDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADInterstitialDelegate.h; sourceTree = "<group>"; };
-		4B43DE061689E71400A11133 /* GADRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADRequest.h; sourceTree = "<group>"; };
-		4B43DE071689E71400A11133 /* GADRequestError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADRequestError.h; sourceTree = "<group>"; };
-		4B43DE081689E71400A11133 /* libGoogleAdMobAds.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGoogleAdMobAds.a; sourceTree = "<group>"; };
-		4B43DE091689E71400A11133 /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
 		4B43DE0C1689E77A00A11133 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		4B43DE0E1689E79C00A11133 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		4B4EAF71166A06B500E29D6B /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
@@ -384,26 +280,10 @@
 		4B4EAF93166A327100E29D6B /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		4B534E471666403700EF5004 /* NewsNode.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NewsNode.png; sourceTree = "<group>"; };
 		4B534E481666403700EF5004 /* NewsNode@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "NewsNode@2x.png"; sourceTree = "<group>"; };
-		4B5621331630513400C0D9F7 /* Follow_Selected@2xUncrushedPng.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Follow_Selected@2xUncrushedPng.png"; sourceTree = "<group>"; };
-		4B5621341630513400C0D9F7 /* Follow_SelectedUncrushedPng.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Follow_SelectedUncrushedPng.png; sourceTree = "<group>"; };
-		4B5621371630514C00C0D9F7 /* FollowButton@2xUncrushedPng.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FollowButton@2xUncrushedPng.png"; sourceTree = "<group>"; };
-		4B5621381630514C00C0D9F7 /* FollowButtonUncrushedPng.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FollowButtonUncrushedPng.png; sourceTree = "<group>"; };
-		4B56213B1630517D00C0D9F7 /* FollowerFollowing@2xUncrushedPng.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FollowerFollowing@2xUncrushedPng.png"; sourceTree = "<group>"; };
-		4B56213C1630517D00C0D9F7 /* FollowerFollowingUncrushedPng.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FollowerFollowingUncrushedPng.png; sourceTree = "<group>"; };
 		4B562149163054A700C0D9F7 /* PersonImageMask@2xUncrushedPng.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PersonImageMask@2xUncrushedPng.png"; sourceTree = "<group>"; };
 		4B56214A163054A700C0D9F7 /* PersonImageMaskUncrushedPng.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PersonImageMaskUncrushedPng.png; sourceTree = "<group>"; };
 		4B56214F1630570100C0D9F7 /* SheetBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SheetBackground@2x.png"; sourceTree = "<group>"; };
 		4B5621501630570100C0D9F7 /* SheetBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SheetBackground.png; sourceTree = "<group>"; };
-		4B5621531630572C00C0D9F7 /* SheetRightEdge_A@2xUncrushedPng.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SheetRightEdge_A@2xUncrushedPng.png"; sourceTree = "<group>"; };
-		4B5621541630572C00C0D9F7 /* SheetRightEdge_AUncrushedPng.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SheetRightEdge_AUncrushedPng.png; sourceTree = "<group>"; };
-		4B5621571630574200C0D9F7 /* SheetRightEdge_B@2xUncrushedPng.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SheetRightEdge_B@2xUncrushedPng.png"; sourceTree = "<group>"; };
-		4B5621581630574200C0D9F7 /* SheetRightEdge_BUncrushedPng.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SheetRightEdge_BUncrushedPng.png; sourceTree = "<group>"; };
-		4B5621601630586E00C0D9F7 /* tabbar_selected@2xUncrushedPng.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabbar_selected@2xUncrushedPng.png"; sourceTree = "<group>"; };
-		4B5621611630586F00C0D9F7 /* tabbar_selectedUncrushedPng.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tabbar_selectedUncrushedPng.png; sourceTree = "<group>"; };
-		4B562164163058B500C0D9F7 /* TabsBackground_Selected@2xUncrushedPng.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TabsBackground_Selected@2xUncrushedPng.png"; sourceTree = "<group>"; };
-		4B562165163058B500C0D9F7 /* TabsBackground_SelectedUncrushedPng.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TabsBackground_SelectedUncrushedPng.png; sourceTree = "<group>"; };
-		4B562168163058E400C0D9F7 /* TabsBackground@2xUncrushedPng.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TabsBackground@2xUncrushedPng.png"; sourceTree = "<group>"; };
-		4B562169163058E400C0D9F7 /* TabsBackgroundShadow@2xUncrushedPng.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TabsBackgroundShadow@2xUncrushedPng.png"; sourceTree = "<group>"; };
 		4B68109E167DB76F00B37E31 /* button_refresh@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button_refresh@2x.png"; sourceTree = "<group>"; };
 		4B68109F167DB77200B37E31 /* button_refresh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_refresh.png; sourceTree = "<group>"; };
 		4B6E09EA1633D8D800F8FF4B /* likeButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "likeButton@2x.png"; sourceTree = "<group>"; };
@@ -593,6 +473,21 @@
 		4BF3F4CA162A8BC50070BDE5 /* umeng_share_topicSel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = umeng_share_topicSel.png; sourceTree = "<group>"; };
 		4BF3F506162A9E940070BDE5 /* ShareSns.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareSns.h; sourceTree = "<group>"; };
 		4BF3F507162A9E940070BDE5 /* ShareSns.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareSns.m; sourceTree = "<group>"; };
+		4BF8B34B16E24C5C00FF2CD3 /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72.png"; sourceTree = "<group>"; };
+		4BF8B34C16E24C5C00FF2CD3 /* Icon-72@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72@2x.png"; sourceTree = "<group>"; };
+		4BF8B34D16E24C5C00FF2CD3 /* Icon-Small-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small-50.png"; sourceTree = "<group>"; };
+		4BF8B34E16E24C5C00FF2CD3 /* Icon-Small-50@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small-50@2x.png"; sourceTree = "<group>"; };
+		4BF8B34F16E24C5C00FF2CD3 /* Icon-Small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small.png"; sourceTree = "<group>"; };
+		4BF8B35016E24C5C00FF2CD3 /* Icon-Small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small@2x.png"; sourceTree = "<group>"; };
+		4BF8B35116E24C5C00FF2CD3 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
+		4BF8B35216E24C5C00FF2CD3 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
+		4BF8B35316E24C5C00FF2CD3 /* iTunesArtwork.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iTunesArtwork.png; sourceTree = "<group>"; };
+		4BF8B35416E24C5C00FF2CD3 /* iTunesArtwork@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iTunesArtwork@2x.png"; sourceTree = "<group>"; };
+		4BF8B35F16E24D3D00FF2CD3 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		4BF8B36116E24DE800FF2CD3 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		4BF8B36416E2554A00FF2CD3 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		4BF8B36516E2554A00FF2CD3 /* Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utility.h; sourceTree = "<group>"; };
+		4BF8B36616E2554A00FF2CD3 /* Utility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utility.m; sourceTree = "<group>"; };
 		4BF917CA160425A000FFA523 /* NewsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsCell.h; sourceTree = "<group>"; };
 		4BF917CB160425A000FFA523 /* NewsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsCell.m; sourceTree = "<group>"; };
 		4BFDC31715FCA9F9002E3101 /* StyleOneCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StyleOneCell.h; sourceTree = "<group>"; };
@@ -631,7 +526,6 @@
 				4BACE0931615F016006B3E00 /* libMobClickLibrary.a in Frameworks */,
 				4BF3F48E162A8BAE0070BDE5 /* UMSNSLibrary.a in Frameworks */,
 				4B32EE40168899E20079FDEA /* Parse.framework in Frameworks */,
-				4B43DE0A1689E71400A11133 /* libGoogleAdMobAds.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -654,76 +548,6 @@
 				4B39A09B160DC39C00C922B2 /* SVPullToRefresh.m */,
 			);
 			name = SVPullToRefresh;
-			sourceTree = "<group>";
-		};
-		4B43DD9E1689E07700A11133 /* CategoryImage */ = {
-			isa = PBXGroup;
-			children = (
-				4B43DDA01689E0A100A11133 /* BB霜.png */,
-				4B43DDA11689E0A100A11133 /* T区护理.png */,
-				4B43DDA21689E0A100A11133 /* 乳业面霜.png */,
-				4B43DDA31689E0A100A11133 /* 假发.png */,
-				4B43DDA41689E0A100A11133 /* 假睫毛.png */,
-				4B43DDA51689E0A100A11133 /* 化妆刷.png */,
-				4B43DDA61689E0A100A11133 /* 化妆工具.png */,
-				4B43DDA71689E0A100A11133 /* 化妆水.png */,
-				4B43DDA81689E0A100A11133 /* 卸妆.png */,
-				4B43DDA91689E0A100A11133 /* 去角质.png */,
-				4B43DDAA1689E0A100A11133 /* 唇彩唇膏.png */,
-				4B43DDAB1689E0A100A11133 /* 唇笔:唇线笔.png */,
-				4B43DDAC1689E0A100A11133 /* 唇部护理.png */,
-				4B43DDAD1689E0A100A11133 /* 头发造型.png */,
-				4B43DDAE1689E0A100A11133 /* 彩妆套装.png */,
-				4B43DDAF1689E0A100A11133 /* 彩妆香水.png */,
-				4B43DDB01689E0A100A11133 /* 手部护理.png */,
-				4B43DDB11689E0A100A11133 /* 护肤.png */,
-				4B43DDB21689E0A100A11133 /* 护肤套装.png */,
-				4B43DDB31689E0A100A11133 /* 指甲油:美甲.png */,
-				4B43DDB41689E0A100A11133 /* 染发烫发.png */,
-				4B43DDB51689E0A100A11133 /* 洁面.png */,
-				4B43DDB61689E0A100A11133 /* 洗发护发.png */,
-				4B43DDB71689E0A100A11133 /* 男士护理.png */,
-				4B43DDB81689E0A100A11133 /* 眉笔眉粉.png */,
-				4B43DDB91689E0A100A11133 /* 眼影.png */,
-				4B43DDBA1689E0A100A11133 /* 眼线.png */,
-				4B43DDBB1689E0A100A11133 /* 眼霜.png */,
-				4B43DDBC1689E0A100A11133 /* 睫毛膏.png */,
-				4B43DDBD1689E0A100A11133 /* 粉底液:膏.png */,
-				4B43DDBE1689E0A100A11133 /* 粉饼.png */,
-				4B43DDBF1689E0A100A11133 /* 精华.png */,
-				4B43DDC01689E0A100A11133 /* 精油芳疗.png */,
-				4B43DDC11689E0A100A11133 /* 美体.png */,
-				4B43DDC21689E0A100A11133 /* 美发.png */,
-				4B43DDC31689E0A100A11133 /* 美容工具.png */,
-				4B43DDC41689E0A100A11133 /* 胸部护理.png */,
-				4B43DDC51689E0A100A11133 /* 腮红:胭脂.png */,
-				4B43DDC61689E0A100A11133 /* 蜜粉:散粉.png */,
-				4B43DDC71689E0A100A11133 /* 身体护理.png */,
-				4B43DDC81689E0A100A11133 /* 遮瑕.png */,
-				4B43DDC91689E0A100A11133 /* 防晒.png */,
-				4B43DDCA1689E0A100A11133 /* 隔离:打底.png */,
-				4B43DDCB1689E0A100A11133 /* 面膜.png */,
-				4B43DDCC1689E0A100A11133 /* 香水.png */,
-			);
-			name = CategoryImage;
-			sourceTree = "<group>";
-		};
-		4B43DDFE1689E6F600A11133 /* Admob */ = {
-			isa = PBXGroup;
-			children = (
-				4B43DDFF1689E71400A11133 /* GADAdMobExtras.h */,
-				4B43DE001689E71400A11133 /* GADAdNetworkExtras.h */,
-				4B43DE011689E71400A11133 /* GADAdSize.h */,
-				4B43DE021689E71400A11133 /* GADBannerView.h */,
-				4B43DE031689E71400A11133 /* GADBannerViewDelegate.h */,
-				4B43DE041689E71400A11133 /* GADInterstitial.h */,
-				4B43DE051689E71400A11133 /* GADInterstitialDelegate.h */,
-				4B43DE061689E71400A11133 /* GADRequest.h */,
-				4B43DE071689E71400A11133 /* GADRequestError.h */,
-				4B43DE081689E71400A11133 /* libGoogleAdMobAds.a */,
-				4B43DE091689E71400A11133 /* README.txt */,
-			);
-			name = Admob;
 			sourceTree = "<group>";
 		};
 		4B4EAF641669FDE700E29D6B /* Reachability */ = {
@@ -1026,7 +850,7 @@
 		4BDB315A15BA56DE007B1C6F /* MuyingYongpin */ = {
 			isa = PBXGroup;
 			children = (
-				4B43DDFE1689E6F600A11133 /* Admob */,
+				4BF8B36316E254F900FF2CD3 /* Utilities */,
 				4B4EAF7F166A320000E29D6B /* ATMHud */,
 				4B4EAF641669FDE700E29D6B /* Reachability */,
 				4BACE06B1615E4AA006B3E00 /* UIWebView+Clean */,
@@ -1069,8 +893,20 @@
 		4BDB315B15BA56DE007B1C6F /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				4B43DD9E1689E07700A11133 /* CategoryImage */,
+				4BF8B36116E24DE800FF2CD3 /* Default-568h@2x.png */,
+				4BF8B35F16E24D3D00FF2CD3 /* Default.png */,
+				4BF8B34B16E24C5C00FF2CD3 /* Icon-72.png */,
+				4BF8B34C16E24C5C00FF2CD3 /* Icon-72@2x.png */,
+				4BF8B34D16E24C5C00FF2CD3 /* Icon-Small-50.png */,
+				4BF8B34E16E24C5C00FF2CD3 /* Icon-Small-50@2x.png */,
+				4BF8B34F16E24C5C00FF2CD3 /* Icon-Small.png */,
+				4BF8B35016E24C5C00FF2CD3 /* Icon-Small@2x.png */,
+				4BF8B35116E24C5C00FF2CD3 /* Icon.png */,
+				4BF8B35216E24C5C00FF2CD3 /* Icon@2x.png */,
+				4BF8B35316E24C5C00FF2CD3 /* iTunesArtwork.png */,
+				4BF8B35416E24C5C00FF2CD3 /* iTunesArtwork@2x.png */,
 				4B171B241684C72F00C0AE43 /* bPlaceHolder.png */,
+				4B220BE2168B3250009824A1 /* smallbPlaceHolder.png */,
 				4B1E2BAA164438A9001F7B93 /* placeholder.png */,
 				4B68109E167DB76F00B37E31 /* button_refresh@2x.png */,
 				4B68109F167DB77200B37E31 /* button_refresh.png */,
@@ -1079,24 +915,8 @@
 				4B18F8BE167F60F300C2D3C4 /* web_tab_forward@2x.png */,
 				4B18F8BF167F60F300C2D3C4 /* web_tab_forward.png */,
 				4B348A111635847F00A6DA91 /* Font */,
-				4B562168163058E400C0D9F7 /* TabsBackground@2xUncrushedPng.png */,
-				4B562169163058E400C0D9F7 /* TabsBackgroundShadow@2xUncrushedPng.png */,
-				4B562164163058B500C0D9F7 /* TabsBackground_Selected@2xUncrushedPng.png */,
-				4B562165163058B500C0D9F7 /* TabsBackground_SelectedUncrushedPng.png */,
-				4B5621601630586E00C0D9F7 /* tabbar_selected@2xUncrushedPng.png */,
-				4B5621611630586F00C0D9F7 /* tabbar_selectedUncrushedPng.png */,
-				4B5621571630574200C0D9F7 /* SheetRightEdge_B@2xUncrushedPng.png */,
-				4B5621581630574200C0D9F7 /* SheetRightEdge_BUncrushedPng.png */,
-				4B5621531630572C00C0D9F7 /* SheetRightEdge_A@2xUncrushedPng.png */,
-				4B5621541630572C00C0D9F7 /* SheetRightEdge_AUncrushedPng.png */,
 				4B56214F1630570100C0D9F7 /* SheetBackground@2x.png */,
 				4B5621501630570100C0D9F7 /* SheetBackground.png */,
-				4B56213B1630517D00C0D9F7 /* FollowerFollowing@2xUncrushedPng.png */,
-				4B56213C1630517D00C0D9F7 /* FollowerFollowingUncrushedPng.png */,
-				4B5621371630514C00C0D9F7 /* FollowButton@2xUncrushedPng.png */,
-				4B5621381630514C00C0D9F7 /* FollowButtonUncrushedPng.png */,
-				4B5621331630513400C0D9F7 /* Follow_Selected@2xUncrushedPng.png */,
-				4B5621341630513400C0D9F7 /* Follow_SelectedUncrushedPng.png */,
 				4B534E451666400E00EF5004 /* fasionNews */,
 				4B56215B1630580E00C0D9F7 /* tabbar */,
 				4B5621481630549200C0D9F7 /* imageframe */,
@@ -1215,6 +1035,16 @@
 				4BF3F507162A9E940070BDE5 /* ShareSns.m */,
 			);
 			name = ShareSns;
+			sourceTree = "<group>";
+		};
+		4BF8B36316E254F900FF2CD3 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				4BF8B36416E2554A00FF2CD3 /* Constants.h */,
+				4BF8B36516E2554A00FF2CD3 /* Utility.h */,
+				4BF8B36616E2554A00FF2CD3 /* Utility.m */,
+			);
+			name = Utilities;
 			sourceTree = "<group>";
 		};
 		4BFDC31B15FCAA12002E3101 /* Views */ = {
@@ -1356,26 +1186,10 @@
 				4BF3F505162A8BC60070BDE5 /* umeng_share_topicSel.png in Resources */,
 				4BF0191B162F04730032F98C /* BackgroundPattern@2x.png in Resources */,
 				4BF0191C162F04730032F98C /* BackgroundPattern.png in Resources */,
-				4B5621351630513400C0D9F7 /* Follow_Selected@2xUncrushedPng.png in Resources */,
-				4B5621361630513400C0D9F7 /* Follow_SelectedUncrushedPng.png in Resources */,
-				4B5621391630514C00C0D9F7 /* FollowButton@2xUncrushedPng.png in Resources */,
-				4B56213A1630514C00C0D9F7 /* FollowButtonUncrushedPng.png in Resources */,
-				4B56213D1630517D00C0D9F7 /* FollowerFollowing@2xUncrushedPng.png in Resources */,
-				4B56213E1630517D00C0D9F7 /* FollowerFollowingUncrushedPng.png in Resources */,
 				4B56214B163054A700C0D9F7 /* PersonImageMask@2xUncrushedPng.png in Resources */,
 				4B56214C163054A700C0D9F7 /* PersonImageMaskUncrushedPng.png in Resources */,
 				4B5621511630570100C0D9F7 /* SheetBackground@2x.png in Resources */,
 				4B5621521630570100C0D9F7 /* SheetBackground.png in Resources */,
-				4B5621551630572C00C0D9F7 /* SheetRightEdge_A@2xUncrushedPng.png in Resources */,
-				4B5621561630572C00C0D9F7 /* SheetRightEdge_AUncrushedPng.png in Resources */,
-				4B5621591630574200C0D9F7 /* SheetRightEdge_B@2xUncrushedPng.png in Resources */,
-				4B56215A1630574200C0D9F7 /* SheetRightEdge_BUncrushedPng.png in Resources */,
-				4B5621621630586F00C0D9F7 /* tabbar_selected@2xUncrushedPng.png in Resources */,
-				4B5621631630586F00C0D9F7 /* tabbar_selectedUncrushedPng.png in Resources */,
-				4B562166163058B600C0D9F7 /* TabsBackground_Selected@2xUncrushedPng.png in Resources */,
-				4B562167163058B600C0D9F7 /* TabsBackground_SelectedUncrushedPng.png in Resources */,
-				4B56216A163058E500C0D9F7 /* TabsBackground@2xUncrushedPng.png in Resources */,
-				4B56216B163058E500C0D9F7 /* TabsBackgroundShadow@2xUncrushedPng.png in Resources */,
 				4B6E09F01633D8D800F8FF4B /* likeButton@2x.png in Resources */,
 				4B6E09F11633D8D800F8FF4B /* likeButtonActive@2x.png in Resources */,
 				4B6E09F21633D8D800F8FF4B /* likeButtonActive.png in Resources */,
@@ -1408,52 +1222,19 @@
 				4B18F8C2167F60F300C2D3C4 /* web_tab_forward@2x.png in Resources */,
 				4B18F8C3167F60F300C2D3C4 /* web_tab_forward.png in Resources */,
 				4B171B251684C72F00C0AE43 /* bPlaceHolder.png in Resources */,
-				4B43DDCD1689E0A100A11133 /* BB霜.png in Resources */,
-				4B43DDCE1689E0A100A11133 /* T区护理.png in Resources */,
-				4B43DDCF1689E0A100A11133 /* 乳业面霜.png in Resources */,
-				4B43DDD01689E0A100A11133 /* 假发.png in Resources */,
-				4B43DDD11689E0A100A11133 /* 假睫毛.png in Resources */,
-				4B43DDD21689E0A100A11133 /* 化妆刷.png in Resources */,
-				4B43DDD31689E0A100A11133 /* 化妆工具.png in Resources */,
-				4B43DDD41689E0A100A11133 /* 化妆水.png in Resources */,
-				4B43DDD51689E0A100A11133 /* 卸妆.png in Resources */,
-				4B43DDD61689E0A100A11133 /* 去角质.png in Resources */,
-				4B43DDD71689E0A100A11133 /* 唇彩唇膏.png in Resources */,
-				4B43DDD81689E0A100A11133 /* 唇笔:唇线笔.png in Resources */,
-				4B43DDD91689E0A100A11133 /* 唇部护理.png in Resources */,
-				4B43DDDA1689E0A100A11133 /* 头发造型.png in Resources */,
-				4B43DDDB1689E0A100A11133 /* 彩妆套装.png in Resources */,
-				4B43DDDC1689E0A100A11133 /* 彩妆香水.png in Resources */,
-				4B43DDDD1689E0A100A11133 /* 手部护理.png in Resources */,
-				4B43DDDE1689E0A100A11133 /* 护肤.png in Resources */,
-				4B43DDDF1689E0A100A11133 /* 护肤套装.png in Resources */,
-				4B43DDE01689E0A100A11133 /* 指甲油:美甲.png in Resources */,
-				4B43DDE11689E0A100A11133 /* 染发烫发.png in Resources */,
-				4B43DDE21689E0A100A11133 /* 洁面.png in Resources */,
-				4B43DDE31689E0A100A11133 /* 洗发护发.png in Resources */,
-				4B43DDE41689E0A100A11133 /* 男士护理.png in Resources */,
-				4B43DDE51689E0A100A11133 /* 眉笔眉粉.png in Resources */,
-				4B43DDE61689E0A100A11133 /* 眼影.png in Resources */,
-				4B43DDE71689E0A100A11133 /* 眼线.png in Resources */,
-				4B43DDE81689E0A100A11133 /* 眼霜.png in Resources */,
-				4B43DDE91689E0A100A11133 /* 睫毛膏.png in Resources */,
-				4B43DDEA1689E0A100A11133 /* 粉底液:膏.png in Resources */,
-				4B43DDEB1689E0A100A11133 /* 粉饼.png in Resources */,
-				4B43DDEC1689E0A100A11133 /* 精华.png in Resources */,
-				4B43DDED1689E0A100A11133 /* 精油芳疗.png in Resources */,
-				4B43DDEE1689E0A100A11133 /* 美体.png in Resources */,
-				4B43DDEF1689E0A100A11133 /* 美发.png in Resources */,
-				4B43DDF01689E0A100A11133 /* 美容工具.png in Resources */,
-				4B43DDF11689E0A100A11133 /* 胸部护理.png in Resources */,
-				4B43DDF21689E0A100A11133 /* 腮红:胭脂.png in Resources */,
-				4B43DDF31689E0A100A11133 /* 蜜粉:散粉.png in Resources */,
-				4B43DDF41689E0A100A11133 /* 身体护理.png in Resources */,
-				4B43DDF51689E0A100A11133 /* 遮瑕.png in Resources */,
-				4B43DDF61689E0A100A11133 /* 防晒.png in Resources */,
-				4B43DDF71689E0A100A11133 /* 隔离:打底.png in Resources */,
-				4B43DDF81689E0A100A11133 /* 面膜.png in Resources */,
-				4B43DDF91689E0A100A11133 /* 香水.png in Resources */,
-				4B43DE0B1689E71400A11133 /* README.txt in Resources */,
+				4B220BE3168B3250009824A1 /* smallbPlaceHolder.png in Resources */,
+				4BF8B35516E24C5C00FF2CD3 /* Icon-72.png in Resources */,
+				4BF8B35616E24C5C00FF2CD3 /* Icon-72@2x.png in Resources */,
+				4BF8B35716E24C5C00FF2CD3 /* Icon-Small-50.png in Resources */,
+				4BF8B35816E24C5C00FF2CD3 /* Icon-Small-50@2x.png in Resources */,
+				4BF8B35916E24C5C00FF2CD3 /* Icon-Small.png in Resources */,
+				4BF8B35A16E24C5C00FF2CD3 /* Icon-Small@2x.png in Resources */,
+				4BF8B35B16E24C5C00FF2CD3 /* Icon.png in Resources */,
+				4BF8B35C16E24C5C00FF2CD3 /* Icon@2x.png in Resources */,
+				4BF8B35D16E24C5C00FF2CD3 /* iTunesArtwork.png in Resources */,
+				4BF8B35E16E24C5C00FF2CD3 /* iTunesArtwork@2x.png in Resources */,
+				4BF8B36016E24D3D00FF2CD3 /* Default.png in Resources */,
+				4BF8B36216E24DE800FF2CD3 /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1524,6 +1305,7 @@
 				4B4EAF90166A321200E29D6B /* ATMProgressLayer.m in Sources */,
 				4B4EAF91166A321200E29D6B /* ATMSoundFX.m in Sources */,
 				4B4EAF92166A321200E29D6B /* ATMTextLayer.m in Sources */,
+				4BF8B36716E2554A00FF2CD3 /* Utility.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

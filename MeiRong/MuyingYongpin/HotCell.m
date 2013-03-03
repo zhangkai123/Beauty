@@ -62,11 +62,11 @@
 //        priceLabel2.backgroundColor = [UIColor blueColor];
         
         UILabel *likeLabel1 = [[UILabel alloc]initWithFrame:CGRectMake(95, 337, 25, 25)];
-        likeLabel1.text = @"喜欢";
+        likeLabel1.text = @"信誉";
         likeLabel1.font = [UIFont fontWithName:@"Heiti TC" size:12];
 //        likeLabel1.backgroundColor = [UIColor yellowColor];
         
-        likeLabel2 = [[UILabel alloc]initWithFrame:CGRectMake(95 + 25 + 3, 337, 30, 25)];
+        likeLabel2 = [[UILabel alloc]initWithFrame:CGRectMake(95 + 25 + 3, 337, 60, 25)];
         likeLabel2.font = [UIFont fontWithName:@"Heiti TC" size:12];
         likeLabel2.textColor = [UIColor colorWithRed:(196/255.f) green:(72/255.f) blue:(72/255.f) alpha:1];
 //        likeLabel2.backgroundColor = [UIColor blueColor];
