@@ -78,7 +78,15 @@
     
 	// Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor whiteColor];
-    webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 44, 320, 460 - 44)];
+    CGRect screenBounds = [[UIScreen mainScreen] bounds];
+    if (screenBounds.size.height == 568) {
+        // code for 4-inch screen
+        webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 44, 320, 548 - 44)];
+    } else {
+        // code for 3.5-inch screen
+        webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 44, 320, 460 - 44)];
+    }
+
     webView.scalesPageToFit = YES;
     [webView setDelegate:self];
     

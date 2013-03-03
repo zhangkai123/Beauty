@@ -102,7 +102,14 @@
         [self.navigationController.navigationBar setOpaque:1.0];
     }
     
-    productTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 460-44-49) style:UITableViewStylePlain];
+    CGRect screenBounds = [[UIScreen mainScreen] bounds];
+    if (screenBounds.size.height == 568) {
+        // code for 4-inch screen
+        productTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 548-44-49) style:UITableViewStylePlain];
+    } else {
+        // code for 3.5-inch screen
+        productTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 460-44-49) style:UITableViewStylePlain];
+    }
     productTableView.backgroundColor = [UIColor clearColor];
     [productTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
 ///    productTableView.showsVerticalScrollIndicator = NO;

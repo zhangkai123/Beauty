@@ -106,7 +106,14 @@
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(refreshCollected:) name:@"REFRESH_COLLECTED" object:nil];
     
 	// Do any additional setup after loading the view.
-    theTalbleView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, 320, 460-44-50) style:UITableViewStylePlain];
+    CGRect screenBounds = [[UIScreen mainScreen] bounds];
+    if (screenBounds.size.height == 568) {
+        // code for 4-inch screen
+        theTalbleView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, 320, 548-44-50) style:UITableViewStylePlain];
+    } else {
+        // code for 3.5-inch screen
+        theTalbleView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, 320, 460-44-50) style:UITableViewStylePlain];
+    }
     [theTalbleView setBackgroundColor:[UIColor clearColor]];
     [theTalbleView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     theTalbleView.rowHeight = 190;

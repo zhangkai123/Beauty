@@ -80,7 +80,15 @@
     dataArray4 = [[NSMutableArray alloc]initWithObjects:@"手工皂",@"沐浴露",@"美颈霜",@"身体乳",@"护手霜",@"假发",@"发蜡",@"弹力素",@"发膜",@"蓬蓬粉",@"染发膏",nil];
     
     UIEdgeInsets insets = UIEdgeInsetsMake(0, 0, self.navigationController.navigationBar.frame.size.height, 0);
-    myTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 460-44-49) style:UITableViewStylePlain];
+    
+    CGRect screenBounds = [[UIScreen mainScreen] bounds];
+    if (screenBounds.size.height == 568) {
+        // code for 4-inch screen
+        myTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 548-44-49) style:UITableViewStylePlain];
+    } else {
+        // code for 3.5-inch screen
+        myTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 460-44-49) style:UITableViewStylePlain];
+    }
     //    [productTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     myTableView.delegate = self;
     myTableView.dataSource = self;

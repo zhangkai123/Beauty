@@ -115,6 +115,7 @@
         NSMutableArray *pArray = [self parseProductsData:resultData];
         
         [[NSNotificationCenter defaultCenter]postNotificationName:@"HOT_PRODUCTS_REARDY" object:pArray userInfo:nil];
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
     });
 }
 -(void)fetachCateProducts:(NSString *)cateName notiName:(NSString *)nName pageNumber:(int)pageN
@@ -126,39 +127,60 @@
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
                 
-//        int catId = [self getNotificationId:cateName];
-        int catId = [self getServerNotificationId:cateName];
+//        int catId = [self getServerNotificationId:cateName];
+//        
+//        NSError *error;
+//        NSURLResponse *theResponse;
+////        NSString *urlString = [NSString stringWithFormat:@"%@/~zhangkai/PinPHP_V2.21/fetchProducts.php",hostIp];
+//        NSString *urlString = [NSString stringWithFormat:@"%@/PinPHP_V2.21/fetchProducts.php",ServerIp];
+//        NSMutableURLRequest *theRequest=[NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlString]];
+//        [theRequest setHTTPMethod:@"POST"];
+//        NSString *postString = [NSString stringWithFormat:@"catId=%d&pageNumber=%d",catId,pageN];
+//        [theRequest setHTTPBody:[postString dataUsingEncoding:NSUTF8StringEncoding]];
+//        
+//        [theRequest addValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+//        NSData *resultData = [NSURLConnection sendSynchronousRequest:theRequest returningResponse:&theResponse error:&error];
+//        
+//        /* Return Value
+//         The downloaded data for the URL request. Returns nil if a connection could not be created or if the download fails.
+//         */
+//        if (resultData == nil) {
+//            
+//            // Check for problems
+//            if (error != nil) {
+//                [self showAlert:[error description]];
+//            }else{
+//                [self showAlert:@"返回数据为空"];
+//            }
+//        }
+//        else {
+//            // Data was received.. continue processing
+//            NSMutableArray *pArray = [self parseProductsData:resultData];
+//            [[NSNotificationCenter defaultCenter]postNotificationName:nName object:pArray userInfo:nil];
+//            [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+//        }
         
-        NSError *error;
-        NSURLResponse *theResponse;
-//        NSString *urlString = [NSString stringWithFormat:@"%@/~zhangkai/PinPHP_V2.21/fetchProducts.php",hostIp];
-        NSString *urlString = [NSString stringWithFormat:@"%@/PinPHP_V2.21/fetchProducts.php",ServerIp];
-        NSMutableURLRequest *theRequest=[NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlString]];
-        [theRequest setHTTPMethod:@"POST"];
-        NSString *postString = [NSString stringWithFormat:@"catId=%d&pageNumber=%d",catId,pageN];
-        [theRequest setHTTPBody:[postString dataUsingEncoding:NSUTF8StringEncoding]];
+        NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
         
-        [theRequest addValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
-        NSData *resultData = [NSURLConnection sendSynchronousRequest:theRequest returningResponse:&theResponse error:&error];
+        [params setObject:@"title,pic_url,price,seller_credit_score,click_url" forKey:@"fields"];
+        [params setObject:@"50010788" forKey:@"cid"];
+        [params setObject:@"taobao.taobaoke.items.get" forKey:@"method"];
+        [params setObject:[NSString stringWithFormat:@"%d",pageN] forKey:@"page_no"];
+        [params setObject:@"20" forKey:@"page_size"];
+        [params setObject:@"30" forKey:@"start_price"];
+        [params setObject:@"2000" forKey:@"end_price"];
+        [params setObject:@"commissionNum_desc" forKey:@"sort"];
+        [params setObject:cateName forKey:@"keyword"];
+        [params setObject:@"true" forKey:@"is_mobile"];
         
-        /* Return Value
-         The downloaded data for the URL request. Returns nil if a connection could not be created or if the download fails.
-         */
-        if (resultData == nil) {
-            
-            // Check for problems
-            if (error != nil) {
-                [self showAlert:[error description]];
-            }else{
-                [self showAlert:@"返回数据为空"];
-            }
-        }
-        else {
-            // Data was received.. continue processing
-            NSMutableArray *pArray = [self parseProductsData:resultData];
-            [[NSNotificationCenter defaultCenter]postNotificationName:nName object:pArray userInfo:nil];
-            [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
-        }
+        NSData *resultData=[Utility getResultData:params];
+        NSString *productsString = [[NSString alloc]initWithData:resultData encoding:NSUTF8StringEncoding];
+        NSLog(@"---%@---\n",productsString);
+        [params release];
+        NSMutableArray *pArray = [self parseProductsData:resultData];
+        
+        [[NSNotificationCenter defaultCenter]postNotificationName:nName object:pArray userInfo:nil];
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
     });
 }
 //-(NSMutableArray *)parseProductsData:(NSData *)data
@@ -202,7 +224,7 @@
         
         NSDictionary *item = [taobaoke_item objectAtIndex:i];
         Product *product = [[Product alloc]init];
-        product.title = [item objectForKey:@"title"];
+        product.title = [self stringCleaner:[item objectForKey:@"title"]];
         product.price = [item objectForKey:@"price"];
         product.seller_credit_score = [NSString stringWithFormat:@"%@",[item objectForKey:@"seller_credit_score"]];
         product.pic_url = [item objectForKey:@"pic_url"];

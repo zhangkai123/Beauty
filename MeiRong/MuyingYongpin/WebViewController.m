@@ -62,7 +62,15 @@
         
 	// Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor whiteColor];
-    webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 44, 320, 460 - 44 - 40)];
+    CGRect screenBounds = [[UIScreen mainScreen] bounds];
+    if (screenBounds.size.height == 568) {
+        // code for 4-inch screen
+        webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 44, 320, 548 - 44 - 40)];
+    } else {
+        // code for 3.5-inch screen
+        webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 44, 320, 460 - 44 - 40)];
+    }
+
     webView.scalesPageToFit = YES;
     [webView setDelegate:self];
     
@@ -95,6 +103,14 @@
     [shadowView release];
     
     UIImageView *bottomBar = [[UIImageView alloc]initWithFrame:CGRectMake(0, 460 - 40, 320, 40)];
+    if (screenBounds.size.height == 568) {
+        // code for 4-inch screen
+        bottomBar.frame = CGRectMake(0, 548 - 40, 320, 40);
+    } else {
+        // code for 3.5-inch screen
+        bottomBar.frame = CGRectMake(0, 460 - 40, 320, 40);
+    }
+
     bottomBar.image = [UIImage imageNamed:@"navbar_background"];
     bottomBar.userInteractionEnabled = YES;
     [self.view addSubview:bottomBar];
@@ -125,6 +141,13 @@
     [refreshButton release];
     
     UIImageView *shadowView2 = [[UIImageView alloc]initWithFrame:CGRectMake(0, 460 - 40 - 1, 320, 1)];
+    if (screenBounds.size.height == 568) {
+        // code for 4-inch screen
+        shadowView2.frame = CGRectMake(0, 548 - 40 - 1, 320, 1);
+    } else {
+        // code for 3.5-inch screen
+        shadowView2.frame = CGRectMake(0, 460 - 40 - 1, 320, 1);
+    }
     shadowView2.backgroundColor = [UIColor blackColor];
     [shadowView2 setAlpha:0.1];
     [self.view addSubview:shadowView2];

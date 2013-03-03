@@ -45,7 +45,15 @@
     [super viewDidLoad];
     [self createNavBackButton];
 	// Do any additional setup after loading the view.
-    theTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 460-44-49) style:UITableViewStylePlain];
+    CGRect screenBounds = [[UIScreen mainScreen] bounds];
+    if (screenBounds.size.height == 568) {
+        // code for 4-inch screen
+        theTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 548-44-49) style:UITableViewStylePlain];
+    } else {
+        // code for 3.5-inch screen
+        theTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 460-44-49) style:UITableViewStylePlain];
+    }
+
     theTableView.backgroundColor = [UIColor clearColor];
     [theTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     theTableView.showsVerticalScrollIndicator = NO;

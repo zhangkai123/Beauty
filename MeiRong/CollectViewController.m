@@ -73,7 +73,14 @@
     }
     UIEdgeInsets insets = UIEdgeInsetsMake(0, 0, self.navigationController.navigationBar.frame.size.height, 0);
     
-    myTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, 320, 460-44-49) style:UITableViewStylePlain];
+    CGRect screenBounds = [[UIScreen mainScreen] bounds];
+    if (screenBounds.size.height == 568) {
+        // code for 4-inch screen
+        myTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, 320, 548-44-49) style:UITableViewStylePlain];
+    } else {
+        // code for 3.5-inch screen
+        myTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, 320, 460-44-49) style:UITableViewStylePlain];
+    }
     [myTableView setBackgroundColor:[UIColor clearColor]];
     [myTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     myTableView.rowHeight = 190;
