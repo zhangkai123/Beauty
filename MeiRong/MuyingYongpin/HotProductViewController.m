@@ -48,7 +48,6 @@
 
         // set the long name shown in the navigation bar at the top
         UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(50, 0, 220, 30)];
-//        titleLabel.textColor = [UIColor colorWithRed:1 green: 0.6 blue:0.8 alpha:1];
         titleLabel.textColor = [UIColor whiteColor];
         [titleLabel setTextAlignment:UITextAlignmentCenter];
         titleLabel.font = [UIFont fontWithName:@"迷你简黛玉" size:25];
@@ -62,7 +61,6 @@
         [self createActivity];
     }
     return self;
-    
 }
 -(void)startActivity{
     
