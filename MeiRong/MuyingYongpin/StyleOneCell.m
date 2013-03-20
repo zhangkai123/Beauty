@@ -56,7 +56,7 @@
         [coverView1 addSubview:priceLabel2];
         
         UILabel *likeLabel1 = [[UILabel alloc]initWithFrame:CGRectMake(95, 155, 25, 35)];
-        likeLabel1.text = @"信誉";
+        likeLabel1.text = @"喜欢";
         likeLabel1.font = [UIFont fontWithName:@"Heiti TC" size:12];
 //        likeLabel1.backgroundColor = [UIColor yellowColor];
         [coverView1 addSubview:likeLabel1];
@@ -99,7 +99,7 @@
         [coverView2 addSubview:priceLabelR2];
         
         UILabel *likeLabel1R = [[UILabel alloc]initWithFrame:CGRectMake(90, 155, 25, 35)];
-        likeLabel1R.text = @"信誉";
+        likeLabel1R.text = @"喜欢";
         likeLabel1R.font = [UIFont fontWithName:@"Heiti TC" size:12];
 //        likeLabel1R.backgroundColor = [UIColor yellowColor];
         [coverView2 addSubview:likeLabel1R];
