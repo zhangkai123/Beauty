@@ -74,11 +74,11 @@
     [collectViewController release];
     [navigationController release];
 
-    NewsFeedViewController *newsFeedViewController = [[NewsFeedViewController alloc]initWithTabBar];
-    navigationController = [[UINavigationController alloc]initWithRootViewController:newsFeedViewController];
-    [controllersArray addObject:navigationController];
-    [newsFeedViewController release];
-    [navigationController release];
+//    NewsFeedViewController *newsFeedViewController = [[NewsFeedViewController alloc]initWithTabBar];
+//    navigationController = [[UINavigationController alloc]initWithRootViewController:newsFeedViewController];
+//    [controllersArray addObject:navigationController];
+//    [newsFeedViewController release];
+//    [navigationController release];
     
     self.tabBarController.viewControllers = controllersArray;
     [controllersArray release];

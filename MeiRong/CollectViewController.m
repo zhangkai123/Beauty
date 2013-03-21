@@ -12,6 +12,7 @@
 #import "Product.h"
 #import "UIImageView+WebCache.h"
 #import "TheBrandDetailViewController.h"
+#import "SetupViewController.h"
 
 @interface CollectViewController()
 {
@@ -38,13 +39,13 @@
 -(id) initWithTabBar {
     if ([self init]) {
         //this is the label on the tab button itself
-        self.title = @"收藏";
+        self.title = @"我的";
         
         //use whatever image you want and add it to your project
         self.tabBarItem.image = [UIImage imageNamed:@"iconFavorTab"];
         
         // set the long name shown in the navigation bar at the top
-        UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 320, 30)];
+        UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(40, 0, 240, 30)];
 //        titleLabel.textColor = [UIColor colorWithRed:1 green: 0.6 blue:0.8 alpha:1];
         titleLabel.textColor = [UIColor whiteColor];
         [titleLabel setTextAlignment:UITextAlignmentCenter];
@@ -52,14 +53,35 @@
         titleLabel.shadowColor   = [[UIColor blackColor]colorWithAlphaComponent: 0.2f];
         titleLabel.shadowOffset  = CGSizeMake(1.0,1.0);
         titleLabel.backgroundColor = [UIColor clearColor];
-        titleLabel.text = @"我的收藏";
+        titleLabel.text = @"我的";
         [self.navigationItem setTitleView:titleLabel];
         [titleLabel release];
+        
+        [self createSetupButton];
     }
     return self;
     
 }
-
+-(void)createSetupButton
+{
+    UIButton *setupButton = [[UIButton alloc]initWithFrame:CGRectMake(5, 0, 20, 20)];
+    [setupButton setBackgroundImage:[UIImage imageNamed:@"set"] forState:UIControlStateNormal];
+    [setupButton addTarget:self action:@selector(goToSetup) forControlEvents:UIControlEventTouchUpInside];
+    UIView *rightItem = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 30, 20)];
+    rightItem.backgroundColor = [UIColor clearColor];
+    [rightItem addSubview:setupButton];
+    [setupButton release];
+    UIBarButtonItem * rightbarButton = [[UIBarButtonItem alloc] initWithCustomView:rightItem];
+    [self navigationItem].rightBarButtonItem = rightbarButton;
+    [rightItem release];
+    [rightbarButton release];
+}
+-(void)goToSetup
+{
+    SetupViewController *setupViewController = [[SetupViewController alloc]init];
+    [self.navigationController pushViewController:setupViewController animated:YES];
+    [setupViewController release];
+}
 - (void)viewDidLoad
 {
     [super viewDidLoad];
