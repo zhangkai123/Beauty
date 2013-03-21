@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SetupViewController : UIViewController
-
+@interface SetupViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
+{
+    UITableView *setupableView;
+}
 @end

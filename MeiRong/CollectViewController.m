@@ -64,7 +64,7 @@
 }
 -(void)createSetupButton
 {
-    UIButton *setupButton = [[UIButton alloc]initWithFrame:CGRectMake(5, 0, 20, 20)];
+    UIButton *setupButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 20, 20)];
     [setupButton setBackgroundImage:[UIImage imageNamed:@"set"] forState:UIControlStateNormal];
     [setupButton addTarget:self action:@selector(goToSetup) forControlEvents:UIControlEventTouchUpInside];
     UIView *rightItem = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 30, 20)];
