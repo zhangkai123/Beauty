@@ -6,9 +6,9 @@
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
+#import <ImageIO/ImageIO.h>
 #import "DataController.h"
 #import "SBJson.h"
-#import "Product.h"
 #import "DDXML.h"
 #import "FashionNews.h"
 #import "ReachableManager.h"
@@ -52,45 +52,6 @@
                                   otherButtonTitles:nil,nil];
             [alert show];
             [alert release];
-    });
-}
--(void)fetachHotProducts:(int)pageN
-{
-    if (![[ReachableManager sharedReachableManager]reachable]) {
-        [self performSelector:@selector(showNoNetwork) withObject:nil afterDelay:1.0];
-    }
-    
-    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        
-        NSError *error;
-        NSURLResponse *theResponse;
-        NSString *urlString = [NSString stringWithFormat:@"%@/PinPHP_V2.21/fetchProducts.php",ServerIp];
-        NSMutableURLRequest *theRequest=[NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlString]];
-        [theRequest setHTTPMethod:@"POST"];
-        NSString *postString = [NSString stringWithFormat:@"catId=413&pageNumber=%d",pageN];  
-        [theRequest setHTTPBody:[postString dataUsingEncoding:NSUTF8StringEncoding]];
-        
-        [theRequest addValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
-        NSData *resultData = [NSURLConnection sendSynchronousRequest:theRequest returningResponse:&theResponse error:&error];
-        /* Return Value
-         The downloaded data for the URL request. Returns nil if a connection could not be created or if the download fails.
-         */
-        if (resultData == nil) {
-            
-            // Check for problems
-            if (error != nil) {
-                [self showAlert:[error description]];
-            }else{
-                [self showAlert:@"返回数据为空"];
-            }
-        }
-        else {
-            // Data was received.. continue processing
-            NSMutableArray *pArray = [self parseProductsData:resultData];
-            [[NSNotificationCenter defaultCenter]postNotificationName:@"HOT_PRODUCTS_REARDY" object:pArray userInfo:nil];
-            [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
-        }        
     });
 }
 -(void)fetachCateProducts:(NSString *)cateName notiName:(NSString *)nName pageNumber:(int)pageN
@@ -139,7 +100,7 @@
 -(NSMutableArray *)parseProductsData:(NSData *)data
 {
     NSString *productsString = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
-
+    
     NSArray *productArray = [productsString JSONValue];
     
     NSLog(@"---%@---\n",productsString);
@@ -150,6 +111,11 @@
         NSDictionary *item = [productArray objectAtIndex:i];
         
         Product *product = [[Product alloc]init];
+        NSString *item_key = [item objectForKey:@"item_key"];
+        NSArray *num_id_array = [item_key componentsSeparatedByString:@"_"];
+        if ([num_id_array count] > 0) {
+            product.num_id = [num_id_array objectAtIndex:1];
+        }
         product.title = [item objectForKey:@"title"];
         product.price = [item objectForKey:@"price"];
         product.seller_credit_score = [item objectForKey:@"likes"];
@@ -158,10 +124,72 @@
         NSLog(@"%@",product.click_url);
         [pArray addObject:product];
         [product release];
-    }    
+    }
     return [pArray autorelease];
 }
 
+-(void)featchProductDetail:(NSString *)num_id theProduct:(Product *)pro
+{
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+    
+        NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
+        [params setObject:@"taobao.item.get" forKey:@"method"];
+        [params setObject:@"wap_desc,item_img.url" forKey:@"fields"];
+        [params setObject:num_id forKey:@"num_iid"];
+        
+        NSData *resultData=[Utility getResultData:params];
+        [params release];
+        [self parseProductDetailData:resultData theProduct:pro];
+    });
+}
+-(void)parseProductDetailData:(NSData *)data theProduct:(Product *)pro
+{
+    NSString *productsString = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
+    NSDictionary *productsDic = [productsString JSONValue];
+    //    NSLog(@"---%@---\n",productsString);
+    [productsString release];
+    NSDictionary *items_get_response = [productsDic objectForKey:@"item_get_response"];
+    NSDictionary *item = [items_get_response objectForKey:@"item"];
+    
+    NSString *desc = [item objectForKey:@"wap_desc"];
+    NSDictionary *item_imgs = [item objectForKey:@"item_imgs"];
+    NSArray *item_img = [item_imgs objectForKey:@"item_img"];
+    
+    NSMutableArray *imageDicArray = [[NSMutableArray alloc]init];
+    for (NSDictionary *imageDic in item_img) {
+        NSString *imageUrlStr = [imageDic objectForKey:@"url"];
+        float imageHeight = [self parseImageHeight:imageUrlStr];
+        NSDictionary *imageDic = [NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"%f",imageHeight],@"imageHeight",imageUrlStr,@"imageUrl", nil];
+        [imageDicArray addObject:imageDic];
+    }
+    pro.imagesArray = imageDicArray;
+    [imageDicArray release];
+    
+    //the 'description' is treated as the key value of kvo,it must be later assign before imagesArray now
+    pro.description = desc;
+}
+-(float)parseImageHeight:(NSString *)urlStr
+{
+    NSURL *imageUrl = [NSURL URLWithString:urlStr];
+    
+    CGImageSourceRef imageSourceRef = CGImageSourceCreateWithURL((CFURLRef)imageUrl, NULL);
+    if (imageSourceRef == NULL) {
+        return 0;
+    }
+    CFDictionaryRef props = CGImageSourceCopyPropertiesAtIndex(imageSourceRef, 0, NULL);
+    CFRelease(imageSourceRef);
+    NSNumber *width;
+    NSNumber *height;
+    if (props) {
+        width = [(NSNumber *)CFDictionaryGetValue(props, kCGImagePropertyPixelWidth) retain];
+        height = [(NSNumber *)CFDictionaryGetValue(props, kCGImagePropertyPixelHeight) retain];
+    }
+    CFRelease(props);
+    float imageHeight = [height intValue] * 320 / [width intValue];
+    [width release];
+    [height release];
+    return imageHeight;
+}
 //send the rss request
 -(void)featchRssData
 {
@@ -259,7 +287,9 @@
 -(int)getServerNotificationId:(NSString *)catName
 {
     int notificationId;
-    if ([catName isEqualToString:@"美白"]) {
+    if ([catName isEqualToString:@"热销"]) {
+        notificationId = 413;
+    }else if ([catName isEqualToString:@"美白"]) {
         
         notificationId = 188;
     }else if([catName isEqualToString:@"保湿"]){

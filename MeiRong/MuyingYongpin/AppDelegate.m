@@ -9,7 +9,7 @@
 #import <Parse/Parse.h>
 #import "AppDelegate.h"
 
-#import "HotProductViewController.h"
+#import "TheBrandViewController.h"
 #import "BrandViewController.h"
 #import "CollectViewController.h"
 #import "NewsFeedViewController.h"
@@ -56,10 +56,12 @@
     UINavigationController *navigationController;
     
     NSMutableArray *controllersArray = [[NSMutableArray alloc]initWithCapacity:4];
-    HotProductViewController *hotProductViewController = [[HotProductViewController alloc]initWithTabBar];
-    navigationController = [[UINavigationController alloc]initWithRootViewController:hotProductViewController];
+    
+    TheBrandViewController *theBrandViewController = [[TheBrandViewController alloc]initWithTabBar];
+    theBrandViewController.catName = @"热销";
+    navigationController = [[UINavigationController alloc]initWithRootViewController:theBrandViewController];
     [controllersArray addObject:navigationController];
-    [hotProductViewController release];
+    [theBrandViewController release];
     [navigationController release];
     
     BrandViewController *brandViewController = [[BrandViewController alloc]initWithTabBar];

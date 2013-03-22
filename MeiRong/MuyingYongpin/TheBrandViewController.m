@@ -37,6 +37,31 @@
     [super didReceiveMemoryWarning];
     // Release any cached data, images, etc that aren't in use.
 }
+
+-(id) initWithTabBar {
+    if ([self init]) {
+        //this is the label on the tab button itself
+        self.title = @"热销单品";
+        
+        //use whatever image you want and add it to your project
+        self.tabBarItem.image = [UIImage imageNamed:@"iconListTab"];
+        
+        // set the long name shown in the navigation bar at the top
+        UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(50, 0, 220, 30)];
+        titleLabel.textColor = [UIColor whiteColor];
+        [titleLabel setTextAlignment:UITextAlignmentCenter];
+        titleLabel.font = [UIFont fontWithName:@"迷你简黛玉" size:25];
+        titleLabel.shadowColor   = [[UIColor blackColor]colorWithAlphaComponent: 0.2f];
+        titleLabel.shadowOffset  = CGSizeMake(1.0,1.0);
+        titleLabel.backgroundColor = [UIColor clearColor];
+        titleLabel.text = @"热销单品";
+        [self.navigationItem setTitleView:titleLabel];
+        [titleLabel release];
+        
+//        [self createActivity];
+    }
+    return self;
+}
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -96,7 +121,15 @@
 {
     [super viewDidLoad];
     
-    [self createNavBackButton];
+    if ([self.navigationController.navigationBar respondsToSelector:@selector( setBackgroundImage:forBarMetrics:)]){
+        [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"navbar_background"] forBarMetrics:UIBarMetricsDefault];
+        [self.navigationController.navigationBar setOpaque:1.0];
+    }
+    
+    if (![self.catName isEqualToString:@"热销"]) {
+     
+        [self createNavBackButton];
+    }
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"SheetBackground"]];
     
     [self createActivity];
@@ -272,7 +305,10 @@
 -(NSString *)getNotificationName
 {
     NSString *notificationName;
-    if ([self.catName isEqualToString:@"美白"]) {
+    if ([self.catName isEqualToString:@"热销"]){
+        
+        notificationName = @"NOTIFICATION_0";
+    }else if ([self.catName isEqualToString:@"美白"]) {
         
         notificationName = @"NOTIFICATION_1";
     }else if([self.catName isEqualToString:@"保湿"]){

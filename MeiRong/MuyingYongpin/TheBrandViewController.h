@@ -19,4 +19,6 @@
     BOOL refresh;
 }
 @property(nonatomic,retain)  NSString *catName;
+
+-(id) initWithTabBar;
 @end

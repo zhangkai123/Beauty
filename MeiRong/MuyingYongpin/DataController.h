@@ -7,13 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Product.h"
 
 @interface DataController : NSObject
 
 
 +(id)sharedDataController;
--(void)fetachHotProducts:(int)pageN;
 -(void)fetachCateProducts:(NSString *)cateName notiName:(NSString *)nName pageNumber:(int)pageN;
+-(void)featchProductDetail:(NSString *)num_id theProduct:(Product *)pro;
 -(NSMutableArray *)parseProductsData:(NSData *)data;
 
 -(void)featchRssData;

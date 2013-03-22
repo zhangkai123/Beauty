@@ -12,6 +12,7 @@
 #import "CoreDataController.h"
 #import "CollectProduct.h"
 #import "ShareSns.h"
+#import "DataController.h"
 
 @interface TheBrandDetailViewController()
 {
@@ -63,6 +64,27 @@
     [self.view addSubview:theTableView];
 
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"SheetBackground"]];
+    
+    [product addObserver:self
+                  forKeyPath:@"description"
+                     options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld
+                     context:NULL];
+}
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [theTableView deselectRowAtIndexPath:[theTableView indexPathForSelectedRow] animated:YES];
+    if (selectedCell != nil) {
+        [(HotCell *)selectedCell diselectCell];
+    }
+    [self featchDetailData];
+}
+-(void)featchDetailData
+{
+    if (self.product) {
+        DataController *dataController = [DataController sharedDataController];
+        [dataController featchProductDetail:product.num_id theProduct:product];
+    }
 }
 -(void)createNavBackButton
 {
@@ -79,6 +101,7 @@
 -(void)goBack
 {
     [myImageView removeObserver:self forKeyPath:@"image" context:NULL];
+    [product removeObserver:self forKeyPath:@"description" context:NULL];
     [self.navigationController popViewControllerAnimated:YES];
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -87,38 +110,61 @@
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 1;
+    return 1 + [self.product.imagesArray count];
+}
+-(float)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    float rowHeight = 0;
+    if (indexPath.row == 0) {
+        rowHeight = 390;
+    }else{
+        
+        NSDictionary *imageDic = [self.product.imagesArray objectAtIndex:indexPath.row - 1];
+        rowHeight = [[imageDic objectForKey:@"imageHeight"] floatValue];
+    }
+    return rowHeight;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    HotCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
-    if (!cell) {
-        cell = [[[HotCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"]autorelease];
-    }
-    cell.delegate = self;
-    cell.rowNum = indexPath.row;
-    [cell.myImageView setImageWithURL:[NSURL URLWithString:product.pic_url] placeholderImage:self.smallImage];
-    
-    myImageView = cell.myImageView;
-    [myImageView addObserver:self
-                forKeyPath:@"image"
-                   options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld
-                   context:NULL];
-    
-    cell.desLable.text = product.title;
-    cell.priceLabel2.text = product.price;
-    cell.likeLabel2.text = product.seller_credit_score;
-    if (product.collect) {
-        [cell.collectLabel setText:@"已收藏"];
-        cell.collectButton.enabled = NO;
+    UITableViewCell *theCell = nil;
+    if (indexPath.row == 0) {
+        HotCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+        if (!cell) {
+            cell = [[[HotCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"]autorelease];
+        }
+        cell.delegate = self;
+        cell.rowNum = indexPath.row;
+        [cell.myImageView setImageWithURL:[NSURL URLWithString:product.pic_url] placeholderImage:self.smallImage];
+        
+        myImageView = cell.myImageView;
+        [myImageView addObserver:self
+                      forKeyPath:@"image"
+                         options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld
+                         context:NULL];
+        
+        cell.desLable.text = product.title;
+        cell.priceLabel2.text = product.price;
+        cell.likeLabel2.text = product.seller_credit_score;
+        if (product.collect) {
+            [cell.collectLabel setText:@"已收藏"];
+            cell.collectButton.enabled = NO;
+        }else{
+            [cell.collectLabel setText:@"收藏"];
+            cell.collectButton.enabled = YES;
+        }
+        if (collection) {
+            [cell.collectLabel setText:@"删除"];
+        }
+        theCell = cell;
     }else{
-        [cell.collectLabel setText:@"收藏"];
-        cell.collectButton.enabled = YES;
+//        theCell = [tableView dequeueReusableCellWithIdentifier:@"imageCell"];
+        if (!theCell) {
+            theCell = [[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil]autorelease];
+        }
+        NSString *imageUrlStr = [[product.imagesArray objectAtIndex:indexPath.row - 1] objectForKey:@"imageUrl"];
+        [theCell.imageView setImageWithURL:[NSURL URLWithString:imageUrlStr] placeholderImage:[UIImage imageNamed:@"bPlaceHolder.png"]];
     }
-    if (collection) {
-        [cell.collectLabel setText:@"删除"];
-    }
-    return cell;
+    return theCell;
 }
 - (void) observeValueForKeyPath:(NSString *)path ofObject:(id) object change:(NSDictionary *) change context:(void *)context
 {
@@ -131,6 +177,10 @@
         
         // oldImage is the image *before* the property changed
         // newImage is the image *after* the property changed
+    }else if(object == product && [path isEqualToString:@"description"]){
+        
+        NSLog(@"---%@---\n",product.description);
+        [theTableView reloadData];
     }
 }
 
@@ -142,14 +192,6 @@
     webViewController.productUrlS = product.click_url;
     [self presentModalViewController:webViewController animated:YES];
     [webViewController release];
-}
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-    [theTableView deselectRowAtIndexPath:[theTableView indexPathForSelectedRow] animated:YES];
-    if (selectedCell != nil) {
-        [(HotCell *)selectedCell diselectCell];
-    }
 }
 -(void)collectProduct:(HotCell *)cell
 {

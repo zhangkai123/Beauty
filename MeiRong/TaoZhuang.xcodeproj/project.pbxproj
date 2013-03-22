@@ -119,6 +119,7 @@
 		4BACE0931615F016006B3E00 /* libMobClickLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BACE0911615F016006B3E00 /* libMobClickLibrary.a */; };
 		4BACE0951615F050006B3E00 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BACE0941615F050006B3E00 /* libz.dylib */; };
 		4BAF7BAD15ECFE3200D64CCD /* BrandViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BAF7BAC15ECFE3200D64CCD /* BrandViewController.m */; };
+		4BB2ECBB16FCD3330010F124 /* HotProductViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BB2ECBA16FCD3330010F124 /* HotProductViewController.m */; };
 		4BCB570B160220500082D965 /* DDXMLElementAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BCB56FE160220500082D965 /* DDXMLElementAdditions.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		4BCB570C160220500082D965 /* NSString+DDXML.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BCB5701160220500082D965 /* NSString+DDXML.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		4BCB570D160220500082D965 /* DDXMLDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BCB5704160220500082D965 /* DDXMLDocument.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
@@ -132,7 +133,6 @@
 		4BDB315F15BA56DE007B1C6F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4BDB315D15BA56DE007B1C6F /* InfoPlist.strings */; };
 		4BDB316115BA56DE007B1C6F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BDB316015BA56DE007B1C6F /* main.m */; };
 		4BDB316515BA56DE007B1C6F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BDB316415BA56DE007B1C6F /* AppDelegate.m */; };
-		4BDB316815BA56DE007B1C6F /* HotProductViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BDB316715BA56DE007B1C6F /* HotProductViewController.m */; };
 		4BDB317315BAA36C007B1C6F /* DataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BDB317215BAA36C007B1C6F /* DataController.m */; };
 		4BE1B82616135BA0006AE5D9 /* NewsWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BE1B82516135BA0006AE5D9 /* NewsWebViewController.m */; };
 		4BEEF2CA15D7AC9C00C424DA /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BEEF2C915D7AC9C00C424DA /* SystemConfiguration.framework */; };
@@ -382,6 +382,8 @@
 		4BACE0941615F050006B3E00 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		4BAF7BAB15ECFE3200D64CCD /* BrandViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BrandViewController.h; path = ../BrandViewController.h; sourceTree = "<group>"; };
 		4BAF7BAC15ECFE3200D64CCD /* BrandViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BrandViewController.m; path = ../BrandViewController.m; sourceTree = "<group>"; };
+		4BB2ECB916FCD3320010F124 /* HotProductViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HotProductViewController.h; sourceTree = "<group>"; };
+		4BB2ECBA16FCD3330010F124 /* HotProductViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HotProductViewController.m; sourceTree = "<group>"; };
 		4BCB56FD160220500082D965 /* DDXMLElementAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDXMLElementAdditions.h; sourceTree = "<group>"; };
 		4BCB56FE160220500082D965 /* DDXMLElementAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDXMLElementAdditions.m; sourceTree = "<group>"; };
 		4BCB5700160220500082D965 /* NSString+DDXML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+DDXML.h"; sourceTree = "<group>"; };
@@ -407,8 +409,6 @@
 		4BDB316215BA56DE007B1C6F /* MuyingYongpin-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MuyingYongpin-Prefix.pch"; sourceTree = "<group>"; };
 		4BDB316315BA56DE007B1C6F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4BDB316415BA56DE007B1C6F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		4BDB316615BA56DE007B1C6F /* HotProductViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HotProductViewController.h; sourceTree = "<group>"; };
-		4BDB316715BA56DE007B1C6F /* HotProductViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HotProductViewController.m; sourceTree = "<group>"; };
 		4BDB317115BAA36C007B1C6F /* DataController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataController.h; sourceTree = "<group>"; };
 		4BDB317215BAA36C007B1C6F /* DataController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataController.m; sourceTree = "<group>"; };
 		4BE1B82416135BA0006AE5D9 /* NewsWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsWebViewController.h; sourceTree = "<group>"; };
@@ -868,10 +868,10 @@
 				4BF3F509162A9EA00070BDE5 /* ShareSns */,
 				4BDB316315BA56DE007B1C6F /* AppDelegate.h */,
 				4BDB316415BA56DE007B1C6F /* AppDelegate.m */,
+				4BB2ECB916FCD3320010F124 /* HotProductViewController.h */,
+				4BB2ECBA16FCD3330010F124 /* HotProductViewController.m */,
 				4B4EAF78166A0C4A00E29D6B /* ReachableManager.h */,
 				4B4EAF79166A0C4A00E29D6B /* ReachableManager.m */,
-				4BDB316615BA56DE007B1C6F /* HotProductViewController.h */,
-				4BDB316715BA56DE007B1C6F /* HotProductViewController.m */,
 				4BAF7BAB15ECFE3200D64CCD /* BrandViewController.h */,
 				4BAF7BAC15ECFE3200D64CCD /* BrandViewController.m */,
 				4BCBB25D15FB395400282CD5 /* TheBrandViewController.h */,
@@ -1256,7 +1256,6 @@
 			files = (
 				4BDB316115BA56DE007B1C6F /* main.m in Sources */,
 				4BDB316515BA56DE007B1C6F /* AppDelegate.m in Sources */,
-				4BDB316815BA56DE007B1C6F /* HotProductViewController.m in Sources */,
 				4BDB317315BAA36C007B1C6F /* DataController.m in Sources */,
 				4B92E1EF15CD1AE800249F26 /* NSObject+SBJson.m in Sources */,
 				4B92E1F015CD1AE800249F26 /* SBJsonParser.m in Sources */,
@@ -1316,6 +1315,7 @@
 				4B4EAF92166A321200E29D6B /* ATMTextLayer.m in Sources */,
 				4BF8B36716E2554A00FF2CD3 /* Utility.m in Sources */,
 				4B644A3116FA808200F8EEEF /* SetupViewController.m in Sources */,
+				4BB2ECBB16FCD3330010F124 /* HotProductViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
