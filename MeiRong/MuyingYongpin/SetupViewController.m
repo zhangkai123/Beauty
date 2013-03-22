@@ -42,6 +42,8 @@
     [self.navigationItem setTitleView:titleLabel];
     [titleLabel release];
 
+    NSArray *dArray = [NSArray arrayWithObjects:@"关于我们", @"意见反馈", @"检查更新", @"亲，给个评价吧", @"清除缓存",nil];
+    dataArray = [[NSMutableArray alloc]initWithArray:dArray];
     
     CGRect screenBounds = [[UIScreen mainScreen] bounds];
     if (screenBounds.size.height == 568) {
@@ -57,8 +59,6 @@
     setupableView.delegate = self;
     setupableView.dataSource = self;
     [self.view addSubview:setupableView];
-    
-    
 }
 -(void)createNavBackButton
 {
@@ -83,7 +83,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 5;
+    return [dataArray count];
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -91,8 +91,13 @@
     if (!cell) {
         cell = [[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"]autorelease];
     }
+    cell.textLabel.text = [dataArray objectAtIndex:indexPath.row];
     
     return cell;
+}
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
 }
 
 - (void)didReceiveMemoryWarning

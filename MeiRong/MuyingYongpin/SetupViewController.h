@@ -11,5 +11,6 @@
 @interface SetupViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
 {
     UITableView *setupableView;
+    NSMutableArray *dataArray;
 }
 @end
