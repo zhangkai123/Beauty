@@ -11,10 +11,8 @@
 @interface FirstCell : UITableViewCell
 {
     UIImageView *myImageView;
-    UILabel *titleLabel;
 }
 @property(nonatomic,retain) UIImageView *myImageView;
-@property(nonatomic,retain) UILabel *titleLabel;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier imageWidth:(float)imageW;
 @end

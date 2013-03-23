@@ -15,11 +15,12 @@
 #import "DataController.h"
 #import "FirstCell.h"
 #import "DetailImageCell.h"
+#import "SVPullToRefresh.h"
 
 @interface TheBrandDetailViewController()
 {
     UITableViewCell *selectedCell;
-    float descCellHeight;
+    UIView *realBackView;
 }
 @end
 
@@ -33,6 +34,7 @@
     [theTableView release];
     [product release];
     [smallImage release];
+    [realBackView release];
     [super dealloc];
 }
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -43,21 +45,24 @@
     }
     return self;
 }
-
+-(id)initWithProduct:(Product *)myProduct
+{
+    if (self = [super init]) {
+        
+        self.product = myProduct;
+        
+        [product addObserver:self
+                  forKeyPath:@"imagesArray"
+                     options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld
+                     context:NULL];
+        [self featchDetailData];
+    }
+    return self;
+}
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
-    [product addObserver:self
-              forKeyPath:@"description"
-                 options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld
-                 context:NULL];
-    [product addObserver:self
-              forKeyPath:@"imagesArray"
-                 options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld
-                 context:NULL];
-    [self featchDetailData];
-
     [self createNavBackButton];
         
 	// Do any additional setup after loading the view.
@@ -75,8 +80,14 @@
     theTableView.showsVerticalScrollIndicator = NO;
     theTableView.delegate = self;
     theTableView.dataSource = self;
-    theTableView.rowHeight = 390;
+    theTableView.clipsToBounds = NO;
     [self.view addSubview:theTableView];
+    
+//    __block UITableView *weaktheTalbleView = theTableView;
+    [theTableView addInfiniteScrollingWithActionHandler:^{
+    
+//        [weaktheTalbleView.infiniteScrollingView performSelector:@selector(stopAnimating) withObject:nil afterDelay:0];
+    }];
 
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"SheetBackground"]];
     
@@ -87,7 +98,24 @@
     [self.view addSubview:backButton];
     [backButton release];
     
-    descCellHeight = 1;
+    realBackView = [[UIView alloc]initWithFrame:CGRectMake(0, 460 - 45 - 60, 320, 60)];
+    realBackView.backgroundColor = [UIColor blackColor];
+    [realBackView setAlpha:0.4];
+    [self.view addSubview:realBackView];
+    
+    UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(30, 15, 280, 30)];
+    titleLabel.backgroundColor = [UIColor clearColor];
+    [titleLabel setFont:[UIFont systemFontOfSize:12]];
+    [titleLabel setTextColor:[UIColor whiteColor]];
+    titleLabel.text = product.title;
+    [realBackView addSubview:titleLabel];
+    [titleLabel release];
+    
+    UIView *tabView = [[UIView alloc]initWithFrame:CGRectMake(0, 460 - 45, 320, 45)];
+    tabView.backgroundColor = [UIColor blackColor];
+    [tabView setAlpha:0.6];
+    [self.view addSubview:tabView];
+    [tabView release];
 }
 - (void)viewDidAppear:(BOOL)animated
 {
@@ -116,28 +144,48 @@
 -(void)goBack
 {
     [myImageView removeObserver:self forKeyPath:@"image" context:NULL];
-    [product removeObserver:self forKeyPath:@"description" context:NULL];
     [product removeObserver:self forKeyPath:@"imagesArray" context:NULL];
     [self dismissModalViewControllerAnimated:YES];
 }
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    if (scrollView.contentOffset.y >= 65) {
+        if (![realBackView isDescendantOfView:theTableView]) {
+            [realBackView removeFromSuperview];
+            realBackView.frame = CGRectMake(0, 480-60, realBackView.frame.size.width, realBackView.frame.size.height);
+            [theTableView addSubview:realBackView];
+        }
+    }
+    if (scrollView.contentOffset.y <= 65) {
+        if ([realBackView isDescendantOfView:theTableView]) {
+            [realBackView removeFromSuperview];
+            realBackView.frame = CGRectMake(0, 460 - 45 - 60, 320, 60);
+            [self.view addSubview:realBackView];
+        }
+    }
+}
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+    return 2;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 2 + [self.product.imagesArray count];
+    if (section == 0) {
+        
+        return 1;
+    }else{
+     
+        return [self.product.imagesArray count];
+    }
 }
 -(float)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     float rowHeight = 0;
-    if (indexPath.row == 0) {
-        rowHeight = 460;
-    }else if(indexPath.row == 1){
-        rowHeight = descCellHeight;
-    }else{
+    if (indexPath.section == 0) {
         
-        NSDictionary *imageDic = [self.product.imagesArray objectAtIndex:indexPath.row - 2];
+        rowHeight = 480;
+    }else{
+        NSDictionary *imageDic = [self.product.imagesArray objectAtIndex:indexPath.row];
         rowHeight = [[imageDic objectForKey:@"imageHeight"] floatValue];
     }
     return rowHeight;
@@ -145,31 +193,22 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *theCell = nil;
-    if (indexPath.row == 0) {
+    if (indexPath.section == 0) {
         FirstCell *firstImageCell = nil;
         if (!theCell) {
-            float imageWidth = self.smallImage.size.width * 460 / self.smallImage.size.height;
+            float imageWidth = self.smallImage.size.width * 480 / self.smallImage.size.height;
             firstImageCell = [[[FirstCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil imageWidth:imageWidth]autorelease];
         }
-        firstImageCell.titleLabel.text = product.title;
         [firstImageCell.myImageView setImageWithURL:[NSURL URLWithString:product.pic_url] placeholderImage:self.smallImage];
         theCell = firstImageCell;
-    }else if(indexPath.row == 1){
-        
-        UITableViewCell *descCell = nil;
-        if (!theCell) {
-            descCell = [[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil]autorelease];
-        }
-        descCell.textLabel.text = product.description;
-        theCell = descCell;
     }else{
         DetailImageCell *imageCell = nil;
         if (!theCell) {
-            NSDictionary *imageDic = [self.product.imagesArray objectAtIndex:indexPath.row - 2];
+            NSDictionary *imageDic = [self.product.imagesArray objectAtIndex:indexPath.row];
             float imageHeight = [[imageDic objectForKey:@"imageHeight"] floatValue];
             imageCell = [[[DetailImageCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil imageHeight:imageHeight]autorelease];
         }
-        NSString *imageUrlStr = [[product.imagesArray objectAtIndex:indexPath.row - 2] objectForKey:@"imageUrl"];
+        NSString *imageUrlStr = [[product.imagesArray objectAtIndex:indexPath.row] objectForKey:@"imageUrl"];
         [imageCell.myImageView setImageWithURL:[NSURL URLWithString:imageUrlStr] placeholderImage:[UIImage imageNamed:@"bPlaceHolder.png"]];
         theCell = imageCell;
     }
@@ -184,26 +223,20 @@
 //        UIImage *newImage = [change objectForKey:NSKeyValueChangeNewKey];
 //        UIImage *oldImage = [change objectForKey:NSKeyValueChangeOldKey];
         
-    }else if(object == product && [path isEqualToString:@"description"]){
-        
-//        NSLog(@"---%@---\n",product.description);
-        if (![product.description isEqualToString:@""]) {
-            
-            descCellHeight = 50;
-            [theTableView reloadData];
-        }
-        
     }else if(object == product && [path isEqualToString:@"imagesArray"]){
         
-        NSMutableArray *rowsInsertIndexPath = [[NSMutableArray alloc] init];
-        [theTableView beginUpdates];
-        for (NSInteger i = 0; i < [product.imagesArray count]; i++) {
-            NSIndexPath *tempIndexPath = [NSIndexPath indexPathForRow:2 + i inSection:0];
-            [rowsInsertIndexPath addObject:tempIndexPath];
-        }
-        [theTableView insertRowsAtIndexPaths:rowsInsertIndexPath withRowAnimation:UITableViewRowAnimationTop];
-        [theTableView endUpdates];
-        [rowsInsertIndexPath release];
+//        NSMutableArray *rowsInsertIndexPath = [[NSMutableArray alloc] init];
+//        [theTableView beginUpdates];
+//        for (NSInteger i = 0; i < [product.imagesArray count]; i++) {
+//            NSIndexPath *tempIndexPath = [NSIndexPath indexPathForRow:i inSection:1];
+//            [rowsInsertIndexPath addObject:tempIndexPath];
+//        }
+//        [theTableView insertRowsAtIndexPaths:rowsInsertIndexPath withRowAnimation:UITableViewRowAnimationNone];
+//        [theTableView endUpdates];
+//        [rowsInsertIndexPath release];
+        [theTableView reloadData];
+         [theTableView.infiniteScrollingView performSelector:@selector(stopAnimating) withObject:nil afterDelay:0];
+        theTableView.showsInfiniteScrolling = NO;
     }
 }
 

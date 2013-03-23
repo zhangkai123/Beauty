@@ -21,4 +21,6 @@
 @property(nonatomic,retain) Product *product;
 @property(nonatomic,retain) UIImage *smallImage;
 @property(nonatomic,assign) BOOL collection;
+
+-(id)initWithProduct:(Product *)myProduct;
 @end

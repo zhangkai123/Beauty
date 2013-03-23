@@ -511,10 +511,8 @@
     }
     Product *product = [productsArray objectAtIndex:productIndex];
     
-    TheBrandDetailViewController *theBrandDetailViewController = [[TheBrandDetailViewController alloc]init];
-    theBrandDetailViewController.product = product;
+    TheBrandDetailViewController *theBrandDetailViewController = [[TheBrandDetailViewController alloc]initWithProduct:product];
     theBrandDetailViewController.smallImage = smallImage;
-//    [self.navigationController pushViewController:theBrandDetailViewController animated:YES];
     [self presentModalViewController:theBrandDetailViewController animated:YES];
     [theBrandDetailViewController release];
 }

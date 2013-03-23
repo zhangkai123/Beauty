@@ -134,7 +134,7 @@
     
         NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
         [params setObject:@"taobao.item.get" forKey:@"method"];
-        [params setObject:@"wap_desc,item_img.url" forKey:@"fields"];
+        [params setObject:@"item_img.url" forKey:@"fields"];
         [params setObject:num_id forKey:@"num_iid"];
         
         NSData *resultData=[Utility getResultData:params];
@@ -151,15 +151,9 @@
     NSDictionary *items_get_response = [productsDic objectForKey:@"item_get_response"];
     NSDictionary *item = [items_get_response objectForKey:@"item"];
     
-    NSString *desc = [item objectForKey:@"wap_desc"];
     NSDictionary *item_imgs = [item objectForKey:@"item_imgs"];
     NSArray *item_img = [item_imgs objectForKey:@"item_img"];
-    
-    dispatch_async(dispatch_get_main_queue(), ^{
         
-        pro.description = desc;
-    });
-    
     NSMutableArray *imageDicArray = [[NSMutableArray alloc]init];
     for (NSDictionary *imageDic in item_img) {
         NSString *imageUrlStr = [imageDic objectForKey:@"url"];
