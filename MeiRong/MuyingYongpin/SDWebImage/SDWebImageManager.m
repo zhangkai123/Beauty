@@ -128,7 +128,6 @@ static SDWebImageManager *instance;
     {
         return;
     }
-
     // Check the on-disk cache async so we don't block the main thread
     [cacheDelegates addObject:delegate];
     [cacheURLs addObject:url];
@@ -301,6 +300,12 @@ static SDWebImageManager *instance;
     {
         // Turn progressive download support on demand
         downloader.progressive = YES;
+    }
+    
+    if ((options &  SDWebImageRoundCorner) && !downloader.roundCorner)
+    {
+        // Turn progressive download support on demand
+        downloader.roundCorner = YES;
     }
 
     [downloadInfo addObject:info];

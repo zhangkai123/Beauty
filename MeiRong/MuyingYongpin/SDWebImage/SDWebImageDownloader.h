@@ -27,6 +27,7 @@ extern NSString *const SDWebImageDownloadStopNotification;
     BOOL lowPriority;
     NSUInteger expectedSize;
     BOOL progressive;
+    BOOL roundCorner;
     size_t width, height;
 }
 
@@ -46,6 +47,7 @@ extern NSString *const SDWebImageDownloadStopNotification;
  * @see http://www.cocoaintheshell.com/2011/05/progressive-images-download-imageio/
  */
 @property (nonatomic, readwrite) BOOL progressive;
+@property (nonatomic, readwrite) BOOL roundCorner;
 
 /**
  * Creates a SDWebImageDownloader async downloader instance with a given URL

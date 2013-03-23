@@ -22,7 +22,7 @@ NSString *const SDWebImageDownloadStopNotification = @"SDWebImageDownloadStopNot
 @end
 
 @implementation SDWebImageDownloader
-@synthesize url, delegate, connection, imageData, userInfo, lowPriority, progressive;
+@synthesize url, delegate, connection, imageData, userInfo, lowPriority, progressive, roundCorner;
 
 #pragma mark Public Methods
 
@@ -233,7 +233,11 @@ NSString *const SDWebImageDownloadStopNotification = @"SDWebImageDownloadStopNot
     if ([delegate respondsToSelector:@selector(imageDownloader:didFinishWithImage:)])
     {
         UIImage *image = SDScaledImageForPath(url.absoluteString, imageData);
-        [[SDWebImageDecoder sharedImageDecoder] decodeImage:image withDelegate:self userInfo:nil];
+        if (roundCorner) {
+            [[SDWebImageDecoder sharedImageDecoder] decodeImage:image withDelegate:self userInfo:[NSDictionary dictionaryWithObject:@"roundCorner" forKey:@"type"]];
+        }else{
+            [[SDWebImageDecoder sharedImageDecoder] decodeImage:image withDelegate:self userInfo:nil];
+        }
     }
 }
 
@@ -257,11 +261,12 @@ NSString *const SDWebImageDownloadStopNotification = @"SDWebImageDownloadStopNot
     if ([[aUserInfo valueForKey:@"type"] isEqualToString:@"partial"])
     {
         [delegate imageDownloader:self didUpdatePartialImage:image];
-    }
-    else
-    {
-//        [delegate performSelector:@selector(imageDownloader:didFinishWithImage:) withObject:self withObject:image];
+        
+    }else if([[aUserInfo valueForKey:@"type"] isEqualToString:@"roundCorner"]){
+        
         [[ImageProcesser sharedImageProcesser]processImage:image withDelegate:self];
+    }else{
+        [delegate performSelector:@selector(imageDownloader:didFinishWithImage:) withObject:self withObject:image];
     }
 }
 

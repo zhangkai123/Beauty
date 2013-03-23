@@ -480,7 +480,7 @@
     Product *leftProduct = [productsArray objectAtIndex:indexPath.row*2];
     //change to big image to see if better performance
     NSString *lProduct = [NSString stringWithFormat:@"%@_160x160.jpg",leftProduct.pic_url];
-    [cell.leftImageView setImageWithURL:[NSURL URLWithString:lProduct] placeholderImage:[UIImage imageNamed:@"smallbPlaceHolder.png"]];
+    [cell.leftImageView setImageWithURL:[NSURL URLWithString:lProduct] placeholderImage:[UIImage imageNamed:@"smallbPlaceHolder.png"]  options:SDWebImageRoundCorner];
     cell.priceLabel2.text = leftProduct.price;
     cell.likeLabel2.text = leftProduct.seller_credit_score;
 
@@ -488,7 +488,7 @@
     if ([productsArray count] > indexPath.row*2 + 1) {
         Product *rightProduct = [productsArray objectAtIndex:indexPath.row*2 + 1];
         NSString *rProduct = [NSString stringWithFormat:@"%@_160x160.jpg",rightProduct.pic_url];
-        [cell.rightImageView setImageWithURL:[NSURL URLWithString:rProduct] placeholderImage:[UIImage imageNamed:@"smallbPlaceHolder.png"]];
+        [cell.rightImageView setImageWithURL:[NSURL URLWithString:rProduct] placeholderImage:[UIImage imageNamed:@"smallbPlaceHolder.png"]  options:SDWebImageRoundCorner];
         cell.priceLabelR2.text = rightProduct.price;
         cell.likeLabel2R.text = rightProduct.seller_credit_score;
     }else{

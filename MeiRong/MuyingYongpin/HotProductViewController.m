@@ -256,7 +256,7 @@
     cell.delegate = self;
     cell.rowNum = indexPath.row;
     Product *product = [productsArray objectAtIndex:indexPath.row];
-    [cell.myImageView setImageWithURL:[NSURL URLWithString:product.pic_url] placeholderImage:[UIImage imageNamed:@"bPlaceHolder.png"]];
+    [cell.myImageView setImageWithURL:[NSURL URLWithString:product.pic_url] placeholderImage:[UIImage imageNamed:@"bPlaceHolder.png"] options:SDWebImageRoundCorner];
     cell.desLable.text = product.title;
     cell.priceLabel2.text = product.price;
     cell.likeLabel2.text = product.seller_credit_score;
