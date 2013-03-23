@@ -143,6 +143,7 @@
 }
 -(void)goBack
 {
+    [theTableView setContentOffset:CGPointMake(0, 0)];
     [myImageView removeObserver:self forKeyPath:@"image" context:NULL];
     [product removeObserver:self forKeyPath:@"imagesArray" context:NULL];
     [self dismissModalViewControllerAnimated:YES];
@@ -225,15 +226,6 @@
         
     }else if(object == product && [path isEqualToString:@"imagesArray"]){
         
-//        NSMutableArray *rowsInsertIndexPath = [[NSMutableArray alloc] init];
-//        [theTableView beginUpdates];
-//        for (NSInteger i = 0; i < [product.imagesArray count]; i++) {
-//            NSIndexPath *tempIndexPath = [NSIndexPath indexPathForRow:i inSection:1];
-//            [rowsInsertIndexPath addObject:tempIndexPath];
-//        }
-//        [theTableView insertRowsAtIndexPaths:rowsInsertIndexPath withRowAnimation:UITableViewRowAnimationNone];
-//        [theTableView endUpdates];
-//        [rowsInsertIndexPath release];
         [theTableView reloadData];
          [theTableView.infiniteScrollingView performSelector:@selector(stopAnimating) withObject:nil afterDelay:0];
         theTableView.showsInfiniteScrolling = NO;
