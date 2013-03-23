@@ -13,10 +13,13 @@
 #import "CollectProduct.h"
 #import "ShareSns.h"
 #import "DataController.h"
+#import "FirstCell.h"
+#import "DetailImageCell.h"
 
 @interface TheBrandDetailViewController()
 {
     UITableViewCell *selectedCell;
+    float descCellHeight;
 }
 @end
 
@@ -44,15 +47,27 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [product addObserver:self
+              forKeyPath:@"description"
+                 options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld
+                 context:NULL];
+    [product addObserver:self
+              forKeyPath:@"imagesArray"
+                 options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld
+                 context:NULL];
+    [self featchDetailData];
+
     [self createNavBackButton];
+        
 	// Do any additional setup after loading the view.
     CGRect screenBounds = [[UIScreen mainScreen] bounds];
     if (screenBounds.size.height == 568) {
         // code for 4-inch screen
-        theTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 548-44-49) style:UITableViewStylePlain];
+        theTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 548) style:UITableViewStylePlain];
     } else {
         // code for 3.5-inch screen
-        theTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 460-44-49) style:UITableViewStylePlain];
+        theTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 460) style:UITableViewStylePlain];
     }
 
     theTableView.backgroundColor = [UIColor clearColor];
@@ -65,19 +80,19 @@
 
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"SheetBackground"]];
     
-    [product addObserver:self
-                  forKeyPath:@"description"
-                     options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld
-                     context:NULL];
+    UIButton *backButton = [[UIButton alloc]initWithFrame:CGRectMake(8, 8, 45, 45)];
+    [backButton addTarget:self action:@selector(goBack) forControlEvents:UIControlEventTouchUpInside];
+    [backButton setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+    [backButton setTitle:@"back" forState:UIControlStateNormal];
+    [self.view addSubview:backButton];
+    [backButton release];
+    
+    descCellHeight = 1;
 }
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
     [theTableView deselectRowAtIndexPath:[theTableView indexPathForSelectedRow] animated:YES];
-    if (selectedCell != nil) {
-        [(HotCell *)selectedCell diselectCell];
-    }
-    [self featchDetailData];
 }
 -(void)featchDetailData
 {
@@ -102,7 +117,8 @@
 {
     [myImageView removeObserver:self forKeyPath:@"image" context:NULL];
     [product removeObserver:self forKeyPath:@"description" context:NULL];
-    [self.navigationController popViewControllerAnimated:YES];
+    [product removeObserver:self forKeyPath:@"imagesArray" context:NULL];
+    [self dismissModalViewControllerAnimated:YES];
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -110,16 +126,18 @@
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 1 + [self.product.imagesArray count];
+    return 2 + [self.product.imagesArray count];
 }
 -(float)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     float rowHeight = 0;
     if (indexPath.row == 0) {
-        rowHeight = 390;
+        rowHeight = 460;
+    }else if(indexPath.row == 1){
+        rowHeight = descCellHeight;
     }else{
         
-        NSDictionary *imageDic = [self.product.imagesArray objectAtIndex:indexPath.row - 1];
+        NSDictionary *imageDic = [self.product.imagesArray objectAtIndex:indexPath.row - 2];
         rowHeight = [[imageDic objectForKey:@"imageHeight"] floatValue];
     }
     return rowHeight;
@@ -128,41 +146,32 @@
 {
     UITableViewCell *theCell = nil;
     if (indexPath.row == 0) {
-        HotCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
-        if (!cell) {
-            cell = [[[HotCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"]autorelease];
-        }
-        cell.delegate = self;
-        cell.rowNum = indexPath.row;
-        [cell.myImageView setImageWithURL:[NSURL URLWithString:product.pic_url] placeholderImage:self.smallImage];
-        
-        myImageView = cell.myImageView;
-        [myImageView addObserver:self
-                      forKeyPath:@"image"
-                         options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld
-                         context:NULL];
-        
-        cell.desLable.text = product.title;
-        cell.priceLabel2.text = product.price;
-        cell.likeLabel2.text = product.seller_credit_score;
-        if (product.collect) {
-            [cell.collectLabel setText:@"已收藏"];
-            cell.collectButton.enabled = NO;
-        }else{
-            [cell.collectLabel setText:@"收藏"];
-            cell.collectButton.enabled = YES;
-        }
-        if (collection) {
-            [cell.collectLabel setText:@"删除"];
-        }
-        theCell = cell;
-    }else{
-//        theCell = [tableView dequeueReusableCellWithIdentifier:@"imageCell"];
+        FirstCell *firstImageCell = nil;
         if (!theCell) {
-            theCell = [[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil]autorelease];
+            float imageWidth = self.smallImage.size.width * 460 / self.smallImage.size.height;
+            firstImageCell = [[[FirstCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil imageWidth:imageWidth]autorelease];
         }
-        NSString *imageUrlStr = [[product.imagesArray objectAtIndex:indexPath.row - 1] objectForKey:@"imageUrl"];
-        [theCell.imageView setImageWithURL:[NSURL URLWithString:imageUrlStr] placeholderImage:[UIImage imageNamed:@"bPlaceHolder.png"]];
+        firstImageCell.titleLabel.text = product.title;
+        [firstImageCell.myImageView setImageWithURL:[NSURL URLWithString:product.pic_url] placeholderImage:self.smallImage];
+        theCell = firstImageCell;
+    }else if(indexPath.row == 1){
+        
+        UITableViewCell *descCell = nil;
+        if (!theCell) {
+            descCell = [[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil]autorelease];
+        }
+        descCell.textLabel.text = product.description;
+        theCell = descCell;
+    }else{
+        DetailImageCell *imageCell = nil;
+        if (!theCell) {
+            NSDictionary *imageDic = [self.product.imagesArray objectAtIndex:indexPath.row - 2];
+            float imageHeight = [[imageDic objectForKey:@"imageHeight"] floatValue];
+            imageCell = [[[DetailImageCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil imageHeight:imageHeight]autorelease];
+        }
+        NSString *imageUrlStr = [[product.imagesArray objectAtIndex:indexPath.row - 2] objectForKey:@"imageUrl"];
+        [imageCell.myImageView setImageWithURL:[NSURL URLWithString:imageUrlStr] placeholderImage:[UIImage imageNamed:@"bPlaceHolder.png"]];
+        theCell = imageCell;
     }
     return theCell;
 }
@@ -172,18 +181,33 @@
     // you are responding to the right one.
     if (object == myImageView && [path isEqualToString:@"image"])
     {
-        UIImage *newImage = [change objectForKey:NSKeyValueChangeNewKey];
-        UIImage *oldImage = [change objectForKey:NSKeyValueChangeOldKey];
+//        UIImage *newImage = [change objectForKey:NSKeyValueChangeNewKey];
+//        UIImage *oldImage = [change objectForKey:NSKeyValueChangeOldKey];
         
-        // oldImage is the image *before* the property changed
-        // newImage is the image *after* the property changed
     }else if(object == product && [path isEqualToString:@"description"]){
         
-        NSLog(@"---%@---\n",product.description);
-        [theTableView reloadData];
+//        NSLog(@"---%@---\n",product.description);
+        if (![product.description isEqualToString:@""]) {
+            
+            descCellHeight = 50;
+            [theTableView reloadData];
+        }
+        
+    }else if(object == product && [path isEqualToString:@"imagesArray"]){
+        
+        NSMutableArray *rowsInsertIndexPath = [[NSMutableArray alloc] init];
+        [theTableView beginUpdates];
+        for (NSInteger i = 0; i < [product.imagesArray count]; i++) {
+            NSIndexPath *tempIndexPath = [NSIndexPath indexPathForRow:2 + i inSection:0];
+            [rowsInsertIndexPath addObject:tempIndexPath];
+        }
+        [theTableView insertRowsAtIndexPaths:rowsInsertIndexPath withRowAnimation:UITableViewRowAnimationTop];
+        [theTableView endUpdates];
+        [rowsInsertIndexPath release];
     }
 }
 
+/*
 #pragma HotCellSelectionDelegate
 -(void)selectTableViewCell:(HotCell *)cell
 {
@@ -232,6 +256,7 @@
     ShareSns *shareSns = [[ShareSns alloc]init];
     [shareSns showSnsShareSheet:self.tabBarController.view viewController:self shareImage:cell.myImageView.image shareText:cell.desLable.text];
 }
+*/
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
 	if (buttonIndex == 1) {
 		

@@ -514,7 +514,8 @@
     TheBrandDetailViewController *theBrandDetailViewController = [[TheBrandDetailViewController alloc]init];
     theBrandDetailViewController.product = product;
     theBrandDetailViewController.smallImage = smallImage;
-    [self.navigationController pushViewController:theBrandDetailViewController animated:YES];
+//    [self.navigationController pushViewController:theBrandDetailViewController animated:YES];
+    [self presentModalViewController:theBrandDetailViewController animated:YES];
     [theBrandDetailViewController release];
 }
 - (void)viewDidAppear:(BOOL)animated

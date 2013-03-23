@@ -8,9 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "Product.h"
-#import "HotCell.h"
+//#import "HotCell.h"
 
-@interface TheBrandDetailViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,HotCellSelectionDelegate>
+@interface TheBrandDetailViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
 {
     UITableView *theTableView;
     Product *product;

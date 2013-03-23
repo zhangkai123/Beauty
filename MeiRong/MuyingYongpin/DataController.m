@@ -155,18 +155,23 @@
     NSDictionary *item_imgs = [item objectForKey:@"item_imgs"];
     NSArray *item_img = [item_imgs objectForKey:@"item_img"];
     
+    dispatch_async(dispatch_get_main_queue(), ^{
+        
+        pro.description = desc;
+    });
+    
     NSMutableArray *imageDicArray = [[NSMutableArray alloc]init];
     for (NSDictionary *imageDic in item_img) {
         NSString *imageUrlStr = [imageDic objectForKey:@"url"];
         float imageHeight = [self parseImageHeight:imageUrlStr];
         NSDictionary *imageDic = [NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"%f",imageHeight],@"imageHeight",imageUrlStr,@"imageUrl", nil];
         [imageDicArray addObject:imageDic];
-    }
-    pro.imagesArray = imageDicArray;
-    [imageDicArray release];
-    
-    //the 'description' is treated as the key value of kvo,it must be later assign before imagesArray now
-    pro.description = desc;
+    }    
+
+    dispatch_async(dispatch_get_main_queue(), ^{
+        pro.imagesArray = imageDicArray;
+        [imageDicArray release];
+    });
 }
 -(float)parseImageHeight:(NSString *)urlStr
 {

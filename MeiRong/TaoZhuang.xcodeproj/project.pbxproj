@@ -120,6 +120,8 @@
 		4BACE0951615F050006B3E00 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BACE0941615F050006B3E00 /* libz.dylib */; };
 		4BAF7BAD15ECFE3200D64CCD /* BrandViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BAF7BAC15ECFE3200D64CCD /* BrandViewController.m */; };
 		4BB2ECBB16FCD3330010F124 /* HotProductViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BB2ECBA16FCD3330010F124 /* HotProductViewController.m */; };
+		4BB2ECBE16FD8CA30010F124 /* DetailImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BB2ECBD16FD8CA30010F124 /* DetailImageCell.m */; };
+		4BB2ECC116FD9FD70010F124 /* FirstCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BB2ECC016FD9FD60010F124 /* FirstCell.m */; };
 		4BCB570B160220500082D965 /* DDXMLElementAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BCB56FE160220500082D965 /* DDXMLElementAdditions.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		4BCB570C160220500082D965 /* NSString+DDXML.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BCB5701160220500082D965 /* NSString+DDXML.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		4BCB570D160220500082D965 /* DDXMLDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BCB5704160220500082D965 /* DDXMLDocument.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
@@ -384,6 +386,10 @@
 		4BAF7BAC15ECFE3200D64CCD /* BrandViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BrandViewController.m; path = ../BrandViewController.m; sourceTree = "<group>"; };
 		4BB2ECB916FCD3320010F124 /* HotProductViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HotProductViewController.h; sourceTree = "<group>"; };
 		4BB2ECBA16FCD3330010F124 /* HotProductViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HotProductViewController.m; sourceTree = "<group>"; };
+		4BB2ECBC16FD8CA30010F124 /* DetailImageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailImageCell.h; sourceTree = "<group>"; };
+		4BB2ECBD16FD8CA30010F124 /* DetailImageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailImageCell.m; sourceTree = "<group>"; };
+		4BB2ECBF16FD9FD60010F124 /* FirstCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirstCell.h; sourceTree = "<group>"; };
+		4BB2ECC016FD9FD60010F124 /* FirstCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirstCell.m; sourceTree = "<group>"; };
 		4BCB56FD160220500082D965 /* DDXMLElementAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDXMLElementAdditions.h; sourceTree = "<group>"; };
 		4BCB56FE160220500082D965 /* DDXMLElementAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDXMLElementAdditions.m; sourceTree = "<group>"; };
 		4BCB5700160220500082D965 /* NSString+DDXML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+DDXML.h"; sourceTree = "<group>"; };
@@ -1070,6 +1076,10 @@
 				4B21FE241631A29A00AD5C13 /* HotCellView.m */,
 				4B348A141635A15500A6DA91 /* StyleOneCellView.h */,
 				4B348A151635A15500A6DA91 /* StyleOneCellView.m */,
+				4BB2ECBF16FD9FD60010F124 /* FirstCell.h */,
+				4BB2ECC016FD9FD60010F124 /* FirstCell.m */,
+				4BB2ECBC16FD8CA30010F124 /* DetailImageCell.h */,
+				4BB2ECBD16FD8CA30010F124 /* DetailImageCell.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -1316,6 +1326,8 @@
 				4BF8B36716E2554A00FF2CD3 /* Utility.m in Sources */,
 				4B644A3116FA808200F8EEEF /* SetupViewController.m in Sources */,
 				4BB2ECBB16FCD3330010F124 /* HotProductViewController.m in Sources */,
+				4BB2ECBE16FD8CA30010F124 /* DetailImageCell.m in Sources */,
+				4BB2ECC116FD9FD70010F124 /* FirstCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
