@@ -23,6 +23,8 @@
     UIView *realBackView;
     UILabel *titleLabel;
     UIView *shopView;
+    
+    UIButton *collectButton;
 }
 @end
 
@@ -39,6 +41,7 @@
     [realBackView release];
     [titleLabel release];
     [shopView release];
+    [collectButton release];
     [super dealloc];
 }
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -143,14 +146,19 @@
     [self.view addSubview:footerView];
     [footerView release];
     
-    UIButton *collectButton = [[UIButton alloc]initWithFrame:CGRectMake(50, 0, 45, 45)];
-    [collectButton addTarget:self action:@selector(goBack) forControlEvents:UIControlEventTouchUpInside];
+    collectButton = [[UIButton alloc]initWithFrame:CGRectMake(70, 0, 45, 45)];
+    [collectButton addTarget:self action:@selector(collectProduct) forControlEvents:UIControlEventTouchUpInside];
     [collectButton setImage:[UIImage imageNamed:@"ico_footer_like"] forState:UIControlStateNormal];
     [footerView addSubview:collectButton];
-    [collectButton release];
+    if (product.collect) {
+        [collectButton setImage:[UIImage imageNamed:@"ico_footer_like_active"] forState:UIControlStateNormal];
+    }else{
+        [collectButton setImage:[UIImage imageNamed:@"ico_footer_like"] forState:UIControlStateNormal];
+    }
+    self.collection = product.collect;
 
-    UIButton *shareButton = [[UIButton alloc]initWithFrame:CGRectMake(225, 0, 45, 45)];
-    [shareButton addTarget:self action:@selector(goBack) forControlEvents:UIControlEventTouchUpInside];
+    UIButton *shareButton = [[UIButton alloc]initWithFrame:CGRectMake(205, 0, 45, 45)];
+    [shareButton addTarget:self action:@selector(shareProduct) forControlEvents:UIControlEventTouchUpInside];
     [shareButton setImage:[UIImage imageNamed:@"ico_footer_share"] forState:UIControlStateNormal];
     [footerView addSubview:shareButton];
     [shareButton release];
@@ -285,8 +293,8 @@
     [self presentModalViewController:webViewController animated:YES];
     [webViewController release];
 }
-/*
--(void)collectProduct:(HotCell *)cell
+
+-(void)collectProduct
 {
     if (!collection) {
         NSManagedObjectContext *context = [[CoreDataController sharedInstance]masterManagedObjectContext];
@@ -304,8 +312,8 @@
             NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
         }else{
             product.collect = YES;
-            [cell.collectLabel setText:@"已收藏"];
-            cell.collectButton.enabled = NO;
+            collection = YES;
+            [collectButton setImage:[UIImage imageNamed:@"ico_footer_like_active"] forState:UIControlStateNormal];
             [[NSNotificationCenter defaultCenter]postNotificationName:@"COLLECT_SUCCESS" object:nil userInfo:nil];
         }
     }else{
@@ -320,12 +328,13 @@
         [alert release];
     }
 }
--(void)shareProduct:(HotCell *)cell
+-(void)shareProduct
 {
+    FirstCell *firstCell = (FirstCell *)[theTableView cellForRowAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0]];
     ShareSns *shareSns = [[ShareSns alloc]init];
-    [shareSns showSnsShareSheet:self.tabBarController.view viewController:self shareImage:cell.myImageView.image shareText:cell.desLable.text];
+    [shareSns showSnsShareSheet:self.view viewController:self shareImage:firstCell.myImageView.image shareText:product.title];
 }
-*/
+
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
 	if (buttonIndex == 1) {
 		
@@ -346,6 +355,9 @@
         if (![context save:&error]) {
             NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
         }else{
+            product.collect = NO;
+            collection = NO;
+            [collectButton setImage:[UIImage imageNamed:@"ico_footer_like"] forState:UIControlStateNormal];
             NSDictionary* delProduct = [NSDictionary dictionaryWithObject:product forKey:@"deletedProduct"];
             [[NSNotificationCenter defaultCenter]postNotificationName:@"COLLECT_SUCCESS" object:nil userInfo:nil];
             [[NSNotificationCenter defaultCenter]postNotificationName:@"REFRESH_COLLECTED" object:nil userInfo:delProduct];
