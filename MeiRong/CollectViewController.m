@@ -187,10 +187,13 @@
 {
     selectedCell = cell;
     int productIndex;
+    UIImage *smallImage = nil;
     if (index == 0) {
         productIndex = cell.rowNum * 2;
+        smallImage = cell.leftImageView.image;
     }else{
         productIndex = cell.rowNum * 2 + 1;
+        smallImage = cell.rightImageView.image;
     }
     CollectProduct *product = [dataArray objectAtIndex:productIndex];
     Product *myProduct = [[Product alloc]init];
@@ -200,11 +203,13 @@
     myProduct.click_url = product.click_url;
     myProduct.price = product.price;
     myProduct.seller_credit_score = product.seller_credit_score;
+    myProduct.collect = YES;
+    myProduct.num_id = product.num_iid;
     
-    TheBrandDetailViewController *theBrandDetailViewController = [[TheBrandDetailViewController alloc]init];
-    theBrandDetailViewController.product = myProduct;
+    TheBrandDetailViewController *theBrandDetailViewController = [[TheBrandDetailViewController alloc]initWithProduct:myProduct];
     theBrandDetailViewController.collection = YES;
-    [self.navigationController pushViewController:theBrandDetailViewController animated:YES];
+    theBrandDetailViewController.smallImage = smallImage;
+    [self presentModalViewController:theBrandDetailViewController animated:YES];
     [theBrandDetailViewController release];
     [myProduct release];
 }

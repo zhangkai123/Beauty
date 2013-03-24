@@ -10,7 +10,7 @@
 
 @implementation CollectProduct
 
-//@dynamic num_iid;
+@dynamic num_iid;
 @dynamic title;
 //@dynamic nick;
 @dynamic pic_url;

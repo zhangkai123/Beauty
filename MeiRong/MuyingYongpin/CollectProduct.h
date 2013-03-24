@@ -10,7 +10,7 @@
 
 @interface CollectProduct : NSManagedObject
 
-//@property(nonatomic,copy) NSString *num_iid;
+@property(nonatomic,copy) NSString *num_iid;
 @property(nonatomic,copy) NSString * title;
 //@property(nonatomic,copy) NSString * nick;
 @property(nonatomic,copy) NSString *pic_url;

@@ -306,6 +306,7 @@
         collectProduct.price = product.price;
         collectProduct.seller_credit_score = product.seller_credit_score;
         collectProduct.click_url = product.click_url;
+        collectProduct.num_iid = product.num_id;
         
         NSError *error;
         if (![context save:&error]) {
