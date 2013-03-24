@@ -21,6 +21,8 @@
 {
     UITableViewCell *selectedCell;
     UIView *realBackView;
+    UILabel *titleLabel;
+    UIView *shopView;
 }
 @end
 
@@ -35,6 +37,8 @@
     [product release];
     [smallImage release];
     [realBackView release];
+    [titleLabel release];
+    [shopView release];
     [super dealloc];
 }
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -93,29 +97,63 @@
     
     UIButton *backButton = [[UIButton alloc]initWithFrame:CGRectMake(8, 8, 45, 45)];
     [backButton addTarget:self action:@selector(goBack) forControlEvents:UIControlEventTouchUpInside];
-    [backButton setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
-    [backButton setTitle:@"back" forState:UIControlStateNormal];
+    [backButton setImage:[UIImage imageNamed:@"btn_back"] forState:UIControlStateNormal];
     [self.view addSubview:backButton];
     [backButton release];
-    
+        
     realBackView = [[UIView alloc]initWithFrame:CGRectMake(0, 460 - 45 - 60, 320, 60)];
     realBackView.backgroundColor = [UIColor blackColor];
-    [realBackView setAlpha:0.4];
+    [realBackView setAlpha:0.5];
     [self.view addSubview:realBackView];
     
-    UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(30, 15, 280, 30)];
+    titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(40, realBackView.frame.origin.y + 15, 285, 30)];
     titleLabel.backgroundColor = [UIColor clearColor];
     [titleLabel setFont:[UIFont systemFontOfSize:12]];
     [titleLabel setTextColor:[UIColor whiteColor]];
     titleLabel.text = product.title;
-    [realBackView addSubview:titleLabel];
-    [titleLabel release];
+    [self.view addSubview:titleLabel];
     
-    UIView *tabView = [[UIView alloc]initWithFrame:CGRectMake(0, 460 - 45, 320, 45)];
-    tabView.backgroundColor = [UIColor blackColor];
-    [tabView setAlpha:0.6];
-    [self.view addSubview:tabView];
-    [tabView release];
+    shopView = [[UIView alloc]initWithFrame:CGRectMake(320 - 145, 460 - 45 - 60 - 20, 145, 40)];
+    shopView.backgroundColor = [UIColor clearColor];
+    [self.view addSubview:shopView];
+    
+     UIImageView *shopImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 145, 40)];
+    shopImageView.userInteractionEnabled = YES;
+    shopImageView.backgroundColor = [UIColor colorWithRed:1 green: 0.6 blue:0.8 alpha:1];
+    shopImageView.alpha = 0.8;
+    [shopView addSubview:shopImageView];
+    [shopImageView release];
+    
+     UILabel *shopLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 145, 40)];
+    shopLabel.backgroundColor = [UIColor clearColor];
+    [shopLabel setText:[NSString stringWithFormat:@"%@ | 查看详情",product.price]];
+    [shopLabel setTextColor:[UIColor whiteColor]];
+    [shopLabel setTextAlignment:NSTextAlignmentCenter];
+    [shopView addSubview:shopLabel];
+    [shopLabel release];
+    
+    UIButton *shopButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 145, 40)];
+    [shopButton addTarget:self action:@selector(buyProduct) forControlEvents:UIControlEventTouchUpInside];
+    [shopView addSubview:shopButton];
+    [shopButton release];
+    
+    UIView *footerView = [[UIView alloc]initWithFrame:CGRectMake(0, 460 - 45, 320, 45)];
+    footerView.backgroundColor = [UIColor blackColor];
+    [footerView setAlpha:0.7];
+    [self.view addSubview:footerView];
+    [footerView release];
+    
+    UIButton *collectButton = [[UIButton alloc]initWithFrame:CGRectMake(50, 0, 45, 45)];
+    [collectButton addTarget:self action:@selector(goBack) forControlEvents:UIControlEventTouchUpInside];
+    [collectButton setImage:[UIImage imageNamed:@"ico_footer_like"] forState:UIControlStateNormal];
+    [footerView addSubview:collectButton];
+    [collectButton release];
+
+    UIButton *shareButton = [[UIButton alloc]initWithFrame:CGRectMake(225, 0, 45, 45)];
+    [shareButton addTarget:self action:@selector(goBack) forControlEvents:UIControlEventTouchUpInside];
+    [shareButton setImage:[UIImage imageNamed:@"ico_footer_share"] forState:UIControlStateNormal];
+    [footerView addSubview:shareButton];
+    [shareButton release];
 }
 - (void)viewDidAppear:(BOOL)animated
 {
@@ -153,15 +191,23 @@
     if (scrollView.contentOffset.y >= 65) {
         if (![realBackView isDescendantOfView:theTableView]) {
             [realBackView removeFromSuperview];
+            [titleLabel removeFromSuperview];
             realBackView.frame = CGRectMake(0, 480-60, realBackView.frame.size.width, realBackView.frame.size.height);
+            titleLabel.frame = CGRectMake(30, realBackView.frame.origin.y + 15, 280, 30);
             [theTableView addSubview:realBackView];
+            [theTableView addSubview:titleLabel];
+            [self.view bringSubviewToFront:shopView];
         }
     }
     if (scrollView.contentOffset.y <= 65) {
         if ([realBackView isDescendantOfView:theTableView]) {
             [realBackView removeFromSuperview];
+            [titleLabel removeFromSuperview];
             realBackView.frame = CGRectMake(0, 460 - 45 - 60, 320, 60);
+            titleLabel.frame = CGRectMake(30, realBackView.frame.origin.y + 15, 280, 30);
             [self.view addSubview:realBackView];
+            [self.view addSubview:titleLabel];
+            [self.view bringSubviewToFront:shopView];
         }
     }
 }
@@ -232,16 +278,14 @@
     }
 }
 
-/*
-#pragma HotCellSelectionDelegate
--(void)selectTableViewCell:(HotCell *)cell
+-(void)buyProduct
 {
-    selectedCell = cell;
     WebViewController *webViewController = [[WebViewController alloc]init];
     webViewController.productUrlS = product.click_url;
     [self presentModalViewController:webViewController animated:YES];
     [webViewController release];
 }
+/*
 -(void)collectProduct:(HotCell *)cell
 {
     if (!collection) {
