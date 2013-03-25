@@ -42,7 +42,7 @@
         self.title = @"我的";
         
         //use whatever image you want and add it to your project
-        self.tabBarItem.image = [UIImage imageNamed:@"iconFavorTab"];
+        self.tabBarItem.image = [UIImage imageNamed:@"ico_nav_me"];
         
         // set the long name shown in the navigation bar at the top
         UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(40, 0, 240, 30)];

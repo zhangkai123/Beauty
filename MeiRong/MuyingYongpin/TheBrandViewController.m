@@ -41,10 +41,10 @@
 -(id) initWithTabBar {
     if ([self init]) {
         //this is the label on the tab button itself
-        self.title = @"热销单品";
+        self.title = @"热销";
         
         //use whatever image you want and add it to your project
-        self.tabBarItem.image = [UIImage imageNamed:@"iconListTab"];
+        self.tabBarItem.image = [UIImage imageNamed:@"ico_nav_hot"];
         
         // set the long name shown in the navigation bar at the top
         UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(50, 0, 220, 30)];
@@ -54,7 +54,7 @@
         titleLabel.shadowColor   = [[UIColor blackColor]colorWithAlphaComponent: 0.2f];
         titleLabel.shadowOffset  = CGSizeMake(1.0,1.0);
         titleLabel.backgroundColor = [UIColor clearColor];
-        titleLabel.text = @"热销单品";
+        titleLabel.text = @"热销";
         [self.navigationItem setTitleView:titleLabel];
         [titleLabel release];
         

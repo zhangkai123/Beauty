@@ -35,7 +35,7 @@
         self.title = @"分类";
         
         //use whatever image you want and add it to your project
-        self.tabBarItem.image = [UIImage imageNamed:@"iconCatalogTab"];
+        self.tabBarItem.image = [UIImage imageNamed:@"ico_nav_category"];
         
         // set the long name shown in the navigation bar at the top
         UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 320, 30)];

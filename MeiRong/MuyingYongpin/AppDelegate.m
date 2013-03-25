@@ -9,6 +9,7 @@
 #import <Parse/Parse.h>
 #import "AppDelegate.h"
 
+#import "HotProductViewController.h"
 #import "TheBrandViewController.h"
 #import "BrandViewController.h"
 #import "CollectViewController.h"
@@ -57,6 +58,12 @@
     
     NSMutableArray *controllersArray = [[NSMutableArray alloc]initWithCapacity:4];
     
+    HotProductViewController *hotProductViewController = [[HotProductViewController alloc]initWithTabBar];
+    navigationController = [[UINavigationController alloc]initWithRootViewController:hotProductViewController];
+    [controllersArray addObject:navigationController];
+    [hotProductViewController release];
+    [navigationController release];
+    
     TheBrandViewController *theBrandViewController = [[TheBrandViewController alloc]initWithTabBar];
     theBrandViewController.catName = @"热销";
     navigationController = [[UINavigationController alloc]initWithRootViewController:theBrandViewController];
@@ -75,12 +82,6 @@
     [controllersArray addObject:navigationController];
     [collectViewController release];
     [navigationController release];
-
-//    NewsFeedViewController *newsFeedViewController = [[NewsFeedViewController alloc]initWithTabBar];
-//    navigationController = [[UINavigationController alloc]initWithRootViewController:newsFeedViewController];
-//    [controllersArray addObject:navigationController];
-//    [newsFeedViewController release];
-//    [navigationController release];
     
     self.tabBarController.viewControllers = controllersArray;
     [controllersArray release];
