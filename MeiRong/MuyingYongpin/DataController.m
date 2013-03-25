@@ -134,7 +134,7 @@
     
         NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
         [params setObject:@"taobao.item.get" forKey:@"method"];
-        [params setObject:@"item_img.url" forKey:@"fields"];
+        [params setObject:@"item_img.url,prop_img.url" forKey:@"fields"];
         [params setObject:num_id forKey:@"num_iid"];
         
         NSData *resultData=[Utility getResultData:params];
@@ -146,21 +146,30 @@
 {
     NSString *productsString = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
     NSDictionary *productsDic = [productsString JSONValue];
-    //    NSLog(@"---%@---\n",productsString);
+//        NSLog(@"---%@---\n",productsString);
     [productsString release];
     NSDictionary *items_get_response = [productsDic objectForKey:@"item_get_response"];
     NSDictionary *item = [items_get_response objectForKey:@"item"];
     
     NSDictionary *item_imgs = [item objectForKey:@"item_imgs"];
     NSArray *item_img = [item_imgs objectForKey:@"item_img"];
-        
+    
+    NSDictionary *prop_imgs = [item objectForKey:@"prop_imgs"];
+    NSArray *prop_img = [prop_imgs objectForKey:@"prop_img"];
+    
     NSMutableArray *imageDicArray = [[NSMutableArray alloc]init];
     for (NSDictionary *imageDic in item_img) {
         NSString *imageUrlStr = [imageDic objectForKey:@"url"];
         float imageHeight = [self parseImageHeight:imageUrlStr];
         NSDictionary *imageDic = [NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"%f",imageHeight],@"imageHeight",imageUrlStr,@"imageUrl", nil];
         [imageDicArray addObject:imageDic];
-    }    
+    }
+    for (NSDictionary *imageDic in prop_img) {
+        NSString *imageUrlStr = [imageDic objectForKey:@"url"];
+        float imageHeight = [self parseImageHeight:imageUrlStr];
+        NSDictionary *imageDic = [NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"%f",imageHeight],@"imageHeight",imageUrlStr,@"imageUrl", nil];
+        [imageDicArray addObject:imageDic];
+    }
 
     dispatch_async(dispatch_get_main_queue(), ^{
         pro.imagesArray = imageDicArray;

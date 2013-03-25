@@ -146,10 +146,10 @@
     [self.view addSubview:footerView];
     [footerView release];
     
-    collectButton = [[UIButton alloc]initWithFrame:CGRectMake(70, 0, 45, 45)];
+    collectButton = [[UIButton alloc]initWithFrame:CGRectMake(70, 460 - 45, 45, 45)];
     [collectButton addTarget:self action:@selector(collectProduct) forControlEvents:UIControlEventTouchUpInside];
     [collectButton setImage:[UIImage imageNamed:@"ico_footer_like"] forState:UIControlStateNormal];
-    [footerView addSubview:collectButton];
+    [self.view addSubview:collectButton];
     if (product.collect) {
         [collectButton setImage:[UIImage imageNamed:@"ico_footer_like_active"] forState:UIControlStateNormal];
     }else{
@@ -157,10 +157,10 @@
     }
     self.collection = product.collect;
 
-    UIButton *shareButton = [[UIButton alloc]initWithFrame:CGRectMake(205, 0, 45, 45)];
+    UIButton *shareButton = [[UIButton alloc]initWithFrame:CGRectMake(205, 460 - 45, 45, 45)];
     [shareButton addTarget:self action:@selector(shareProduct) forControlEvents:UIControlEventTouchUpInside];
     [shareButton setImage:[UIImage imageNamed:@"ico_footer_share"] forState:UIControlStateNormal];
-    [footerView addSubview:shareButton];
+    [self.view addSubview:shareButton];
     [shareButton release];
 }
 - (void)viewDidAppear:(BOOL)animated

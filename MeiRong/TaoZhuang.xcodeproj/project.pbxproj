@@ -114,7 +114,7 @@
 		4B8BA34615F6352B00332F08 /* iconCatalogTab@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B8BA34515F6352B00332F08 /* iconCatalogTab@2x.png */; };
 		4B8BA34815F6355F00332F08 /* iconCatalogTabFocus@2xUncrushedPng.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B8BA34715F6355F00332F08 /* iconCatalogTabFocus@2xUncrushedPng.png */; };
 		4B8BA35015F6359D00332F08 /* iconFavorTab@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B8BA34F15F6359D00332F08 /* iconFavorTab@2x.png */; };
-		4B8BA35215F635A700332F08 /* iconFavorTabFocus@2xUncrushedPng.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B8BA35115F635A700332F08 /* iconFavorTabFocus@2xUncrushedPng.png */; };
+		4B8BA35215F635A700332F08 /* iconFavorTabFocus@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B8BA35115F635A700332F08 /* iconFavorTabFocus@2x.png */; };
 		4B8BA35415F635B700332F08 /* iconListTab@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B8BA35315F635B700332F08 /* iconListTab@2x.png */; };
 		4B8BA35615F635C200332F08 /* iconListTabFocus@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B8BA35515F635C200332F08 /* iconListTabFocus@2x.png */; };
 		4B8E9AEC1619E3E000A37B6E /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B8E9AEB1619E3E000A37B6E /* CoreData.framework */; };
@@ -377,7 +377,7 @@
 		4B8BA34515F6352B00332F08 /* iconCatalogTab@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iconCatalogTab@2x.png"; sourceTree = "<group>"; };
 		4B8BA34715F6355F00332F08 /* iconCatalogTabFocus@2xUncrushedPng.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iconCatalogTabFocus@2xUncrushedPng.png"; sourceTree = "<group>"; };
 		4B8BA34F15F6359D00332F08 /* iconFavorTab@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iconFavorTab@2x.png"; sourceTree = "<group>"; };
-		4B8BA35115F635A700332F08 /* iconFavorTabFocus@2xUncrushedPng.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iconFavorTabFocus@2xUncrushedPng.png"; sourceTree = "<group>"; };
+		4B8BA35115F635A700332F08 /* iconFavorTabFocus@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iconFavorTabFocus@2x.png"; sourceTree = "<group>"; };
 		4B8BA35315F635B700332F08 /* iconListTab@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iconListTab@2x.png"; sourceTree = "<group>"; };
 		4B8BA35515F635C200332F08 /* iconListTabFocus@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iconListTabFocus@2x.png"; sourceTree = "<group>"; };
 		4B8E9AEB1619E3E000A37B6E /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -766,7 +766,7 @@
 			children = (
 				4B8BA35515F635C200332F08 /* iconListTabFocus@2x.png */,
 				4B8BA35315F635B700332F08 /* iconListTab@2x.png */,
-				4B8BA35115F635A700332F08 /* iconFavorTabFocus@2xUncrushedPng.png */,
+				4B8BA35115F635A700332F08 /* iconFavorTabFocus@2x.png */,
 				4B8BA34F15F6359D00332F08 /* iconFavorTab@2x.png */,
 				4B8BA34715F6355F00332F08 /* iconCatalogTabFocus@2xUncrushedPng.png */,
 				4B8BA34515F6352B00332F08 /* iconCatalogTab@2x.png */,
@@ -1238,7 +1238,7 @@
 				4B8BA34615F6352B00332F08 /* iconCatalogTab@2x.png in Resources */,
 				4B8BA34815F6355F00332F08 /* iconCatalogTabFocus@2xUncrushedPng.png in Resources */,
 				4B8BA35015F6359D00332F08 /* iconFavorTab@2x.png in Resources */,
-				4B8BA35215F635A700332F08 /* iconFavorTabFocus@2xUncrushedPng.png in Resources */,
+				4B8BA35215F635A700332F08 /* iconFavorTabFocus@2x.png in Resources */,
 				4B8BA35415F635B700332F08 /* iconListTab@2x.png in Resources */,
 				4B8BA35615F635C200332F08 /* iconListTabFocus@2x.png in Resources */,
 				4BF3F4CB162A8BC60070BDE5 /* umeng_share_at.png in Resources */,
