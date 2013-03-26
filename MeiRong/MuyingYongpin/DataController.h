@@ -20,4 +20,5 @@
 -(void)featchRssData;
 -(NSMutableArray *)parseRssData:(NSData *)data;
 
+-(void)featchStories:(int)pageNum;
 @end

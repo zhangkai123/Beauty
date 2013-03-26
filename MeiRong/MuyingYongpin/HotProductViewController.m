@@ -9,13 +9,10 @@
 #import <ImageIO/ImageIO.h>
 #import "HotProductViewController.h"
 #import "UIImageView+WebCache.h"
-#import "Product.h"
+#import "Story.h"
 #import "DataController.h"
 #import "WebViewController.h"  
 #import "SVPullToRefresh.h"
-#import "CoreDataController.h"
-#import "CollectProduct.h"
-#import "ShareSns.h"
 
 @interface HotProductViewController()
 {
@@ -92,8 +89,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(recieveHotProducts:) name:@"HOT_PRODUCTS_REARDY" object:nil];
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(refreshCollected:) name:@"REFRESH_COLLECTED" object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(recieveStories:) name:@"Story_Ready" object:nil];
     
     if ([self.navigationController.navigationBar respondsToSelector:@selector( setBackgroundImage:forBarMetrics:)]){
         [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"navbar_background"] forBarMetrics:UIBarMetricsDefault];
@@ -116,10 +112,10 @@
     productTableView.rowHeight = 380;
     [self.view addSubview:productTableView];
     
-     productsArray = [[NSMutableArray alloc]init];
+     storiesArray = [[NSMutableArray alloc]init];
     
     __block UITableView *weaktheTalbleView = productTableView;
-    __block NSMutableArray *weakproductsArray = productsArray;
+    __block NSMutableArray *weakproductsArray = storiesArray;
     __block NSInteger weakCurrentPage = currentPage;
     
     //add the pull fresh and add more data
@@ -132,7 +128,7 @@
         //[weakproductsArray removeAllObjects];
         weakCurrentPage = 0;
         DataController *dataController = [DataController sharedDataController];
-        [dataController fetachHotProducts:1];
+        [dataController featchStories:1];
     }];
     [productTableView addInfiniteScrollingWithActionHandler:^{
         
@@ -151,18 +147,18 @@
             return;
         }
         DataController *dataController = [DataController sharedDataController];
-        [dataController fetachHotProducts:pageN + 1];
+        [dataController featchStories:pageN + 1];
         weakCurrentPage = pageN;
     }];
     
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"SheetBackground"]];
     
-//    DataController *dataController = [DataController sharedDataController];
-//    [dataController fetachHotProducts:1];
-//    
-//    [self startActivity];
+    DataController *dataController = [DataController sharedDataController];
+    [dataController featchStories:1];
+    
+    [self startActivity];
 }
--(void)recieveHotProducts:(NSNotification *)notification
+-(void)recieveStories:(NSNotification *)notification
 {
     finishLoad = YES;
     NSMutableArray *myArray = [notification object];
@@ -178,34 +174,16 @@
         return;
     }
     if (refresh) {
-        [productsArray removeAllObjects];
-    }
-    for (int i = 0; i < [myArray count]; i++) {
-        Product *product = [myArray objectAtIndex:i];
-        
-        NSManagedObjectContext *context = [[CoreDataController sharedInstance]backgroundManagedObjectContext];
-
-        NSFetchRequest *request= [[NSFetchRequest alloc] init];
-        NSEntityDescription *entity = [NSEntityDescription entityForName:@"CollectProduct" inManagedObjectContext:context];
-        NSPredicate *predicate =[NSPredicate predicateWithFormat:@"pic_url==%@",product.pic_url];
-        [request setEntity:entity];
-        [request setPredicate:predicate];
-        
-        NSError *error = nil;
-        NSArray *array = [context executeFetchRequest:request error:&error];
-        [request release];
-        if ([array count] > 0) {
-            product.collect = YES;
-        }
+        [storiesArray removeAllObjects];
     }
     
-    int currentCount = [productsArray count];
+    int currentCount = [storiesArray count];
     NSMutableArray *rowsInsertIndexPath = [[NSMutableArray alloc] init];
     for (NSInteger i = 0; i < [myArray count]; i++) {
         NSIndexPath *tempIndexPath = [NSIndexPath indexPathForRow:currentCount + i inSection:0];
         [rowsInsertIndexPath addObject:tempIndexPath];
     }
-    [productsArray addObjectsFromArray:myArray];
+    [storiesArray addObjectsFromArray:myArray];
     [myArray release];
     
     //nofification is recieved in another thread
@@ -225,19 +203,6 @@
         }
     });
 }
--(void)refreshCollected:(NSNotification *)notification
-{
-    Product *delProduct = [[notification userInfo]valueForKey:@"deletedProduct"];
-    
-    for (int i = 0; i < [productsArray count]; i++) {
-        Product *product = [productsArray objectAtIndex:i];
-        
-        if ([product.pic_url isEqualToString:delProduct.pic_url]) {
-            product.collect = NO;
-        }
-    }
-    [productTableView reloadData];
-}
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 1;
@@ -245,7 +210,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [productsArray count];
+    return [storiesArray count];
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -255,58 +220,21 @@
     }
     cell.delegate = self;
     cell.rowNum = indexPath.row;
-    Product *product = [productsArray objectAtIndex:indexPath.row];
-    [cell.myImageView setImageWithURL:[NSURL URLWithString:product.pic_url] placeholderImage:[UIImage imageNamed:@"bPlaceHolder.png"] options:SDWebImageRoundCorner];
-    cell.desLable.text = product.title;
-    cell.priceLabel2.text = product.price;
-    cell.likeLabel2.text = product.seller_credit_score;
-    if (product.collect) {
-        [cell.collectLabel setText:@"已收藏"];
-        cell.collectButton.enabled = NO;
-    }else{
-        [cell.collectLabel setText:@"收藏"];
-        cell.collectButton.enabled = YES;
-    }
+    Story *story = [storiesArray objectAtIndex:indexPath.row];
+    [cell.myImageView setImageWithURL:[NSURL URLWithString:story.imagePath] placeholderImage:[UIImage imageNamed:@"bPlaceHolder.png"] options:SDWebImageRoundCorner];
+    cell.titleLable.text = story.title;
+    cell.articleLable.text = story.article;
     return cell;
 }
 #pragma HotCellSelectionDelegate
 -(void)selectTableViewCell:(HotCell *)cell
 {
     selectedCell = cell;
-    Product *product = [productsArray objectAtIndex:cell.rowNum];
+    Product *product = [storiesArray objectAtIndex:cell.rowNum];
     WebViewController *webViewController = [[WebViewController alloc]init];
     webViewController.productUrlS = product.click_url;
     [self presentModalViewController:webViewController animated:YES];
     [webViewController release];
-}
--(void)collectProduct:(HotCell *)cell
-{
-    Product *product = [productsArray objectAtIndex:cell.rowNum];
-    
-    NSManagedObjectContext *context = [[CoreDataController sharedInstance]masterManagedObjectContext];
-    CollectProduct *collectProduct = [NSEntityDescription
-                                            insertNewObjectForEntityForName:@"CollectProduct"
-                                            inManagedObjectContext:context];
-    collectProduct.pic_url = product.pic_url;
-    collectProduct.title = product.title;
-    collectProduct.price = product.price;
-    collectProduct.seller_credit_score = product.seller_credit_score;
-    collectProduct.click_url = product.click_url;
-
-    NSError *error;
-    if (![context save:&error]) {
-        NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
-    }else{
-        product.collect = YES;
-        [cell.collectLabel setText:@"已收藏"];
-        cell.collectButton.enabled = NO;
-        [[NSNotificationCenter defaultCenter]postNotificationName:@"COLLECT_SUCCESS" object:nil userInfo:nil];
-    }
-}
--(void)shareProduct:(HotCell *)cell
-{
-    ShareSns *shareSns = [[ShareSns alloc]init];
-    [shareSns showSnsShareSheet:self.tabBarController.view viewController:self shareImage:cell.myImageView.image shareText:cell.desLable.text];
 }
 
 - (void)viewDidUnload

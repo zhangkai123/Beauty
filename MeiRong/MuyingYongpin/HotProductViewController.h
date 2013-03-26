@@ -12,7 +12,7 @@
 @interface HotProductViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,HotCellSelectionDelegate>
 {
     UITableView *productTableView;
-    NSMutableArray *productsArray;
+    NSMutableArray *storiesArray;
     int currentPage;
 }
 -(id) initWithTabBar;

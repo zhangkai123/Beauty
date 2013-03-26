@@ -80,6 +80,7 @@
 {
     SetupViewController *setupViewController = [[SetupViewController alloc]init];
     [self.navigationController pushViewController:setupViewController animated:YES];
+//    [self presentModalViewController:setupViewController animated:YES];
     [setupViewController release];
 }
 - (void)viewDidLoad

@@ -13,7 +13,7 @@
 #import "FashionNews.h"
 #import "ReachableManager.h"
 #import "Utility.h"
-
+#import "Story.h"
 
 #define ServerIp @"http://42.121.193.105"
 #define hostIp @"http://10.21.98.93"
@@ -54,6 +54,67 @@
             [alert release];
     });
 }
+-(void)featchStories:(int)pageNum
+{
+    if (![[ReachableManager sharedReachableManager]reachable]) {
+        [self performSelector:@selector(showNoNetwork) withObject:nil afterDelay:1.0];
+    }
+    
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        
+        NSError *error;
+        NSURLResponse *theResponse;
+        NSString *urlString = [NSString stringWithFormat:@"%@/PinPHP_V2.21/fetchTopics.php",ServerIp];
+        NSMutableURLRequest *theRequest=[NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlString]];
+        [theRequest setHTTPMethod:@"POST"];
+        NSString *postString = [NSString stringWithFormat:@"pageNumber=%d",pageNum];
+        [theRequest setHTTPBody:[postString dataUsingEncoding:NSUTF8StringEncoding]];
+        
+        [theRequest addValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+        NSData *resultData = [NSURLConnection sendSynchronousRequest:theRequest returningResponse:&theResponse error:&error];
+        
+        if (resultData == nil) {
+            
+            // Check for problems
+            if (error != nil) {
+                [self showAlert:[error description]];
+            }else{
+                [self showAlert:@"返回数据为空"];
+            }
+        }
+        else {
+            // Data was received.. continue processing
+            NSMutableArray *pArray = [self parseStoryData:resultData];
+            [[NSNotificationCenter defaultCenter]postNotificationName:@"Story_Ready" object:pArray userInfo:nil];
+            [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+        }
+    });
+}
+-(NSMutableArray *)parseStoryData:(NSData *)data
+{
+    NSString *productsString = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
+    
+    NSArray *storyArray = [productsString JSONValue];
+    
+    NSLog(@"---%@---\n",productsString);
+    [productsString release];
+    
+    NSMutableArray *pArray = [[NSMutableArray alloc]init];
+    for (int i = 0; i < [storyArray count]; i++) {
+        NSDictionary *item = [storyArray objectAtIndex:i];
+        
+        NSString *title = [item objectForKey:@"title"];
+        NSString *img = [item objectForKey:@"img"];
+        NSString *article = [item objectForKey:@"abst"];
+        
+        Story *story = [[Story alloc]initWithStory:title imagePath:img article:article];
+        [pArray addObject:story];
+        [story release];
+    }
+    return [pArray autorelease];
+}
+
 -(void)fetachCateProducts:(NSString *)cateName notiName:(NSString *)nName pageNumber:(int)pageN
 {
     if (![[ReachableManager sharedReachableManager]reachable]) {
@@ -212,10 +273,7 @@
         NSError *error;
         NSURLResponse *theResponse;
         NSURLRequest *theRequest=[NSURLRequest requestWithURL:[NSURL URLWithString:postURL]];
-        NSData *xmlData = [NSURLConnection sendSynchronousRequest:theRequest returningResponse:&theResponse error:&error];
-//        NSString *xmlString = [[NSString alloc]initWithData:xmlData encoding:NSUTF8StringEncoding];
-//        NSLog(@"%@",xmlString);
-        
+        NSData *xmlData = [NSURLConnection sendSynchronousRequest:theRequest returningResponse:&theResponse error:&error];        
         /* Return Value
          The downloaded data for the URL request. Returns nil if a connection could not be created or if the download fails.
          */

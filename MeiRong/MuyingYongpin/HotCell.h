@@ -23,32 +23,24 @@
 
 @interface HotCell : UITableViewCell<TouchableImageViewSelectionDelegate>
 {
-    UILabel *desLable;
-    UIButton *collectButton;
-    UILabel *collectLabel;
-    UIButton *sharedButton;
+    UILabel *titleLable;
     id<HotCellSelectionDelegate> delegate;
     int rowNum;
     
     HotCellView *coverView;
     TouchableImageView *myImageView;
     
-    UILabel *priceLabel2;
-    UILabel *likeLabel2;
+    UILabel *articleLable;
 }
 
-@property(nonatomic,retain) UILabel *desLable;
-@property(nonatomic,retain) UIButton *collectButton;
-@property(nonatomic,retain) UILabel *collectLabel;
-@property(nonatomic,retain) UIButton *sharedButton;
+@property(nonatomic,retain) UILabel *titleLable;
 @property(nonatomic,assign) id<HotCellSelectionDelegate> delegate;
 @property(nonatomic,assign) int rowNum;
 
 @property(nonatomic,retain) HotCellView *coverView;
 @property(nonatomic,retain) TouchableImageView *myImageView;
 
-@property(nonatomic,retain) UILabel *priceLabel2;
-@property(nonatomic,retain) UILabel *likeLabel2;
+@property(nonatomic,retain) UILabel *articleLable;
 
 -(void)diselectCell;
 @end

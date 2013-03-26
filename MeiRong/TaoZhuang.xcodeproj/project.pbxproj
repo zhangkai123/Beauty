@@ -151,6 +151,7 @@
 		4BCB570F160220500082D965 /* DDXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BCB5708160220500082D965 /* DDXMLNode.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		4BCB571C16022EF80082D965 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BCB571B16022EF80082D965 /* libxml2.dylib */; };
 		4BCBB25F15FB395400282CD5 /* TheBrandViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BCBB25E15FB395400282CD5 /* TheBrandViewController.m */; };
+		4BDAE78E1701E2500079FF50 /* Story.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BDAE78D1701E2500079FF50 /* Story.m */; };
 		4BDB315515BA56DE007B1C6F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BDB315415BA56DE007B1C6F /* UIKit.framework */; };
 		4BDB315715BA56DE007B1C6F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BDB315615BA56DE007B1C6F /* Foundation.framework */; };
 		4BDB315915BA56DE007B1C6F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BDB315815BA56DE007B1C6F /* CoreGraphics.framework */; };
@@ -449,6 +450,8 @@
 		4BCB571B16022EF80082D965 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		4BCBB25D15FB395400282CD5 /* TheBrandViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TheBrandViewController.h; sourceTree = "<group>"; };
 		4BCBB25E15FB395400282CD5 /* TheBrandViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TheBrandViewController.m; sourceTree = "<group>"; };
+		4BDAE78C1701E2500079FF50 /* Story.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Story.h; sourceTree = "<group>"; };
+		4BDAE78D1701E2500079FF50 /* Story.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Story.m; sourceTree = "<group>"; };
 		4BDB315015BA56DE007B1C6F /* 淘妆.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "淘妆.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4BDB315415BA56DE007B1C6F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		4BDB315615BA56DE007B1C6F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -795,6 +798,8 @@
 				4B92E1FD15CD2E7200249F26 /* Product.m */,
 				4B07D2E71610A64900753B9A /* FashionNews.h */,
 				4B07D2E81610A64900753B9A /* FashionNews.m */,
+				4BDAE78C1701E2500079FF50 /* Story.h */,
+				4BDAE78D1701E2500079FF50 /* Story.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -1424,6 +1429,7 @@
 				4BB2ECBB16FCD3330010F124 /* HotProductViewController.m in Sources */,
 				4BB2ECBE16FD8CA30010F124 /* DetailImageCell.m in Sources */,
 				4BB2ECC116FD9FD70010F124 /* FirstCell.m in Sources */,
+				4BDAE78E1701E2500079FF50 /* Story.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
