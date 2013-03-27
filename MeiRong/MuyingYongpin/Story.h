@@ -13,6 +13,7 @@
 @property(nonatomic,retain) NSString *title;
 @property(nonatomic,retain) NSString *imagePath;
 @property(nonatomic,retain) NSString *article;
+@property(nonatomic,retain) NSString *keyWord;
 
--(id)initWithStory:(NSString *)tit imagePath:(NSString *)imageP article:(NSString *)art;
+-(id)initWithStory:(NSString *)tit imagePath:(NSString *)imageP article:(NSString *)art keyWord:(NSString *)kWord;
 @end

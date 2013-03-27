@@ -107,8 +107,9 @@
         NSString *title = [item objectForKey:@"title"];
         NSString *img = [item objectForKey:@"img"];
         NSString *article = [item objectForKey:@"abst"];
+        NSString *keyWord = [item objectForKey:@"url"];
         
-        Story *story = [[Story alloc]initWithStory:title imagePath:img article:article];
+        Story *story = [[Story alloc]initWithStory:title imagePath:img article:article keyWord:keyWord];
         [pArray addObject:story];
         [story release];
     }

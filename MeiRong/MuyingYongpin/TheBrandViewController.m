@@ -57,8 +57,6 @@
         titleLabel.text = @"热销";
         [self.navigationItem setTitleView:titleLabel];
         [titleLabel release];
-        
-//        [self createActivity];
     }
     return self;
 }

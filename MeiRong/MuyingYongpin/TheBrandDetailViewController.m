@@ -111,7 +111,7 @@
     
     titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(40, realBackView.frame.origin.y + 15, 285, 30)];
     titleLabel.backgroundColor = [UIColor clearColor];
-    [titleLabel setFont:[UIFont systemFontOfSize:12]];
+    [titleLabel setFont:[UIFont systemFontOfSize:14]];
     [titleLabel setTextColor:[UIColor whiteColor]];
     titleLabel.text = product.title;
     [self.view addSubview:titleLabel];

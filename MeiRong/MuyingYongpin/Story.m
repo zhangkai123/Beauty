@@ -9,23 +9,25 @@
 #import "Story.h"
 
 @implementation Story
-@synthesize title = _title ,imagePath = _imagePath, article = _article;
+@synthesize title = _title ,imagePath = _imagePath, article = _article, keyWord = _keyWord;
 
 -(void)dealloc
 {
     [_title release];
     [_imagePath release];
     [_article release];
+    [_keyWord release];
     [super dealloc];
 }
 
--(id)initWithStory:(NSString *)tit imagePath:(NSString *)imageP article:(NSString *)art
+-(id)initWithStory:(NSString *)tit imagePath:(NSString *)imageP article:(NSString *)art keyWord:(NSString *)kWord
 {
     if (self = [super init]) {
         
         self.title = tit;
         self.imagePath = imageP;
         self.article = art;
+        self.keyWord = kWord;
     }
     return self;
 }
