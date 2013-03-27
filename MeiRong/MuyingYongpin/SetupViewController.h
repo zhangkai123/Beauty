@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MessageUI/MFMailComposeViewController.h>
 
-@interface SetupViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
+@interface SetupViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,MFMailComposeViewControllerDelegate>
 {
     UITableView *setupableView;
     NSMutableArray *dataArray;

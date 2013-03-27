@@ -7,6 +7,8 @@
 //
 
 #import "SetupViewController.h"
+#import "AboutViewController.h"
+#import "SDImageCache.h"
 
 @interface SetupViewController ()
 
@@ -97,7 +99,60 @@
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    switch (indexPath.row) {
+        case 0:
+        {
+            AboutViewController *aboutViewController = [[AboutViewController alloc]initWithTabBar];
+            [self.navigationController pushViewController:aboutViewController animated:YES];
+            [aboutViewController release];
+        }
+            break;
+        case 1:
+        {
+            MFMailComposeViewController* controller = [[MFMailComposeViewController alloc] init];
+            controller.mailComposeDelegate = self;
+            NSArray *toRecipents = [NSArray arrayWithObject:@"176776005@qq.com"];
+            [controller setToRecipients:toRecipents];
+            [controller setSubject:@"意见反馈"];
+            [controller setMessageBody:@"关于这个app，我提三点意见：" isHTML:NO];
+            if (controller) [self presentModalViewController:controller animated:YES];
+            [controller release];
+        }
+            break;
+        case 2:
+        {
+            
+        }
+            break;
+        case 3:
+        {
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"itms-apps://ax.itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=612318538"]];
+        }
+            break;
+        case 4:
+        {
+            SDImageCache *imageCache = [SDImageCache sharedImageCache];
+            [imageCache clearDisk];
+        }
+            break;
+        default:
+            break;
+    }
+}
+- (void)mailComposeController:(MFMailComposeViewController*)controller
+          didFinishWithResult:(MFMailComposeResult)result
+                        error:(NSError*)error;
+{
+    if (result == MFMailComposeResultSent) {
+        NSLog(@"It's away!");
+    }
+    [self dismissModalViewControllerAnimated:YES];
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [setupableView deselectRowAtIndexPath:[setupableView indexPathForSelectedRow] animated:YES];
 }
 
 - (void)didReceiveMemoryWarning

@@ -136,6 +136,7 @@
 		4B92E26515CE3CBC00249F26 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B92E26415CE3CBC00249F26 /* MapKit.framework */; };
 		4B9AE528162465DB004AC204 /* TheBrandDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B9AE527162465DB004AC204 /* TheBrandDetailViewController.m */; };
 		4BA52746161B384F00AA0D6A /* CoreDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BA52745161B384F00AA0D6A /* CoreDataController.m */; };
+		4BA879851703210600714923 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BA879841703210600714923 /* AboutViewController.m */; };
 		4BACD362164005E400C8FB89 /* ImageProcesser.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BACD361164005E400C8FB89 /* ImageProcesser.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		4BACE06E1615E4AB006B3E00 /* UIWebView+Clean.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BACE06D1615E4AB006B3E00 /* UIWebView+Clean.m */; };
 		4BACE0931615F016006B3E00 /* libMobClickLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BACE0911615F016006B3E00 /* libMobClickLibrary.a */; };
@@ -420,6 +421,8 @@
 		4B9AE527162465DB004AC204 /* TheBrandDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TheBrandDetailViewController.m; sourceTree = "<group>"; };
 		4BA52744161B384F00AA0D6A /* CoreDataController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataController.h; sourceTree = "<group>"; };
 		4BA52745161B384F00AA0D6A /* CoreDataController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataController.m; sourceTree = "<group>"; };
+		4BA879831703210600714923 /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
+		4BA879841703210600714923 /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
 		4BACD360164005E400C8FB89 /* ImageProcesser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageProcesser.h; sourceTree = "<group>"; };
 		4BACD361164005E400C8FB89 /* ImageProcesser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageProcesser.m; sourceTree = "<group>"; };
 		4BACE06C1615E4AB006B3E00 /* UIWebView+Clean.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWebView+Clean.h"; sourceTree = "<group>"; };
@@ -972,6 +975,8 @@
 				4B7620661608A479004DAF89 /* WebViewController.m */,
 				4BE1B82416135BA0006AE5D9 /* NewsWebViewController.h */,
 				4BE1B82516135BA0006AE5D9 /* NewsWebViewController.m */,
+				4BA879831703210600714923 /* AboutViewController.h */,
+				4BA879841703210600714923 /* AboutViewController.m */,
 				4BDB317115BAA36C007B1C6F /* DataController.h */,
 				4BDB317215BAA36C007B1C6F /* DataController.m */,
 				4BA52744161B384F00AA0D6A /* CoreDataController.h */,
@@ -1430,6 +1435,7 @@
 				4BB2ECBE16FD8CA30010F124 /* DetailImageCell.m in Sources */,
 				4BB2ECC116FD9FD70010F124 /* FirstCell.m in Sources */,
 				4BDAE78E1701E2500079FF50 /* Story.m in Sources */,
+				4BA879851703210600714923 /* AboutViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
