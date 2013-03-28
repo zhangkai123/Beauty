@@ -100,7 +100,6 @@
 		4B74C896161EA28200ADD8CB /* CollectProduct.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B74C895161EA28200ADD8CB /* CollectProduct.m */; };
 		4B7620671608A479004DAF89 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B7620661608A479004DAF89 /* WebViewController.m */; };
 		4B800C2A15FF6A27007EA85C /* TouchableImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B800C2915FF6A27007EA85C /* TouchableImageView.m */; };
-		4B820E5615ECFF1E00C85EB8 /* NewsFeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B820E5515ECFF1E00C85EB8 /* NewsFeedViewController.m */; };
 		4B8BA33E15F62F1000332F08 /* itemTitleBg@2xUncrushedPng.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B8BA33D15F62F1000332F08 /* itemTitleBg@2xUncrushedPng.png */; };
 		4B8BA34415F6351800332F08 /* iconAppsTab@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B8BA34315F6351800332F08 /* iconAppsTab@2x.png */; };
 		4B8BA34615F6352B00332F08 /* iconCatalogTab@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B8BA34515F6352B00332F08 /* iconCatalogTab@2x.png */; };
@@ -134,15 +133,18 @@
 		4B92E26215CE3C7800249F26 /* UIButton+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B92E25915CE3C7800249F26 /* UIButton+WebCache.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		4B92E26315CE3C7800249F26 /* UIImageView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B92E25B15CE3C7800249F26 /* UIImageView+WebCache.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		4B92E26515CE3CBC00249F26 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B92E26415CE3CBC00249F26 /* MapKit.framework */; };
+		4B939FC117046FD20079A62D /* TopicProductViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B939FC017046FD20079A62D /* TopicProductViewController.m */; };
 		4B9AE528162465DB004AC204 /* TheBrandDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B9AE527162465DB004AC204 /* TheBrandDetailViewController.m */; };
 		4BA52746161B384F00AA0D6A /* CoreDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BA52745161B384F00AA0D6A /* CoreDataController.m */; };
 		4BA879851703210600714923 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BA879841703210600714923 /* AboutViewController.m */; };
+		4BA879881703BBE000714923 /* ProductRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BA879871703BBE000714923 /* ProductRootViewController.m */; };
+		4BA8798B1703C1D200714923 /* HotProductViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BA8798A1703C1D100714923 /* HotProductViewController.m */; };
 		4BACD362164005E400C8FB89 /* ImageProcesser.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BACD361164005E400C8FB89 /* ImageProcesser.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		4BACE06E1615E4AB006B3E00 /* UIWebView+Clean.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BACE06D1615E4AB006B3E00 /* UIWebView+Clean.m */; };
 		4BACE0931615F016006B3E00 /* libMobClickLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BACE0911615F016006B3E00 /* libMobClickLibrary.a */; };
 		4BACE0951615F050006B3E00 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BACE0941615F050006B3E00 /* libz.dylib */; };
 		4BAF7BAD15ECFE3200D64CCD /* BrandViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BAF7BAC15ECFE3200D64CCD /* BrandViewController.m */; };
-		4BB2ECBB16FCD3330010F124 /* HotProductViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BB2ECBA16FCD3330010F124 /* HotProductViewController.m */; };
+		4BB2ECBB16FCD3330010F124 /* TopicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BB2ECBA16FCD3330010F124 /* TopicViewController.m */; };
 		4BB2ECBE16FD8CA30010F124 /* DetailImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BB2ECBD16FD8CA30010F124 /* DetailImageCell.m */; };
 		4BB2ECC116FD9FD70010F124 /* FirstCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BB2ECC016FD9FD60010F124 /* FirstCell.m */; };
 		4BCB570B160220500082D965 /* DDXMLElementAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BCB56FE160220500082D965 /* DDXMLElementAdditions.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
@@ -151,7 +153,6 @@
 		4BCB570E160220500082D965 /* DDXMLElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BCB5706160220500082D965 /* DDXMLElement.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		4BCB570F160220500082D965 /* DDXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BCB5708160220500082D965 /* DDXMLNode.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		4BCB571C16022EF80082D965 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BCB571B16022EF80082D965 /* libxml2.dylib */; };
-		4BCBB25F15FB395400282CD5 /* TheBrandViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BCBB25E15FB395400282CD5 /* TheBrandViewController.m */; };
 		4BDAE78E1701E2500079FF50 /* Story.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BDAE78D1701E2500079FF50 /* Story.m */; };
 		4BDB315515BA56DE007B1C6F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BDB315415BA56DE007B1C6F /* UIKit.framework */; };
 		4BDB315715BA56DE007B1C6F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BDB315615BA56DE007B1C6F /* Foundation.framework */; };
@@ -160,7 +161,6 @@
 		4BDB316115BA56DE007B1C6F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BDB316015BA56DE007B1C6F /* main.m */; };
 		4BDB316515BA56DE007B1C6F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BDB316415BA56DE007B1C6F /* AppDelegate.m */; };
 		4BDB317315BAA36C007B1C6F /* DataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BDB317215BAA36C007B1C6F /* DataController.m */; };
-		4BE1B82616135BA0006AE5D9 /* NewsWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BE1B82516135BA0006AE5D9 /* NewsWebViewController.m */; };
 		4BEEF2CA15D7AC9C00C424DA /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BEEF2C915D7AC9C00C424DA /* SystemConfiguration.framework */; };
 		4BF0191B162F04730032F98C /* BackgroundPattern@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BF01919162F04730032F98C /* BackgroundPattern@2x.png */; };
 		4BF0191C162F04730032F98C /* BackgroundPattern.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BF0191A162F04730032F98C /* BackgroundPattern.png */; };
@@ -356,8 +356,6 @@
 		4B7620661608A479004DAF89 /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
 		4B800C2815FF6A27007EA85C /* TouchableImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TouchableImageView.h; sourceTree = "<group>"; };
 		4B800C2915FF6A27007EA85C /* TouchableImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TouchableImageView.m; sourceTree = "<group>"; };
-		4B820E5415ECFF1E00C85EB8 /* NewsFeedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsFeedViewController.h; sourceTree = "<group>"; };
-		4B820E5515ECFF1E00C85EB8 /* NewsFeedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsFeedViewController.m; sourceTree = "<group>"; };
 		4B8BA33D15F62F1000332F08 /* itemTitleBg@2xUncrushedPng.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "itemTitleBg@2xUncrushedPng.png"; sourceTree = "<group>"; };
 		4B8BA34315F6351800332F08 /* iconAppsTab@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iconAppsTab@2x.png"; sourceTree = "<group>"; };
 		4B8BA34515F6352B00332F08 /* iconCatalogTab@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iconCatalogTab@2x.png"; sourceTree = "<group>"; };
@@ -417,12 +415,18 @@
 		4B92E25A15CE3C7800249F26 /* UIImageView+WebCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+WebCache.h"; sourceTree = "<group>"; };
 		4B92E25B15CE3C7800249F26 /* UIImageView+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+WebCache.m"; sourceTree = "<group>"; };
 		4B92E26415CE3CBC00249F26 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		4B939FBF17046FD20079A62D /* TopicProductViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopicProductViewController.h; sourceTree = "<group>"; };
+		4B939FC017046FD20079A62D /* TopicProductViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopicProductViewController.m; sourceTree = "<group>"; };
 		4B9AE526162465DB004AC204 /* TheBrandDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TheBrandDetailViewController.h; sourceTree = "<group>"; };
 		4B9AE527162465DB004AC204 /* TheBrandDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TheBrandDetailViewController.m; sourceTree = "<group>"; };
 		4BA52744161B384F00AA0D6A /* CoreDataController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataController.h; sourceTree = "<group>"; };
 		4BA52745161B384F00AA0D6A /* CoreDataController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataController.m; sourceTree = "<group>"; };
 		4BA879831703210600714923 /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
 		4BA879841703210600714923 /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
+		4BA879861703BBDF00714923 /* ProductRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductRootViewController.h; sourceTree = "<group>"; };
+		4BA879871703BBE000714923 /* ProductRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductRootViewController.m; sourceTree = "<group>"; };
+		4BA879891703C1D100714923 /* HotProductViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HotProductViewController.h; sourceTree = "<group>"; };
+		4BA8798A1703C1D100714923 /* HotProductViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HotProductViewController.m; sourceTree = "<group>"; };
 		4BACD360164005E400C8FB89 /* ImageProcesser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageProcesser.h; sourceTree = "<group>"; };
 		4BACD361164005E400C8FB89 /* ImageProcesser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageProcesser.m; sourceTree = "<group>"; };
 		4BACE06C1615E4AB006B3E00 /* UIWebView+Clean.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWebView+Clean.h"; sourceTree = "<group>"; };
@@ -432,8 +436,8 @@
 		4BACE0941615F050006B3E00 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		4BAF7BAB15ECFE3200D64CCD /* BrandViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BrandViewController.h; path = ../BrandViewController.h; sourceTree = "<group>"; };
 		4BAF7BAC15ECFE3200D64CCD /* BrandViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BrandViewController.m; path = ../BrandViewController.m; sourceTree = "<group>"; };
-		4BB2ECB916FCD3320010F124 /* HotProductViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HotProductViewController.h; sourceTree = "<group>"; };
-		4BB2ECBA16FCD3330010F124 /* HotProductViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HotProductViewController.m; sourceTree = "<group>"; };
+		4BB2ECB916FCD3320010F124 /* TopicViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopicViewController.h; sourceTree = "<group>"; };
+		4BB2ECBA16FCD3330010F124 /* TopicViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopicViewController.m; sourceTree = "<group>"; };
 		4BB2ECBC16FD8CA30010F124 /* DetailImageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailImageCell.h; sourceTree = "<group>"; };
 		4BB2ECBD16FD8CA30010F124 /* DetailImageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailImageCell.m; sourceTree = "<group>"; };
 		4BB2ECBF16FD9FD60010F124 /* FirstCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirstCell.h; sourceTree = "<group>"; };
@@ -451,8 +455,6 @@
 		4BCB5708160220500082D965 /* DDXMLNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDXMLNode.m; sourceTree = "<group>"; };
 		4BCB570A160220500082D965 /* DDXMLPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDXMLPrivate.h; sourceTree = "<group>"; };
 		4BCB571B16022EF80082D965 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
-		4BCBB25D15FB395400282CD5 /* TheBrandViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TheBrandViewController.h; sourceTree = "<group>"; };
-		4BCBB25E15FB395400282CD5 /* TheBrandViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TheBrandViewController.m; sourceTree = "<group>"; };
 		4BDAE78C1701E2500079FF50 /* Story.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Story.h; sourceTree = "<group>"; };
 		4BDAE78D1701E2500079FF50 /* Story.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Story.m; sourceTree = "<group>"; };
 		4BDB315015BA56DE007B1C6F /* 淘妆.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "淘妆.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -467,8 +469,6 @@
 		4BDB316415BA56DE007B1C6F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		4BDB317115BAA36C007B1C6F /* DataController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataController.h; sourceTree = "<group>"; };
 		4BDB317215BAA36C007B1C6F /* DataController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataController.m; sourceTree = "<group>"; };
-		4BE1B82416135BA0006AE5D9 /* NewsWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsWebViewController.h; sourceTree = "<group>"; };
-		4BE1B82516135BA0006AE5D9 /* NewsWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsWebViewController.m; sourceTree = "<group>"; };
 		4BEEF2C915D7AC9C00C424DA /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		4BF01919162F04730032F98C /* BackgroundPattern@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BackgroundPattern@2x.png"; sourceTree = "<group>"; };
 		4BF0191A162F04730032F98C /* BackgroundPattern.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BackgroundPattern.png; sourceTree = "<group>"; };
@@ -955,26 +955,26 @@
 				4BF3F509162A9EA00070BDE5 /* ShareSns */,
 				4BDB316315BA56DE007B1C6F /* AppDelegate.h */,
 				4BDB316415BA56DE007B1C6F /* AppDelegate.m */,
-				4BB2ECB916FCD3320010F124 /* HotProductViewController.h */,
-				4BB2ECBA16FCD3330010F124 /* HotProductViewController.m */,
+				4BB2ECB916FCD3320010F124 /* TopicViewController.h */,
+				4BB2ECBA16FCD3330010F124 /* TopicViewController.m */,
+				4B939FBF17046FD20079A62D /* TopicProductViewController.h */,
+				4B939FC017046FD20079A62D /* TopicProductViewController.m */,
+				4BA879891703C1D100714923 /* HotProductViewController.h */,
+				4BA8798A1703C1D100714923 /* HotProductViewController.m */,
 				4B4EAF78166A0C4A00E29D6B /* ReachableManager.h */,
 				4B4EAF79166A0C4A00E29D6B /* ReachableManager.m */,
+				4BA879861703BBDF00714923 /* ProductRootViewController.h */,
+				4BA879871703BBE000714923 /* ProductRootViewController.m */,
 				4BAF7BAB15ECFE3200D64CCD /* BrandViewController.h */,
 				4BAF7BAC15ECFE3200D64CCD /* BrandViewController.m */,
-				4BCBB25D15FB395400282CD5 /* TheBrandViewController.h */,
-				4BCBB25E15FB395400282CD5 /* TheBrandViewController.m */,
 				4B9AE526162465DB004AC204 /* TheBrandDetailViewController.h */,
 				4B9AE527162465DB004AC204 /* TheBrandDetailViewController.m */,
 				4B421C0815ECFEC2001094FE /* CollectViewController.h */,
 				4B421C0915ECFEC2001094FE /* CollectViewController.m */,
 				4B644A2F16FA808100F8EEEF /* SetupViewController.h */,
 				4B644A3016FA808200F8EEEF /* SetupViewController.m */,
-				4B820E5415ECFF1E00C85EB8 /* NewsFeedViewController.h */,
-				4B820E5515ECFF1E00C85EB8 /* NewsFeedViewController.m */,
 				4B7620651608A479004DAF89 /* WebViewController.h */,
 				4B7620661608A479004DAF89 /* WebViewController.m */,
-				4BE1B82416135BA0006AE5D9 /* NewsWebViewController.h */,
-				4BE1B82516135BA0006AE5D9 /* NewsWebViewController.m */,
 				4BA879831703210600714923 /* AboutViewController.h */,
 				4BA879841703210600714923 /* AboutViewController.m */,
 				4BDB317115BAA36C007B1C6F /* DataController.h */,
@@ -1396,8 +1396,6 @@
 				4B92E26315CE3C7800249F26 /* UIImageView+WebCache.m in Sources */,
 				4BAF7BAD15ECFE3200D64CCD /* BrandViewController.m in Sources */,
 				4B421C0A15ECFEC2001094FE /* CollectViewController.m in Sources */,
-				4B820E5615ECFF1E00C85EB8 /* NewsFeedViewController.m in Sources */,
-				4BCBB25F15FB395400282CD5 /* TheBrandViewController.m in Sources */,
 				4BFDC31915FCA9F9002E3101 /* StyleOneCell.m in Sources */,
 				4BFDC31E15FCADA5002E3101 /* HotCell.m in Sources */,
 				4B800C2A15FF6A27007EA85C /* TouchableImageView.m in Sources */,
@@ -1410,7 +1408,6 @@
 				4B7620671608A479004DAF89 /* WebViewController.m in Sources */,
 				4B39A09C160DC39C00C922B2 /* SVPullToRefresh.m in Sources */,
 				4B07D2E91610A64900753B9A /* FashionNews.m in Sources */,
-				4BE1B82616135BA0006AE5D9 /* NewsWebViewController.m in Sources */,
 				4BACE06E1615E4AB006B3E00 /* UIWebView+Clean.m in Sources */,
 				4B8E9B041619F42D00A37B6E /* CollectProduct.xcdatamodeld in Sources */,
 				4BA52746161B384F00AA0D6A /* CoreDataController.m in Sources */,
@@ -1431,11 +1428,14 @@
 				4B4EAF92166A321200E29D6B /* ATMTextLayer.m in Sources */,
 				4BF8B36716E2554A00FF2CD3 /* Utility.m in Sources */,
 				4B644A3116FA808200F8EEEF /* SetupViewController.m in Sources */,
-				4BB2ECBB16FCD3330010F124 /* HotProductViewController.m in Sources */,
+				4BB2ECBB16FCD3330010F124 /* TopicViewController.m in Sources */,
 				4BB2ECBE16FD8CA30010F124 /* DetailImageCell.m in Sources */,
 				4BB2ECC116FD9FD70010F124 /* FirstCell.m in Sources */,
 				4BDAE78E1701E2500079FF50 /* Story.m in Sources */,
 				4BA879851703210600714923 /* AboutViewController.m in Sources */,
+				4BA879881703BBE000714923 /* ProductRootViewController.m in Sources */,
+				4BA8798B1703C1D200714923 /* HotProductViewController.m in Sources */,
+				4B939FC117046FD20079A62D /* TopicProductViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

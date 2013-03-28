@@ -7,7 +7,7 @@
 //
 
 #import "BrandViewController.h"
-#import "TheBrandViewController.h"
+#import "HotProductViewController.h"
 
 @interface BrandViewController()
 {
@@ -176,10 +176,10 @@
         default:
             break;
     }
-    TheBrandViewController *theBrandViewController = [[TheBrandViewController alloc]init];
-    theBrandViewController.catName = categoryName;
-    [self.navigationController pushViewController:theBrandViewController animated:YES];
-    [theBrandViewController release];
+    HotProductViewController *hotProductViewController = [[HotProductViewController alloc]initWithTabBar];
+    hotProductViewController.catName = categoryName;
+    [self.navigationController pushViewController:hotProductViewController animated:YES];
+    [hotProductViewController release];
 }
 - (void)viewDidUnload
 {

@@ -115,7 +115,76 @@
     }
     return [pArray autorelease];
 }
-
+-(void)featchTopicProducts:(NSString *)keyWord pageNumber:(int)pageN
+{
+    if (![[ReachableManager sharedReachableManager]reachable]) {
+        [self performSelector:@selector(showNoNetwork) withObject:nil afterDelay:1.0];
+    }
+    
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        
+        NSError *error;
+        NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
+        
+        [params setObject:@"num_iid,title,pic_url,price,seller_credit_score,click_url" forKey:@"fields"];
+        [params setObject:@"50010788" forKey:@"cid"];
+        [params setObject:@"taobao.taobaoke.items.get" forKey:@"method"];
+        [params setObject:[NSString stringWithFormat:@"%d",pageN] forKey:@"page_no"];
+        [params setObject:@"20" forKey:@"page_size"];
+        [params setObject:@"30" forKey:@"start_price"];
+        [params setObject:@"2000" forKey:@"end_price"];
+        [params setObject:@"commissionNum_desc" forKey:@"sort"];
+        [params setObject:keyWord forKey:@"keyword"];
+        [params setObject:@"true" forKey:@"is_mobile"];
+        
+        NSData *resultData=[Utility getResultData:params];
+        [params release];
+        if (resultData == nil) {
+            
+            // Check for problems
+            if (error != nil) {
+                [self showAlert:[error description]];
+            }else{
+                [self showAlert:@"返回数据为空"];
+            }
+        }
+        else {
+            // Data was received.. continue processing
+            NSMutableArray *pArray = [self parseStoryProductsData:resultData];
+            [[NSNotificationCenter defaultCenter]postNotificationName:@"TOPIC_PRODUCT" object:pArray userInfo:nil];
+            [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+        }
+    });
+}
+-(NSMutableArray *)parseStoryProductsData:(NSData *)data
+{
+    NSString *productsString = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
+    NSDictionary *productsDic = [productsString JSONValue];
+    //    NSLog(@"---%@---\n",productsString);
+    [productsString release];
+    NSDictionary *taobaoke_items_get_response = [productsDic objectForKey:@"taobaoke_items_get_response"];
+    NSDictionary *taobaoke_items = [taobaoke_items_get_response objectForKey:@"taobaoke_items"];
+    
+    NSArray *taobaoke_item = [taobaoke_items objectForKey:@"taobaoke_item"];
+    
+    NSMutableArray *pArray = [[NSMutableArray alloc]init];
+    for (int i = 0; i < [taobaoke_item count]; i++) {
+        
+        NSDictionary *item = [taobaoke_item objectAtIndex:i];
+        Product *product = [[Product alloc]init];
+        product.num_id = [NSString stringWithFormat:@"%@",[item objectForKey:@"num_iid"]];
+        product.title = [self stringCleaner:[item objectForKey:@"title"]];
+        product.price = [item objectForKey:@"price"];
+        product.seller_credit_score = [NSString stringWithFormat:@"%@",[item objectForKey:@"seller_credit_score"]];
+        product.pic_url = [item objectForKey:@"pic_url"];
+        product.click_url = [item objectForKey:@"click_url"];
+        NSLog(@"%@",product.click_url);
+        [pArray addObject:product];
+        [product release];
+    }
+    return [pArray autorelease];
+}
 -(void)fetachCateProducts:(NSString *)cateName notiName:(NSString *)nName pageNumber:(int)pageN
 {
     if (![[ReachableManager sharedReachableManager]reachable]) {
@@ -129,7 +198,6 @@
         
         NSError *error;
         NSURLResponse *theResponse;
-//        NSString *urlString = [NSString stringWithFormat:@"%@/~zhangkai/PinPHP_V2.21/fetchProducts.php",hostIp];
         NSString *urlString = [NSString stringWithFormat:@"%@/PinPHP_V2.21/fetchProducts.php",ServerIp];
         NSMutableURLRequest *theRequest=[NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlString]];
         [theRequest setHTTPMethod:@"POST"];
@@ -139,9 +207,6 @@
         [theRequest addValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
         NSData *resultData = [NSURLConnection sendSynchronousRequest:theRequest returningResponse:&theResponse error:&error];
         
-        /* Return Value
-         The downloaded data for the URL request. Returns nil if a connection could not be created or if the download fails.
-         */
         if (resultData == nil) {
             
             // Check for problems

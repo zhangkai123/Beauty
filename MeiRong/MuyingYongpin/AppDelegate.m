@@ -9,11 +9,10 @@
 #import <Parse/Parse.h>
 #import "AppDelegate.h"
 
+#import "TopicViewController.h"
 #import "HotProductViewController.h"
-#import "TheBrandViewController.h"
 #import "BrandViewController.h"
 #import "CollectViewController.h"
-#import "NewsFeedViewController.h"
 #import "MobClick.h"
 
 #import "ReachableManager.h"
@@ -58,17 +57,17 @@
     
     NSMutableArray *controllersArray = [[NSMutableArray alloc]initWithCapacity:4];
     
+    TopicViewController *topicViewController = [[TopicViewController alloc]initWithTabBar];
+    navigationController = [[UINavigationController alloc]initWithRootViewController:topicViewController];
+    [controllersArray addObject:navigationController];
+    [topicViewController release];
+    [navigationController release];
+    
     HotProductViewController *hotProductViewController = [[HotProductViewController alloc]initWithTabBar];
+    hotProductViewController.catName = @"热销";
     navigationController = [[UINavigationController alloc]initWithRootViewController:hotProductViewController];
     [controllersArray addObject:navigationController];
     [hotProductViewController release];
-    [navigationController release];
-    
-    TheBrandViewController *theBrandViewController = [[TheBrandViewController alloc]initWithTabBar];
-    theBrandViewController.catName = @"热销";
-    navigationController = [[UINavigationController alloc]initWithRootViewController:theBrandViewController];
-    [controllersArray addObject:navigationController];
-    [theBrandViewController release];
     [navigationController release];
     
     BrandViewController *brandViewController = [[BrandViewController alloc]initWithTabBar];

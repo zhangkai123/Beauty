@@ -1,19 +1,16 @@
 //
-//  ViewController.h
-//  MuyingYongpin
+//  HotProductViewController.h
+//  TaoZhuang
 //
-//  Created by kai zhang on 7/21/12.
-//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//  Created by zhang kai on 3/28/13.
+//
 //
 
-#import <UIKit/UIKit.h>
-#import "HotCell.h"
+#import "ProductRootViewController.h"
 
-@interface HotProductViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,HotCellSelectionDelegate>
+@interface HotProductViewController : ProductRootViewController
 {
-    UITableView *productTableView;
-    NSMutableArray *storiesArray;
-    int currentPage;
+    NSString *catName;
 }
--(id) initWithTabBar;
+@property(nonatomic,retain)  NSString *catName;
 @end

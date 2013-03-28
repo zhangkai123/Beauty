@@ -21,4 +21,5 @@
 -(NSMutableArray *)parseRssData:(NSData *)data;
 
 -(void)featchStories:(int)pageNum;
+-(void)featchTopicProducts:(NSString *)keyWord pageNumber:(int)pageN;
 @end
