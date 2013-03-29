@@ -9,9 +9,10 @@
 #import "SetupViewController.h"
 #import "AboutViewController.h"
 #import "SDImageCache.h"
+#import "ATMHud.h"
+#import "DataController.h"
 
 @interface SetupViewController ()
-
 @end
 
 @implementation SetupViewController
@@ -31,7 +32,7 @@
 	// Do any additional setup after loading the view.
     [self createNavBackButton];
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"SheetBackground"]];
-    
+        
     // set the long name shown in the navigation bar at the top
     UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(50, 0, 220, 30)];
     titleLabel.textColor = [UIColor whiteColor];
@@ -61,7 +62,56 @@
     setupableView.delegate = self;
     setupableView.dataSource = self;
     [self.view addSubview:setupableView];
+    
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(recieveVersionNum:) name:@"VERSION_READY" object:nil];
 }
+-(void)recieveVersionNum:(NSNotification *)notification
+{
+    NSString *latestVersionNum = [notification object];
+    latestVersionNum = [latestVersionNum stringByTrimmingCharactersInSet:[NSCharacterSet newlineCharacterSet]];
+    NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
+    NSString *majorVersion = [infoDictionary objectForKey:@"CFBundleShortVersionString"];
+    if (!([latestVersionNum floatValue] > [majorVersion floatValue])) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            ATMHud *hud = [[ATMHud alloc] initWithDelegate:self];
+            [hud setFixedSize:CGSizeMake(110, 110)];
+            [self.view addSubview:hud.view];
+            [hud setCaption:@"已是最新版本"];
+            [hud show];
+            [hud hideAfter:1.0];
+            [hud release];
+            [setupableView deselectRowAtIndexPath:[setupableView indexPathForSelectedRow] animated:YES];
+        });
+    }else{
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            [self showAlert:@"亲，去app store更新吧"];
+        });
+    }
+}
+-(void)showAlert:(NSString *)alertMessage
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        
+        UIAlertView *alert = [[UIAlertView alloc]
+                              initWithTitle: nil
+                              message: alertMessage
+                              delegate: self
+                              cancelButtonTitle:@"取消"
+                              otherButtonTitles:@"好",nil];
+        [alert show];
+        [alert release];
+    });
+}
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+	if (buttonIndex == 1) {
+		
+        NSString *iTunesLink = @"http://phobos.apple.com/WebObjects/MZStore.woa/wa/viewSoftware?id=612318538&mt=8";
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:iTunesLink]];
+        }
+    [setupableView deselectRowAtIndexPath:[setupableView indexPathForSelectedRow] animated:YES];
+}
+
 -(void)createNavBackButton
 {
     UIImage *buttonImageNormal = [UIImage imageNamed:@"button_back"];
@@ -121,7 +171,7 @@
             break;
         case 2:
         {
-            
+            [[DataController sharedDataController]featchVersionNum];
         }
             break;
         case 3:
@@ -131,8 +181,16 @@
             break;
         case 4:
         {
+            ATMHud *hud = [[ATMHud alloc] initWithDelegate:self];
+            [hud setFixedSize:CGSizeMake(85, 85)];
+            [self.view addSubview:hud.view];
+            [hud setCaption:@"正在清除..."];
+            [hud show];
             SDImageCache *imageCache = [SDImageCache sharedImageCache];
             [imageCache clearDisk];
+            [hud hideAfter:0.5];
+            [hud release];
+            [setupableView deselectRowAtIndexPath:[setupableView indexPathForSelectedRow] animated:YES];
         }
             break;
         default:

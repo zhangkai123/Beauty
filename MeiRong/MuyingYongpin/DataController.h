@@ -17,9 +17,8 @@
 -(void)featchProductDetail:(NSString *)num_id theProduct:(Product *)pro;
 -(NSMutableArray *)parseProductsData:(NSData *)data;
 
--(void)featchRssData;
--(NSMutableArray *)parseRssData:(NSData *)data;
-
 -(void)featchStories:(int)pageNum;
 -(void)featchTopicProducts:(NSString *)keyWord pageNumber:(int)pageN;
+
+-(void)featchVersionNum;
 @end

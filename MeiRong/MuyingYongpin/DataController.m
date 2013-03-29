@@ -325,25 +325,19 @@
     [height release];
     return imageHeight;
 }
-//send the rss request
--(void)featchRssData
+-(void)featchVersionNum
 {
-    if (![[ReachableManager sharedReachableManager]reachable]) {
-        [self performSelector:@selector(showNoNetwork) withObject:nil afterDelay:1.0];
-    }
-
-    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         
-        NSString *postURL = @"http://rss.sina.com.cn/eladies/gnspxw.xml";
+        NSString *postURL = @"http://42.121.193.105/version.txt";
         NSError *error;
         NSURLResponse *theResponse;
         NSURLRequest *theRequest=[NSURLRequest requestWithURL:[NSURL URLWithString:postURL]];
-        NSData *xmlData = [NSURLConnection sendSynchronousRequest:theRequest returningResponse:&theResponse error:&error];        
+        NSData *returnData = [NSURLConnection sendSynchronousRequest:theRequest returningResponse:&theResponse error:&error];
         /* Return Value
          The downloaded data for the URL request. Returns nil if a connection could not be created or if the download fails.
          */
-        if (xmlData == nil) {
+        if (returnData == nil) {
             
             // Check for problems
             if (error != nil) {
@@ -354,43 +348,11 @@
         }
         else {
             // Data was received.. continue processing
-            NSMutableArray *newsArray = [self parseRssData:xmlData];
-            [[NSNotificationCenter defaultCenter]postNotificationName:@"NEWS_READY" object:newsArray userInfo:nil];
+            NSString *productsString = [[NSString alloc]initWithData:returnData encoding:NSUTF8StringEncoding];
+            [[NSNotificationCenter defaultCenter]postNotificationName:@"VERSION_READY" object:productsString userInfo:nil];
             [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
         }
     });
-}
--(NSMutableArray *)parseRssData:(NSData *)data
-{
-    NSError *error;
-    DDXMLDocument *ddDoc = [[DDXMLDocument alloc] initWithData:data options:0 error:&error];
-    NSArray *xmlItems = [ddDoc nodesForXPath:@"//item" error:&error];
-    [ddDoc release];
-    
-    NSMutableArray *newsArray = [[NSMutableArray alloc]init];
-    for(DDXMLElement* itemElement in xmlItems)
-    {
-        FashionNews *fashionNews = [[FashionNews alloc] init];
-        
-        NSString *title = [[[itemElement elementsForName:@"title"]lastObject]stringValue];
-        NSString *puDate = [[[itemElement elementsForName:@"pubDate"]lastObject]stringValue];
-        NSString *link = [[[itemElement elementsForName:@"link"]lastObject]stringValue];
-        NSString *author = [[[itemElement elementsForName:@"author"]lastObject]stringValue];
-        NSString *description = [[[itemElement elementsForName:@"description"]lastObject]stringValue];
-        
-        fashionNews.title = title;
-        fashionNews.pubDate = puDate;
-        fashionNews.link = link;
-        fashionNews.author = author;
-        fashionNews.description = description;
-        
-        if (![description isEqualToString:@""]) {
-            
-            [newsArray addObject:fashionNews];
-        }
-        [fashionNews release];
-    }
-    return [newsArray autorelease];
 }
 - (NSString *)stringCleaner:(NSString *)yourString {
     
