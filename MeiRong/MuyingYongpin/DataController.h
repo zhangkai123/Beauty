@@ -20,5 +20,5 @@
 -(void)featchStories:(int)pageNum;
 -(void)featchTopicProducts:(NSString *)keyWord pageNumber:(int)pageN;
 
--(void)featchVersionNum;
+-(void)featchVersionNum:(BOOL)automatic;
 @end

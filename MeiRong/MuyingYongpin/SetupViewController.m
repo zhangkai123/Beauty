@@ -63,55 +63,12 @@
     setupableView.dataSource = self;
     [self.view addSubview:setupableView];
     
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(recieveVersionNum:) name:@"VERSION_READY" object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(disselectTableCell) name:@"DISSELECT_CELL" object:nil];
 }
--(void)recieveVersionNum:(NSNotification *)notification
+-(void)disselectTableCell
 {
-    NSString *latestVersionNum = [notification object];
-    latestVersionNum = [latestVersionNum stringByTrimmingCharactersInSet:[NSCharacterSet newlineCharacterSet]];
-    NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
-    NSString *majorVersion = [infoDictionary objectForKey:@"CFBundleShortVersionString"];
-    if (!([latestVersionNum floatValue] > [majorVersion floatValue])) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            ATMHud *hud = [[ATMHud alloc] initWithDelegate:self];
-            [hud setFixedSize:CGSizeMake(110, 110)];
-            [self.view addSubview:hud.view];
-            [hud setCaption:@"已是最新版本"];
-            [hud show];
-            [hud hideAfter:1.0];
-            [hud release];
-            [setupableView deselectRowAtIndexPath:[setupableView indexPathForSelectedRow] animated:YES];
-        });
-    }else{
-        dispatch_async(dispatch_get_main_queue(), ^{
-            
-            [self showAlert:@"亲，去app store更新吧"];
-        });
-    }
-}
--(void)showAlert:(NSString *)alertMessage
-{
-    dispatch_async(dispatch_get_main_queue(), ^{
-        
-        UIAlertView *alert = [[UIAlertView alloc]
-                              initWithTitle: nil
-                              message: alertMessage
-                              delegate: self
-                              cancelButtonTitle:@"取消"
-                              otherButtonTitles:@"好",nil];
-        [alert show];
-        [alert release];
-    });
-}
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-	if (buttonIndex == 1) {
-		
-        NSString *iTunesLink = @"http://phobos.apple.com/WebObjects/MZStore.woa/wa/viewSoftware?id=612318538&mt=8";
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:iTunesLink]];
-        }
     [setupableView deselectRowAtIndexPath:[setupableView indexPathForSelectedRow] animated:YES];
 }
-
 -(void)createNavBackButton
 {
     UIImage *buttonImageNormal = [UIImage imageNamed:@"button_back"];
@@ -171,7 +128,7 @@
             break;
         case 2:
         {
-            [[DataController sharedDataController]featchVersionNum];
+            [[DataController sharedDataController]featchVersionNum:NO];
         }
             break;
         case 3:

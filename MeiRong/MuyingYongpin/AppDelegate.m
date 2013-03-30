@@ -17,6 +17,7 @@
 
 #import "ReachableManager.h"
 #import "ATMHud.h"
+#import "DataController.h"
 
 //#import "SDImageCache.h"
 
@@ -108,8 +109,106 @@
      UIRemoteNotificationTypeAlert|
      UIRemoteNotificationTypeSound];
     
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(recieveVersionNum:) name:@"VERSION_READY" object:nil];
+    [[DataController sharedDataController]featchVersionNum:YES];
+    
     return YES;
 }
+
+-(void)recieveVersionNum:(NSNotification *)notification
+{
+    NSDictionary *dicInfo = [notification object];
+    NSNumber *automatic = [dicInfo objectForKey:@"Automatic"];
+    NSString *latestVersionNum = [dicInfo objectForKey:@"VersionNum"];
+    latestVersionNum = [latestVersionNum stringByTrimmingCharactersInSet:[NSCharacterSet newlineCharacterSet]];
+    NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
+    NSString *majorVersion = [infoDictionary objectForKey:@"CFBundleShortVersionString"];
+    if (!([latestVersionNum floatValue] > [majorVersion floatValue])) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if ([automatic boolValue]) {
+                return;
+            }
+            ATMHud *versionHud = [[ATMHud alloc] initWithDelegate:self];
+            [versionHud setFixedSize:CGSizeMake(110, 110)];
+            [self.window addSubview:versionHud.view];
+            [versionHud setCaption:@"已是最新版本"];
+            [versionHud show];
+            [versionHud hideAfter:1.0];
+            [versionHud release];
+            [[NSNotificationCenter defaultCenter]postNotificationName:@"DISSELECT_CELL" object:nil userInfo:nil];
+        });
+    }else{
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (![automatic boolValue]) {
+                [self showAlert:@"亲，去app store更新最新版本吧"];
+            }
+            NSDate *oldDate = [[NSUserDefaults standardUserDefaults]objectForKey:@"theDateKey"];
+            if (oldDate == nil) {
+             
+                [self showAlert:@"亲，去app store更新最新版本吧"];
+            }else{
+                NSDate *currentDate = [NSDate date];
+                
+                NSDateFormatter *cDateFormat = [[NSDateFormatter alloc] init];
+                [cDateFormat setDateFormat:@"yyyy-MM-dd"];
+                NSString *cDate = [cDateFormat stringFromDate:currentDate];
+                
+                NSDateFormatter *oDateFormat = [[NSDateFormatter alloc] init];
+                [oDateFormat setDateFormat:@"yyyy-MM-dd"];
+                NSString *oDate = [oDateFormat stringFromDate:oldDate];
+                
+                [cDateFormat release];
+                [oDateFormat release];
+                
+                NSArray *currentArray = [cDate componentsSeparatedByString:@"-"];
+                NSArray *oldArray = [oDate componentsSeparatedByString:@"-"];
+                
+                //check month
+                int currentMonth = [[currentArray objectAtIndex:1] intValue];
+                int oldMonth = [[oldArray objectAtIndex:1] intValue];
+                if (currentMonth > oldMonth) {
+                    [self showAlert:@"亲，去app store更新最新版本吧"];
+                }
+                //check day
+                int currentDay = [[currentArray objectAtIndex:2] intValue];
+                int oldDay = [[oldArray objectAtIndex:2] intValue];
+                if (currentMonth == oldMonth) {
+                    if (currentDay >= oldDay + 7) {
+                        [self showAlert:@"亲，去app store更新最新版本吧"];
+                    }
+                }
+
+            }
+        });
+    }
+}
+-(void)showAlert:(NSString *)alertMessage
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        
+        UIAlertView *alert = [[UIAlertView alloc]
+                              initWithTitle: nil
+                              message: alertMessage
+                              delegate: self
+                              cancelButtonTitle:@"不，谢谢"
+                              otherButtonTitles:@"好的",nil];
+        [alert show];
+        [alert release];
+    });
+}
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+	if (buttonIndex == 1) {
+		
+        NSString *iTunesLink = @"http://phobos.apple.com/WebObjects/MZStore.woa/wa/viewSoftware?id=612318538&mt=8";
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:iTunesLink]];
+    }else{
+        NSDate *myDate = [NSDate date];
+        [[NSUserDefaults standardUserDefaults]setObject:myDate forKey:@"theDateKey"];
+        [[NSUserDefaults standardUserDefaults]synchronize];
+    }
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"DISSELECT_CELL" object:nil userInfo:nil];
+}
+
 -(void)showHud
 {
 //    [hud setFixedSize:CGSizeMake(150, 150)];

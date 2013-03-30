@@ -325,14 +325,15 @@
     [height release];
     return imageHeight;
 }
--(void)featchVersionNum
+-(void)featchVersionNum:(BOOL)automatic
 {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         
         NSString *postURL = @"http://42.121.193.105/version.txt";
         NSError *error;
         NSURLResponse *theResponse;
-        NSURLRequest *theRequest=[NSURLRequest requestWithURL:[NSURL URLWithString:postURL]];
+//        NSURLRequest *theRequest=[[[NSURLRequest requestWithURL:[NSURL URLWithString:postURL]] cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:30.0]];
+        NSURLRequest *theRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:postURL] cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:30.0];
         NSData *returnData = [NSURLConnection sendSynchronousRequest:theRequest returningResponse:&theResponse error:&error];
         /* Return Value
          The downloaded data for the URL request. Returns nil if a connection could not be created or if the download fails.
@@ -348,8 +349,10 @@
         }
         else {
             // Data was received.. continue processing
-            NSString *productsString = [[NSString alloc]initWithData:returnData encoding:NSUTF8StringEncoding];
-            [[NSNotificationCenter defaultCenter]postNotificationName:@"VERSION_READY" object:productsString userInfo:nil];
+            
+            NSString *returnString = [[NSString alloc]initWithData:returnData encoding:NSUTF8StringEncoding];
+            NSDictionary *infoDic = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:automatic],@"Automatic",returnString,@"VersionNum", nil];
+            [[NSNotificationCenter defaultCenter]postNotificationName:@"VERSION_READY" object:infoDic userInfo:nil];
             [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
         }
     });
