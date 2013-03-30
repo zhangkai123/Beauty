@@ -234,6 +234,7 @@
     Story *story = [storiesArray objectAtIndex:cell.rowNum];
     TopicProductViewController *topicProductViewController = [[TopicProductViewController alloc]initWithTabBar];
     topicProductViewController.keyWord = story.keyWord;
+    topicProductViewController.navTitle = story.title;
     [self.navigationController pushViewController:topicProductViewController animated:YES];
     [topicProductViewController release];
 }

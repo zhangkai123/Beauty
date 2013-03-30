@@ -11,6 +11,8 @@
 @interface TopicProductViewController : ProductRootViewController
 {
     NSString *keyWord;
+    NSString *navTitle;
 }
 @property(nonatomic,retain) NSString *keyWord;
+@property(nonatomic,retain) NSString *navTitle;
 @end

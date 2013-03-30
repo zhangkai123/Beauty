@@ -18,7 +18,7 @@
 @end
 
 @implementation TopicProductViewController
-@synthesize keyWord;
+@synthesize keyWord ,navTitle;
 
 -(void)dealloc
 {
@@ -58,6 +58,7 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     [self createNavBackButton];
+    self.titleLabel.text = self.navTitle;
     
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(recieveTopicProducts:) name:@"TOPIC_PRODUCT" object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(refreshCollected:) name:@"REFRESH_COLLECTED" object:nil];
