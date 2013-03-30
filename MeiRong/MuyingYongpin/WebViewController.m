@@ -63,13 +63,14 @@
 	// Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor whiteColor];
     CGRect screenBounds = [[UIScreen mainScreen] bounds];
-    if (screenBounds.size.height == 568) {
-        // code for 4-inch screen
-        webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 44, 320, 548 - 44 - 40)];
-    } else {
-        // code for 3.5-inch screen
-        webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 44, 320, 460 - 44 - 40)];
-    }
+    webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 44, 320, 1)];
+//    if (screenBounds.size.height == 568) {
+//        // code for 4-inch screen
+//        webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 44, 320, 548 - 44 - 40)];
+//    } else {
+//        // code for 3.5-inch screen
+//        webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 44, 320, 460 - 44 - 40)];
+//    }
 
     webView.scalesPageToFit = YES;
     [webView setDelegate:self];
@@ -78,7 +79,7 @@
     NSURL *url = [NSURL URLWithString:productUrlS];
     NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
     [webView loadRequest:requestObj];
-    webView.hidden = YES;
+//    webView.hidden = YES;
     [self.view addSubview:webView];
     
     UIImageView *topBar = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 320, 44)];
@@ -222,7 +223,15 @@
 {
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
     [activityIndicator stopAnimating];
-    webView.hidden = NO;
+//    webView.hidden = NO;
+    CGRect screenBounds = [[UIScreen mainScreen] bounds];
+    if (screenBounds.size.height == 568) {
+        // code for 4-inch screen
+        webView.frame = CGRectMake(0, 44, 320, 548 - 44 - 40);
+    } else {
+        // code for 3.5-inch screen
+        webView.frame = CGRectMake(0, 44, 320, 460 - 44 - 40);
+    }
 }
 -(void)goBack
 {

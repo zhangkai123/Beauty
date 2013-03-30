@@ -25,6 +25,7 @@
     UIView *shopView;
     
     UIButton *collectButton;
+    float firstCellHeight;
 }
 @end
 
@@ -77,9 +78,11 @@
     if (screenBounds.size.height == 568) {
         // code for 4-inch screen
         theTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 548) style:UITableViewStylePlain];
+        firstCellHeight = 568;
     } else {
         // code for 3.5-inch screen
         theTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 460) style:UITableViewStylePlain];
+        firstCellHeight = 480;
     }
 
     theTableView.backgroundColor = [UIColor clearColor];
@@ -104,7 +107,7 @@
     [self.view addSubview:backButton];
     [backButton release];
         
-    realBackView = [[UIView alloc]initWithFrame:CGRectMake(0, 460 - 45 - 60, 320, 60)];
+    realBackView = [[UIView alloc]initWithFrame:CGRectMake(0, firstCellHeight - 20 - 45 - 60, 320, 60)];
     realBackView.backgroundColor = [UIColor blackColor];
     [realBackView setAlpha:0.5];
     [self.view addSubview:realBackView];
@@ -116,7 +119,7 @@
     titleLabel.text = product.title;
     [self.view addSubview:titleLabel];
     
-    shopView = [[UIView alloc]initWithFrame:CGRectMake(320 - 145, 460 - 45 - 60 - 20, 145, 40)];
+    shopView = [[UIView alloc]initWithFrame:CGRectMake(320 - 145, firstCellHeight - 20 - 45 - 60 - 20, 145, 40)];
     shopView.backgroundColor = [UIColor clearColor];
     [self.view addSubview:shopView];
     
@@ -140,13 +143,13 @@
     [shopView addSubview:shopButton];
     [shopButton release];
     
-    UIView *footerView = [[UIView alloc]initWithFrame:CGRectMake(0, 460 - 45, 320, 45)];
+    UIView *footerView = [[UIView alloc]initWithFrame:CGRectMake(0, firstCellHeight - 20 - 45, 320, 45)];
     footerView.backgroundColor = [UIColor blackColor];
     [footerView setAlpha:0.7];
     [self.view addSubview:footerView];
     [footerView release];
     
-    collectButton = [[UIButton alloc]initWithFrame:CGRectMake(70, 460 - 45, 45, 45)];
+    collectButton = [[UIButton alloc]initWithFrame:CGRectMake(70, firstCellHeight - 20 - 45, 45, 45)];
     [collectButton addTarget:self action:@selector(collectProduct) forControlEvents:UIControlEventTouchUpInside];
     [collectButton setImage:[UIImage imageNamed:@"ico_footer_like"] forState:UIControlStateNormal];
     [self.view addSubview:collectButton];
@@ -157,7 +160,7 @@
     }
     self.collection = product.collect;
 
-    UIButton *shareButton = [[UIButton alloc]initWithFrame:CGRectMake(205, 460 - 45, 45, 45)];
+    UIButton *shareButton = [[UIButton alloc]initWithFrame:CGRectMake(205, firstCellHeight - 20 - 45, 45, 45)];
     [shareButton addTarget:self action:@selector(shareProduct) forControlEvents:UIControlEventTouchUpInside];
     [shareButton setImage:[UIImage imageNamed:@"ico_footer_share"] forState:UIControlStateNormal];
     [self.view addSubview:shareButton];
@@ -200,7 +203,7 @@
         if (![realBackView isDescendantOfView:theTableView]) {
             [realBackView removeFromSuperview];
             [titleLabel removeFromSuperview];
-            realBackView.frame = CGRectMake(0, 480-60, realBackView.frame.size.width, realBackView.frame.size.height);
+            realBackView.frame = CGRectMake(0, firstCellHeight - 60, realBackView.frame.size.width, realBackView.frame.size.height);
             titleLabel.frame = CGRectMake(30, realBackView.frame.origin.y + 15, 280, 30);
             [theTableView addSubview:realBackView];
             [theTableView addSubview:titleLabel];
@@ -211,7 +214,7 @@
         if ([realBackView isDescendantOfView:theTableView]) {
             [realBackView removeFromSuperview];
             [titleLabel removeFromSuperview];
-            realBackView.frame = CGRectMake(0, 460 - 45 - 60, 320, 60);
+            realBackView.frame = CGRectMake(0, firstCellHeight - 20 - 45 - 60, 320, 60);
             titleLabel.frame = CGRectMake(30, realBackView.frame.origin.y + 15, 280, 30);
             [self.view addSubview:realBackView];
             [self.view addSubview:titleLabel];
@@ -238,7 +241,7 @@
     float rowHeight = 0;
     if (indexPath.section == 0) {
         
-        rowHeight = 480;
+        rowHeight = firstCellHeight;
     }else{
         NSDictionary *imageDic = [self.product.imagesArray objectAtIndex:indexPath.row];
         rowHeight = [[imageDic objectForKey:@"imageHeight"] floatValue];
@@ -251,7 +254,7 @@
     if (indexPath.section == 0) {
         FirstCell *firstImageCell = nil;
         if (!theCell) {
-            float imageWidth = self.smallImage.size.width * 480 / self.smallImage.size.height;
+            float imageWidth = self.smallImage.size.width * firstCellHeight / self.smallImage.size.height;
             firstImageCell = [[[FirstCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil imageWidth:imageWidth]autorelease];
         }
         [firstImageCell.myImageView setImageWithURL:[NSURL URLWithString:product.pic_url] placeholderImage:self.smallImage];

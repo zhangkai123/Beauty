@@ -22,7 +22,14 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         // Initialization code
-        myImageView = [[UIImageView alloc]initWithFrame:CGRectMake(-(imageW - 320)/2, 0, imageW, 480)];
+        float imageViewHeight;
+        CGRect screenBounds = [[UIScreen mainScreen] bounds];
+        if (screenBounds.size.height == 568) {
+            imageViewHeight = 568;
+        }else{
+            imageViewHeight = 480;
+        }
+        myImageView = [[UIImageView alloc]initWithFrame:CGRectMake(-(imageW - 320)/2, 0, imageW, imageViewHeight)];
         [self addSubview:myImageView];        
     }
     return self;

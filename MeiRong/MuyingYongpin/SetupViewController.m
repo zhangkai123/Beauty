@@ -139,7 +139,7 @@
         case 4:
         {
             ATMHud *hud = [[ATMHud alloc] initWithDelegate:self];
-            [hud setFixedSize:CGSizeMake(85, 85)];
+            [hud setFixedSize:CGSizeMake(110, 110)];
             [self.view addSubview:hud.view];
             [hud setCaption:@"正在清除..."];
             [hud show];
