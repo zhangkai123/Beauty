@@ -75,6 +75,7 @@
     }
     
     sBar = [[UISearchBar alloc]initWithFrame:CGRectMake(0,0,320,45)];
+    sBar.keyboardType = UIKeyboardTypeDefault;
     sBar.tintColor = [UIColor colorWithRed:1 green: 0.6 blue:0.8 alpha:1];
     sBar.delegate = self;
     [self.view addSubview:sBar];
@@ -125,7 +126,12 @@
 }
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
 {
+    searchBar.text=@"";
     
+    [searchBar setShowsCancelButton:NO animated:YES];
+    [searchBar resignFirstResponder];
+//    self.theTableView.allowsSelection = YES;
+//    self.theTableView.scrollEnabled = YES;
 }
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
