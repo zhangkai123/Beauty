@@ -181,7 +181,7 @@
     [self hideUnwantedHTML];
 }
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error{
-    [self showAlert:[error description]];
+//    [self showAlert:[error description]];
 }
 -(void)webViewDidStartLoad:(UIWebView *)theWebView
 {

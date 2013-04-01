@@ -18,7 +18,7 @@
 -(NSMutableArray *)parseProductsData:(NSData *)data;
 
 -(void)featchStories:(int)pageNum;
--(void)featchTopicProducts:(NSString *)keyWord pageNumber:(int)pageN;
+-(void)featchKeywordProducts:(NSString *)keyWord pageNumber:(int)pageN;
 
 -(void)featchVersionNum:(BOOL)automatic;
 @end

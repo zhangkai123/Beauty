@@ -7,12 +7,15 @@
 //
 
 #import "BrandViewController.h"
+#import "TopicProductViewController.h"
 #import "HotProductViewController.h"
+#import "DataController.h"
 
 @interface BrandViewController()
 {
     UIView *bgColorView;
     NSMutableArray *headerArray;
+    UISearchBar *sBar;//search bar
 }
 @end
 
@@ -27,7 +30,11 @@
     [super didReceiveMemoryWarning];
     // Release any cached data, images, etc that aren't in use.
 }
-
+-(void)dealloc
+{
+    [sBar release];
+    [super dealloc];
+}
 #pragma mark - View lifecycle
 -(id) initWithTabBar {
     if ([self init]) {
@@ -66,9 +73,13 @@
         [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"navbar_background"] forBarMetrics:UIBarMetricsDefault];
         [self.navigationController.navigationBar setOpaque:1.0];
     }
+    
+    sBar = [[UISearchBar alloc]initWithFrame:CGRectMake(0,0,320,45)];
+    sBar.tintColor = [UIColor colorWithRed:1 green: 0.6 blue:0.8 alpha:1];
+    sBar.delegate = self;
+    [self.view addSubview:sBar];
+    
     headerArray = [[NSMutableArray alloc]initWithObjects:@"功效",@"护肤",@"彩妆",@"美体", nil];
-
-//    dataArray = [[NSMutableArray alloc]initWithObjects:@"碧欧泉",@"香奈儿",@"倩碧",@"雅诗兰黛",@"兰蔻",@"玫琳凯",@"迪奥",@"欧莱雅",@"相宜本草",@"玉兰油",@"the face shop",@"美宝莲",@"skin79",@"卡姿兰", nil];
     
     dataArray1 = [[NSMutableArray alloc]initWithObjects:@"美白",@"保湿",@"祛痘",@"抗敏",@"遮瑕",@"祛斑",@"控油",@"补水",@"去黑头",@"收毛孔",@"去眼袋", nil];
 
@@ -83,20 +94,48 @@
     CGRect screenBounds = [[UIScreen mainScreen] bounds];
     if (screenBounds.size.height == 568) {
         // code for 4-inch screen
-        myTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 548-44-49) style:UITableViewStylePlain];
+        myTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 45, self.view.frame.size.width, 548-44-49) style:UITableViewStylePlain];
     } else {
         // code for 3.5-inch screen
-        myTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 460-44-49) style:UITableViewStylePlain];
+        myTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 45, self.view.frame.size.width, 460-44-49) style:UITableViewStylePlain];
     }
-    //    [productTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+    
     myTableView.delegate = self;
     myTableView.dataSource = self;
     myTableView.contentInset = insets;
-//    myTableView.backgroundColor = [UIColor clearColor];
-    //    productTableView.rowHeight = 480;
     [self.view addSubview:myTableView];
 
 }
+#pragma mark UISearchBarDelegate
+- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar
+{
+    // only show the status bar's cancel button while in edit mode
+    sBar.showsCancelButton = YES;
+    sBar.autocorrectionType = UITextAutocorrectionTypeNo;
+    // flush the previous search content
+//    [tableData removeAllObjects];
+}
+- (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar
+{
+    sBar.showsCancelButton = NO;
+}
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
+{
+    
+}
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
+{
+    
+}
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
+{
+    TopicProductViewController *topicProductViewController = [[TopicProductViewController alloc]initWithTabBar];
+    topicProductViewController.keyWord = searchBar.text;
+    [self.navigationController pushViewController:topicProductViewController animated:YES];
+    [topicProductViewController release];
+}
+
+
 - (UITableViewCellAccessoryType)tableView:(UITableView *)tv accessoryTypeForRowWithIndexPath:(NSIndexPath *)indexPath {
     return UITableViewCellAccessoryDisclosureIndicator;
 }

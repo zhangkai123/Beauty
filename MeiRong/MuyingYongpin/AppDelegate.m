@@ -39,6 +39,7 @@
     // ****************************************************************************
     // Uncomment and fill in with your Parse credentials:
     [Parse setApplicationId:@"mKBDiBdpxitQVxnwChP2FQDUQTbZOl4ITyos3XPo" clientKey:@"WN12hGmbWjJRSLaU7mPpYKism9KKlM4WIs4I88ME"];
+//    [Parse setApplicationId:@"nARw6JOO8oGvPZXE8U3SQPiXMygXh6hbFL2KJ565" clientKey:@"ihSkf0jedHJd61xH48ztDWu1LfiAATWZIfFBOadg"];
     [PFUser enableAutomaticUser];
     PFACL *defaultACL = [PFACL ACL];
     // If you would like all objects to be private by default, remove this line.

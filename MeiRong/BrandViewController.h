@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface BrandViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
+@interface BrandViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,UISearchBarDelegate>
 {
     UITableView *myTableView;
     NSMutableArray *dataArray;

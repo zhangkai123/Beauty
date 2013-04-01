@@ -78,7 +78,7 @@
             NSLog(@"Pull to refresh is loading");
         weakCurrentPage = 0;
         DataController *dataController = [DataController sharedDataController];
-        [dataController featchTopicProducts:self.keyWord pageNumber:1];
+        [dataController featchKeywordProducts:self.keyWord pageNumber:1];
     }];
     [theTalbleView addInfiniteScrollingWithActionHandler:^{
         
@@ -97,12 +97,12 @@
             return;
         }
         DataController *dataController = [DataController sharedDataController];
-        [dataController featchTopicProducts:self.keyWord pageNumber:pageN + 1];
+        [dataController featchKeywordProducts:self.keyWord pageNumber:pageN + 1];
         weakCurrentPage = pageN;
     }];
     
     DataController *dataController = [DataController sharedDataController];
-    [dataController featchTopicProducts:self.keyWord pageNumber:1];
+    [dataController featchKeywordProducts:self.keyWord pageNumber:1];
     
     [self startActivity];
 

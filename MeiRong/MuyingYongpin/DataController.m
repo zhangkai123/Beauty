@@ -78,9 +78,9 @@
             
             // Check for problems
             if (error != nil) {
-                [self showAlert:[error description]];
+//                [self showAlert:[error description]];
             }else{
-                [self showAlert:@"返回数据为空"];
+//                [self showAlert:@"返回数据为空"];
             }
         }
         else {
@@ -115,7 +115,7 @@
     }
     return [pArray autorelease];
 }
--(void)featchTopicProducts:(NSString *)keyWord pageNumber:(int)pageN
+-(void)featchKeywordProducts:(NSString *)keyWord pageNumber:(int)pageN
 {
     if (![[ReachableManager sharedReachableManager]reachable]) {
         [self performSelector:@selector(showNoNetwork) withObject:nil afterDelay:1.0];
@@ -144,9 +144,9 @@
             
             // Check for problems
             if (error != nil) {
-                [self showAlert:[error description]];
+//                [self showAlert:[error description]];
             }else{
-                [self showAlert:@"返回数据为空"];
+//                [self showAlert:@"返回数据为空"];
             }
         }
         else {
@@ -211,9 +211,9 @@
             
             // Check for problems
             if (error != nil) {
-                [self showAlert:[error description]];
+//                [self showAlert:[error description]];
             }else{
-                [self showAlert:@"返回数据为空"];
+//                [self showAlert:@"返回数据为空"];
             }
         }
         else {
@@ -342,9 +342,9 @@
             
             // Check for problems
             if (error != nil) {
-                [self showAlert:[error description]];
+//                [self showAlert:[error description]];
             }else{
-                [self showAlert:@"返回数据为空"];
+//                [self showAlert:@"返回数据为空"];
             }
         }
         else {
