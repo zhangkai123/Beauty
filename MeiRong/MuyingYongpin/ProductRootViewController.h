@@ -11,6 +11,7 @@
 
 @interface ProductRootViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,StyleOneCellSelectionDelegate>
 {
+    UIImageView *topBar;
     UITableView *theTalbleView;
     NSMutableArray *productsArray;
     int currentPage;

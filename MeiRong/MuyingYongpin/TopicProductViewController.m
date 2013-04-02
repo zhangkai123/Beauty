@@ -35,30 +35,25 @@
     return self;
 }
 
--(void)createNavBackButton
+-(void)createBackButton
 {
-    UIImage *buttonImageNormal = [UIImage imageNamed:@"button_back"];
-    UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    backButton.frame = CGRectMake(0, 0, 49, 44);
-    [backButton setImage:buttonImageNormal forState:UIControlStateNormal];
-    [backButton addTarget:self action:@selector(goBack) forControlEvents:UIControlEventTouchDown];
-    
-    UIBarButtonItem *backButtonItem = [[UIBarButtonItem alloc]initWithCustomView:backButton];
-    self.navigationItem.leftBarButtonItem = backButtonItem;
-    [backButtonItem release];
+    UIButton *backButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 44, 44)];
+    [backButton setImage:[UIImage imageNamed:@"btn_header_back"] forState:UIControlStateNormal];
+    [backButton addTarget:self action:@selector(goBack) forControlEvents:UIControlEventTouchUpInside];
+    [topBar addSubview:backButton];
+    [backButton release];
 }
 -(void)goBack
 {
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-    [self.navigationController popViewControllerAnimated:YES];
+    [self dismissModalViewControllerAnimated:YES];
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    [self createNavBackButton];
-//    self.titleLabel.text = self.keyWord;
+    [self createBackButton];
+    self.titleLabel.text = self.keyWord;
     
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(recieveTopicProducts:) name:@"TOPIC_PRODUCT" object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(refreshCollected:) name:@"REFRESH_COLLECTED" object:nil];

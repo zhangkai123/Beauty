@@ -25,6 +25,7 @@
 
 -(void)dealloc
 {
+    [topBar release];
     [theTalbleView release];
     [productsArray release];
     [titleLabel release];
@@ -42,20 +43,19 @@
         titleLabel.shadowColor   = [[UIColor blackColor]colorWithAlphaComponent: 0.2f];
         titleLabel.shadowOffset  = CGSizeMake(1.0,1.0);
         titleLabel.backgroundColor = [UIColor clearColor];
-        [self.navigationItem setTitleView:titleLabel];
     }
     return self;
 }
 
 -(void)startActivity{
     
-    UIActivityIndicatorView *activityView = [[[self navigationItem].rightBarButtonItem.customView subviews]objectAtIndex:0];
+    UIActivityIndicatorView *activityView = [[[[topBar subviews]objectAtIndex:0]subviews]objectAtIndex:0];
     [activityView startAnimating];
 }
 
 -(void)stopActivity{
     
-    UIActivityIndicatorView *activityView = [[[self navigationItem].rightBarButtonItem.customView subviews]objectAtIndex:0];
+    UIActivityIndicatorView *activityView = [[[[topBar subviews]objectAtIndex:0]subviews]objectAtIndex:0];
     [activityView stopAnimating];
 }
 
@@ -64,13 +64,11 @@
     UIActivityIndicatorView * activityIndicator = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
     [activityIndicator stopAnimating];
     [activityIndicator hidesWhenStopped];
-    UIView *rightItem = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 30, 20)];
+    UIView *rightItem = [[UIView alloc]initWithFrame:CGRectMake(290, 7, 30, 20)];
     [rightItem addSubview:activityIndicator];
     [activityIndicator release];
-    UIBarButtonItem * barButton = [[UIBarButtonItem alloc] initWithCustomView:rightItem];
-    [self navigationItem].rightBarButtonItem = barButton;
+    [topBar addSubview:rightItem];
     [rightItem release];
-    [barButton release];
 }
 
 - (void)viewDidLoad
@@ -78,7 +76,7 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
-    UIImageView *topBar = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 320, 44)];
+    topBar = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 320, 44)];
     topBar.image = [UIImage imageNamed:@"navbar_background"];
     topBar.userInteractionEnabled = YES;
     topBar.layer.shadowColor = [UIColor blackColor].CGColor;
@@ -87,13 +85,12 @@
     topBar.layer.shadowRadius = 1.0;
     topBar.clipsToBounds = NO;
     [self.view addSubview:topBar];
-    [topBar release];
-    
-    [topBar addSubview:titleLabel];
-    
-    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"SheetBackground"]];
     
     [self createActivity];
+    [topBar addSubview:titleLabel];
+        
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"SheetBackground"]];
+
     // Do any additional setup after loading the view.
     CGRect screenBounds = [[UIScreen mainScreen] bounds];
     if (screenBounds.size.height == 568) {
