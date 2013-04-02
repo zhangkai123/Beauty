@@ -67,10 +67,10 @@
     
     HotProductViewController *hotProductViewController = [[HotProductViewController alloc]initWithTabBar];
     hotProductViewController.catName = @"热销";
-    navigationController = [[UINavigationController alloc]initWithRootViewController:hotProductViewController];
-    [controllersArray addObject:navigationController];
+//    navigationController = [[UINavigationController alloc]initWithRootViewController:hotProductViewController];
+    [controllersArray addObject:hotProductViewController];
     [hotProductViewController release];
-    [navigationController release];
+//    [navigationController release];
     
     BrandViewController *brandViewController = [[BrandViewController alloc]initWithTabBar];
     navigationController = [[UINavigationController alloc]initWithRootViewController:brandViewController];

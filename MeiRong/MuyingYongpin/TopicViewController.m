@@ -235,7 +235,8 @@
     TopicProductViewController *topicProductViewController = [[TopicProductViewController alloc]initWithTabBar];
     topicProductViewController.keyWord = story.keyWord;
     topicProductViewController.navTitle = story.title;
-    [self.navigationController pushViewController:topicProductViewController animated:YES];
+//    [self.navigationController pushViewController:topicProductViewController animated:YES];
+    [self presentModalViewController:topicProductViewController animated:YES];
     [topicProductViewController release];
 }
 

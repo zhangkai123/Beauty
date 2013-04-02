@@ -6,6 +6,7 @@
 //
 //
 
+#import <QuartzCore/CALayer.h>
 #import "ProductRootViewController.h"
 #import "Product.h"
 #import "UIImageView+WebCache.h"
@@ -32,14 +33,9 @@
 
 -(id) initWithTabBar {
     if ([self init]) {
-        //this is the label on the tab button itself
-//        self.title = @"热销";
-        
-//        //use whatever image you want and add it to your project
-//        self.tabBarItem.image = [UIImage imageNamed:@"ico_nav_hot"];
         
         // set the long name shown in the navigation bar at the top
-        titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(80, 0, 160, 30)];
+        titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(80, 7, 160, 30)];
         titleLabel.textColor = [UIColor whiteColor];
         [titleLabel setTextAlignment:UITextAlignmentCenter];
         titleLabel.font = [UIFont fontWithName:@"迷你简黛玉" size:25];
@@ -82,10 +78,19 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
-    if ([self.navigationController.navigationBar respondsToSelector:@selector( setBackgroundImage:forBarMetrics:)]){
-        [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"navbar_background"] forBarMetrics:UIBarMetricsDefault];
-        [self.navigationController.navigationBar setOpaque:1.0];
-    }
+    UIImageView *topBar = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 320, 44)];
+    topBar.image = [UIImage imageNamed:@"navbar_background"];
+    topBar.userInteractionEnabled = YES;
+    topBar.layer.shadowColor = [UIColor blackColor].CGColor;
+    topBar.layer.shadowOffset = CGSizeMake(0, 1);
+    topBar.layer.shadowOpacity = 0.3;
+    topBar.layer.shadowRadius = 1.0;
+    topBar.clipsToBounds = NO;
+    [self.view addSubview:topBar];
+    [topBar release];
+    
+    [topBar addSubview:titleLabel];
+    
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"SheetBackground"]];
     
     [self createActivity];
@@ -93,10 +98,10 @@
     CGRect screenBounds = [[UIScreen mainScreen] bounds];
     if (screenBounds.size.height == 568) {
         // code for 4-inch screen
-        theTalbleView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, 320, 548-44-50) style:UITableViewStylePlain];
+        theTalbleView = [[UITableView alloc]initWithFrame:CGRectMake(0, 45, 320, 548-45) style:UITableViewStylePlain];
     } else {
         // code for 3.5-inch screen
-        theTalbleView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, 320, 460-44-50) style:UITableViewStylePlain];
+        theTalbleView = [[UITableView alloc]initWithFrame:CGRectMake(0, 45, 320, 460-45) style:UITableViewStylePlain];
     }
     [theTalbleView setBackgroundColor:[UIColor clearColor]];
     [theTalbleView setSeparatorStyle:UITableViewCellSeparatorStyleNone];

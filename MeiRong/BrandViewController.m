@@ -76,9 +76,9 @@
     
     sBar = [[UISearchBar alloc]initWithFrame:CGRectMake(0,0,320,45)];
     sBar.keyboardType = UIKeyboardTypeDefault;
-    sBar.tintColor = [UIColor colorWithRed:1 green: 0.6 blue:0.8 alpha:1];
+//    sBar.tintColor = [UIColor colorWithRed:1 green: 0.6 blue:0.8 alpha:1];
+    sBar.tintColor = [UIColor lightGrayColor];
     sBar.delegate = self;
-    [self.view addSubview:sBar];
     
     headerArray = [[NSMutableArray alloc]initWithObjects:@"功效",@"护肤",@"彩妆",@"美体", nil];
     
@@ -95,10 +95,10 @@
     CGRect screenBounds = [[UIScreen mainScreen] bounds];
     if (screenBounds.size.height == 568) {
         // code for 4-inch screen
-        myTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 45, self.view.frame.size.width, 548-44-49) style:UITableViewStylePlain];
+        myTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 548-44-49) style:UITableViewStylePlain];
     } else {
         // code for 3.5-inch screen
-        myTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 45, self.view.frame.size.width, 460-44-49) style:UITableViewStylePlain];
+        myTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 460-44-49) style:UITableViewStylePlain];
     }
     
     myTableView.delegate = self;
@@ -106,6 +106,7 @@
     myTableView.contentInset = insets;
     [self.view addSubview:myTableView];
 
+    [myTableView setTableHeaderView:sBar];
 }
 #pragma mark UISearchBarDelegate
 - (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar
@@ -223,7 +224,8 @@
     }
     HotProductViewController *hotProductViewController = [[HotProductViewController alloc]initWithTabBar];
     hotProductViewController.catName = categoryName;
-    [self.navigationController pushViewController:hotProductViewController animated:YES];
+//    [self.navigationController pushViewController:hotProductViewController animated:YES];
+    [self presentModalViewController:hotProductViewController animated:YES];
     [hotProductViewController release];
 }
 - (void)viewDidUnload
