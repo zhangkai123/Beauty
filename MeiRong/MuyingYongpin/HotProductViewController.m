@@ -209,6 +209,15 @@
         
         [self createBackButton];
     }
+    CGRect screenBounds = [[UIScreen mainScreen] bounds];
+    if ([self.catName isEqualToString:@"热销"]) {
+        if (screenBounds.size.height == 568) {
+            
+            theTalbleView.frame = CGRectMake(0, 45, 320, 548-45-50);
+        }else{
+            theTalbleView.frame = CGRectMake(0, 45, 320, 460-45-50);
+        }
+    }
 
     self.title = self.catName;
     self.titleLabel.text = self.catName;
