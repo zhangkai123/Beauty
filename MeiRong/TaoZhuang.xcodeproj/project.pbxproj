@@ -60,6 +60,10 @@
 		4B534E4A1666403700EF5004 /* NewsNode@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B534E481666403700EF5004 /* NewsNode@2x.png */; };
 		4B5621511630570100C0D9F7 /* SheetBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B56214F1630570100C0D9F7 /* SheetBackground@2x.png */; };
 		4B5621521630570100C0D9F7 /* SheetBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B5621501630570100C0D9F7 /* SheetBackground.png */; };
+		4B6310F51711C3C9009C176B /* WaterflowView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B6310F21711C3C9009C176B /* WaterflowView.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		4B6310FA1711C404009C176B /* LoadingMoreFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B6310F91711C404009C176B /* LoadingMoreFooterView.m */; };
+		4B6310FF1711C42F009C176B /* blueArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B6310FC1711C42F009C176B /* blueArrow.png */; };
+		4B6311001711C42F009C176B /* EGORefreshTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B6310FE1711C42F009C176B /* EGORefreshTableHeaderView.m */; };
 		4B644A3116FA808200F8EEEF /* SetupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B644A3016FA808200F8EEEF /* SetupViewController.m */; };
 		4B6810A0167DB77400B37E31 /* button_refresh@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B68109E167DB76F00B37E31 /* button_refresh@2x.png */; };
 		4B6810A1167DB77400B37E31 /* button_refresh.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B68109F167DB77200B37E31 /* button_refresh.png */; };
@@ -292,6 +296,13 @@
 		4B534E481666403700EF5004 /* NewsNode@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "NewsNode@2x.png"; sourceTree = "<group>"; };
 		4B56214F1630570100C0D9F7 /* SheetBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SheetBackground@2x.png"; sourceTree = "<group>"; };
 		4B5621501630570100C0D9F7 /* SheetBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SheetBackground.png; sourceTree = "<group>"; };
+		4B6310F11711C3C9009C176B /* WaterflowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaterflowView.h; sourceTree = "<group>"; };
+		4B6310F21711C3C9009C176B /* WaterflowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaterflowView.m; sourceTree = "<group>"; };
+		4B6310F81711C404009C176B /* LoadingMoreFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadingMoreFooterView.h; sourceTree = "<group>"; };
+		4B6310F91711C404009C176B /* LoadingMoreFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadingMoreFooterView.m; sourceTree = "<group>"; };
+		4B6310FC1711C42F009C176B /* blueArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blueArrow.png; sourceTree = "<group>"; };
+		4B6310FD1711C42F009C176B /* EGORefreshTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGORefreshTableHeaderView.h; sourceTree = "<group>"; };
+		4B6310FE1711C42F009C176B /* EGORefreshTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EGORefreshTableHeaderView.m; sourceTree = "<group>"; };
 		4B644A2F16FA808100F8EEEF /* SetupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetupViewController.h; sourceTree = "<group>"; };
 		4B644A3016FA808200F8EEEF /* SetupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetupViewController.m; sourceTree = "<group>"; };
 		4B68109E167DB76F00B37E31 /* button_refresh@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button_refresh@2x.png"; sourceTree = "<group>"; };
@@ -641,6 +652,34 @@
 			name = tabbar;
 			sourceTree = "<group>";
 		};
+		4B6310F01711C3AD009C176B /* waterflow */ = {
+			isa = PBXGroup;
+			children = (
+				4B6310F11711C3C9009C176B /* WaterflowView.h */,
+				4B6310F21711C3C9009C176B /* WaterflowView.m */,
+			);
+			name = waterflow;
+			sourceTree = "<group>";
+		};
+		4B6310F71711C3F7009C176B /* LoadingMoreFooterView */ = {
+			isa = PBXGroup;
+			children = (
+				4B6310F81711C404009C176B /* LoadingMoreFooterView.h */,
+				4B6310F91711C404009C176B /* LoadingMoreFooterView.m */,
+			);
+			name = LoadingMoreFooterView;
+			sourceTree = "<group>";
+		};
+		4B6310FB1711C41F009C176B /* EGORefreshTableHeaderView */ = {
+			isa = PBXGroup;
+			children = (
+				4B6310FC1711C42F009C176B /* blueArrow.png */,
+				4B6310FD1711C42F009C176B /* EGORefreshTableHeaderView.h */,
+				4B6310FE1711C42F009C176B /* EGORefreshTableHeaderView.m */,
+			);
+			name = EGORefreshTableHeaderView;
+			sourceTree = "<group>";
+		};
 		4B7486C516FF0F500065D6C2 /* theBrandDetailPage */ = {
 			isa = PBXGroup;
 			children = (
@@ -854,6 +893,9 @@
 		4BDB315A15BA56DE007B1C6F /* MuyingYongpin */ = {
 			isa = PBXGroup;
 			children = (
+				4B6310FB1711C41F009C176B /* EGORefreshTableHeaderView */,
+				4B6310F71711C3F7009C176B /* LoadingMoreFooterView */,
+				4B6310F01711C3AD009C176B /* waterflow */,
 				4BF8B36316E254F900FF2CD3 /* Utilities */,
 				4B4EAF7F166A320000E29D6B /* ATMHud */,
 				4B4EAF641669FDE700E29D6B /* Reachability */,
@@ -1248,6 +1290,7 @@
 				4B74870716FF145C0065D6C2 /* ico_nav_me.png in Resources */,
 				4B74870E16FF147D0065D6C2 /* ico_nav_special@2x.png in Resources */,
 				4B74870F16FF147D0065D6C2 /* ico_nav_special.png in Resources */,
+				4B6310FF1711C42F009C176B /* blueArrow.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1324,6 +1367,9 @@
 				4BA879881703BBE000714923 /* ProductRootViewController.m in Sources */,
 				4BA8798B1703C1D200714923 /* HotProductViewController.m in Sources */,
 				4B939FC117046FD20079A62D /* TopicProductViewController.m in Sources */,
+				4B6310F51711C3C9009C176B /* WaterflowView.m in Sources */,
+				4B6310FA1711C404009C176B /* LoadingMoreFooterView.m in Sources */,
+				4B6311001711C42F009C176B /* EGORefreshTableHeaderView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
