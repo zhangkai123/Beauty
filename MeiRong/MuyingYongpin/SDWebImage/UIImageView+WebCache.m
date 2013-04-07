@@ -77,14 +77,6 @@
 
 - (void)webImageManager:(SDWebImageManager *)imageManager didFinishWithImage:(UIImage *)image
 {
-//    CABasicAnimation *fadeInAnimation = [CABasicAnimation animationWithKeyPath:@"opacity"];
-//    fadeInAnimation.duration = 0.2f;
-//    fadeInAnimation.removedOnCompletion = NO;
-//    fadeInAnimation.fillMode = kCAFillModeForwards;
-//    fadeInAnimation.fromValue = [NSNumber numberWithFloat:0.0f];
-//    fadeInAnimation.toValue = [NSNumber numberWithFloat:1.0f];
-//    [self.layer addAnimation:fadeInAnimation forKey:@"animateOpacity"];
-
     self.image = image;
     [self setNeedsLayout];
 }
