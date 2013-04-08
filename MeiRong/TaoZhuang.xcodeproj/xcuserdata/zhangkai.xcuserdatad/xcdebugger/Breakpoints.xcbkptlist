@@ -21,12 +21,12 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "MuyingYongpin/DataController.m"
-         timestampString = "387038910.109362"
+         timestampString = "387140514.47077"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "240"
-         endingLineNumber = "240"
-         landmarkName = "-parseProductsData:"
+         startingLineNumber = "162"
+         endingLineNumber = "162"
+         landmarkName = "-parseStoryProductsData:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -34,12 +34,25 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "MuyingYongpin/DataController.m"
-         timestampString = "387038915.790143"
+         timestampString = "387140592.767776"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "175"
-         endingLineNumber = "175"
-         landmarkName = "-parseStoryProductsData:"
+         startingLineNumber = "154"
+         endingLineNumber = "154"
+         landmarkName = "-featchKeywordProducts:pageNumber:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "MuyingYongpin/NewTopicProductViewController.m"
+         timestampString = "387140883.338806"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "85"
+         endingLineNumber = "85"
+         landmarkName = "-viewDidLoad"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

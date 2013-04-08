@@ -178,6 +178,7 @@
         product.price = [item objectForKey:@"price"];
         product.seller_credit_score = [NSString stringWithFormat:@"%@",[item objectForKey:@"seller_credit_score"]];
         product.pic_url = [item objectForKey:@"pic_url"];
+        product.imageHeight = [self parseImageHeight:product.pic_url imageWidth:148];
         product.click_url = [item objectForKey:@"click_url"];
         NSLog(@"%@",product.click_url);
         [pArray addObject:product];
@@ -247,6 +248,7 @@
         product.price = [item objectForKey:@"price"];
         product.seller_credit_score = [item objectForKey:@"likes"];
         product.pic_url = [item objectForKey:@"bimg"];
+        product.imageHeight = [self parseImageHeight:product.pic_url imageWidth:148];
         product.click_url = [item objectForKey:@"url"];
         NSLog(@"%@",product.click_url);
         [pArray addObject:product];
@@ -287,13 +289,13 @@
     NSMutableArray *imageDicArray = [[NSMutableArray alloc]init];
     for (NSDictionary *imageDic in item_img) {
         NSString *imageUrlStr = [imageDic objectForKey:@"url"];
-        float imageHeight = [self parseImageHeight:imageUrlStr];
+        float imageHeight = [self parseImageHeight:imageUrlStr imageWidth:320];
         NSDictionary *imageDic = [NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"%f",imageHeight],@"imageHeight",imageUrlStr,@"imageUrl", nil];
         [imageDicArray addObject:imageDic];
     }
     for (NSDictionary *imageDic in prop_img) {
         NSString *imageUrlStr = [imageDic objectForKey:@"url"];
-        float imageHeight = [self parseImageHeight:imageUrlStr];
+        float imageHeight = [self parseImageHeight:imageUrlStr imageWidth:320];
         NSDictionary *imageDic = [NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"%f",imageHeight],@"imageHeight",imageUrlStr,@"imageUrl", nil];
         [imageDicArray addObject:imageDic];
     }
@@ -303,7 +305,7 @@
         [imageDicArray release];
     });
 }
--(float)parseImageHeight:(NSString *)urlStr
+-(float)parseImageHeight:(NSString *)urlStr imageWidth:(float)imageW
 {
     NSURL *imageUrl = [NSURL URLWithString:urlStr];
     
@@ -320,7 +322,7 @@
         height = [(NSNumber *)CFDictionaryGetValue(props, kCGImagePropertyPixelHeight) retain];
     }
     CFRelease(props);
-    float imageHeight = [height intValue] * 320 / [width intValue];
+    float imageHeight = [height intValue] * imageW / [width intValue];
     [width release];
     [height release];
     return imageHeight;

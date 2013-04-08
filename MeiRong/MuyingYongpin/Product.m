@@ -9,7 +9,7 @@
 #import "Product.h"
 
 @implementation Product
-@synthesize num_id,title,pic_url,price,click_url,seller_credit_score ,collect;
+@synthesize num_id,title,pic_url,imageHeight,price,click_url,seller_credit_score ,collect;
 @synthesize description ,imagesArray;
 -(void)dealloc
 {

@@ -13,6 +13,7 @@
 @property(nonatomic,copy) NSString * num_id;
 @property(nonatomic,copy) NSString * title;
 @property(nonatomic,copy) NSString *pic_url;
+@property(nonatomic,assign) float imageHeight;
 @property(nonatomic,copy) NSString *price;
 @property(nonatomic,copy) NSString *click_url;
 @property(nonatomic,copy) NSString *seller_credit_score;

@@ -121,6 +121,8 @@
 		4BA8798B1703C1D200714923 /* HotProductViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BA8798A1703C1D100714923 /* HotProductViewController.m */; };
 		4BAA79971713129F00390207 /* PSCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BAA79941713129F00390207 /* PSCollectionView.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		4BAA79981713129F00390207 /* PSCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BAA79961713129F00390207 /* PSCollectionViewCell.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		4BAA799B1713227C00390207 /* NewTopicProductViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BAA799A1713227B00390207 /* NewTopicProductViewController.m */; };
+		4BAA799E17132D0C00390207 /* ProductCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BAA799D17132D0C00390207 /* ProductCell.m */; };
 		4BACD362164005E400C8FB89 /* ImageProcesser.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BACD361164005E400C8FB89 /* ImageProcesser.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		4BACE06E1615E4AB006B3E00 /* UIWebView+Clean.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BACE06D1615E4AB006B3E00 /* UIWebView+Clean.m */; };
 		4BACE0931615F016006B3E00 /* libMobClickLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BACE0911615F016006B3E00 /* libMobClickLibrary.a */; };
@@ -393,6 +395,10 @@
 		4BAA79941713129F00390207 /* PSCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCollectionView.m; sourceTree = "<group>"; };
 		4BAA79951713129F00390207 /* PSCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCollectionViewCell.h; sourceTree = "<group>"; };
 		4BAA79961713129F00390207 /* PSCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCollectionViewCell.m; sourceTree = "<group>"; };
+		4BAA79991713227B00390207 /* NewTopicProductViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewTopicProductViewController.h; sourceTree = "<group>"; };
+		4BAA799A1713227B00390207 /* NewTopicProductViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewTopicProductViewController.m; sourceTree = "<group>"; };
+		4BAA799C17132D0B00390207 /* ProductCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductCell.h; sourceTree = "<group>"; };
+		4BAA799D17132D0C00390207 /* ProductCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductCell.m; sourceTree = "<group>"; };
 		4BACD360164005E400C8FB89 /* ImageProcesser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageProcesser.h; sourceTree = "<group>"; };
 		4BACD361164005E400C8FB89 /* ImageProcesser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageProcesser.m; sourceTree = "<group>"; };
 		4BACE06C1615E4AB006B3E00 /* UIWebView+Clean.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWebView+Clean.h"; sourceTree = "<group>"; };
@@ -912,6 +918,8 @@
 				4BA52744161B384F00AA0D6A /* CoreDataController.h */,
 				4BA52745161B384F00AA0D6A /* CoreDataController.m */,
 				4BDB315B15BA56DE007B1C6F /* Supporting Files */,
+				4BAA79991713227B00390207 /* NewTopicProductViewController.h */,
+				4BAA799A1713227B00390207 /* NewTopicProductViewController.m */,
 			);
 			path = MuyingYongpin;
 			sourceTree = "<group>";
@@ -1090,6 +1098,8 @@
 				4BB2ECC016FD9FD60010F124 /* FirstCell.m */,
 				4BB2ECBC16FD8CA30010F124 /* DetailImageCell.h */,
 				4BB2ECBD16FD8CA30010F124 /* DetailImageCell.m */,
+				4BAA799C17132D0B00390207 /* ProductCell.h */,
+				4BAA799D17132D0C00390207 /* ProductCell.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -1344,6 +1354,8 @@
 				4B939FC117046FD20079A62D /* TopicProductViewController.m in Sources */,
 				4BAA79971713129F00390207 /* PSCollectionView.m in Sources */,
 				4BAA79981713129F00390207 /* PSCollectionViewCell.m in Sources */,
+				4BAA799B1713227C00390207 /* NewTopicProductViewController.m in Sources */,
+				4BAA799E17132D0C00390207 /* ProductCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
