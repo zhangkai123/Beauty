@@ -12,6 +12,7 @@
 {
     NSString *keyWord;
     NSMutableArray *productsArray;
+    int currentPage;
 }
 @property(nonatomic,retain) NSString *keyWord;
 @property(nonatomic,retain) NSMutableArray *productsArray;

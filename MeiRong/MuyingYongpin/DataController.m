@@ -14,6 +14,7 @@
 #import "ReachableManager.h"
 #import "Utility.h"
 #import "Story.h"
+#import "AFNetworking.h"
 
 #define ServerIp @"http://42.121.193.105"
 #define hostIp @"http://10.21.98.93"
@@ -36,24 +37,8 @@
     }
     return self;
 }
--(void)showNoNetwork
-{
-    [[NSNotificationCenter defaultCenter] postNotificationName: kNotReachabilityNotification object: nil];
-}
--(void)showAlert:(NSString *)alertMessage
-{
-    dispatch_async(dispatch_get_main_queue(), ^{
-        
-            UIAlertView *alert = [[UIAlertView alloc]
-                                  initWithTitle: nil
-                                  message: alertMessage
-                                  delegate: nil
-                                  cancelButtonTitle:@"ok"
-                                  otherButtonTitles:nil,nil];
-            [alert show];
-            [alert release];
-    });
-}
+
+#pragma send requests
 -(void)featchStories:(int)pageNum
 {
     if (![[ReachableManager sharedReachableManager]reachable]) {
@@ -61,45 +46,156 @@
     }
     
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+    
+    NSString *urlString = [NSString stringWithFormat:@"%@/PinPHP_V2.21/fetchTopics.php",ServerIp];
+    NSMutableURLRequest *theRequest=[NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlString]];
+    [theRequest setHTTPMethod:@"POST"];
+    NSString *postString = [NSString stringWithFormat:@"pageNumber=%d",pageNum];
+    [theRequest setHTTPBody:[postString dataUsingEncoding:NSUTF8StringEncoding]];
+    [theRequest addValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+
+    [AFJSONRequestOperation addAcceptableContentTypes:[NSSet setWithObject:@"text/html"]];
+    AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:theRequest success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
+        NSLog(@"App.net Global Stream: %@", JSON);
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            
+            NSMutableArray *pArray = [self parseStoryData:JSON];
+            [[NSNotificationCenter defaultCenter]postNotificationName:@"Story_Ready" object:pArray userInfo:nil];
+            [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+        });
+    } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON){
+        NSLog(@"---Error---: %@", [error description]);
+    }];
+    [operation start];
+}
+-(void)featchKeywordProducts:(NSString *)keyWord pageNumber:(int)pageN
+{
+    if (![[ReachableManager sharedReachableManager]reachable]) {
+        [self performSelector:@selector(showNoNetwork) withObject:nil afterDelay:1.0];
+    }
+    
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+     NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
+    
+    [params setObject:@"num_iid,title,pic_url,price,seller_credit_score,click_url" forKey:@"fields"];
+    [params setObject:@"50010788" forKey:@"cid"];
+    [params setObject:@"taobao.taobaoke.items.get" forKey:@"method"];
+    [params setObject:[NSString stringWithFormat:@"%d",pageN] forKey:@"page_no"];
+    [params setObject:@"20" forKey:@"page_size"];
+    [params setObject:@"30" forKey:@"start_price"];
+    [params setObject:@"2000" forKey:@"end_price"];
+    [params setObject:@"commissionNum_desc" forKey:@"sort"];
+    [params setObject:keyWord forKey:@"keyword"];
+    [params setObject:@"true" forKey:@"is_mobile"];
+    
+    NSMutableURLRequest *theRequest = [Utility getResultData:params];
+    [params release];
+    
+    [AFJSONRequestOperation addAcceptableContentTypes:[NSSet setWithObject:@"text/html"]];
+    AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:theRequest success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
+        NSLog(@"App.net Global Stream: %@", JSON);
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            
+            NSMutableArray *pArray = [self parseStoryProductsData:JSON];
+            [[NSNotificationCenter defaultCenter]postNotificationName:@"TOPIC_PRODUCT" object:pArray userInfo:nil];
+            [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+        });
+    } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON){
+        NSLog(@"---Error---: %@", [error description]);
+    }];
+    [operation start];
+}
+-(void)fetachCateProducts:(NSString *)cateName notiName:(NSString *)nName pageNumber:(int)pageN
+{
+    if (![[ReachableManager sharedReachableManager]reachable]) {
+        [self performSelector:@selector(showNoNetwork) withObject:nil afterDelay:1.0];
+    }
+    
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+    
+    int catId = [self getServerNotificationId:cateName];
+    NSString *urlString = [NSString stringWithFormat:@"%@/PinPHP_V2.21/fetchProducts.php",ServerIp];
+    NSMutableURLRequest *theRequest=[NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlString]];
+    [theRequest setHTTPMethod:@"POST"];
+    NSString *postString = [NSString stringWithFormat:@"catId=%d&pageNumber=%d",catId,pageN];
+    [theRequest setHTTPBody:[postString dataUsingEncoding:NSUTF8StringEncoding]];
+    [theRequest addValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+    
+    [AFJSONRequestOperation addAcceptableContentTypes:[NSSet setWithObject:@"text/html"]];
+    AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:theRequest success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
+        NSLog(@"App.net Global Stream: %@", JSON);
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            
+            NSMutableArray *pArray = [self parseProductsData:JSON];
+            [[NSNotificationCenter defaultCenter]postNotificationName:nName object:pArray userInfo:nil];
+            [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+        });
+    } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON){
+        NSLog(@"---Error---: %@", [error description]);
+    }];
+    [operation start];
+}
+-(void)featchProductDetail:(NSString *)num_id theProduct:(Product *)pro
+{    
+    NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
+    [params setObject:@"taobao.item.get" forKey:@"method"];
+    [params setObject:@"item_img.url,prop_img.url" forKey:@"fields"];
+    [params setObject:num_id forKey:@"num_iid"];
+
+    NSMutableURLRequest *theRequest = [Utility getResultData:params];
+    [params release];
+    
+    [AFJSONRequestOperation addAcceptableContentTypes:[NSSet setWithObject:@"text/html"]];
+    AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:theRequest success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
+        NSLog(@"App.net Global Stream: %@", JSON);
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            
+            [self parseProductDetailData:JSON theProduct:pro];
+            [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+        });
+    } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON){
+        NSLog(@"---Error---: %@", [error description]);
+    }];
+    [operation start];
+
+}
+-(void)featchVersionNum:(BOOL)automatic
+{
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         
+        NSString *postURL = @"http://42.121.193.105/version.txt";
         NSError *error;
         NSURLResponse *theResponse;
-        NSString *urlString = [NSString stringWithFormat:@"%@/PinPHP_V2.21/fetchTopics.php",ServerIp];
-        NSMutableURLRequest *theRequest=[NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlString]];
-        [theRequest setHTTPMethod:@"POST"];
-        NSString *postString = [NSString stringWithFormat:@"pageNumber=%d",pageNum];
-        [theRequest setHTTPBody:[postString dataUsingEncoding:NSUTF8StringEncoding]];
-        
-        [theRequest addValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
-        NSData *resultData = [NSURLConnection sendSynchronousRequest:theRequest returningResponse:&theResponse error:&error];
-        
-        if (resultData == nil) {
+        //        NSURLRequest *theRequest=[[[NSURLRequest requestWithURL:[NSURL URLWithString:postURL]] cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:30.0]];
+        NSURLRequest *theRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:postURL] cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:30.0];
+        NSData *returnData = [NSURLConnection sendSynchronousRequest:theRequest returningResponse:&theResponse error:&error];
+        /* Return Value
+         The downloaded data for the URL request. Returns nil if a connection could not be created or if the download fails.
+         */
+        if (returnData == nil) {
             
             // Check for problems
             if (error != nil) {
-//                [self showAlert:[error description]];
+                //                [self showAlert:[error description]];
             }else{
-//                [self showAlert:@"返回数据为空"];
+                //                [self showAlert:@"返回数据为空"];
             }
         }
         else {
             // Data was received.. continue processing
-            NSMutableArray *pArray = [self parseStoryData:resultData];
-            [[NSNotificationCenter defaultCenter]postNotificationName:@"Story_Ready" object:pArray userInfo:nil];
+            
+            NSString *returnString = [[NSString alloc]initWithData:returnData encoding:NSUTF8StringEncoding];
+            NSDictionary *infoDic = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:automatic],@"Automatic",returnString,@"VersionNum", nil];
+            [[NSNotificationCenter defaultCenter]postNotificationName:@"VERSION_READY" object:infoDic userInfo:nil];
             [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
         }
     });
+    
 }
--(NSMutableArray *)parseStoryData:(NSData *)data
+
+#pragma parse data
+-(NSMutableArray *)parseStoryData:(NSArray *)storyArray
 {
-    NSString *productsString = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
-    
-    NSArray *storyArray = [productsString JSONValue];
-    
-    NSLog(@"---%@---\n",productsString);
-    [productsString release];
-    
     NSMutableArray *pArray = [[NSMutableArray alloc]init];
     for (int i = 0; i < [storyArray count]; i++) {
         NSDictionary *item = [storyArray objectAtIndex:i];
@@ -115,54 +211,8 @@
     }
     return [pArray autorelease];
 }
--(void)featchKeywordProducts:(NSString *)keyWord pageNumber:(int)pageN
+-(NSMutableArray *)parseStoryProductsData:(NSDictionary *)productsDic
 {
-    if (![[ReachableManager sharedReachableManager]reachable]) {
-        [self performSelector:@selector(showNoNetwork) withObject:nil afterDelay:1.0];
-    }
-    
-    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        
-        NSError *error;
-        NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
-        
-        [params setObject:@"num_iid,title,pic_url,price,seller_credit_score,click_url" forKey:@"fields"];
-        [params setObject:@"50010788" forKey:@"cid"];
-        [params setObject:@"taobao.taobaoke.items.get" forKey:@"method"];
-        [params setObject:[NSString stringWithFormat:@"%d",pageN] forKey:@"page_no"];
-        [params setObject:@"20" forKey:@"page_size"];
-        [params setObject:@"30" forKey:@"start_price"];
-        [params setObject:@"2000" forKey:@"end_price"];
-        [params setObject:@"commissionNum_desc" forKey:@"sort"];
-        [params setObject:keyWord forKey:@"keyword"];
-        [params setObject:@"true" forKey:@"is_mobile"];
-        
-        NSData *resultData=[Utility getResultData:params];
-        [params release];
-        if (resultData == nil) {
-            
-            // Check for problems
-            if (error != nil) {
-//                [self showAlert:[error description]];
-            }else{
-//                [self showAlert:@"返回数据为空"];
-            }
-        }
-        else {
-            // Data was received.. continue processing
-            NSMutableArray *pArray = [self parseStoryProductsData:resultData];
-            [[NSNotificationCenter defaultCenter]postNotificationName:@"TOPIC_PRODUCT" object:pArray userInfo:nil];
-            [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
-        }
-    });
-}
--(NSMutableArray *)parseStoryProductsData:(NSData *)data
-{
-    NSString *productsString = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
-    NSDictionary *productsDic = [productsString JSONValue];
-    //    NSLog(@"---%@---\n",productsString);
-    [productsString release];
     NSDictionary *taobaoke_items_get_response = [productsDic objectForKey:@"taobaoke_items_get_response"];
     NSDictionary *taobaoke_items = [taobaoke_items_get_response objectForKey:@"taobaoke_items"];
     
@@ -186,54 +236,8 @@
     }
     return [pArray autorelease];
 }
--(void)fetachCateProducts:(NSString *)cateName notiName:(NSString *)nName pageNumber:(int)pageN
-{
-    if (![[ReachableManager sharedReachableManager]reachable]) {
-        [self performSelector:@selector(showNoNetwork) withObject:nil afterDelay:1.0];
-    }
-    
-    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                
-        int catId = [self getServerNotificationId:cateName];
-        
-        NSError *error;
-        NSURLResponse *theResponse;
-        NSString *urlString = [NSString stringWithFormat:@"%@/PinPHP_V2.21/fetchProducts.php",ServerIp];
-        NSMutableURLRequest *theRequest=[NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlString]];
-        [theRequest setHTTPMethod:@"POST"];
-        NSString *postString = [NSString stringWithFormat:@"catId=%d&pageNumber=%d",catId,pageN];
-        [theRequest setHTTPBody:[postString dataUsingEncoding:NSUTF8StringEncoding]];
-        
-        [theRequest addValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
-        NSData *resultData = [NSURLConnection sendSynchronousRequest:theRequest returningResponse:&theResponse error:&error];
-        
-        if (resultData == nil) {
-            
-            // Check for problems
-            if (error != nil) {
-//                [self showAlert:[error description]];
-            }else{
-//                [self showAlert:@"返回数据为空"];
-            }
-        }
-        else {
-            // Data was received.. continue processing
-            NSMutableArray *pArray = [self parseProductsData:resultData];
-            [[NSNotificationCenter defaultCenter]postNotificationName:nName object:pArray userInfo:nil];
-            [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
-        }        
-    });
-}
--(NSMutableArray *)parseProductsData:(NSData *)data
-{
-    NSString *productsString = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
-    
-    NSArray *productArray = [productsString JSONValue];
-    
-    NSLog(@"---%@---\n",productsString);
-    [productsString release];
-    
+-(NSMutableArray *)parseProductsData:(NSArray *)productArray
+{    
     NSMutableArray *pArray = [[NSMutableArray alloc]init];
     for (int i = 0; i < [productArray count]; i++) {
         NSDictionary *item = [productArray objectAtIndex:i];
@@ -248,7 +252,7 @@
         product.price = [item objectForKey:@"price"];
         product.seller_credit_score = [item objectForKey:@"likes"];
         product.pic_url = [item objectForKey:@"bimg"];
-        product.imageHeight = [self parseImageHeight:product.pic_url imageWidth:148];
+//        product.imageHeight = [self parseImageHeight:product.pic_url imageWidth:148];
         product.click_url = [item objectForKey:@"url"];
         NSLog(@"%@",product.click_url);
         [pArray addObject:product];
@@ -256,27 +260,8 @@
     }
     return [pArray autorelease];
 }
-
--(void)featchProductDetail:(NSString *)num_id theProduct:(Product *)pro
+-(void)parseProductDetailData:(NSDictionary *)productsDic theProduct:(Product *)pro
 {
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-    
-        NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
-        [params setObject:@"taobao.item.get" forKey:@"method"];
-        [params setObject:@"item_img.url,prop_img.url" forKey:@"fields"];
-        [params setObject:num_id forKey:@"num_iid"];
-        
-        NSData *resultData=[Utility getResultData:params];
-        [params release];
-        [self parseProductDetailData:resultData theProduct:pro];
-    });
-}
--(void)parseProductDetailData:(NSData *)data theProduct:(Product *)pro
-{
-    NSString *productsString = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
-    NSDictionary *productsDic = [productsString JSONValue];
-//        NSLog(@"---%@---\n",productsString);
-    [productsString release];
     NSDictionary *items_get_response = [productsDic objectForKey:@"item_get_response"];
     NSDictionary *item = [items_get_response objectForKey:@"item"];
     
@@ -327,38 +312,9 @@
     [height release];
     return imageHeight;
 }
--(void)featchVersionNum:(BOOL)automatic
-{
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        
-        NSString *postURL = @"http://42.121.193.105/version.txt";
-        NSError *error;
-        NSURLResponse *theResponse;
-//        NSURLRequest *theRequest=[[[NSURLRequest requestWithURL:[NSURL URLWithString:postURL]] cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:30.0]];
-        NSURLRequest *theRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:postURL] cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:30.0];
-        NSData *returnData = [NSURLConnection sendSynchronousRequest:theRequest returningResponse:&theResponse error:&error];
-        /* Return Value
-         The downloaded data for the URL request. Returns nil if a connection could not be created or if the download fails.
-         */
-        if (returnData == nil) {
-            
-            // Check for problems
-            if (error != nil) {
-//                [self showAlert:[error description]];
-            }else{
-//                [self showAlert:@"返回数据为空"];
-            }
-        }
-        else {
-            // Data was received.. continue processing
-            
-            NSString *returnString = [[NSString alloc]initWithData:returnData encoding:NSUTF8StringEncoding];
-            NSDictionary *infoDic = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:automatic],@"Automatic",returnString,@"VersionNum", nil];
-            [[NSNotificationCenter defaultCenter]postNotificationName:@"VERSION_READY" object:infoDic userInfo:nil];
-            [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
-        }
-    });
-}
+
+
+#pragma help method
 - (NSString *)stringCleaner:(NSString *)yourString {
     
     NSScanner *theScanner;
@@ -381,7 +337,24 @@
     return yourString;
     
 }
-
+-(void)showNoNetwork
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName: kNotReachabilityNotification object: nil];
+}
+-(void)showAlert:(NSString *)alertMessage
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        
+        UIAlertView *alert = [[UIAlertView alloc]
+                              initWithTitle: nil
+                              message: alertMessage
+                              delegate: nil
+                              cancelButtonTitle:@"ok"
+                              otherButtonTitles:nil,nil];
+        [alert show];
+        [alert release];
+    });
+}
 //get categoryId
 -(int)getServerNotificationId:(NSString *)catName
 {

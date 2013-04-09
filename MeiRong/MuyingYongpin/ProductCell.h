@@ -7,16 +7,18 @@
 //
 
 #import "PSCollectionViewCell.h"
-#import "SDWebImageCompat.h"
-#import "SDWebImageManagerDelegate.h"
-#import "SDWebImageManager.h"
+//#import "SDWebImageCompat.h"
+//#import "SDWebImageManagerDelegate.h"
+//#import "SDWebImageManager.h"
 
-@interface ProductCell : PSCollectionViewCell<SDWebImageManagerDelegate>
+@interface ProductCell : PSCollectionViewCell/*<SDWebImageManagerDelegate>*/
 
-@property(nonatomic,retain) UIImage *myImage;
-
-- (void)setImageWithURL:(NSURL *)url;
-- (void)setImageWithURL:(NSURL *)url placeholderImage:(UIImage *)placeholder;
-- (void)setImageWithURL:(NSURL *)url placeholderImage:(UIImage *)placeholder options:(SDWebImageOptions)options;
-- (void)cancelCurrentImageLoad;
+@property(nonatomic,retain) UIImageView *myImageView;
+@property(nonatomic,assign) float imageHeight;
+//@property(nonatomic,retain) UIImage *myImage;
+//
+//- (void)setImageWithURL:(NSURL *)url;
+//- (void)setImageWithURL:(NSURL *)url placeholderImage:(UIImage *)placeholder;
+//- (void)setImageWithURL:(NSURL *)url placeholderImage:(UIImage *)placeholder options:(SDWebImageOptions)options;
+//- (void)cancelCurrentImageLoad;
 @end

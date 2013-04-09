@@ -21,7 +21,5 @@
 +(NSString *)createSign:(NSMutableDictionary *)params;
 +(NSString *)createPostURL:(NSMutableDictionary *)params;
 +(NSString *)getCurrentDate;
-+(NSData *)getResultData:(NSMutableDictionary *)params;
-+(BOOL) connectedToNetwork;
-+(BOOL) hostAvailable: (NSString *) theHost;
++(NSMutableURLRequest *)getResultData:(NSMutableDictionary *)params;
 @end
