@@ -93,6 +93,7 @@
     UIView *footerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 50)];
     footerView.backgroundColor = [UIColor blackColor];
     _collectionView.footerView = footerView;
+    [footerView release];
     
     productsArray = [[NSMutableArray alloc]init];
     DataController *dataController = [DataController sharedDataController];
@@ -156,7 +157,8 @@
     Product *product = [productsArray objectAtIndex:index];
     cell.imageHeight = product.imageHeight;
     cell.title = product.title;
-    [cell.myImageView setImageWithURL:[NSURL URLWithString:product.pic_url] placeholderImage:[UIImage imageNamed:@"smallbPlaceHolder.png"]];
+    NSString *imageUrlStr = [NSString stringWithFormat:@"%@_160x160.jpg",product.pic_url];
+    [cell.myImageView setImageWithURL:[NSURL URLWithString:imageUrlStr] placeholderImage:[UIImage imageNamed:@"smallbPlaceHolder.png"]];
 	return cell;
 }
 
