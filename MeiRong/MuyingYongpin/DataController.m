@@ -97,7 +97,7 @@
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
             
             NSMutableArray *pArray = [self parseStoryProductsData:JSON];
-            [[NSNotificationCenter defaultCenter]postNotificationName:@"TOPIC_PRODUCT" object:pArray userInfo:nil];
+            [[NSNotificationCenter defaultCenter]postNotificationName:keyWord object:pArray userInfo:nil];
             [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
         });
     } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON){
@@ -228,7 +228,7 @@
         product.price = [item objectForKey:@"price"];
         product.seller_credit_score = [NSString stringWithFormat:@"%@",[item objectForKey:@"seller_credit_score"]];
         product.pic_url = [item objectForKey:@"pic_url"];
-        product.imageHeight = [self parseImageHeight:product.pic_url imageWidth:148];
+        product.imageHeight = [self parseImageHeight:product.pic_url imageWidth:148 - 10];
         product.click_url = [item objectForKey:@"click_url"];
         NSLog(@"%@",product.click_url);
         [pArray addObject:product];

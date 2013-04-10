@@ -147,6 +147,10 @@
 		4BCB570E160220500082D965 /* DDXMLElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BCB5706160220500082D965 /* DDXMLElement.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		4BCB570F160220500082D965 /* DDXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BCB5708160220500082D965 /* DDXMLNode.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		4BCB571C16022EF80082D965 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BCB571B16022EF80082D965 /* libxml2.dylib */; };
+		4BD23A381715BEE500057C2D /* BackgroundPaper@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BD23A361715BEE500057C2D /* BackgroundPaper@2x.png */; };
+		4BD23A391715BEE500057C2D /* BackgroundPaper.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BD23A371715BEE500057C2D /* BackgroundPaper.png */; };
+		4BD23A3C1715BF9B00057C2D /* ShadowFlattened@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BD23A3A1715BF9B00057C2D /* ShadowFlattened@2x.png */; };
+		4BD23A3D1715BF9B00057C2D /* ShadowFlattened.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BD23A3B1715BF9B00057C2D /* ShadowFlattened.png */; };
 		4BDAE78E1701E2500079FF50 /* Story.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BDAE78D1701E2500079FF50 /* Story.m */; };
 		4BDB315515BA56DE007B1C6F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BDB315415BA56DE007B1C6F /* UIKit.framework */; };
 		4BDB315715BA56DE007B1C6F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BDB315615BA56DE007B1C6F /* Foundation.framework */; };
@@ -458,6 +462,10 @@
 		4BCB5708160220500082D965 /* DDXMLNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDXMLNode.m; sourceTree = "<group>"; };
 		4BCB570A160220500082D965 /* DDXMLPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDXMLPrivate.h; sourceTree = "<group>"; };
 		4BCB571B16022EF80082D965 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
+		4BD23A361715BEE500057C2D /* BackgroundPaper@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BackgroundPaper@2x.png"; sourceTree = "<group>"; };
+		4BD23A371715BEE500057C2D /* BackgroundPaper.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BackgroundPaper.png; sourceTree = "<group>"; };
+		4BD23A3A1715BF9B00057C2D /* ShadowFlattened@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ShadowFlattened@2x.png"; sourceTree = "<group>"; };
+		4BD23A3B1715BF9B00057C2D /* ShadowFlattened.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ShadowFlattened.png; sourceTree = "<group>"; };
 		4BDAE78C1701E2500079FF50 /* Story.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Story.h; sourceTree = "<group>"; };
 		4BDAE78D1701E2500079FF50 /* Story.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Story.m; sourceTree = "<group>"; };
 		4BDB315015BA56DE007B1C6F /* 淘妆.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "淘妆.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -987,6 +995,10 @@
 		4BDB315B15BA56DE007B1C6F /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				4BD23A3A1715BF9B00057C2D /* ShadowFlattened@2x.png */,
+				4BD23A3B1715BF9B00057C2D /* ShadowFlattened.png */,
+				4BD23A361715BEE500057C2D /* BackgroundPaper@2x.png */,
+				4BD23A371715BEE500057C2D /* BackgroundPaper.png */,
 				4B7486C516FF0F500065D6C2 /* theBrandDetailPage */,
 				4B0295A916F7DEEE00C42D9D /* set.png */,
 				4B0295AA16F7DEEE00C42D9D /* set@2x.png */,
@@ -1336,6 +1348,10 @@
 				4B74870716FF145C0065D6C2 /* ico_nav_me.png in Resources */,
 				4B74870E16FF147D0065D6C2 /* ico_nav_special@2x.png in Resources */,
 				4B74870F16FF147D0065D6C2 /* ico_nav_special.png in Resources */,
+				4BD23A381715BEE500057C2D /* BackgroundPaper@2x.png in Resources */,
+				4BD23A391715BEE500057C2D /* BackgroundPaper.png in Resources */,
+				4BD23A3C1715BF9B00057C2D /* ShadowFlattened@2x.png in Resources */,
+				4BD23A3D1715BF9B00057C2D /* ShadowFlattened.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

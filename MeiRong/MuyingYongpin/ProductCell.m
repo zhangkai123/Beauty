@@ -8,13 +8,18 @@
 
 #import "ProductCell.h"
 
+@interface ProductCell()
+
+@end
+
 @implementation ProductCell
-@synthesize myImageView = _myImageView ,imageHeight = _imageHeight;
-//@synthesize myImage = _myImage;
+@synthesize myImageView = _myImageView ,title = _title ,imageHeight = _imageHeight;
+
 -(void)dealloc
 {
-//    [_myImage release];
+    [backgroundImageView release];
     [_myImageView release];
+    [titleLabel release];
     [super dealloc];
 }
 - (id)initWithFrame:(CGRect)frame
@@ -22,67 +27,39 @@
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
-        self.backgroundColor = [UIColor yellowColor];
+        UIImage *bImage = [UIImage imageNamed:@"ShadowFlattened"];
+        UIImage *stretchableButtonImageNormal = [bImage stretchableImageWithLeftCapWidth:2 topCapHeight:2];
         
-        _myImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.height)];
+        backgroundImageView = [[UIImageView alloc]initWithFrame:frame];
+        backgroundImageView.image = stretchableButtonImageNormal;
+        [self addSubview:backgroundImageView];
+        self.backgroundColor = [UIColor clearColor];
+                
+        _myImageView = [[UIImageView alloc]initWithFrame:CGRectMake(5, 0, frame.size.width, frame.size.height)];
         [self addSubview:_myImageView];
+        
+        titleLabel = [[UILabel alloc]initWithFrame:CGRectZero];
+        titleLabel.font = [UIFont fontWithName:@"Heiti TC" size:12];
+        titleLabel.numberOfLines = 0;
+        [self addSubview:titleLabel];
     }
     return self;
 }
--(void)setImageHeight:(float)imageHeight
+-(void)setTitle:(NSString *)title
 {
-    _imageHeight = imageHeight;
-    _myImageView.frame = CGRectMake(0, 0, 148, _imageHeight);
+    _title = title;
+    
+    titleLabel.text = _title;
+
+    CGRect labelFrame = titleLabel.frame;
+    labelFrame.size.width = 148 - 10;
+    labelFrame.origin.y = _imageHeight + 5 + 5;
+    labelFrame.origin.x = 5;
+    titleLabel.frame = labelFrame;
+    [titleLabel sizeToFit];
+    
+    _myImageView.frame = CGRectMake(5, 5, 148 - 10, _imageHeight);
+    
+    backgroundImageView.frame = CGRectMake(0, 0, 148, _imageHeight + titleLabel.frame.size.height + 5 + 5 + 5);
 }
-
-//// Only override drawRect: if you perform custom drawing.
-//// An empty implementation adversely affects performance during animation.
-//- (void)drawRect:(CGRect)rect
-//{
-//    [_myImage drawInRect:rect];
-//}
-//
-//- (void)setImageWithURL:(NSURL *)url
-//{
-//    [self setImageWithURL:url placeholderImage:nil];
-//}
-//
-//- (void)setImageWithURL:(NSURL *)url placeholderImage:(UIImage *)placeholder
-//{
-//    [self setImageWithURL:url placeholderImage:placeholder options:0];
-//}
-//
-//- (void)setImageWithURL:(NSURL *)url placeholderImage:(UIImage *)placeholder options:(SDWebImageOptions)options
-//{
-//    SDWebImageManager *manager = [SDWebImageManager sharedManager];
-//    
-//    // Remove in progress downloader from queue
-//    [manager cancelForDelegate:self];
-//    
-//    self.myImage = placeholder;
-//    [self setNeedsDisplay];
-//    
-//    if (url)
-//    {
-//        [manager downloadWithURL:url delegate:self options:options];
-//    }
-//}
-//
-//- (void)cancelCurrentImageLoad
-//{
-//    [[SDWebImageManager sharedManager] cancelForDelegate:self];
-//}
-//
-//- (void)webImageManager:(SDWebImageManager *)imageManager didProgressWithPartialImage:(UIImage *)image forURL:(NSURL *)url
-//{
-//    self.myImage = image;
-//    [self setNeedsDisplay];
-//}
-//
-//- (void)webImageManager:(SDWebImageManager *)imageManager didFinishWithImage:(UIImage *)image
-//{
-//    self.myImage = image;
-//    [self setNeedsDisplay];
-//}
-
 @end

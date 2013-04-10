@@ -12,6 +12,7 @@
 #import "ProductCell.h"
 #import "DataController.h"
 #import "Product.h"
+#import "TheBrandDetailViewController.h"
 
 @interface NewTopicProductViewController ()<PSCollectionViewDelegate,PSCollectionViewDataSource,UIScrollViewDelegate>
 {
@@ -48,9 +49,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"BackgroundPaper"]];
     
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(recieveTopicProducts:) name:@"TOPIC_PRODUCT" object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(recieveTopicProducts:) name:self.keyWord object:nil];
     
     UIImageView *topBar = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 320, 44)];
     topBar.image = [UIImage imageNamed:@"navbar_background"];
@@ -73,7 +74,7 @@
     _collectionView.delegate = self; // This is for UIScrollViewDelegate
     _collectionView.collectionViewDelegate = self;
     _collectionView.collectionViewDataSource = self;
-    _collectionView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"SheetBackground"]];
+    _collectionView.backgroundColor = [UIColor clearColor];
     _collectionView.autoresizingMask = ~UIViewAutoresizingNone;
     _collectionView.numColsPortrait = 2;
     _collectionView.numColsLandscape = 2;
@@ -154,13 +155,26 @@
 	}
     Product *product = [productsArray objectAtIndex:index];
     cell.imageHeight = product.imageHeight;
+    cell.title = product.title;
     [cell.myImageView setImageWithURL:[NSURL URLWithString:product.pic_url] placeholderImage:[UIImage imageNamed:@"smallbPlaceHolder.png"]];
 	return cell;
 }
 
 - (CGFloat)collectionView:(PSCollectionView *)collectionView heightForRowAtIndex:(NSInteger)index {
     Product *product = [productsArray objectAtIndex:index];
-    return product.imageHeight;
+    
+    CGSize theSize = [product.title sizeWithFont:[UIFont fontWithName:@"Heiti TC" size:12] constrainedToSize:CGSizeMake(148 - 10, FLT_MAX) lineBreakMode:UILineBreakModeWordWrap];
+    return product.imageHeight + theSize.height + 15;
+}
+- (void)collectionView:(PSCollectionView *)collectionView didSelectCell:(PSCollectionViewCell *)cell atIndex:(NSInteger)index
+{
+    Product *product = [productsArray objectAtIndex:index];
+    ProductCell *myCell = (ProductCell *)cell;
+    
+    TheBrandDetailViewController *theBrandDetailViewController = [[TheBrandDetailViewController alloc]initWithProduct:product];
+    theBrandDetailViewController.smallImage = myCell.myImageView.image;
+    [self presentModalViewController:theBrandDetailViewController animated:YES];
+    [theBrandDetailViewController release];
 }
 
 #pragma mark-
@@ -204,9 +218,6 @@
         //[self performSelector:@selector(reloadData) withObject:self afterDelay:1.0f]; //make a delay to show loading process for a while
     }
 }
-//-(void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView{
-//    [scrollView setContentOffset:scrollView.contentOffset animated:YES];
-//}
 
 - (void)didReceiveMemoryWarning
 {
