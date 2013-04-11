@@ -1,30 +1,27 @@
 //
-//  NewTopicProductViewController.m
+//  NewProductRootViewController.m
 //  TaoZhuang
 //
-//  Created by zhang kai on 4/9/13.
+//  Created by zhang kai on 4/12/13.
 //
 //
+
 #import <QuartzCore/CALayer.h>
-#import "NewTopicProductViewController.h"
-#import "UIImageView+WebCache.h"
-#import "PSCollectionView.h"
+#import "NewProductRootViewController.h"
 #import "ProductCell.h"
-#import "DataController.h"
 #import "Product.h"
 #import "TheBrandDetailViewController.h"
+#import "UIImageView+WebCache.h"
 
-@interface NewTopicProductViewController ()<PSCollectionViewDelegate,PSCollectionViewDataSource,UIScrollViewDelegate>
-{
-    PSCollectionView *_collectionView;
-}
-@property(nonatomic,retain) PSCollectionView *_collectionView;
+@interface NewProductRootViewController ()<PSCollectionViewDelegate,PSCollectionViewDataSource,UIScrollViewDelegate>
+
 @property(nonatomic,readwrite) BOOL loadingmore;
+
 @end
 
-@implementation NewTopicProductViewController
+@implementation NewProductRootViewController
 @synthesize _collectionView;
-@synthesize keyWord ,productsArray;
+
 
 -(void)dealloc
 {
@@ -32,6 +29,13 @@
     [_collectionView release];
     [super dealloc];
 }
+
+-(void)goBack
+{
+    [[NSNotificationCenter defaultCenter]removeObserver:self];
+    [self dismissModalViewControllerAnimated:YES];
+}
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -40,18 +44,12 @@
     }
     return self;
 }
--(void)goBack
-{
-    [[NSNotificationCenter defaultCenter]removeObserver:self];
-    [self dismissModalViewControllerAnimated:YES];
-}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+	// Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"BackgroundPaper"]];
-    
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(recieveTopicProducts:) name:self.keyWord object:nil];
     
     UIImageView *topBar = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 320, 44)];
     topBar.image = [UIImage imageNamed:@"navbar_background"];
@@ -68,8 +66,8 @@
     [topBar addSubview:backButton];
     [backButton release];
     [topBar release];
-
-	// Do any additional setup after loading the view.
+    
+    // Do any additional setup after loading the view.
     _collectionView = [[PSCollectionView alloc] initWithFrame:CGRectZero];
     _collectionView.delegate = self; // This is for UIScrollViewDelegate
     _collectionView.collectionViewDelegate = self;
@@ -87,7 +85,7 @@
     }else{
         self._collectionView.frame = CGRectMake(0, 45, 320, 460 - 45);
     }
-
+    
     [self.view addSubview:self._collectionView];
     
     UIView *footerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 50)];
@@ -96,46 +94,6 @@
     [footerView release];
     
     productsArray = [[NSMutableArray alloc]init];
-    DataController *dataController = [DataController sharedDataController];
-    [dataController featchKeywordProducts:self.keyWord pageNumber:1];
-    
-    self.loadingmore = YES;
-}
--(void)recieveTopicProducts:(NSNotification *)notification
-{
-    self.loadingmore = NO;
-    NSMutableArray *pArray = [notification object];
-    [pArray retain];
-    if ([pArray count] == 0) {
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
-//            [theTalbleView.pullToRefreshView performSelector:@selector(stopAnimating) withObject:nil afterDelay:0];
-//            [theTalbleView.infiniteScrollingView performSelector:@selector(stopAnimating) withObject:nil afterDelay:0];
-//            [self stopActivity];
-        });
-        [pArray release];
-        return;    
-    }
-//    if (refresh) {
-//        [productsArray removeAllObjects];
-//    }
-
-    [productsArray addObjectsFromArray:pArray];
-    [pArray release];
-    
-    
-    dispatch_async(dispatch_get_main_queue(), ^{
-//        [theTalbleView.pullToRefreshView performSelector:@selector(stopAnimating) withObject:nil afterDelay:0];
-//        [theTalbleView.infiniteScrollingView performSelector:@selector(stopAnimating) withObject:nil afterDelay:0];
-//        [self stopActivity];
-//        if (refresh) {
-//            [theTalbleView reloadData];
-//        }else{
-//            [theTalbleView insertRowsAtIndexPaths:rowsInsertIndexPath withRowAnimation:UITableViewRowAnimationRight];
-//            [rowsInsertIndexPath release];
-//        }
-        [self._collectionView reloadData];
-    });
 }
 
 - (Class)collectionView:(PSCollectionView *)collectionView cellClassForRowAtIndex:(NSInteger)index {
@@ -147,12 +105,12 @@
 }
 
 - (UIView *)collectionView:(PSCollectionView *)collectionView cellForRowAtIndex:(NSInteger)index {
-
+    
 	ProductCell *cell = (ProductCell *)[collectionView dequeueReusableViewForClass:[ProductCell class]];
 	
 	if(cell == nil)
 	{
-		cell  = [[[ProductCell alloc] initWithFrame:CGRectZero]autorelease];		
+		cell  = [[[ProductCell alloc] initWithFrame:CGRectZero]autorelease];
 	}
     Product *product = [productsArray objectAtIndex:index];
     cell.imageHeight = product.imageHeight;
@@ -177,38 +135,6 @@
     theBrandDetailViewController.smallImage = myCell.myImageView.image;
     [self presentModalViewController:theBrandDetailViewController animated:YES];
     [theBrandDetailViewController release];
-}
-
-#pragma mark-
-#pragma mark- UIScrollViewDelegate
-- (void)loadMoreImages
-{
-    if (self.loadingmore) return;
-    self.loadingmore = YES;
-
-    int productN = [productsArray count];
-    int pageN;
-    if (productN % 20 == 0) {
-        pageN = productN / 20;
-    }
-    else{
-//        [weaktheTalbleView.infiniteScrollingView performSelector:@selector(stopAnimating) withObject:nil afterDelay:0];
-        return;
-    }
-    DataController *dataController = [DataController sharedDataController];
-    [dataController featchKeywordProducts:self.keyWord pageNumber:pageN + 1];
-    currentPage = pageN;
-
-}
--(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
-{
-    float bottomEdge = scrollView.contentOffset.y + scrollView.frame.size.height + 50 + 10;
-    
-    if (bottomEdge >= scrollView.contentSize.height )
-    {
-        [self loadMoreImages];
-        //[self performSelector:@selector(reloadData) withObject:self afterDelay:1.0f]; //make a delay to show loading process for a while
-    }
 }
 
 - (void)didReceiveMemoryWarning

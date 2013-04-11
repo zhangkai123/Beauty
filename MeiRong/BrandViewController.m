@@ -8,8 +8,9 @@
 
 #import "BrandViewController.h"
 #import "TopicProductViewController.h"
-#import "HotProductViewController.h"
+//#import "HotProductViewController.h"
 #import "DataController.h"
+#import "NewCategoryProductViewController.h"
 
 @interface BrandViewController()
 {
@@ -223,11 +224,10 @@
         default:
             break;
     }
-    HotProductViewController *hotProductViewController = [[HotProductViewController alloc]initWithTabBar];
-    hotProductViewController.catName = categoryName;
-//    [self.navigationController pushViewController:hotProductViewController animated:YES];
-    [self presentModalViewController:hotProductViewController animated:YES];
-    [hotProductViewController release];
+    NewCategoryProductViewController *newCategoryProductViewController = [[NewCategoryProductViewController alloc]init];
+    newCategoryProductViewController.catName = categoryName;
+    [self presentModalViewController:newCategoryProductViewController animated:YES];
+    [newCategoryProductViewController release];
 }
 - (void)viewDidUnload
 {

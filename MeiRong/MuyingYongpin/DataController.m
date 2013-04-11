@@ -248,11 +248,17 @@
         if ([num_id_array count] > 0) {
             product.num_id = [num_id_array objectAtIndex:1];
         }
+        float imageW = [[item objectForKey:@"imageWidth"]floatValue];
+        float imageH = [[item objectForKey:@"imageHeight"]floatValue];
+        if (imageW == 0 || imageH == 0) {
+            imageW = 160;
+            imageH = 160;
+        }
         product.title = [item objectForKey:@"title"];
         product.price = [item objectForKey:@"price"];
         product.seller_credit_score = [item objectForKey:@"likes"];
         product.pic_url = [item objectForKey:@"bimg"];
-//        product.imageHeight = [self parseImageHeight:product.pic_url imageWidth:148];
+        product.imageHeight = imageH * 148 / imageW;
         product.click_url = [item objectForKey:@"url"];
         NSLog(@"%@",product.click_url);
         [pArray addObject:product];
