@@ -40,6 +40,7 @@
         
         titleLabel = [[UILabel alloc]initWithFrame:CGRectZero];
         titleLabel.font = [UIFont fontWithName:@"Heiti TC" size:12];
+        [titleLabel setTextColor:[UIColor grayColor]];
         titleLabel.numberOfLines = 0;
         [self addSubview:titleLabel];
     }

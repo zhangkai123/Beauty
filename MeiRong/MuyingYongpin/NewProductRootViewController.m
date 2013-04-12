@@ -89,7 +89,7 @@
     [self.view addSubview:self._collectionView];
     
     UIView *footerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 50)];
-    footerView.backgroundColor = [UIColor blackColor];
+    footerView.backgroundColor = [UIColor clearColor];
     _collectionView.footerView = footerView;
     [footerView release];
     
