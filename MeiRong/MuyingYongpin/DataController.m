@@ -237,7 +237,11 @@
     return [pArray autorelease];
 }
 -(NSMutableArray *)parseProductsData:(NSArray *)productArray
-{    
+{
+    int fBigHeight = 0;
+    int fShortHeight = 0;
+    int biggestHeightIndex = 0;
+    int shortestHeightIndex = 0;
     NSMutableArray *pArray = [[NSMutableArray alloc]init];
     for (int i = 0; i < [productArray count]; i++) {
         NSDictionary *item = [productArray objectAtIndex:i];
@@ -263,7 +267,30 @@
         NSLog(@"%@",product.click_url);
         [pArray addObject:product];
         [product release];
+        
+        if (i == 0) {
+            fBigHeight = product.imageHeight;
+            fShortHeight = product.imageHeight;
+        }
+        if (product.imageHeight > fBigHeight) {
+            
+            fBigHeight = product.imageHeight;
+            biggestHeightIndex = i;
+        }
+        if (product.imageHeight < fShortHeight) {
+            
+            fShortHeight = product.imageHeight;
+            shortestHeightIndex = i;
+        }
     }
+    //re arrange the array for showing
+    Product *longProduct = [[[pArray objectAtIndex:biggestHeightIndex] retain]autorelease];
+    [pArray removeObject:longProduct];
+    [pArray insertObject:longProduct atIndex:0];
+    Product *shortProduct = [[[pArray objectAtIndex:shortestHeightIndex]retain]autorelease];
+    [pArray removeObject:shortProduct];
+    [pArray insertObject:shortProduct atIndex:0];
+    
     return [pArray autorelease];
 }
 -(void)parseProductDetailData:(NSDictionary *)productsDic theProduct:(Product *)pro

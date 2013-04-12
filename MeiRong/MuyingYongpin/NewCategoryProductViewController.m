@@ -203,7 +203,6 @@
     [productsArray addObjectsFromArray:pArray];
     [pArray release];
     
-    
     dispatch_async(dispatch_get_main_queue(), ^{
         //        [theTalbleView.pullToRefreshView performSelector:@selector(stopAnimating) withObject:nil afterDelay:0];
         //        [theTalbleView.infiniteScrollingView performSelector:@selector(stopAnimating) withObject:nil afterDelay:0];
