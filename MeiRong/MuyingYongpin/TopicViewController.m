@@ -15,7 +15,8 @@
 #import "WebViewController.h"  
 #import "SVPullToRefresh.h"
 
-#import "NewTopicProductViewController.h"
+//#import "NewTopicProductViewController.h"
+#import "NewCategoryProductViewController.h"
 
 @interface TopicViewController()
 {
@@ -234,17 +235,18 @@
 {
     selectedCell = cell;
     Story *story = [storiesArray objectAtIndex:cell.rowNum];
-//    TopicProductViewController *topicProductViewController = [[TopicProductViewController alloc]initWithTabBar];
-//    topicProductViewController.keyWord = story.keyWord;
-//    topicProductViewController.navTitle = story.title;
-//    [self presentModalViewController:topicProductViewController animated:YES];
-//    [topicProductViewController release];
     
-    NewTopicProductViewController *newTopicProductViewController = [[NewTopicProductViewController alloc]init];
-    newTopicProductViewController.keyWord = story.keyWord;
-//    topicProductViewController.navTitle = story.title;
-    [self presentModalViewController:newTopicProductViewController animated:YES];
-    [newTopicProductViewController release];
+//    NewTopicProductViewController *newTopicProductViewController = [[NewTopicProductViewController alloc]init];
+//    newTopicProductViewController.keyWord = story.keyWord;
+////    topicProductViewController.navTitle = story.title;
+//    [self presentModalViewController:newTopicProductViewController animated:YES];
+//    [newTopicProductViewController release];
+    
+    NewCategoryProductViewController *newCategoryProductViewController = [[NewCategoryProductViewController alloc]init];
+    newCategoryProductViewController.catName = story.keyWord;
+    newCategoryProductViewController.catId = story.categoryId;
+    [self presentModalViewController:newCategoryProductViewController animated:YES];
+    [newCategoryProductViewController release];
 }
 
 - (void)viewDidUnload

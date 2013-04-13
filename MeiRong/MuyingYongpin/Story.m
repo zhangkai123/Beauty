@@ -9,7 +9,7 @@
 #import "Story.h"
 
 @implementation Story
-@synthesize title = _title ,imagePath = _imagePath, article = _article, keyWord = _keyWord;
+@synthesize title = _title ,imagePath = _imagePath, article = _article, keyWord = _keyWord ,categoryId = _categoryId;
 
 -(void)dealloc
 {
@@ -17,10 +17,11 @@
     [_imagePath release];
     [_article release];
     [_keyWord release];
+    [_categoryId release];
     [super dealloc];
 }
 
--(id)initWithStory:(NSString *)tit imagePath:(NSString *)imageP article:(NSString *)art keyWord:(NSString *)kWord
+-(id)initWithStory:(NSString *)tit imagePath:(NSString *)imageP article:(NSString *)art keyWord:(NSString *)kWord categoryId:(NSString *)cId
 {
     if (self = [super init]) {
         
@@ -28,6 +29,7 @@
         self.imagePath = imageP;
         self.article = art;
         self.keyWord = kWord;
+        self.categoryId = cId;
     }
     return self;
 }

@@ -14,6 +14,7 @@
 @property(nonatomic,retain) NSString *imagePath;
 @property(nonatomic,retain) NSString *article;
 @property(nonatomic,retain) NSString *keyWord;
+@property(nonatomic,retain) NSString *categoryId;
 
--(id)initWithStory:(NSString *)tit imagePath:(NSString *)imageP article:(NSString *)art keyWord:(NSString *)kWord;
+-(id)initWithStory:(NSString *)tit imagePath:(NSString *)imageP article:(NSString *)art keyWord:(NSString *)kWord categoryId:(NSString *)cId;
 @end

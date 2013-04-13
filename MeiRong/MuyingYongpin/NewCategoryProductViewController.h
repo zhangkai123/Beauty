@@ -11,7 +11,8 @@
 @interface NewCategoryProductViewController : NewProductRootViewController
 {
     NSString *catName;
+    NSString *catId;
 }
 @property(nonatomic,retain)  NSString *catName;
-
+@property(nonatomic,retain)  NSString *catId;
 @end

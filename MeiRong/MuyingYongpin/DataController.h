@@ -13,7 +13,7 @@
 
 
 +(id)sharedDataController;
--(void)fetachCateProducts:(NSString *)cateName notiName:(NSString *)nName pageNumber:(int)pageN;
+-(void)fetachCateProducts:(NSString *)cateName cateId:(NSString *)cId pageNumber:(int)pageN;
 -(void)featchProductDetail:(NSString *)num_id theProduct:(Product *)pro;
 -(NSMutableArray *)parseProductsData:(NSData *)data;
 

@@ -105,7 +105,7 @@
     }];
     [operation start];
 }
--(void)fetachCateProducts:(NSString *)cateName notiName:(NSString *)nName pageNumber:(int)pageN
+-(void)fetachCateProducts:(NSString *)cateName cateId:(NSString *)cId pageNumber:(int)pageN
 {
     if (![[ReachableManager sharedReachableManager]reachable]) {
         [self performSelector:@selector(showNoNetwork) withObject:nil afterDelay:1.0];
@@ -113,21 +113,21 @@
     
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     
-    int catId = [self getServerNotificationId:cateName];
     NSString *urlString = [NSString stringWithFormat:@"%@/PinPHP_V2.21/fetchProducts.php",ServerIp];
     NSMutableURLRequest *theRequest=[NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlString]];
     [theRequest setHTTPMethod:@"POST"];
-    NSString *postString = [NSString stringWithFormat:@"catId=%d&pageNumber=%d",catId,pageN];
+    NSString *postString = [NSString stringWithFormat:@"catId=%@&pageNumber=%d",cId,pageN];
     [theRequest setHTTPBody:[postString dataUsingEncoding:NSUTF8StringEncoding]];
     [theRequest addValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
     
+    __block NSString *blockCateName = cateName;
     [AFJSONRequestOperation addAcceptableContentTypes:[NSSet setWithObject:@"text/html"]];
     AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:theRequest success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
         NSLog(@"App.net Global Stream: %@", JSON);
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
             
             NSMutableArray *pArray = [self parseProductsData:JSON];
-            [[NSNotificationCenter defaultCenter]postNotificationName:nName object:pArray userInfo:nil];
+            [[NSNotificationCenter defaultCenter]postNotificationName:blockCateName object:pArray userInfo:nil];
             [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
         });
     } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON){
@@ -204,8 +204,12 @@
         NSString *img = [item objectForKey:@"img"];
         NSString *article = [item objectForKey:@"abst"];
         NSString *keyWord = [item objectForKey:@"url"];
+        NSString *categoryId = [item objectForKey:@"info"];
+        if ([categoryId isEqualToString:@""]) {
+            categoryId = @"0";
+        }
         
-        Story *story = [[Story alloc]initWithStory:title imagePath:img article:article keyWord:keyWord];
+        Story *story = [[Story alloc]initWithStory:title imagePath:img article:article keyWord:keyWord categoryId:categoryId];
         [pArray addObject:story];
         [story release];
     }
@@ -284,13 +288,16 @@
         }
     }
     //re arrange the array for showing
-    Product *longProduct = [[[pArray objectAtIndex:biggestHeightIndex] retain]autorelease];
-    [pArray removeObject:longProduct];
-    [pArray insertObject:longProduct atIndex:0];
-    Product *shortProduct = [[[pArray objectAtIndex:shortestHeightIndex]retain]autorelease];
-    [pArray removeObject:shortProduct];
-    [pArray insertObject:shortProduct atIndex:0];
-    
+    if ([pArray count] > biggestHeightIndex) {
+        Product *longProduct = [[[pArray objectAtIndex:biggestHeightIndex] retain]autorelease];
+        [pArray removeObject:longProduct];
+        [pArray insertObject:longProduct atIndex:0];
+    }
+    if ([pArray count] > shortestHeightIndex) {
+        Product *shortProduct = [[[pArray objectAtIndex:shortestHeightIndex]retain]autorelease];
+        [pArray removeObject:shortProduct];
+        [pArray insertObject:shortProduct atIndex:0];
+    }    
     return [pArray autorelease];
 }
 -(void)parseProductDetailData:(NSDictionary *)productsDic theProduct:(Product *)pro
@@ -388,156 +395,156 @@
         [alert release];
     });
 }
-//get categoryId
--(int)getServerNotificationId:(NSString *)catName
-{
-    int notificationId;
-    if ([catName isEqualToString:@"热销"]) {
-        notificationId = 413;
-    }else if ([catName isEqualToString:@"美白"]) {
-        
-        notificationId = 188;
-    }else if([catName isEqualToString:@"保湿"]){
-        
-        notificationId = 189;
-    }else if([catName isEqualToString:@"祛痘"]){
-        
-        notificationId = 190;
-    }else if([catName isEqualToString:@"抗敏"]){
-        
-        notificationId = 191;
-    }else if([catName isEqualToString:@"遮瑕"]){
-        
-        notificationId = 192;
-    }else if([catName isEqualToString:@"祛斑"]){
-        
-        notificationId = 193;
-    }else if([catName isEqualToString:@"控油"]){
-        
-        notificationId = 194;
-    }else if([catName isEqualToString:@"补水"]){
-        
-        notificationId = 195;
-    }else if([catName isEqualToString:@"去黑头"]){
-        
-        notificationId = 196;
-    }else if([catName isEqualToString:@"收毛孔"]){
-        
-        notificationId = 197;
-    }else if([catName isEqualToString:@"去眼袋"]){
-        
-        notificationId = 198;
-    }
-    
-    else if([catName isEqualToString:@"防晒霜"]){
-        
-        notificationId = 199;
-    }else if([catName isEqualToString:@"喷雾"]){
-        
-        notificationId = 200;
-    }else if([catName isEqualToString:@"卸妆油"]){
-        
-        notificationId = 201;
-    }else if([catName isEqualToString:@"洗面奶"]){
-        
-        notificationId = 202;
-    }else if([catName isEqualToString:@"面膜"]){
-        
-        notificationId = 203;
-    }else if([catName isEqualToString:@"眼霜"]){
-        
-        notificationId = 204;
-    }else if([catName isEqualToString:@"化妆水"]){
-        
-        notificationId = 205;
-    }else if([catName isEqualToString:@"面霜"]){
-        
-        notificationId = 206;
-    }else if([catName isEqualToString:@"隔离霜"]){
-        
-        notificationId = 207;
-    }else if([catName isEqualToString:@"吸油面纸"]){
-        
-        notificationId = 208;
-    }else if([catName isEqualToString:@"药妆"]){
-        
-        notificationId = 209;
-    }
-    
-    else if([catName isEqualToString:@"香水"]){
-        
-        notificationId = 210;
-    }else if([catName isEqualToString:@"指甲油"]){
-        
-        notificationId = 211;
-    }else if([catName isEqualToString:@"睫毛膏"]){
-        
-        notificationId = 212;
-    }else if([catName isEqualToString:@"BB霜"]){
-        
-        notificationId = 213;
-    }else if([catName isEqualToString:@"粉饼"]){
-        
-        notificationId = 214;
-    }else if([catName isEqualToString:@"蜜粉"]){
-        
-        notificationId = 215;
-    }else if([catName isEqualToString:@"口红"]){
-        
-        notificationId = 216;
-    }else if([catName isEqualToString:@"腮红"]){
-        
-        notificationId = 217;
-    }else if([catName isEqualToString:@"眼影"]){
-        
-        notificationId = 218;
-    }else if([catName isEqualToString:@"眉笔"]){
-        
-        notificationId = 219;
-    }else if([catName isEqualToString:@"唇彩"]){
-        
-        notificationId = 220;
-    }else if([catName isEqualToString:@"眼线膏"]){
-        
-        notificationId = 221;
-    }
-    
-    else if([catName isEqualToString:@"手工皂"]){
-        
-        notificationId = 222;
-    }else if([catName isEqualToString:@"沐浴露"]){
-        
-        notificationId = 223;
-    }else if([catName isEqualToString:@"美颈霜"]){
-        
-        notificationId = 224;
-    }else if([catName isEqualToString:@"身体乳"]){
-        
-        notificationId = 225;
-    }else if([catName isEqualToString:@"护手霜"]){
-        
-        notificationId = 226;
-    }else if([catName isEqualToString:@"假发"]){
-        
-        notificationId = 227;
-    }else if([catName isEqualToString:@"发蜡"]){
-        
-        notificationId = 228;
-    }else if([catName isEqualToString:@"弹力素"]){
-        
-        notificationId = 229;
-    }else if([catName isEqualToString:@"发膜"]){
-        
-        notificationId = 230;
-    }else if([catName isEqualToString:@"蓬蓬粉"]){
-        
-        notificationId = 231;
-    }else if([catName isEqualToString:@"染发膏"]){
-        
-        notificationId = 232;
-    }
-    
-    return notificationId;
-}
+////get categoryId
+//-(int)getServerNotificationId:(NSString *)catName
+//{
+//    int notificationId;
+//    if ([catName isEqualToString:@"热销"]) {
+//        notificationId = 413;
+//    }else if ([catName isEqualToString:@"美白"]) {
+//        
+//        notificationId = 188;
+//    }else if([catName isEqualToString:@"保湿"]){
+//        
+//        notificationId = 189;
+//    }else if([catName isEqualToString:@"祛痘"]){
+//        
+//        notificationId = 190;
+//    }else if([catName isEqualToString:@"抗敏"]){
+//        
+//        notificationId = 191;
+//    }else if([catName isEqualToString:@"遮瑕"]){
+//        
+//        notificationId = 192;
+//    }else if([catName isEqualToString:@"祛斑"]){
+//        
+//        notificationId = 193;
+//    }else if([catName isEqualToString:@"控油"]){
+//        
+//        notificationId = 194;
+//    }else if([catName isEqualToString:@"补水"]){
+//        
+//        notificationId = 195;
+//    }else if([catName isEqualToString:@"去黑头"]){
+//        
+//        notificationId = 196;
+//    }else if([catName isEqualToString:@"收毛孔"]){
+//        
+//        notificationId = 197;
+//    }else if([catName isEqualToString:@"去眼袋"]){
+//        
+//        notificationId = 198;
+//    }
+//    
+//    else if([catName isEqualToString:@"防晒霜"]){
+//        
+//        notificationId = 199;
+//    }else if([catName isEqualToString:@"喷雾"]){
+//        
+//        notificationId = 200;
+//    }else if([catName isEqualToString:@"卸妆油"]){
+//        
+//        notificationId = 201;
+//    }else if([catName isEqualToString:@"洗面奶"]){
+//        
+//        notificationId = 202;
+//    }else if([catName isEqualToString:@"面膜"]){
+//        
+//        notificationId = 203;
+//    }else if([catName isEqualToString:@"眼霜"]){
+//        
+//        notificationId = 204;
+//    }else if([catName isEqualToString:@"化妆水"]){
+//        
+//        notificationId = 205;
+//    }else if([catName isEqualToString:@"面霜"]){
+//        
+//        notificationId = 206;
+//    }else if([catName isEqualToString:@"隔离霜"]){
+//        
+//        notificationId = 207;
+//    }else if([catName isEqualToString:@"吸油面纸"]){
+//        
+//        notificationId = 208;
+//    }else if([catName isEqualToString:@"药妆"]){
+//        
+//        notificationId = 209;
+//    }
+//    
+//    else if([catName isEqualToString:@"香水"]){
+//        
+//        notificationId = 210;
+//    }else if([catName isEqualToString:@"指甲油"]){
+//        
+//        notificationId = 211;
+//    }else if([catName isEqualToString:@"睫毛膏"]){
+//        
+//        notificationId = 212;
+//    }else if([catName isEqualToString:@"BB霜"]){
+//        
+//        notificationId = 213;
+//    }else if([catName isEqualToString:@"粉饼"]){
+//        
+//        notificationId = 214;
+//    }else if([catName isEqualToString:@"蜜粉"]){
+//        
+//        notificationId = 215;
+//    }else if([catName isEqualToString:@"口红"]){
+//        
+//        notificationId = 216;
+//    }else if([catName isEqualToString:@"腮红"]){
+//        
+//        notificationId = 217;
+//    }else if([catName isEqualToString:@"眼影"]){
+//        
+//        notificationId = 218;
+//    }else if([catName isEqualToString:@"眉笔"]){
+//        
+//        notificationId = 219;
+//    }else if([catName isEqualToString:@"唇彩"]){
+//        
+//        notificationId = 220;
+//    }else if([catName isEqualToString:@"眼线膏"]){
+//        
+//        notificationId = 221;
+//    }
+//    
+//    else if([catName isEqualToString:@"手工皂"]){
+//        
+//        notificationId = 222;
+//    }else if([catName isEqualToString:@"沐浴露"]){
+//        
+//        notificationId = 223;
+//    }else if([catName isEqualToString:@"美颈霜"]){
+//        
+//        notificationId = 224;
+//    }else if([catName isEqualToString:@"身体乳"]){
+//        
+//        notificationId = 225;
+//    }else if([catName isEqualToString:@"护手霜"]){
+//        
+//        notificationId = 226;
+//    }else if([catName isEqualToString:@"假发"]){
+//        
+//        notificationId = 227;
+//    }else if([catName isEqualToString:@"发蜡"]){
+//        
+//        notificationId = 228;
+//    }else if([catName isEqualToString:@"弹力素"]){
+//        
+//        notificationId = 229;
+//    }else if([catName isEqualToString:@"发膜"]){
+//        
+//        notificationId = 230;
+//    }else if([catName isEqualToString:@"蓬蓬粉"]){
+//        
+//        notificationId = 231;
+//    }else if([catName isEqualToString:@"染发膏"]){
+//        
+//        notificationId = 232;
+//    }
+//    
+//    return notificationId;
+//}
 
 @end
