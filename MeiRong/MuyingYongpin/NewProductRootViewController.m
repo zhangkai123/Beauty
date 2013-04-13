@@ -14,7 +14,9 @@
 #import "UIImageView+WebCache.h"
 
 @interface NewProductRootViewController ()<PSCollectionViewDelegate,PSCollectionViewDataSource,UIScrollViewDelegate>
-
+{
+    
+}
 @property(nonatomic,readwrite) BOOL loadingmore;
 
 @end
@@ -25,6 +27,9 @@
 
 -(void)dealloc
 {
+    [topBar release];
+    [backButton release];
+    [activityIndicator release];
     [productsArray release];
     [_collectionView release];
     [super dealloc];
@@ -51,7 +56,7 @@
 	// Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"BackgroundPaper"]];
     
-    UIImageView *topBar = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 320, 44)];
+    topBar = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 320, 44)];
     topBar.image = [UIImage imageNamed:@"navbar_background"];
     topBar.userInteractionEnabled = YES;
     topBar.layer.shadowColor = [UIColor blackColor].CGColor;
@@ -60,12 +65,10 @@
     topBar.layer.shadowRadius = 1.0;
     topBar.clipsToBounds = NO;
     [self.view addSubview:topBar];
-    UIButton *backButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 44, 44)];
+    backButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 44, 44)];
     [backButton setImage:[UIImage imageNamed:@"btn_header_back"] forState:UIControlStateNormal];
     [backButton addTarget:self action:@selector(goBack) forControlEvents:UIControlEventTouchUpInside];
     [topBar addSubview:backButton];
-    [backButton release];
-    [topBar release];
     
     // Do any additional setup after loading the view.
     _collectionView = [[PSCollectionView alloc] initWithFrame:CGRectZero];
@@ -92,6 +95,12 @@
     footerView.backgroundColor = [UIColor clearColor];
     _collectionView.footerView = footerView;
     [footerView release];
+    
+    activityIndicator = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(150, 5, 20, 20)];
+    [activityIndicator stopAnimating];
+    [activityIndicator hidesWhenStopped];
+    [activityIndicator setActivityIndicatorViewStyle:UIActivityIndicatorViewStyleGray];
+    [footerView addSubview:activityIndicator];
     
     productsArray = [[NSMutableArray alloc]init];
 }

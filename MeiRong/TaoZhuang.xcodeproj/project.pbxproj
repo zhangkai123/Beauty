@@ -161,6 +161,7 @@
 		4BDB316115BA56DE007B1C6F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BDB316015BA56DE007B1C6F /* main.m */; };
 		4BDB316515BA56DE007B1C6F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BDB316415BA56DE007B1C6F /* AppDelegate.m */; };
 		4BDB317315BAA36C007B1C6F /* DataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BDB317215BAA36C007B1C6F /* DataController.m */; };
+		4BEA42A81719519800ED2795 /* NewHotProductViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BEA42A71719519800ED2795 /* NewHotProductViewController.m */; };
 		4BEEF2CA15D7AC9C00C424DA /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BEEF2C915D7AC9C00C424DA /* SystemConfiguration.framework */; };
 		4BF0191B162F04730032F98C /* BackgroundPattern@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BF01919162F04730032F98C /* BackgroundPattern@2x.png */; };
 		4BF0191C162F04730032F98C /* BackgroundPattern.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BF0191A162F04730032F98C /* BackgroundPattern.png */; };
@@ -486,6 +487,8 @@
 		4BDB316415BA56DE007B1C6F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		4BDB317115BAA36C007B1C6F /* DataController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataController.h; sourceTree = "<group>"; };
 		4BDB317215BAA36C007B1C6F /* DataController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataController.m; sourceTree = "<group>"; };
+		4BEA42A61719519800ED2795 /* NewHotProductViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewHotProductViewController.h; sourceTree = "<group>"; };
+		4BEA42A71719519800ED2795 /* NewHotProductViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewHotProductViewController.m; sourceTree = "<group>"; };
 		4BEEF2C915D7AC9C00C424DA /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		4BF01919162F04730032F98C /* BackgroundPattern@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BackgroundPattern@2x.png"; sourceTree = "<group>"; };
 		4BF0191A162F04730032F98C /* BackgroundPattern.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BackgroundPattern.png; sourceTree = "<group>"; };
@@ -1006,6 +1009,8 @@
 				4BBE1A6B1717257B00AEA0CB /* NewProductRootViewController.m */,
 				4BBE1A6D1717278700AEA0CB /* NewCategoryProductViewController.h */,
 				4BBE1A6E1717278700AEA0CB /* NewCategoryProductViewController.m */,
+				4BEA42A61719519800ED2795 /* NewHotProductViewController.h */,
+				4BEA42A71719519800ED2795 /* NewHotProductViewController.m */,
 			);
 			path = MuyingYongpin;
 			sourceTree = "<group>";
@@ -1462,6 +1467,7 @@
 				4BA0DADD17143CB500756E6D /* UIImageView+AFNetworking.m in Sources */,
 				4BBE1A6C1717257B00AEA0CB /* NewProductRootViewController.m in Sources */,
 				4BBE1A6F1717278700AEA0CB /* NewCategoryProductViewController.m in Sources */,
+				4BEA42A81719519800ED2795 /* NewHotProductViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

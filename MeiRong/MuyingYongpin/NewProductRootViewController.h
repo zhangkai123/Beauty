@@ -11,6 +11,9 @@
 
 @interface NewProductRootViewController : UIViewController
 {
+    UIImageView *topBar;
+    UIButton *backButton;
+    UIActivityIndicatorView * activityIndicator;
     PSCollectionView *_collectionView;
     NSMutableArray *productsArray;
     int currentPage;

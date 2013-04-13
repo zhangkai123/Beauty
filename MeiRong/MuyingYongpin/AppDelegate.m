@@ -10,7 +10,8 @@
 #import "AppDelegate.h"
 
 #import "TopicViewController.h"
-#import "HotProductViewController.h"
+//#import "HotProductViewController.h"
+#import "NewHotProductViewController.h"
 #import "BrandViewController.h"
 #import "CollectViewController.h"
 #import "MobClick.h"
@@ -65,7 +66,7 @@
     [topicViewController release];
     [navigationController release];
     
-    HotProductViewController *hotProductViewController = [[HotProductViewController alloc]initWithTabBar];
+    NewHotProductViewController *hotProductViewController = [[NewHotProductViewController alloc]initWithTabBar];
     hotProductViewController.catName = @"热销";
 //    navigationController = [[UINavigationController alloc]initWithRootViewController:hotProductViewController];
     [controllersArray addObject:hotProductViewController];

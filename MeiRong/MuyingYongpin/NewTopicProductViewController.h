@@ -6,14 +6,11 @@
 //
 //
 
-#import <UIKit/UIKit.h>
+#import "NewProductRootViewController.h"
 
-@interface NewTopicProductViewController : UIViewController
+@interface NewTopicProductViewController : NewProductRootViewController
 {
     NSString *keyWord;
-    NSMutableArray *productsArray;
-    int currentPage;
 }
 @property(nonatomic,retain) NSString *keyWord;
-@property(nonatomic,retain) NSMutableArray *productsArray;
 @end
