@@ -9,7 +9,14 @@
 #import "ProductCell.h"
 
 @interface ProductCell()
-
+{
+    UIImageView *backgroundImageView;
+    UILabel *shopnameLabel;
+    UIImageView *starImageView;
+    UILabel *titleLabel;
+    UILabel *priceLabel;
+    UILabel *promotionPriceLabel;
+}
 @end
 
 @implementation ProductCell
@@ -17,6 +24,7 @@
 
 -(void)dealloc
 {
+    [shopnameLabel release];
     [backgroundImageView release];
     [_myImageView release];
     [titleLabel release];
@@ -34,7 +42,7 @@
         backgroundImageView.image = stretchableButtonImageNormal;
         [self addSubview:backgroundImageView];
         self.backgroundColor = [UIColor clearColor];
-                
+        
         _myImageView = [[UIImageView alloc]initWithFrame:CGRectMake(5, 0, frame.size.width, frame.size.height)];
         [self addSubview:_myImageView];
         

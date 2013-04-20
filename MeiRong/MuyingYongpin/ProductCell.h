@@ -10,8 +10,8 @@
 
 @interface ProductCell : PSCollectionViewCell
 {
-    UIImageView *backgroundImageView;
-    UILabel *titleLabel;
+//    UIImageView *backgroundImageView;
+//    UILabel *titleLabel;
 }
 @property(nonatomic,retain) UIImageView *myImageView;
 @property(nonatomic,assign) float imageHeight;

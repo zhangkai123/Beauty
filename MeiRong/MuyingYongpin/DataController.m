@@ -68,43 +68,43 @@
     }];
     [operation start];
 }
--(void)featchKeywordProducts:(NSString *)keyWord pageNumber:(int)pageN
-{
-    if (![[ReachableManager sharedReachableManager]reachable]) {
-        [self performSelector:@selector(showNoNetwork) withObject:nil afterDelay:1.0];
-    }
-    
-    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
-     NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
-    
-    [params setObject:@"num_iid,title,pic_url,price,seller_credit_score,click_url" forKey:@"fields"];
-    [params setObject:@"50010788" forKey:@"cid"];
-    [params setObject:@"taobao.taobaoke.items.get" forKey:@"method"];
-    [params setObject:[NSString stringWithFormat:@"%d",pageN] forKey:@"page_no"];
-    [params setObject:@"20" forKey:@"page_size"];
-    [params setObject:@"30" forKey:@"start_price"];
-    [params setObject:@"2000" forKey:@"end_price"];
-    [params setObject:@"commissionNum_desc" forKey:@"sort"];
-    [params setObject:keyWord forKey:@"keyword"];
-    [params setObject:@"true" forKey:@"is_mobile"];
-    
-    NSMutableURLRequest *theRequest = [Utility getResultData:params];
-    [params release];
-    
-    [AFJSONRequestOperation addAcceptableContentTypes:[NSSet setWithObject:@"text/html"]];
-    AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:theRequest success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
-        NSLog(@"App.net Global Stream: %@", JSON);
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-            
-            NSMutableArray *pArray = [self parseStoryProductsData:JSON];
-            [[NSNotificationCenter defaultCenter]postNotificationName:keyWord object:pArray userInfo:nil];
-            [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
-        });
-    } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON){
-        NSLog(@"---Error---: %@", [error description]);
-    }];
-    [operation start];
-}
+//-(void)featchKeywordProducts:(NSString *)keyWord pageNumber:(int)pageN
+//{
+//    if (![[ReachableManager sharedReachableManager]reachable]) {
+//        [self performSelector:@selector(showNoNetwork) withObject:nil afterDelay:1.0];
+//    }
+//    
+//    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+//     NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
+//    
+//    [params setObject:@"num_iid,title,pic_url,price,seller_credit_score,click_url" forKey:@"fields"];
+//    [params setObject:@"50010788" forKey:@"cid"];
+//    [params setObject:@"taobao.taobaoke.items.get" forKey:@"method"];
+//    [params setObject:[NSString stringWithFormat:@"%d",pageN] forKey:@"page_no"];
+//    [params setObject:@"20" forKey:@"page_size"];
+//    [params setObject:@"30" forKey:@"start_price"];
+//    [params setObject:@"2000" forKey:@"end_price"];
+//    [params setObject:@"commissionNum_desc" forKey:@"sort"];
+//    [params setObject:keyWord forKey:@"keyword"];
+//    [params setObject:@"true" forKey:@"is_mobile"];
+//    
+//    NSMutableURLRequest *theRequest = [Utility getResultData:params];
+//    [params release];
+//    
+//    [AFJSONRequestOperation addAcceptableContentTypes:[NSSet setWithObject:@"text/html"]];
+//    AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:theRequest success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
+//        NSLog(@"App.net Global Stream: %@", JSON);
+//        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+//            
+//            NSMutableArray *pArray = [self parseStoryProductsData:JSON];
+//            [[NSNotificationCenter defaultCenter]postNotificationName:keyWord object:pArray userInfo:nil];
+//            [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+//        });
+//    } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON){
+//        NSLog(@"---Error---: %@", [error description]);
+//    }];
+//    [operation start];
+//}
 -(void)fetachCateProducts:(NSString *)cateName cateId:(NSString *)cId pageNumber:(int)pageN
 {
     if (![[ReachableManager sharedReachableManager]reachable]) {
@@ -215,31 +215,31 @@
     }
     return [pArray autorelease];
 }
--(NSMutableArray *)parseStoryProductsData:(NSDictionary *)productsDic
-{
-    NSDictionary *taobaoke_items_get_response = [productsDic objectForKey:@"taobaoke_items_get_response"];
-    NSDictionary *taobaoke_items = [taobaoke_items_get_response objectForKey:@"taobaoke_items"];
-    
-    NSArray *taobaoke_item = [taobaoke_items objectForKey:@"taobaoke_item"];
-    
-    NSMutableArray *pArray = [[NSMutableArray alloc]init];
-    for (int i = 0; i < [taobaoke_item count]; i++) {
-        
-        NSDictionary *item = [taobaoke_item objectAtIndex:i];
-        Product *product = [[Product alloc]init];
-        product.num_id = [NSString stringWithFormat:@"%@",[item objectForKey:@"num_iid"]];
-        product.title = [self stringCleaner:[item objectForKey:@"title"]];
-        product.price = [item objectForKey:@"price"];
-        product.seller_credit_score = [NSString stringWithFormat:@"%@",[item objectForKey:@"seller_credit_score"]];
-        product.pic_url = [item objectForKey:@"pic_url"];
-        product.imageHeight = [self parseImageHeight:product.pic_url imageWidth:148 - 10];
-        product.click_url = [item objectForKey:@"click_url"];
-        NSLog(@"%@",product.click_url);
-        [pArray addObject:product];
-        [product release];
-    }
-    return [pArray autorelease];
-}
+//-(NSMutableArray *)parseStoryProductsData:(NSDictionary *)productsDic
+//{
+//    NSDictionary *taobaoke_items_get_response = [productsDic objectForKey:@"taobaoke_items_get_response"];
+//    NSDictionary *taobaoke_items = [taobaoke_items_get_response objectForKey:@"taobaoke_items"];
+//    
+//    NSArray *taobaoke_item = [taobaoke_items objectForKey:@"taobaoke_item"];
+//    
+//    NSMutableArray *pArray = [[NSMutableArray alloc]init];
+//    for (int i = 0; i < [taobaoke_item count]; i++) {
+//        
+//        NSDictionary *item = [taobaoke_item objectAtIndex:i];
+//        Product *product = [[Product alloc]init];
+//        product.num_id = [NSString stringWithFormat:@"%@",[item objectForKey:@"num_iid"]];
+//        product.title = [self stringCleaner:[item objectForKey:@"title"]];
+//        product.price = [item objectForKey:@"price"];
+//        product.seller_credit_score = [NSString stringWithFormat:@"%@",[item objectForKey:@"seller_credit_score"]];
+//        product.pic_url = [item objectForKey:@"pic_url"];
+//        product.imageHeight = [self parseImageHeight:product.pic_url imageWidth:148 - 10];
+//        product.click_url = [item objectForKey:@"click_url"];
+//        NSLog(@"%@",product.click_url);
+//        [pArray addObject:product];
+//        [product release];
+//    }
+//    return [pArray autorelease];
+//}
 -(NSMutableArray *)parseProductsData:(NSArray *)productArray
 {
     int fBigHeight = 0;
