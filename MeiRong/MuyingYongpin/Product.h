@@ -17,6 +17,10 @@
 @property(nonatomic,copy) NSString *price;
 @property(nonatomic,copy) NSString *click_url;
 @property(nonatomic,copy) NSString *seller_credit_score;
+
+@property(nonatomic,copy) NSString *shopName;
+@property(nonatomic,copy) NSString *promotionPrice;
+
 @property(nonatomic,assign) BOOL collect;
 
 @property(nonatomic,copy) NSString *description;

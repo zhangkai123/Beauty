@@ -11,6 +11,7 @@
 @implementation Product
 @synthesize num_id,title,pic_url,imageHeight,price,click_url,seller_credit_score ,collect;
 @synthesize description ,imagesArray;
+@synthesize shopName ,promotionPrice;
 -(void)dealloc
 {
     [num_id release];
@@ -22,6 +23,8 @@
     
     [description release];
     [imagesArray release];
+    [shopName release];
+    [promotionPrice release];
     [super dealloc];
 }
 

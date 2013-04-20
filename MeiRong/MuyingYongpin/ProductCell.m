@@ -28,6 +28,9 @@
     [backgroundImageView release];
     [_myImageView release];
     [titleLabel release];
+    [starImageView release];
+    [priceLabel release];
+    [promotionPriceLabel release];
     [super dealloc];
 }
 - (id)initWithFrame:(CGRect)frame
@@ -43,14 +46,40 @@
         [self addSubview:backgroundImageView];
         self.backgroundColor = [UIColor clearColor];
         
+        //shop name label
+        shopnameLabel = [[UILabel alloc]initWithFrame:CGRectZero];
+        shopnameLabel.font = [UIFont fontWithName:@"Heiti TC" size:12];
+        [shopnameLabel setTextColor:[UIColor grayColor]];
+        shopnameLabel.numberOfLines = 0;
+        [self addSubview:shopnameLabel];
+        
+        //for product image
         _myImageView = [[UIImageView alloc]initWithFrame:CGRectMake(5, 0, frame.size.width, frame.size.height)];
         [self addSubview:_myImageView];
         
+        //for product shop stars image
+        starImageView = [[UIImageView alloc]initWithFrame:CGRectZero];
+        [self addSubview:starImageView];
+        
+        //for product title
         titleLabel = [[UILabel alloc]initWithFrame:CGRectZero];
         titleLabel.font = [UIFont fontWithName:@"Heiti TC" size:12];
         [titleLabel setTextColor:[UIColor grayColor]];
         titleLabel.numberOfLines = 0;
         [self addSubview:titleLabel];
+        
+        //for product price
+        priceLabel = [[UILabel alloc]initWithFrame:CGRectZero];
+        priceLabel.font = [UIFont fontWithName:@"Heiti TC" size:12];
+        [priceLabel setTextColor:[UIColor grayColor]];
+        priceLabel.numberOfLines = 0;
+        [self addSubview:priceLabel];
+
+        promotionPriceLabel = [[UILabel alloc]initWithFrame:CGRectZero];
+        promotionPriceLabel.font = [UIFont fontWithName:@"Heiti TC" size:12];
+        [promotionPriceLabel setTextColor:[UIColor grayColor]];
+        promotionPriceLabel.numberOfLines = 0;
+        [self addSubview:promotionPriceLabel];
     }
     return self;
 }

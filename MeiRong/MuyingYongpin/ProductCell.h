@@ -9,10 +9,7 @@
 #import "PSCollectionViewCell.h"
 
 @interface ProductCell : PSCollectionViewCell
-{
-//    UIImageView *backgroundImageView;
-//    UILabel *titleLabel;
-}
+
 @property(nonatomic,retain) UIImageView *myImageView;
 @property(nonatomic,assign) float imageHeight;
 @property(nonatomic,retain) NSString *title;
