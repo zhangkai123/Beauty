@@ -49,6 +49,10 @@
         backgroundImageView.image = stretchableButtonImageNormal;
         [self addSubview:backgroundImageView];
         self.backgroundColor = [UIColor clearColor];
+                
+        //for product image
+        _myImageView = [[UIImageView alloc]initWithFrame:CGRectMake(5, 0, frame.size.width, frame.size.height)];
+        [self addSubview:_myImageView];
         
         //zhang gui
         zhanggui = [[UILabel alloc]initWithFrame:CGRectZero];
@@ -64,10 +68,6 @@
         shopnameLabel.backgroundColor = [UIColor yellowColor];
         shopnameLabel.numberOfLines = 0;
         [self addSubview:shopnameLabel];
-        
-        //for product image
-        _myImageView = [[UIImageView alloc]initWithFrame:CGRectMake(5, 0, frame.size.width, frame.size.height)];
-        [self addSubview:_myImageView];
         
         //for product shop stars image
         starImageView = [[UIImageView alloc]initWithFrame:CGRectZero];
@@ -99,10 +99,10 @@
 {
     _title = title;
         
-    _myImageView.frame = CGRectMake(5, 5 + shopnameLabel.frame.size.height, 148 - 10, _imageHeight);
-    
-    zhanggui.frame = CGRectMake(5, 5 + _imageHeight, 30, 0);
+    _myImageView.frame = CGRectMake(5, 5, 148 - 10, _imageHeight);
+
     zhanggui.text = @"掌柜:";
+    zhanggui.frame = CGRectMake(5, 5 + _imageHeight, 30, 0);
     [zhanggui sizeToFit];
     shopnameLabel.text = _shopName;
     CGRect shopLabelFrame = shopnameLabel.frame;
