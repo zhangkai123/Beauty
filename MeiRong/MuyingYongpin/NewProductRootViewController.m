@@ -125,6 +125,8 @@
     cell.imageHeight = product.imageHeight;
     cell.shopName = product.shopName;
     cell.seller_credit_score = product.seller_credit_score;
+    cell.price = product.price;
+    cell.promotionPrice = product.promotionPrice;
     cell.title = product.title;
     NSString *imageUrlStr = [NSString stringWithFormat:@"%@_160x160.jpg",product.pic_url];
     [cell.myImageView setImageWithURL:[NSURL URLWithString:imageUrlStr] placeholderImage:[UIImage imageNamed:@"smallbPlaceHolder.png"]];
@@ -134,9 +136,9 @@
 - (CGFloat)collectionView:(PSCollectionView *)collectionView heightForRowAtIndex:(NSInteger)index {
     Product *product = [productsArray objectAtIndex:index];
     
-    CGSize theShopNameSize = [product.shopName sizeWithFont:[UIFont fontWithName:@"Heiti TC" size:12] constrainedToSize:CGSizeMake(148 - 10, FLT_MAX) lineBreakMode:UILineBreakModeWordWrap];
+    CGSize theShopNameSize = [product.shopName sizeWithFont:[UIFont systemFontOfSize:13] constrainedToSize:CGSizeMake(148 - 10 - 30, FLT_MAX) lineBreakMode:UILineBreakModeWordWrap];
     CGSize theTitleSize = [product.title sizeWithFont:[UIFont fontWithName:@"Heiti TC" size:12] constrainedToSize:CGSizeMake(148 - 10, FLT_MAX) lineBreakMode:UILineBreakModeWordWrap];
-    return product.imageHeight + theTitleSize.height + theShopNameSize.height + 15 + 20;
+    return product.imageHeight + theTitleSize.height + theShopNameSize.height + 15 + 20 + 20;
 }
 - (void)collectionView:(PSCollectionView *)collectionView didSelectCell:(PSCollectionViewCell *)cell atIndex:(NSInteger)index
 {

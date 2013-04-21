@@ -15,4 +15,6 @@
 @property(nonatomic,assign) float imageHeight;
 @property(nonatomic,retain) NSString *title;
 @property(nonatomic,retain) NSString *seller_credit_score;
+@property(nonatomic,retain) NSString *price;
+@property(nonatomic,retain) NSString *promotionPrice;
 @end
