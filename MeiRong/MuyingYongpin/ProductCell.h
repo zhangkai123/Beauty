@@ -10,7 +10,9 @@
 
 @interface ProductCell : PSCollectionViewCell
 
+@property(nonatomic,retain) NSString *shopName;
 @property(nonatomic,retain) UIImageView *myImageView;
 @property(nonatomic,assign) float imageHeight;
 @property(nonatomic,retain) NSString *title;
+@property(nonatomic,retain) NSString *seller_credit_score;
 @end

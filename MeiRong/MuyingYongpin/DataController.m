@@ -264,7 +264,9 @@
         }
         product.title = [item objectForKey:@"title"];
         product.price = [item objectForKey:@"price"];
-        product.seller_credit_score = [item objectForKey:@"likes"];
+        product.seller_credit_score = [item objectForKey:@"seller_credit_score"];
+        product.shopName = [item objectForKey:@"sellerNick"];
+        product.promotionPrice = [item objectForKey:@"promotion_price"];
         product.pic_url = [item objectForKey:@"bimg"];
         product.imageHeight = imageH * 148 / imageW;
         product.click_url = [item objectForKey:@"url"];
