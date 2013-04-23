@@ -138,7 +138,7 @@
     
     CGSize theShopNameSize = [product.shopName sizeWithFont:[UIFont systemFontOfSize:13] constrainedToSize:CGSizeMake(148 - 10 - 30, FLT_MAX) lineBreakMode:UILineBreakModeWordWrap];
     CGSize theTitleSize = [product.title sizeWithFont:[UIFont fontWithName:@"Heiti TC" size:12] constrainedToSize:CGSizeMake(148 - 10, FLT_MAX) lineBreakMode:UILineBreakModeWordWrap];
-    return product.imageHeight + theTitleSize.height + theShopNameSize.height + 15 + 20 + 20;
+    return product.imageHeight + theTitleSize.height + theShopNameSize.height + 35;
 }
 - (void)collectionView:(PSCollectionView *)collectionView didSelectCell:(PSCollectionViewCell *)cell atIndex:(NSInteger)index
 {

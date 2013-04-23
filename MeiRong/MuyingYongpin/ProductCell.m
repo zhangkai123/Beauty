@@ -58,15 +58,15 @@
         //zhang gui
         zhanggui = [[UILabel alloc]initWithFrame:CGRectZero];
         zhanggui.font = [UIFont systemFontOfSize:13];
-        [zhanggui setTextColor:[UIColor yellowColor]];
-        zhanggui.backgroundColor = [UIColor greenColor];
+        [zhanggui setTextColor:[UIColor darkGrayColor]];
+        zhanggui.backgroundColor = [UIColor clearColor];
         zhanggui.numberOfLines = 0;
         [self addSubview:zhanggui];
         //shop name label
         shopnameLabel = [[UILabel alloc]initWithFrame:CGRectZero];
         shopnameLabel.font = [UIFont systemFontOfSize:13];
-        [shopnameLabel setTextColor:[UIColor blueColor]];
-        shopnameLabel.backgroundColor = [UIColor yellowColor];
+        [shopnameLabel setTextColor:[UIColor grayColor]];
+        shopnameLabel.backgroundColor = [UIColor clearColor];
         shopnameLabel.numberOfLines = 0;
         [self addSubview:shopnameLabel];
         
@@ -84,20 +84,20 @@
         //zhang gui
         jiage = [[UILabel alloc]initWithFrame:CGRectZero];
         jiage.font = [UIFont systemFontOfSize:13];
-        [jiage setTextColor:[UIColor yellowColor]];
-        jiage.backgroundColor = [UIColor greenColor];
+        [jiage setTextColor:[UIColor darkGrayColor]];
+        jiage.backgroundColor = [UIColor clearColor];
         jiage.numberOfLines = 0;
         [self addSubview:jiage];
         //for product price
         priceLabel = [[UILabel alloc]initWithFrame:CGRectZero];
         priceLabel.font = [UIFont fontWithName:@"Heiti TC" size:12];
-        [priceLabel setTextColor:[UIColor grayColor]];
+        [priceLabel setTextColor:[UIColor redColor]];
         priceLabel.numberOfLines = 0;
         [self addSubview:priceLabel];
         //for product promotion price
         promotionPriceLabel = [[UILabel alloc]initWithFrame:CGRectZero];
         promotionPriceLabel.font = [UIFont fontWithName:@"Heiti TC" size:12];
-        [promotionPriceLabel setTextColor:[UIColor grayColor]];
+        [promotionPriceLabel setTextColor:[UIColor redColor]];
         promotionPriceLabel.numberOfLines = 0;
         [self addSubview:promotionPriceLabel];
     }
@@ -116,46 +116,50 @@
     CGRect shopLabelFrame = shopnameLabel.frame;
     shopLabelFrame.size.width = 148 - 10 - 30;
     shopLabelFrame.origin.y = 5 + _imageHeight;
-    shopLabelFrame.origin.x = 35;
+    shopLabelFrame.origin.x = 35 + 2;
     shopnameLabel.frame = shopLabelFrame;
     [shopnameLabel sizeToFit];
 
     UIImage *starImage = [UIImage imageNamed:[self getStarImgaeName]];
-    starImageView.frame = CGRectMake(5, 5 + _imageHeight + shopnameLabel.frame.size.height + 10, starImage.size.width, 10);
+    starImageView.frame = CGRectMake(5,_imageHeight + shopnameLabel.frame.size.height + 5, starImage.size.width, 10);
     starImageView.image = starImage;
     
     titleLabel.text = _title;
     CGRect labelFrame = titleLabel.frame;
     labelFrame.size.width = 148 - 10;
-    labelFrame.origin.y = _imageHeight + shopnameLabel.frame.size.height + 5 + 5 + 20;
+    labelFrame.origin.y = _imageHeight + shopnameLabel.frame.size.height + 5 + 10;
     labelFrame.origin.x = 5;
     titleLabel.frame = labelFrame;
     [titleLabel sizeToFit];
     
     jiage.text = @"价格:";
-    jiage.frame = CGRectMake(5, _imageHeight + shopnameLabel.frame.size.height + titleLabel.frame.size.height + 5 + 5 + 20, 30, 0);
+    jiage.frame = CGRectMake(5, _imageHeight + shopnameLabel.frame.size.height + titleLabel.frame.size.height + 5 + 10, 30, 0);
     [jiage sizeToFit];
     priceLabel.text = _price;
     CGRect priceLabelFrame = priceLabel.frame;
     priceLabelFrame.size.width = 40;
-    priceLabelFrame.origin.y = _imageHeight + shopnameLabel.frame.size.height + titleLabel.frame.size.height + 5 + 5 + 20 + 2;
-    priceLabelFrame.origin.x = 35;
+    priceLabelFrame.origin.y = _imageHeight + shopnameLabel.frame.size.height + titleLabel.frame.size.height + 5 + 10 + 2;
+    priceLabelFrame.origin.x = 35 + 2;
     priceLabel.frame = priceLabelFrame;
     [priceLabel sizeToFit];
+    
+    backgroundImageView.frame = CGRectMake(0, 0, 148, _imageHeight + shopnameLabel.frame.size.height + titleLabel.frame.size.height + 5 + 10 + 10 + 10);
     if (![_price isEqualToString:_promotionPrice]) {
+        if ([_promotionPrice isEqualToString:@"<null>"]) {
+            promotionPriceLabel.hidden = YES;
+            return;
+        }
         promotionPriceLabel.hidden = NO;
         promotionPriceLabel.text = _promotionPrice;
         CGRect promotionPriceLabelFrame = promotionPriceLabel.frame;
         promotionPriceLabelFrame.size.width = 40;
-        promotionPriceLabelFrame.origin.y = _imageHeight + shopnameLabel.frame.size.height + titleLabel.frame.size.height + 5 + 5 + 20 + 2;
+        promotionPriceLabelFrame.origin.y = _imageHeight + shopnameLabel.frame.size.height + titleLabel.frame.size.height + 5 + 10 + 2;
         promotionPriceLabelFrame.origin.x = 35 + 40;
         promotionPriceLabel.frame = promotionPriceLabelFrame;
         [promotionPriceLabel sizeToFit];
     }else{
         promotionPriceLabel.hidden = YES;
     }
-    
-    backgroundImageView.frame = CGRectMake(0, 0, 148, _imageHeight + shopnameLabel.frame.size.height + titleLabel.frame.size.height + 5 + 5 + 5 + 20 + 20);
 }
 -(NSString *)getStarImgaeName
 {
