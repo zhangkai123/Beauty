@@ -14,8 +14,6 @@
 #import "DataController.h"
 #import "WebViewController.h"  
 #import "SVPullToRefresh.h"
-
-//#import "NewTopicProductViewController.h"
 #import "NewCategoryProductViewController.h"
 
 @interface TopicViewController()
@@ -39,27 +37,17 @@
 }
 
 #pragma mark - View lifecycle
--(id) initWithTabBar {
-    if ([self init]) {
+-(id) initWithNavBar {
+    if (self = [super initWithNavBar]) {
         //this is the label on the tab button itself
         self.title = @"专题";
         
         //use whatever image you want and add it to your project
         self.tabBarItem.image = [UIImage imageNamed:@"ico_nav_special"];
 
-        // set the long name shown in the navigation bar at the top
-        UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(50, 0, 220, 30)];
-        titleLabel.textColor = [UIColor whiteColor];
-        [titleLabel setTextAlignment:UITextAlignmentCenter];
-        titleLabel.font = [UIFont fontWithName:@"迷你简黛玉" size:25];
-        titleLabel.shadowColor   = [[UIColor blackColor]colorWithAlphaComponent: 0.2f];
-        titleLabel.shadowOffset  = CGSizeMake(1.0,1.0);
-        titleLabel.backgroundColor = [UIColor clearColor];
         titleLabel.text = @"专题";
-        [self.navigationItem setTitleView:titleLabel];
-        [titleLabel release];
-
-        [self createActivity];
+        
+        backButton.hidden = YES;
     }
     return self;
 }
@@ -94,12 +82,7 @@
 {
     [super viewDidLoad];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(recieveStories:) name:@"Story_Ready" object:nil];
-    
-    if ([self.navigationController.navigationBar respondsToSelector:@selector( setBackgroundImage:forBarMetrics:)]){
-        [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"navbar_background"] forBarMetrics:UIBarMetricsDefault];
-        [self.navigationController.navigationBar setOpaque:1.0];
-    }
-    
+        
     CGRect screenBounds = [[UIScreen mainScreen] bounds];
     if (screenBounds.size.height == 568) {
         // code for 4-inch screen
@@ -235,17 +218,11 @@
 {
     selectedCell = cell;
     Story *story = [storiesArray objectAtIndex:cell.rowNum];
-    
-//    NewTopicProductViewController *newTopicProductViewController = [[NewTopicProductViewController alloc]init];
-//    newTopicProductViewController.keyWord = story.keyWord;
-////    topicProductViewController.navTitle = story.title;
-//    [self presentModalViewController:newTopicProductViewController animated:YES];
-//    [newTopicProductViewController release];
-    
-    NewCategoryProductViewController *newCategoryProductViewController = [[NewCategoryProductViewController alloc]init];
+        
+    NewCategoryProductViewController *newCategoryProductViewController = [[NewCategoryProductViewController alloc]initWithNavBar];
     newCategoryProductViewController.catName = story.keyWord;
     newCategoryProductViewController.catId = story.categoryId;
-    [self presentModalViewController:newCategoryProductViewController animated:YES];
+    [self.navigationController pushViewController:newCategoryProductViewController animated:YES];
     [newCategoryProductViewController release];
 }
 

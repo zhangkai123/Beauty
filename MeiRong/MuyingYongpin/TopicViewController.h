@@ -7,13 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "NavRootViewController.h"
 #import "HotCell.h"
 
-@interface TopicViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,HotCellSelectionDelegate>
+@interface TopicViewController : NavRootViewController<UITableViewDataSource,UITableViewDelegate,HotCellSelectionDelegate>
 {
     UITableView *productTableView;
     NSMutableArray *storiesArray;
     int currentPage;
 }
--(id) initWithTabBar;
 @end

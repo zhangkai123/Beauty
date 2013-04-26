@@ -60,18 +60,18 @@
     
     NSMutableArray *controllersArray = [[NSMutableArray alloc]initWithCapacity:4];
     
-    TopicViewController *topicViewController = [[TopicViewController alloc]initWithTabBar];
+    TopicViewController *topicViewController = [[TopicViewController alloc]initWithNavBar];
     navigationController = [[UINavigationController alloc]initWithRootViewController:topicViewController];
     [controllersArray addObject:navigationController];
     [topicViewController release];
     [navigationController release];
     
-    NewHotProductViewController *hotProductViewController = [[NewHotProductViewController alloc]initWithTabBar];
+    NewHotProductViewController *hotProductViewController = [[NewHotProductViewController alloc]initWithNavBar];
     hotProductViewController.catName = @"热销";
-//    navigationController = [[UINavigationController alloc]initWithRootViewController:hotProductViewController];
-    [controllersArray addObject:hotProductViewController];
+    navigationController = [[UINavigationController alloc]initWithRootViewController:hotProductViewController];
+    [controllersArray addObject:navigationController];
     [hotProductViewController release];
-//    [navigationController release];
+    [navigationController release];
     
     BrandViewController *brandViewController = [[BrandViewController alloc]initWithTabBar];
     navigationController = [[UINavigationController alloc]initWithRootViewController:brandViewController];

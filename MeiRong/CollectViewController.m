@@ -37,26 +37,13 @@
 
 #pragma mark - View lifecycle
 -(id) initWithTabBar {
-    if ([self init]) {
+    if ([self initWithNavBar]) {
         //this is the label on the tab button itself
         self.title = @"我的";
-        
         //use whatever image you want and add it to your project
         self.tabBarItem.image = [UIImage imageNamed:@"ico_nav_me"];
-        
-        // set the long name shown in the navigation bar at the top
-        UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(80, 0, 160, 30)];
-//        titleLabel.textColor = [UIColor colorWithRed:1 green: 0.6 blue:0.8 alpha:1];
-        titleLabel.textColor = [UIColor whiteColor];
-        [titleLabel setTextAlignment:UITextAlignmentCenter];
-        titleLabel.font = [UIFont fontWithName:@"迷你简黛玉" size:25];
-        titleLabel.shadowColor   = [[UIColor blackColor]colorWithAlphaComponent: 0.2f];
-        titleLabel.shadowOffset  = CGSizeMake(1.0,1.0);
-        titleLabel.backgroundColor = [UIColor clearColor];
         titleLabel.text = @"我的";
-        [self.navigationItem setTitleView:titleLabel];
-        [titleLabel release];
-        
+        backButton.hidden = YES;
         [self createSetupButton];
     }
     return self;
@@ -78,9 +65,8 @@
 }
 -(void)goToSetup
 {
-    SetupViewController *setupViewController = [[SetupViewController alloc]init];
+    SetupViewController *setupViewController = [[SetupViewController alloc]initWithNavBar];
     [self.navigationController pushViewController:setupViewController animated:YES];
-//    [self presentModalViewController:setupViewController animated:YES];
     [setupViewController release];
 }
 - (void)viewDidLoad

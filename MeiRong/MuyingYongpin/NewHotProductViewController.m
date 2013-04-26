@@ -21,12 +21,14 @@
 {
     [super dealloc];
 }
--(id) initWithTabBar {
-    if (self = [super init]) {
+-(id) initWithNavBar {
+    if (self = [super initWithNavBar]) {
         // set the long name shown in the navigation bar at the top
         
          self.title = @"热销";
         self.tabBarItem.image = [UIImage imageNamed:@"ico_nav_hot"];
+        titleLabel.text = @"热销";
+        backButton.hidden = YES;
     }
     return self;
 }
@@ -35,26 +37,13 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    
-    backButton.hidden = YES;
-    
-    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(80, 7, 160, 30)];
-    titleLabel.textColor = [UIColor whiteColor];
-    [titleLabel setTextAlignment:UITextAlignmentCenter];
-    titleLabel.font = [UIFont fontWithName:@"迷你简黛玉" size:25];
-    titleLabel.shadowColor   = [[UIColor blackColor]colorWithAlphaComponent: 0.2f];
-    titleLabel.shadowOffset  = CGSizeMake(1.0,1.0);
-    titleLabel.backgroundColor = [UIColor clearColor];
-    titleLabel.text = @"热销";
-    [topBar addSubview:titleLabel];
-    [titleLabel release];
-    
+        
     CGRect screenBounds = [[UIScreen mainScreen] bounds];
     if (screenBounds.size.height == 568) {
         
-        self._collectionView.frame = CGRectMake(0, 50 + 1, 320, 548 - 50 - 1);
+        self._collectionView.frame = CGRectMake(0, 0, 320, 548);
     }else{
-        self._collectionView.frame = CGRectMake(0, 50 + 1, 320, 460 - 50 - 1);
+        self._collectionView.frame = CGRectMake(0, 0, 320, 460);
     }
     
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(recieveCatProducts:) name:self.catName object:nil];

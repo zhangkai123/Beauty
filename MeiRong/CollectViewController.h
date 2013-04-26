@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "StyleOneCell.h"
+#import "NavRootViewController.h"
 
-@interface CollectViewController : UIViewController<UITableViewDelegate,UITableViewDataSource,StyleOneCellSelectionDelegate>
+@interface CollectViewController : NavRootViewController<UITableViewDelegate,UITableViewDataSource,StyleOneCellSelectionDelegate>
 {
     UITableView *myTableView;
     NSMutableArray *dataArray;

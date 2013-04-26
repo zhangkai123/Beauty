@@ -11,6 +11,7 @@
 #import "ProductCell.h"
 #import "Product.h"
 #import "TheBrandDetailViewController.h"
+#import "NewProductDetailViewController.h"
 #import "UIImageView+WebCache.h"
 
 @interface NewProductRootViewController ()<PSCollectionViewDelegate,PSCollectionViewDataSource,UIScrollViewDelegate>
@@ -27,49 +28,17 @@
 
 -(void)dealloc
 {
-    [topBar release];
-    [backButton release];
     [activityIndicator release];
     [productsArray release];
     [_collectionView release];
     [super dealloc];
 }
-
--(void)goBack
-{
-    [[NSNotificationCenter defaultCenter]removeObserver:self];
-    [self dismissModalViewControllerAnimated:YES];
-}
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"BackgroundPaper"]];
-    
-    topBar = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 320, 44)];
-    topBar.image = [UIImage imageNamed:@"navbar_background"];
-    topBar.userInteractionEnabled = YES;
-    topBar.layer.shadowColor = [UIColor blackColor].CGColor;
-    topBar.layer.shadowOffset = CGSizeMake(0, 1);
-    topBar.layer.shadowOpacity = 0.3;
-    topBar.layer.shadowRadius = 1.0;
-    topBar.clipsToBounds = NO;
-    [self.view addSubview:topBar];
-    backButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 44, 44)];
-    [backButton setImage:[UIImage imageNamed:@"btn_header_back"] forState:UIControlStateNormal];
-    [backButton addTarget:self action:@selector(goBack) forControlEvents:UIControlEventTouchUpInside];
-    [topBar addSubview:backButton];
-    
+        
     // Do any additional setup after loading the view.
     _collectionView = [[PSCollectionView alloc] initWithFrame:CGRectZero];
     _collectionView.delegate = self; // This is for UIScrollViewDelegate
@@ -84,9 +53,9 @@
     CGRect screenBounds = [[UIScreen mainScreen] bounds];
     if (screenBounds.size.height == 568) {
         
-        self._collectionView.frame = CGRectMake(0, 45, 320, 548 - 45);
+        self._collectionView.frame = CGRectMake(0, 0, 320, 548);
     }else{
-        self._collectionView.frame = CGRectMake(0, 45, 320, 460 - 45);
+        self._collectionView.frame = CGRectMake(0, 0, 320, 460);
     }
     
     [self.view addSubview:self._collectionView];
@@ -145,10 +114,9 @@
     Product *product = [productsArray objectAtIndex:index];
     ProductCell *myCell = (ProductCell *)cell;
     
-    TheBrandDetailViewController *theBrandDetailViewController = [[TheBrandDetailViewController alloc]initWithProduct:product];
-    theBrandDetailViewController.smallImage = myCell.myImageView.image;
-    [self presentModalViewController:theBrandDetailViewController animated:YES];
-    [theBrandDetailViewController release];
+    NewProductDetailViewController *newProductDetailViewController = [[NewProductDetailViewController alloc]initWithNavBar];
+    [self.navigationController pushViewController:newProductDetailViewController animated:YES];
+    [newProductDetailViewController release];
 }
 
 - (void)didReceiveMemoryWarning

@@ -7,12 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "NavRootViewController.h"
 #import "PSCollectionView.h"
 
-@interface NewProductRootViewController : UIViewController
+@interface NewProductRootViewController : NavRootViewController
 {
-    UIImageView *topBar;
-    UIButton *backButton;
     UIActivityIndicatorView * activityIndicator;
     PSCollectionView *_collectionView;
     NSMutableArray *productsArray;
@@ -20,4 +19,5 @@
 }
 
 @property(nonatomic,retain) PSCollectionView *_collectionView;
+
 @end

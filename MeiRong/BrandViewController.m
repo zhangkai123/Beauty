@@ -8,7 +8,6 @@
 
 #import "BrandViewController.h"
 #import "TopicProductViewController.h"
-//#import "HotProductViewController.h"
 #import "DataController.h"
 #import "NewCategoryProductViewController.h"
 
@@ -190,24 +189,13 @@
 }
 #pragma mark - View lifecycle
 -(id) initWithTabBar {
-    if ([self init]) {
+    if ([self initWithNavBar]) {
         //this is the label on the tab button itself
         self.title = @"分类";
-        
         //use whatever image you want and add it to your project
         self.tabBarItem.image = [UIImage imageNamed:@"ico_nav_category"];
-        
-        // set the long name shown in the navigation bar at the top
-        UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 320, 30)];
-        titleLabel.textColor = [UIColor whiteColor];
-        [titleLabel setTextAlignment:UITextAlignmentCenter];
-        titleLabel.font = [UIFont fontWithName:@"迷你简黛玉" size:25];
-        titleLabel.shadowColor   = [[UIColor blackColor]colorWithAlphaComponent: 0.2f];
-        titleLabel.shadowOffset  = CGSizeMake(1.0,1.0);
-        titleLabel.backgroundColor = [UIColor clearColor];
         titleLabel.text = @"分类";
-        [self.navigationItem setTitleView:titleLabel];
-        [titleLabel release];
+        backButton.hidden = YES;
     }
     return self;
     
@@ -233,15 +221,17 @@
     sBar.tintColor = [UIColor lightGrayColor];
     sBar.delegate = self;
     
-    headerArray = [[NSMutableArray alloc]initWithObjects:@"功效",@"护肤",@"彩妆",@"美体", nil];
+    headerArray = [[NSMutableArray alloc]initWithObjects:@"护肤",@"功效",@"彩妆",@"美体", nil];
     
-    dataArray1 = [[NSMutableArray alloc]initWithObjects:@"美白",@"保湿",@"祛痘",@"抗敏",@"遮瑕",@"祛斑",@"控油",@"补水",@"去黑头",@"收毛孔",@"去眼袋", nil];
-
-    dataArray2 = [[NSMutableArray alloc]initWithObjects:@"防晒霜",@"喷雾",@"卸妆油",@"洗面奶",@"面膜",@"眼霜",@"化妆水",@"面霜",@"隔离霜",@"吸油面纸",@"药妆",nil];
+    dataArray1 = [[NSMutableArray alloc]initWithObjects:@"防晒霜",@"喷雾",@"卸妆油",@"洗面奶",@"面膜",@"眼霜",@"化妆水",@"面霜",@"隔离霜",@"吸油面纸",@"药妆",nil];
+    
+    dataArray2 = [[NSMutableArray alloc]initWithObjects:@"美白",@"保湿",@"祛痘",@"抗敏",@"遮瑕",@"祛斑",@"控油",@"补水",@"去黑头",@"收毛孔",@"去眼袋", nil];
 
     dataArray3 = [[NSMutableArray alloc]initWithObjects:@"香水",@"指甲油",@"睫毛膏",@"BB霜",@"粉饼",@"蜜粉",@"口红",@"腮红",@"眼影",@"眉笔",@"唇彩",@"眼线膏",nil];
 
     dataArray4 = [[NSMutableArray alloc]initWithObjects:@"手工皂",@"沐浴露",@"美颈霜",@"身体乳",@"护手霜",@"假发",@"发蜡",@"弹力素",@"发膜",@"蓬蓬粉",@"染发膏",nil];
+//    dataArray1 = [[NSMutableArray alloc]initWithObjects:@"面膜",@"香水",@"唇膏",@"粉底",@"美甲",@"保湿",@"爽肤",@"化妆工具",@"腮红",@"眼线",@"面膜",@"眼霜",@"祛痘",@"美白",@"香水"
+//                  ,@"精华",@"药妆",@"缩毛孔",@"防晒",@"手工皂",@"遮瑕",@"化妆棉",@"假睫毛",nil];
     
     UIEdgeInsets insets = UIEdgeInsetsMake(0, 0, self.navigationController.navigationBar.frame.size.height, 0);
     
@@ -376,10 +366,10 @@
         default:
             break;
     }
-    NewCategoryProductViewController *newCategoryProductViewController = [[NewCategoryProductViewController alloc]init];
+    NewCategoryProductViewController *newCategoryProductViewController = [[NewCategoryProductViewController alloc]initWithNavBar];
     newCategoryProductViewController.catName = categoryName;
     newCategoryProductViewController.catId = [NSString stringWithFormat:@"%d",[self getServerNotificationId:categoryName]];
-    [self presentModalViewController:newCategoryProductViewController animated:YES];
+    [self.navigationController pushViewController:newCategoryProductViewController animated:YES];
     [newCategoryProductViewController release];
 }
 - (void)viewDidUnload

@@ -143,6 +143,8 @@
 		4BB2ECC116FD9FD70010F124 /* FirstCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BB2ECC016FD9FD60010F124 /* FirstCell.m */; };
 		4BBE1A6C1717257B00AEA0CB /* NewProductRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BBE1A6B1717257B00AEA0CB /* NewProductRootViewController.m */; };
 		4BBE1A6F1717278700AEA0CB /* NewCategoryProductViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BBE1A6E1717278700AEA0CB /* NewCategoryProductViewController.m */; };
+		4BBED928172AA68900C9A332 /* NewProductDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BBED927172AA68900C9A332 /* NewProductDetailViewController.m */; };
+		4BBED92B172AAE7200C9A332 /* NavRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BBED92A172AAE7200C9A332 /* NavRootViewController.m */; };
 		4BCB570B160220500082D965 /* DDXMLElementAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BCB56FE160220500082D965 /* DDXMLElementAdditions.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		4BCB570C160220500082D965 /* NSString+DDXML.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BCB5701160220500082D965 /* NSString+DDXML.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		4BCB570D160220500082D965 /* DDXMLDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BCB5704160220500082D965 /* DDXMLDocument.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
@@ -496,6 +498,10 @@
 		4BBE1A6B1717257B00AEA0CB /* NewProductRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewProductRootViewController.m; sourceTree = "<group>"; };
 		4BBE1A6D1717278700AEA0CB /* NewCategoryProductViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewCategoryProductViewController.h; sourceTree = "<group>"; };
 		4BBE1A6E1717278700AEA0CB /* NewCategoryProductViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewCategoryProductViewController.m; sourceTree = "<group>"; };
+		4BBED926172AA68900C9A332 /* NewProductDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewProductDetailViewController.h; sourceTree = "<group>"; };
+		4BBED927172AA68900C9A332 /* NewProductDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewProductDetailViewController.m; sourceTree = "<group>"; };
+		4BBED929172AAE7200C9A332 /* NavRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavRootViewController.h; sourceTree = "<group>"; };
+		4BBED92A172AAE7200C9A332 /* NavRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavRootViewController.m; sourceTree = "<group>"; };
 		4BCB56FD160220500082D965 /* DDXMLElementAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDXMLElementAdditions.h; sourceTree = "<group>"; };
 		4BCB56FE160220500082D965 /* DDXMLElementAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDXMLElementAdditions.m; sourceTree = "<group>"; };
 		4BCB5700160220500082D965 /* NSString+DDXML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+DDXML.h"; sourceTree = "<group>"; };
@@ -1103,8 +1109,6 @@
 				4BF3F509162A9EA00070BDE5 /* ShareSns */,
 				4BDB316315BA56DE007B1C6F /* AppDelegate.h */,
 				4BDB316415BA56DE007B1C6F /* AppDelegate.m */,
-				4BB2ECB916FCD3320010F124 /* TopicViewController.h */,
-				4BB2ECBA16FCD3330010F124 /* TopicViewController.m */,
 				4B939FBF17046FD20079A62D /* TopicProductViewController.h */,
 				4B939FC017046FD20079A62D /* TopicProductViewController.m */,
 				4BA879891703C1D100714923 /* HotProductViewController.h */,
@@ -1113,18 +1117,10 @@
 				4B4EAF79166A0C4A00E29D6B /* ReachableManager.m */,
 				4BA879861703BBDF00714923 /* ProductRootViewController.h */,
 				4BA879871703BBE000714923 /* ProductRootViewController.m */,
-				4BAF7BAB15ECFE3200D64CCD /* BrandViewController.h */,
-				4BAF7BAC15ECFE3200D64CCD /* BrandViewController.m */,
 				4B9AE526162465DB004AC204 /* TheBrandDetailViewController.h */,
 				4B9AE527162465DB004AC204 /* TheBrandDetailViewController.m */,
-				4B421C0815ECFEC2001094FE /* CollectViewController.h */,
-				4B421C0915ECFEC2001094FE /* CollectViewController.m */,
-				4B644A2F16FA808100F8EEEF /* SetupViewController.h */,
-				4B644A3016FA808200F8EEEF /* SetupViewController.m */,
 				4B7620651608A479004DAF89 /* WebViewController.h */,
 				4B7620661608A479004DAF89 /* WebViewController.m */,
-				4BA879831703210600714923 /* AboutViewController.h */,
-				4BA879841703210600714923 /* AboutViewController.m */,
 				4BDB317115BAA36C007B1C6F /* DataController.h */,
 				4BDB317215BAA36C007B1C6F /* DataController.m */,
 				4BA52744161B384F00AA0D6A /* CoreDataController.h */,
@@ -1132,12 +1128,26 @@
 				4BDB315B15BA56DE007B1C6F /* Supporting Files */,
 				4BAA79991713227B00390207 /* NewTopicProductViewController.h */,
 				4BAA799A1713227B00390207 /* NewTopicProductViewController.m */,
+				4BB2ECB916FCD3320010F124 /* TopicViewController.h */,
+				4BB2ECBA16FCD3330010F124 /* TopicViewController.m */,
+				4BAF7BAB15ECFE3200D64CCD /* BrandViewController.h */,
+				4BAF7BAC15ECFE3200D64CCD /* BrandViewController.m */,
+				4B421C0815ECFEC2001094FE /* CollectViewController.h */,
+				4B421C0915ECFEC2001094FE /* CollectViewController.m */,
+				4B644A2F16FA808100F8EEEF /* SetupViewController.h */,
+				4B644A3016FA808200F8EEEF /* SetupViewController.m */,
+				4BA879831703210600714923 /* AboutViewController.h */,
+				4BA879841703210600714923 /* AboutViewController.m */,
 				4BBE1A6A1717257B00AEA0CB /* NewProductRootViewController.h */,
 				4BBE1A6B1717257B00AEA0CB /* NewProductRootViewController.m */,
 				4BBE1A6D1717278700AEA0CB /* NewCategoryProductViewController.h */,
 				4BBE1A6E1717278700AEA0CB /* NewCategoryProductViewController.m */,
 				4BEA42A61719519800ED2795 /* NewHotProductViewController.h */,
 				4BEA42A71719519800ED2795 /* NewHotProductViewController.m */,
+				4BBED926172AA68900C9A332 /* NewProductDetailViewController.h */,
+				4BBED927172AA68900C9A332 /* NewProductDetailViewController.m */,
+				4BBED929172AAE7200C9A332 /* NavRootViewController.h */,
+				4BBED92A172AAE7200C9A332 /* NavRootViewController.m */,
 			);
 			path = MuyingYongpin;
 			sourceTree = "<group>";
@@ -1636,6 +1646,8 @@
 				4BBE1A6C1717257B00AEA0CB /* NewProductRootViewController.m in Sources */,
 				4BBE1A6F1717278700AEA0CB /* NewCategoryProductViewController.m in Sources */,
 				4BEA42A81719519800ED2795 /* NewHotProductViewController.m in Sources */,
+				4BBED928172AA68900C9A332 /* NewProductDetailViewController.m in Sources */,
+				4BBED92B172AAE7200C9A332 /* NavRootViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

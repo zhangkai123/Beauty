@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "NavRootViewController.h"
 
-@interface BrandViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,UISearchBarDelegate>
+@interface BrandViewController : NavRootViewController<UITableViewDataSource,UITableViewDelegate,UISearchBarDelegate>
 {
     UITableView *myTableView;
     NSMutableArray *dataArray;

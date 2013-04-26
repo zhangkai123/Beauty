@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "NavRootViewController.h"
 
-@interface AboutViewController : UIViewController
+@interface AboutViewController : NavRootViewController
 
 
 -(id) initWithTabBar;
