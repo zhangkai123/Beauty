@@ -220,6 +220,7 @@
     Story *story = [storiesArray objectAtIndex:cell.rowNum];
         
     NewCategoryProductViewController *newCategoryProductViewController = [[NewCategoryProductViewController alloc]initWithNavBar];
+    newCategoryProductViewController.hidesBottomBarWhenPushed = YES;
     newCategoryProductViewController.catName = story.keyWord;
     newCategoryProductViewController.catId = story.categoryId;
     [self.navigationController pushViewController:newCategoryProductViewController animated:YES];

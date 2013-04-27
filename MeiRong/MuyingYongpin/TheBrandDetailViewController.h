@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "NavRootViewController.h"
 #import "Product.h"
-//#import "HotCell.h"
 
-@interface TheBrandDetailViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
+@interface TheBrandDetailViewController : NavRootViewController<UITableViewDataSource,UITableViewDelegate>
 {
     UITableView *theTableView;
     Product *product;

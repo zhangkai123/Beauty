@@ -367,6 +367,7 @@
             break;
     }
     NewCategoryProductViewController *newCategoryProductViewController = [[NewCategoryProductViewController alloc]initWithNavBar];
+    newCategoryProductViewController.hidesBottomBarWhenPushed = YES;
     newCategoryProductViewController.catName = categoryName;
     newCategoryProductViewController.catId = [NSString stringWithFormat:@"%d",[self getServerNotificationId:categoryName]];
     [self.navigationController pushViewController:newCategoryProductViewController animated:YES];

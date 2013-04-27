@@ -11,7 +11,6 @@
 #import "ProductCell.h"
 #import "Product.h"
 #import "TheBrandDetailViewController.h"
-#import "NewProductDetailViewController.h"
 #import "UIImageView+WebCache.h"
 
 @interface NewProductRootViewController ()<PSCollectionViewDelegate,PSCollectionViewDataSource,UIScrollViewDelegate>
@@ -114,9 +113,12 @@
     Product *product = [productsArray objectAtIndex:index];
     ProductCell *myCell = (ProductCell *)cell;
     
-    NewProductDetailViewController *newProductDetailViewController = [[NewProductDetailViewController alloc]initWithNavBar];
-    [self.navigationController pushViewController:newProductDetailViewController animated:YES];
-    [newProductDetailViewController release];
+    TheBrandDetailViewController *productDetailViewController = [[TheBrandDetailViewController alloc]initWithNavBar];
+    productDetailViewController.hidesBottomBarWhenPushed = YES;
+    productDetailViewController.product = product;
+    productDetailViewController.smallImage = myCell.myImageView.image;
+    [self.navigationController pushViewController:productDetailViewController animated:YES];
+    [productDetailViewController release];
 }
 
 - (void)didReceiveMemoryWarning

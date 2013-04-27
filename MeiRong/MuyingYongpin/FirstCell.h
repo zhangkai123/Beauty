@@ -14,5 +14,5 @@
 }
 @property(nonatomic,retain) UIImageView *myImageView;
 
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier imageWidth:(float)imageW;
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier imageHeight:(float)imageH;
 @end

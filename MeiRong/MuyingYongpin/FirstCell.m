@@ -17,19 +17,12 @@
     [super dealloc];
 }
 
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier imageWidth:(float)imageW
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier imageHeight:(float)imageH
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         // Initialization code
-        float imageViewHeight;
-        CGRect screenBounds = [[UIScreen mainScreen] bounds];
-        if (screenBounds.size.height == 568) {
-            imageViewHeight = 568;
-        }else{
-            imageViewHeight = 480;
-        }
-        myImageView = [[UIImageView alloc]initWithFrame:CGRectMake(-(imageW - 320)/2, 0, imageW, imageViewHeight)];
+        myImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 320, imageH)];
         [self addSubview:myImageView];        
     }
     return self;
