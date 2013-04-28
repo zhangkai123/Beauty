@@ -74,7 +74,7 @@
     }
     firstCellHeight = smallImage.size.height * 320 / smallImage.size.width;
 
-//    theTableView.backgroundColor = [UIColor clearColor];
+    theTableView.backgroundColor = [UIColor clearColor];
     [theTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     theTableView.showsVerticalScrollIndicator = NO;
     theTableView.delegate = self;
@@ -123,10 +123,10 @@
                 rowHeight = 60;
                 break;
             case 2:
-                rowHeight = 30;
+                rowHeight = 45;
                 break;
             case 3:
-                rowHeight = 45;
+                rowHeight = 30;
                 break;
             case 4:
                 rowHeight = 100;
@@ -161,7 +161,7 @@
                 if (!cell) {
                     cell = [[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell1"]autorelease];
                 }
-                cell.textLabel.text = @"product detail";
+                cell.textLabel.text = @"collect, share and buy";
                 theCell = cell;
             }
                 break;
@@ -171,7 +171,8 @@
                 if (!cell) {
                     cell = [[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell2"]autorelease];
                 }
-                cell.textLabel.text = @"store detail";
+//                cell.backgroundColor = [UIColor whiteColor];
+                cell.textLabel.text = @"product detail";
                 theCell = cell;
             }
                 break;
@@ -181,7 +182,8 @@
                 if (!cell) {
                     cell = [[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell3"]autorelease];
                 }
-                cell.textLabel.text = @"collect and share";
+//                cell.backgroundColor = [UIColor whiteColor];
+                cell.textLabel.text = @"store detail";
                 theCell = cell;
             }
                 break;
@@ -191,6 +193,7 @@
                 if (!cell) {
                     cell = [[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell4"]autorelease];
                 }
+//                cell.backgroundColor = [UIColor whiteColor];
                 cell.textLabel.text = @"relate images";
                 theCell = cell;
             }
