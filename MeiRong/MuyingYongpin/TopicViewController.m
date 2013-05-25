@@ -208,7 +208,7 @@
     cell.delegate = self;
     cell.rowNum = indexPath.row;
     Story *story = [storiesArray objectAtIndex:indexPath.row];
-    [cell.myImageView setImageWithURL:[NSURL URLWithString:story.imagePath] placeholderImage:[UIImage imageNamed:@"bPlaceHolder.png"] options:SDWebImageRoundCorner];
+    [cell.myImageView setImageWithURL:[NSURL URLWithString:story.imagePath] placeholderImage:[UIImage imageNamed:@"bPlaceHolder.png"]];
     cell.titleLable.text = story.title;
     cell.articleLable.text = story.article;
     return cell;

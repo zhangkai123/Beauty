@@ -1,4 +1,4 @@
-//
+                                                                                                                                                        //
 //  TheBrandDetailViewController.m
 //  MuyingYongpin
 //
@@ -16,6 +16,9 @@
 #import "FirstCell.h"
 #import "DetailImageCell.h"
 #import "SVPullToRefresh.h"
+#import "ProductCSBCell.h"
+#import "ProductDetailCell.h"
+#import "StoreCell.h"
 
 @interface TheBrandDetailViewController()
 {
@@ -120,7 +123,7 @@
                 rowHeight = firstCellHeight;
                 break;
             case 1:
-                rowHeight = 60;
+                rowHeight = 32;
                 break;
             case 2:
                 rowHeight = 45;
@@ -157,33 +160,31 @@
                 break;
             case 1:
             {
-                UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell1"];
+                ProductCSBCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell1"];
                 if (!cell) {
-                    cell = [[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell1"]autorelease];
+                    cell = [[[ProductCSBCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell1"]autorelease];
                 }
-                cell.textLabel.text = @"collect, share and buy";
                 theCell = cell;
             }
                 break;
             case 2:
             {
-                UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell2"];
+                ProductDetailCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell2"];
                 if (!cell) {
-                    cell = [[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell2"]autorelease];
+                    cell = [[[ProductDetailCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell2"]autorelease];
                 }
-//                cell.backgroundColor = [UIColor whiteColor];
-                cell.textLabel.text = @"product detail";
+                cell.desLabel.text = product.title;
                 theCell = cell;
             }
                 break;
             case 3:
             {
-                UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell3"];
+                StoreCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell3"];
                 if (!cell) {
-                    cell = [[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell3"]autorelease];
+                    cell = [[[StoreCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell3"]autorelease];
                 }
-//                cell.backgroundColor = [UIColor whiteColor];
-                cell.textLabel.text = @"store detail";
+                cell.storeNameLabel.text = product.shopName;
+                cell.seller_credit_score = product.seller_credit_score;
                 theCell = cell;
             }
                 break;
@@ -212,6 +213,7 @@
         [imageCell.myImageView setImageWithURL:[NSURL URLWithString:imageUrlStr] placeholderImage:[UIImage imageNamed:@"bPlaceHolder.png"]];
         theCell = imageCell;
     }
+    theCell.selectionStyle = UITableViewCellSelectionStyleNone;
     return theCell;
 }
 - (void) observeValueForKeyPath:(NSString *)path ofObject:(id) object change:(NSDictionary *) change context:(void *)context
